@@ -1,0 +1,420 @@
+ MAXOBJ=          -9
+          50
+ optimal=           1
+ MAXOBJ=          -8
+          48
+ optimal=           1
+         -11
+          50  1.862645149230957E-010
+           1
+ MAXOBJ=         -11
+          53
+ optimal=           1
+ MAXOBJ=          -8
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          42
+ optimal=           1
+ MAXOBJ=          -8
+          47
+ optimal=           1
+ MAXOBJ=          -7
+          42
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -8
+          49
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          47
+ optimal=           1
+ MAXOBJ=          -7
+          47
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          47
+ optimal=           1
+ MAXOBJ=          -7
+          47
+ optimal=           1
+ MAXOBJ=          -7
+          49
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+ MAXOBJ=          -7
+          48
+ optimal=           1
+          -7
+          50  7.450580596923829E-010
+           1
+ MAXOBJ=          -7
+          54
+ optimal=           1
+ MAXOBJ=          -8
+          48
+ optimal=           1
+ MAXOBJ=          -8
+          48
+ optimal=           1
+ MAXOBJ=          -8
+          46
+ optimal=           1
+ MAXOBJ=          -8
+          43
+ optimal=           1
+ MAXOBJ=          -8
+          43
+ optimal=           1
+ MAXOBJ=          -9
+          50
+ optimal=           1
+ MAXOBJ=          -8
+          43
+ optimal=           1
+ MAXOBJ=          -7
+          46
+ optimal=           0
+ MAXOBJ=          -7
+          46
+ optimal=           0
+ MAXOBJ=          -8
+          46
+ optimal=           0
+ MAXOBJ=          -7
+          46
+ optimal=           0
+ MAXOBJ=          -7
+          48
+ optimal=           0
+          -7
+          50  1.862645149230957E-010
+           0
+ MAXOBJ=          -7
+          52
+ optimal=           0
+ MAXOBJ=          -7
+          48
+ optimal=           0
+ MAXOBJ=          -7
+          43
+ optimal=           0
+ MAXOBJ=          -7
+          44
+ optimal=           0
+ MAXOBJ=          -7
+          43
+ optimal=           0
+ MAXOBJ=          -7
+          44
+ optimal=           0
+ MAXOBJ=          -7
+          42
+ optimal=           0
+ MAXOBJ=          -7
+          42
+ optimal=           0
+ MAXOBJ=          -7
+          48
+ optimal=           0
+ MAXOBJ=          -7
+          46
+ optimal=           0
+ MAXOBJ=          -7
+          46
+ optimal=           0
+ MAXOBJ=          -7
+          44
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -7
+          50
+ optimal=           0
+ MAXOBJ=          -6
+          44
+ optimal=           1
+          -8
+          50  3.725290298461914E-010
+           0
+ MAXOBJ=          -8
+          53
+ optimal=           0
+ MAXOBJ=          -6
+          44
+ optimal=           1
+ MAXOBJ=          -6
+          46
+ optimal=           1
+ MAXOBJ=          -6
+          41
+ optimal=           1
+ MAXOBJ=          -6
+          41
+ optimal=           1
+ MAXOBJ=          -8
+          43
+ optimal=           1
+ MAXOBJ=          -6
+          41
+ optimal=           1
+ MAXOBJ=          -4
+          41
+ optimal=           1
+ MAXOBJ=          -4
+          47
+ optimal=           1
+ MAXOBJ=          -5
+          47
+ optimal=           1
+ MAXOBJ=          -4
+          47
+ optimal=           1
+ MAXOBJ=          -4
+          43
+ optimal=           1
+ MAXOBJ=          -4
+          44
+ optimal=           1
+ MAXOBJ=          -4
+          43
+ optimal=           1
+ MAXOBJ=          -4
+          47
+ optimal=           1
+ MAXOBJ=          -4
+          43
+ optimal=           1
+ MAXOBJ=          -4
+          47
+ optimal=           1
+ MAXOBJ=          -4
+          41
+ optimal=           1
+ MAXOBJ=          -4
+          43
+ optimal=           1
+ MAXOBJ=          -4
+          43
+ optimal=           1
+ MAXOBJ=          -4
+          49
+ optimal=           1
+ MAXOBJ=          -4
+          44
+ optimal=           1
+ MAXOBJ=          -4
+          44
+ optimal=           1
+ MAXOBJ=          -4
+          44
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          41
+ optimal=           1
+ MAXOBJ=          -5
+          45
+ optimal=           0
+ MAXOBJ=          -4
+          42
+ optimal=           1
+ MAXOBJ=          -4
+          45
+ optimal=           1
+ MAXOBJ=          -4
+          43
+ optimal=           1
+ MAXOBJ=          -4
+          43
+ optimal=           1
+ MAXOBJ=          -6
+          41
+ optimal=           1
+ MAXOBJ=          -4
+          43
+ optimal=           1
+ MAXOBJ=           5
+          34
+ optimal=           1
