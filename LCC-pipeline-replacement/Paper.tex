@@ -1,0 +1,613 @@
+%%
+%% This is file `elsarticle-template-harv.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% elsarticle.dtx  (with options: `harvtemplate')
+%% 
+%% Copyright 2007, 2008 Elsevier Ltd.
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% -------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+%% SP 2008/03/01
+
+%% This package is optional, but maybe not belong to Elsavier journal format
+\documentclass[a4paper,oneside,onecolumn,preprint,10pt,authoryear]{elsarticle}
+\usepackage{epsfig}
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% if you use PostScript figures in your article
+%% use the graphics package for simple commands
+ \usepackage{graphics}
+ \usepackage[a4paper, top=19mm, bottom=24mm, left=20mm, right=20mm]{geometry}
+%% or use the graphicx package for more complicated commands
+ \usepackage{graphicx}
+%% or use the epsfig package if you prefer to use the old commands
+ \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+ \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+ \usepackage{lineno}
+
+ \usepackage{natbib} % for reference stype
+ 
+ % for left aligned equations
+ \usepackage{fleqn}
+ 
+ % for optional font package, if document is to be formatted with Times and compatible math fonts
+ \usepackage{txfonts}
+ 
+ % for hyper linking in document
+ 
+ \usepackage{hyperref}
+ 
+ \usepackage{pifont} %for open star in the title
+ 
+
+\journal{Infrastructure Planning Review: Vol. 26 no. 1, pages(123-132)-Japanese Society of Civil Engineering (JSCE)}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+ %\author{Kiyoshi Kobayashi\corref{cor1}\fnref{kobayashi}}
+% \ead{kkoba@psa.mbox.media.kyoto-u.ac.jp}
+ %% \ead[url]{home page}
+  %\fntext[kobayashi]{a}s
+ % \cortext[cor1]{Corresponding author. Tel.: +81 75 383 3222; Fax +81 75 383 3224.}
+%\author{Kiyoyuki Kaito\corref{}\fnref{kaito}}
+ %\ead{kaito@ga.eng.osaka-u.ac.jp}
+%\author{Nam Le Thanh\corref{c}\fnref{nam}}
+% \ead{info.tna@t06.mbox.media.kyoto-u.ac.jp}
+%\address{Department of Urban Management, Graduate School of Engineering, Kyoto University, Japan\fnref{add1}}
+%% \fntext[label3]{}
+%% \ead[url]{home page}
+ %% \cortext[cor1]{}
+%\address{Frontier Research Center, Osaka University, Japan\fnref{add2}}
+%% \fntext[label3]{}
+%% \ead[url]{home page}
+ %% \cortext[cor1]{}
+%\address{Department of Urban Management, Graduate School of Engineering, Kyoto University, Japan\fnref{add3}}
+%% \fntext[label3]{}
+
+\title{An Optimal Preventive Replacement Model for Water Supply Pipeline}
+
+%% use optional labels to link authors explicitly to addresses:
+\author[nam]{L.T. Nam \corref{cor1}}
+\ead{info.tna@t06.mbox.media.kyoto-u.ac.jp}
+\author[tanaka]{T. Tanaka}
+\ead{tak-tanaka@suido.city.osaka.jp}
+\author[kaito]{K. Kaito  }
+\ead{kaito@ga.eng.osaka-u.ac.jp}
+\author[kobayashi]{K. Kobayashi }
+\ead{kkoba@psa.mbox.media.kyoto-u.ac.jp}
+
+\cortext[cor1]{Corresponding author. Tel.: +81 75 383 3222; Fax +81 75 383 3224.}
+%\fntext[kobayashi]{Professor}
+%\fntext[kaito]{Associate Professor}
+%\fntext[nam]{Graduate Student}
+\address[nam]{Department of Urban Management, Graduate School of Engineering, Kyoto University, Japan}
+\address[tanaka]{Department of Urban Management, Graduate School of Engineering, Kyoto University, Japan}
+\address[kaito]{Frontier Research Center, Osaka University, Japan}
+\address[kobayashi]{Department of Urban Management, Graduate School of Engineering, Kyoto University, Japan}
+
+%\author[kobayashi,kaito,nam]{}
+%\address[add1]{}
+%\address[add2]{}
+%\address[add3]{}
+
+\begin{abstract}
+Underground water supply pipelines system often exerts to have high uncertainty of being leaked after several decades of operation due to the corrosion process that is not easily observed. Leakage of the pipelines visually appears without early notices and requires an immediate renewal. Thus, determining an optimal time for renewal is always of essence in practice. This paper deliberates this demand into development of mathematical model that enables to define optimal renewal timing in view of optimal total life cycle cost (LCC). In the model, the deterioration of pipelines system is formulated by employing Weibull hazard function. Furthermore, in consideration of technology innovation in pipeline materials, the model is expected to be an effective benchmarking tool for managers in choosing the most suitable pipeline technology in their long-term plan. An empirical application of model on pipelines network of Osaka city was conducted to demonstrate its applicability.
+\end{abstract}
+
+\begin{keyword}
+Weibull hazard function \sep optimal renewal interval \sep pipeline management 
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+%% \linenumbers
+
+%% main text
+\section{General introduction}
+\label{51}
+Water pipelines system in a mega city is believed as an extremely important system of the entire infrastructure network. Major engineering function of the system is for transportation of clean and purified water from treatment and distribution plant to various users including organizations, factories and households. Due to the limitation of land-use and social requirements, in most of the case, pipelines are placed as underground, beneath the pavements, railways and other infrastructures \cite{ahammed97}. In view of the pipeline as underground system, one of the main challenging tasks for engineer is to understand the deterioration behaviors such as: leakage occurrence, corrosion progress, wall of pipe over the time, external impact pressure, etc. This query is indeed necessary in order to efficiently operate the system so as to provide the best quality and sufficient volume of water for the city dwellers.
+
+The main physical deteriorate problem of pipeline is corrosion resulting from many influential factors such as: internal fluid pressure, material elastic modulus, longitudinal stress, coating type, soil impact, external load and many others. Evidently, corrosion over the operation time undoubtedly and slowly leads to leakage and break of pipe. In fact, leakage occurrence and break of pipeline system in a mega city due to natural corrosive process and external factors have been well-documented as a widespread problem. As a sequent, water supply companies are asked to bear huge losses due to pressure head losses, high repair and penalty cost in case of damage occurrences. Additionally, in view of social losses, a great amount of money needs to be allocated for other potential adverse consequences such as flooding, fast deterioration of roads, road congestion, closing of business and shopping centers and other indirect expenses \cite{deb03}.
+
+As the matter of course, data on actual performance of pipelines over the years is often absence because of its complexity and high cost in inspection. For example, the visual inspection requires excavation of existing upper structures, which therefore prevents other services from normal operation. Moreover, in the case of regular maintenance or immediate repair, the involved costs are often claimed to be considerably high. Thus, in an economical view, managers prefer to select the option of renewing the pipeline to repair alternative because the overall cost in fact receiving very small variation from material cost itself. This ideal consequently leads to the demand of determining the optimal renewal time based on the principle of minimizing the overall life cycle cost (LCC).
+
+The determination for renewal duration is in close link not only to the overall cost but also to the durability of pipeline. Naturally, high durability pipeline is often turning to have longer optimal renewal time. In the situation of having various types of pipelines, selecting the best one that satisfies both high durability and minimum LCC requires an appropriate benchmarking study. In consideration of benchmarking, suffice to say that only when the optimal renewal duration of each pipeline type is determined, a selection of the most appropriate technology of pipelines would be feasible.
+
+This study aims to formulating an optimal renewal model of pipeline system. Pipeline systems are subjectively categorized into different types according to the characteristics of construction materials. Each type of pipeline is further grouped by differences in diameter. Weibull hazard function is employed to address the elapsed time of each pipeline measuring from its buried time. The physical impact factors are in form of risk factor with a certain probability or range. Each impact factor results in a particular risk level and is integrated into hazard function. Expected life cycle cost considers both direct replacement cost and indirect social cost. The model is used for forecasting the deterioration of pipelines and determining the optimal renewal time that offers the minimum expected life cycle cost of each pipeline. The optimal types of pipeline could be identified as the best alternative for future replacement. The presumption of model is presented in the second section. The third section discusses the deterioration process of pipeline system. The best renewal interval model is portrayed in the fourth section. Empirical application to the water distribution network of Osaka city, which was established in 1895, is examined and explained in the fifth section.
+%%%%%%%%%%%%%%%%%%
+\section{Literature Review}
+\label{52}
+Optimal renewal strategies have long been studied. References could be dated back to 1970s with model of \citet{shamir79}. This model introduced a simple mathematical formulation to estimate the optimal replacement time where the failure rate was assumed to follow exponential distribution with respect to time. An optimal period for renewal was defined as the period that minimizes the life cycle cost over a certain planning horizon. Many other papers similarly employed the analysis of expected life cycle cost in combination with failure rate models subjected to non-homogeneous Poisson process\cite{park00,hong06,Kleiner01}. The rule of replacement is determined by so-called "critical level" that is a probability level of failure rate along with time.
+
+A comprehensive study of \citet{jido} further discusses the optimal and repair strategies. In his model, the condition state of infrastructure facility is in continuous state. This assumption purposely encompasses the model for general case as well applicable for various infrastructure structures. The optimal inspection time and repair/replacement condition state are simultaneously solved by using numerical analysis. This model can be specifically applied to underground infrastructure systems; however, mathematical computation of the model is a challenging since it requires a high degree of integration.
+
+Other study conducted by \citet{ahammed95} and \citet{ahammed97} targeted its emphasis on physical impact on the deterioration process. Outcome of this study proved the fact that the bending moment, pipe wall thickness, material yield stress and wheel load traffic are among the highly influential factors to the deterioration. Meanwhile, other factors such as pipe effective length, pipe radius, unit weight of surrounding soil and others have small impact on the deterioration estimation.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pre-assumption of the Model}
+\label{53}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Suffice to say that the demand for pipeline replacement of water distribution network would not become a heavy burden if abundant resource were allocated annually. However, the scarcity of resources bring up to the managers a question of when, how and what to do for the entire network and for individual pipeline. Thus, for managerial purposes, it ought to be important not only to estimate the optimal renewal time but also the most appropriate substitute type of pipeline for present and future replacement. 
+
+In pipeline system, there are two distinguish level of deterioration, denoting as $E_i (i=1,2)$. Level $E_1$ reflects the healthy condition in good level. Whilst, level $E_2$ denotes the pipeline is under leakage, damage or destruction. Anytime when the condition level $E_2$ is detected, the damaged pipeline will be replaced to a new one immediately. In the concurrence of incident, especially in the megacities, tap water will spill over the surface of the road, or shopping center that lead to the social damage such as: traffic congestion, flooding and downtime of office, business center in the downtown. By substituting the old pipeline proactively, the risk of undertaking the incident could be mitigated. This is under the control and decision of Water Supply Company. As the matter of course, the substitution of pipeline demands an increase in the replacement cost. It is therefore important to harmonize the trade-off situation by introducing the optimal renewal interval with respect to the summation of total social cost and renewal cost as a whole.
+\section{Deterioration Process}
+\label{54}
+In hazard analysis, the deterioration of element is subjected to follow a stochastic process \cite{lancaster90}. For pipeline, as previously mentioned, two condition level $E_1, E_2$ are defined. Figure \ref{fig51} describes the deterioration process of pipeline and choice of renewal. In the case of renewal, the condition state from $E_2$ must be changed into $E_1$ as for new pipeline and the pipeline resuming its normal performance condition. The renewal is carried out at alternative time $t_k$ $(k=0,1,2,...)$. In this way, the next renewal time is denoted as $t=t_0+\tau$, where $\tau$ indicating the elapsed time. The life span of the pipeline is expressed by a random variable $\zeta$. The probability distribution and probability density function of the failure occurrence are $F(\zeta)$ and $f(\zeta)$ respectively. The domain of the random variable $\zeta$ is $[0,\infty]$. The living probability (hereafter named as survival probability) expressed by survival function $\tilde{F}(\tau)$ can be defined according to the value of failure probability $F(\tau)$ in the following equation
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig51} 
+\end{center}
+\caption{Deterioration and renewal choice}
+\label{fig51} 
+\end{figure}
+
+\begin{eqnarray}
+&& \tilde{F}(\tau) = 1 - F(\tau) \label{funcbF5}
+\end{eqnarray}
+The probability, at which the pipeline performs in good shape until time $\tau$ and break down for the first time during an interval of $\tau+\Delta\tau$ can be regarded as hazard rate and expressed in the following equation
+\begin{eqnarray}
+&& \lambda_i(\tau) \Delta \tau = \frac{f(\tau)\Delta \tau}{\tilde{F}(\tau)}  \label{riskbF5}
+\end{eqnarray}
+Here, $\lambda(\tau)$ is the hazard function of the pipeline. In reality, the breakdown probability depends largely on the elapsed time of pipeline since its construction time. Thus, the hazard function should take into account the working duration of the pipelines. In another word, the memory of the system should be inherited. Weibull hazard function is satisfied in addressing this process.
+\begin{eqnarray}
+&& \lambda(\tau)= \alpha m \tau^{m-1} \label{weibul}
+\end{eqnarray}
+Where, $\alpha$ is the parameter expressing the arrival density of the pipeline, and $m$ is the acceleration or shape parameter. The probability density function $f(\tau)$ and survival function $\tilde{F}(\tau)$ in the form of Weibull hazard function can be further expressed in equation (\ref{pdf}) and (\ref{survival}).
+\begin{eqnarray}
+&& f(\tau)=\alpha m\tau^{m-1}\exp(-\alpha \tau^m) \label{pdf} \\
+&& \tilde{F}(\tau)=\exp(-\alpha \tau^m) \label{survival}
+\end{eqnarray}
+\section{Risk Factors and Estimation Approach for Weibull Parameters}
+\label{55}
+\subsection{Risk Factor and Covariates}
+\label{551}
+\subsubsection{Risk Factor}
+\label{5511}
+The corrosion process of pipeline is affected by many internal and external factors. As earlier mentioned, the influential factors include material yield stress, length, radius, pipe wall thickness, traffic load, unit soil weight, thermal expansion coefficient, internal fluid pressure and many others. These factors should be considered as either deterministic or random variables with specific mean and variance depending on the availability of gathered data and information. Evidently, these factors are proportionally contribute to the deterioration level with difference variation \cite{ahammed95,ahammed97}. It is therefore, it is understandable to propose an integrated risk factor $\kappa$ in form of probability value. This risk factor receives different value in the case of different mega city, different type of water distribution system, materials and so on and so fourth. Estimation of risk factor can be retrieved from several physical models. Further expression of hazard function whereby considering the risk factor $\kappa$ is as follow.
+\begin{eqnarray}
+&& \lambda(\tau)= \kappa \alpha m \tau^{m-1} \label{weibul1}
+\end{eqnarray}
+The probability density function $f(\tau)$ in (\ref{pdf}) and survival function in (\ref{survival}) $\tilde{F}(\tau)$ are further expressed as
+\begin{eqnarray}
+&& f(\tau)=\kappa \alpha m\tau^{m-1}\exp(-\kappa \alpha \tau^m) \label{pdf1} \\
+&& \tilde{F}(\tau)=\exp(-\kappa \alpha \tau^m) \label{survival1}
+\end{eqnarray}
+A further notice in the case of using the risk factor is that $\kappa$ should be used for respective record available in the data set.
+\subsubsection{Covariates}
+\label{5512}
+Beside the risk factor, another popular approach in addressing the impacts and corellations of characteristic variables (or covariates) is to consider location parameter $\alpha$ in additive form of covariates. 
+\begin{eqnarray}
+\alpha  = \sum\limits_{i = 1}^M {\beta _i x_i \rm{     (i = 1,}}...{\rm{,M)}} \label{covariate}
+\end{eqnarray}
+where $m$ is total number of covariates and the value of first covariate equals to 1 as a constant value. Depending the availability of database, numbers of covariates are selected in to numerical calculation.
+\subsection{Estimation Approach for Weibull Parameter}
+\label{552}
+It is assumed that the total number of recorded data is $S$, which is relatively equivalent to entire length of the pipelines system. In which, each record refers particularly for $s$ $(s=1,...,S)$ unit of length (possibly in meter or kilometer). This type of separation is often found for the convenience of management of each city. Equations (\ref{pdf}) and (\ref{survival}) are thus in the following formulas.
+\begin{eqnarray}
+&& f(t_s)=\alpha mt_s^{m-1}\exp(-\alpha t_s^m) \\
+&& \tilde{F}(t_s)=\exp(-\alpha t_s^m)
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%
+Deterioration of section $s$ is considered as mutually independent from other part of the pipelines system. For this reason, the simultaneous probability density of the deterioration is expressed in the following likelihood function. 
+%%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+\begin{array}{l}
+ {\cal L} (\alpha , m: t_s) = \prod\limits_s^S {\left\{ {\bar F(t_s^m )} \right\}^{(1 - \delta _s )} \left\{ {f(t_s^m )} \right\}^{\delta _s } }    \\
+= \prod\limits_s^S {\left\{ {\exp ( - \alpha t_s^m )} \right\}^{(1 - \delta _s )} \left\{ {\alpha mt_s^{m - 1} \exp ( -  \alpha t_s^m )} \right\}^{\delta _s } }  \label{eq11}
+ \end{array}
+\end{eqnarray}
+In which, $\delta_s$ is dummy variable receiving its value of $1$ when leakage was encountered and $0$ otherwise. For ease of mathematical manipulation, logarithm for both sides of equation (\ref{eq11}) is referred. Thus, following equation is additional named as log-likelihood function.
+\begin{eqnarray}
+&&\ln {\cal L} (\alpha, m: t_s )=  \nonumber \\ 
+&&\sum\limits_s^S {\left[ \begin{array}{l}
+ (1 - \delta _s )( - \alpha t_s^m ) \\ 
+  + \delta _s \left\{ {\ln \alpha  + \ln m + (m - 1)\ln t_s  - \alpha t_s^m } \right\} \\ 
+ \end{array} \right]} \label{weilike}
+\end{eqnarray}
+In order to obtain the two parameter $\alpha$ and $m$, the maximum likelihood estimation method is used. The estimator of parameter value $\theta$ which maximizes the logarithmic likelihood function (\ref{weilike}) is given as $\hat\theta =(\hat \theta _1 ,\hat\theta _2)$ ($\theta _1 =\alpha, \theta _2 =m $) and must simultaneously satisfies following condition
+\begin{eqnarray}
+\frac{{\partial \ln {\cal L} (\Xi ,\hat \theta )}}{{\partial \theta _i }} = 0,{\rm{      }}(i = 1,2) 
+\end{eqnarray}
+Furthermore, the estimated value $\sum {\hat \theta }$ of the asymptotic covariance matrix of the parameter can be expressed as follows
+\begin{eqnarray}
+\sum\limits_{}^ \wedge  {(\hat \theta ) = \left[ {\frac{{\partial \ln {\cal L} (\Xi ,\theta )}}{{\partial \theta \partial \theta^{'} }}} \right]} ^{ - 1}  \label{fisher}
+\end{eqnarray}
+%%%%%%%%%
+The optimal value of $\hat\theta =(\hat \theta _1 ,\hat\theta _2)$ are then estimated by applying numerical iterative procedure such as Newton method for simultaneous equation (\ref{fisher}) of 2 dimensions. This study employs Newton-Rhapson method. The statistical $t$-test is calculated by use of covariance matrix value $\sum {\hat \theta }$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formulation of the Optimal Renewal Interval Model}
+\label{56}
+The occurrence of the incident results in an amount of social cost, which is assumed to be a constant number $C$. The expected social cost $EC(z)$ is estimated by use of the predetermined interval of renewal $z$. Thus, its value is followed the probabilistic manner via probability density function $f(\tau)$ defined in equation (\ref{pdf}). Over the continuous time, counting from the buried time or the previous renewal time, the expected social cost would be in the integral form as expressed in the following equation.
+\begin{eqnarray}
+&& EC(z)=\int_0^{z} C f(t)\exp(-\rho t)dt \label{socialcost}
+\end{eqnarray}
+The co-efficient $\rho$ is discounted rate of money over the interval $z$. On the other hand, another constant amount of money denoted as $I$ is spent for renewal activities, which is subjected to either occurrence of incident at time $\tau$ or the age of pipeline reaching to time $z$. It is therefore important to note that the renewal cost, when the age of pipeline becomes $z$, must take the survival probability $\tilde{F}(\tau)$ into its calculation. Consequently, the present discounted cost of the next pre-determined renewal time $EL(z)$ can be expressed in the following form.
+\begin{eqnarray}
+EL(z)=\int_0^{z} I f(t)\exp(-\rho t)dt +  \tilde{F}(z)I \exp(-\rho z) \label{totalcost}
+\end{eqnarray}
+The expected life cycle cost after the next renewal time is evaluated as net present value of social costs, renewal costs. As the social and renewal cost are in fixed values, the expected LCC alters to be equal for every renewal times. In another word, expected LCC at next renewal time is equal to the expected LCC estimated at the present renewal. The expected LCC, denoted as $J(0:z)$, can be regulated through the regression estimation shown in equation (\ref{han}).
+\begin{eqnarray}
+&& J(0:z)= \int_0^{z} f(t)\{c+I+J(0:z)\} \exp(-\rho t)dt  \nonumber \\
+&& \hspace{10mm} + \tilde{F}(z)\{I+J(0:z)\} \exp(-\rho z)  \label{han}
+\end{eqnarray}
+The following two functions $\Gamma(z)$ and $\Lambda(z)$ are defined
+\begin{eqnarray}
+&& \Gamma(z)=\int_0^{z} f(t)\exp(-\rho t)dt 
+ = \int_0^z  \alpha m\tau^{m-1}\exp(- \alpha \tau^m-\rho t)dt \label{gamma}\\
+&& \Lambda(z)= \tilde{F}(z) \exp(-\rho z)
+  =\exp(- \alpha z^m-\rho z)  \label{alpha}
+\end{eqnarray}
+Substituting equations (\ref{gamma}) and (\ref{alpha}) into equation (\ref{han}), the following explicit form for the expected LCC is obtained.
+\begin{eqnarray}
+&& J(0:z)= \frac{(c+I)\Gamma(z)+I \Lambda(z)}{1-\Gamma(z)-\Lambda(z)} \label{lifecycle}
+\end{eqnarray}
+The optimal value function $\Phi(0)$ can be expressed as the minimum expected LCC evaluated at the initial time. 
+\begin{eqnarray}
+&& \Phi(0)=\min_{z}\{ J(0:z) \}\label{imp}
+\end{eqnarray}
+The estimation for the optimal interval $z^*$ from equation (\ref{lifecycle}) can be handled by solving the optimization condition of the first derivative as expressed in the following equation.
+\begin{eqnarray}
+&& \frac{dJ(0:z)}{dz}=\frac{ \psi(z)}{\{1-\gamma(z)-\Lambda(z)\}^2 }=0 \\
+where\nonumber \\
+&& \psi(z)=(C+I)\Gamma^\prime(z)+I\Lambda^\prime(z)+C\{\Lambda(z)^\prime\Gamma(z)
+ -\Gamma^\prime(z)\Lambda(z)\}
+\end{eqnarray}
+and $\Gamma(z)^\prime=d\Gamma(z)/dz$, $\Lambda(z) ^\prime=d\Lambda(z)/dz$. Obtaining the value of optimal interval $z^*$ requires to solve the equation $\psi(z)=0$. Another numerical approach to solve equation (\ref{lifecycle}) is further explained in the appendix.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Optimal Renewal Interval and Technology Innovation}
+\label{57}
+The water distribution network composes of many different types of pipes. Thanks to the technology innovation in pipe's materials, many new and better quality types of pipe have been introduced. As a matter of course, along the time, pipelines made from outdate materials are no longer in production. The aging pipelines are deeming to be substituted by better quality pipes. It is assumed that the network composes of type $i$ $(i=1,...,N)$, which is available in the stock ($N$ is total number of type $i$). On the other hand, there exists pipes of old fashion type $j$ $(j=1,...,M)$ ($M$ is the total number of old type). The selection of pipe according to its type for renewal activities can be described in two subsequent steps as follows.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Step 1-Selection of Best Type of Pipe}
+\label{571}
+The optimization approach expressed in equation (\ref{lifecycle}) and (\ref{imp}) warrants the estimation for the best interval renewal time for each type $i$ $(i=1,...,N)$ of pipelines. From equation (\ref{han}), the following equation is regarded as the expected LCC for type $i$.
+\begin{eqnarray}
+&& J_i(0:z_i)= \int_0^{z_i} f_i(t)\{c+I_i+J_i(0:z_i)\} \exp(-\rho t)dt  \nonumber \\
+&& \hspace{10mm} + \tilde{F}_i(z_i)\{I+J_i(0:z_i)\} \exp(-\rho z_i)  \label{han1}
+\end{eqnarray}
+The best type $i^*$ is the one meeting the minimum expected LCC condition among $N$ types. 
+\begin{eqnarray}
+&& i^\ast=\mbox{arg} \min_{i}\{J_i(0:z_i):i=1,\cdots,N\} \label{16}
+\end{eqnarray}
+The sign $\mbox{arg}\min_{i}$ denotes the minimization searching for the function in the parenthesis with respect to $i$. The best type $i^*$ evaluated from condition of equation (\ref{16}) would become optimal type for replacement of old types of pipelines in the entire water distribution network.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Step 2-Replacement for Old Type Pipeline}
+\label{572}
+%The optimal type $i^*$ obtained from the estimation in step 1 will be used to renew for the old type $j$ in the case of occurring incident or the old pipe reaching to its pre-determined renewal point. It is assumed that the old type $j$ of pipe has lasted without damage up to a certain time $\tau$ counted from its construction time. The distribution of conditional probability of acquiring incident in time $t_j$ after the present time is $F_j(t_j|\tau_j)$ with the following expression.
+%\begin{eqnarray}
+%&& F_j(t_j|\tau_j) = \frac{F_j(t_j+\tau_j)-F_j(\tau_j)}{\tilde{F}_j(\tau_j)} \label{bF}
+%\end{eqnarray}
+%The first derivative for both sides of equation (\ref{bF}) gives the probability density function $f(t_j|\tau_j)$ expressed in the following form.
+%\begin{eqnarray}
+%&& f(t_j|\tau_j)= \frac{f(t_j|\tau_j)}{\tilde{F}_j(\tau_j)} \label{skbF}
+%\end{eqnarray}
+%It is the fact that the probability of being damaged after time $t_j$ counted from present time is the hazard rate (or conditional probability within an unit of time) in the following equation.
+%\begin{eqnarray}
+%&& \lambda_j(t_j|\tau_j) = \frac{f_j(t_j|\tau_j)}{\tilde{F}_j(t_j|\tau_j)}  \label{riskbF}
+%\end{eqnarray}
+%The survival probability $\tilde{F} _ j(t_j|\tau_j)$ explains the event at which the pipeline has experienced no breakdown or damage until present time $\tau_j$ and during time $t_j$.
+%\begin{eqnarray}
+%&& \tilde{F}_j(t_j|\tau_j)=1-F(t_j|\tau_j) \nonumber \\
+%&& = \exp\left\{-\int_0^{t_j} \lambda(s|\tau_j)ds\right\}
+%\end{eqnarray}
+%The probability density function $f_j(t_j|\tau_j)$ and survival function $\tilde{F} _ j(t_j|\tau_j)$ are further expressed in the form of Weibull hazard function employed from equation (\ref{weibul})
+%\begin{eqnarray}
+%&& f(t_j|\tau_j)= \alpha_j m_j\tau^{m_j-1}\exp(-\alpha_j \tau_j^{m_j}) \label{pdfj} \\
+%&& \tilde{F}_j(t_j|\tau_j)=\exp(-\alpha_j \tau_j^{m_j}) \label{survivalj}
+%\end{eqnarray}
+In regard to replacement rules, the expected life cycle $\tilde{J}_j^{i^\ast} (z_j:\tau_j)$ cost calculated for the old type $j$ of pipe by using the optimal type $i^*$ acquired from Step 1 and after interval time $z_j$ become the net present value expressed in the following equation.
+\begin{eqnarray}
+&& \tilde{J}_j^{i^\ast}(z_j:\tau_j)
+ =\int_0^{z_j} f_j(t_j|\tau_j)\{c+I_{i^\ast}+J_{i^\ast}(0:z_{i^\ast})\} \exp(-\rho t_j)dt_j  \nonumber \\
+&& + \tilde{F}_j(z_j|\tau_j)\{I+J_{i^\ast}(0:z_{i^\ast})\} \exp(-\rho z_{i^\ast})  \label{han2}
+\end{eqnarray}
+The problem of seeking for the optimal renewal time $z_j^\ast(\tau_j)$ for old type $j$ with elapsed time $\tau$ is by solving the optimization condition in the following expression.
+\begin{eqnarray}
+&& z_j^\ast=\arg \min_{z_j} \{\tilde{J}_j^{i^\ast}(z_j:\tau_j)\} \label{sa}
+\end{eqnarray}
+%Solving the first derivative of equation (\ref{han}) with respect to variable $z$ gives the satisfactory for the optimization condition in equation (\ref{sa}). The optimal renewal interval $j^*$ for the old type of pipe is obtained from the following equation.
+%\begin{eqnarray}
+%&& f_j(z_j^{\ast}|\tau_j)\{c+I_{i^\ast}+J_{i^\ast}(0:z_{i^\ast})\} \exp(-\rho z_j^\ast)  \nonumber \\
+%&& = \{f_j(z_j^\ast|\tau_j)+\rho \tilde{F}_j(z_j^\ast|\tau_j)\} \nonumber \\
+%&& \{I+J_{i^\ast}(0:z_{i^\ast})\} \exp(-\rho z_{i^\ast}) 
+%\label{han1}
+%\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The so called \textit{"Switching ratio $\Theta$" }, inferring the rate of renewal by using the new type of pipelines over the old types, is expected to become an important indicator for replacement planning. Definition of the rate is the ratio of $z^*_j$ over $z^*_i$.
+%%%
+\begin{eqnarray}
+&& \Theta = \frac{z^*_j}{z^*_i} \label{swratio}
+\end{eqnarray}
+%%%%
+\section{Average Cost Estimation.}
+The application of average life cycle cost analysis has been widely recommended for economic evaluation of public infrastructure, Espcially, for infrastructure with its long service life. This is due to the fact that, over the years, discount rate $\rho$ often exerts a high fluctuation in its value. In order to minimize the negative impact on analysis from such high fluctuation of discount rate, \cite{kobaevarg} has proved the benefit of using average cost analysis.
+
+The case when life cycle cost is applicable is in line with the case when the denominator of the expression \ref{lifecycle} becomes $0$ in the limit of which discount rate $\rho=0$. However, when the value of denominator equals to $0$, the equation can not be solvable. In consideration average cost over the service life, we apply estimation for average cost of pipeline type 
+$i~(i=1,\cdots,N)$ by following equation.
+\begin{eqnarray}
+&& AC_i(z)=\frac{\int_0^{z} (c+I_i) f_i(t) dt  +  \tilde{F}_i(z)I_i}{z} \label{avelcc}
+\end{eqnarray}
+The optimal renewal time $z_i^\ast$ for pipeline type $i$ can be estimated by solving the minimum condition of equation \ref{avelcc}.
+\begin{eqnarray}
+&& \min_{z}\{ AC_i(z) \}\label{iimp}
+\end{eqnarray}
+Among $N$ number of type $i$, again, it is possible to select the best type $i^\ast$ in view of least life cycle cost. 
+\begin{eqnarray}
+&& i^\ast=\mbox{arg} \min_{i}\{ AC_i(z_i^\ast):i=1,\cdots,N\}
+\end{eqnarray}
+Eventually, it is possible to define the average cost if the best pipeline type $i^\ast$ is used to replace the old type of pipeline $j$. And thus, it is neccessary to define the renewal period $z_j$ in case of renewal with best possible pipeline technology.
+\begin{eqnarray}
+&& \hspace{-5mm} \overline{AC}_j^{i^\ast}(z_j)\nonumber \\
+&& \hspace{-5mm} =\frac{\int_0^{z_j} f_j(t_j|\tau_j)(c+I_{i^\ast}) dt_j  + \tilde{F}_j(z_j|\tau_j)I_{i^\ast} }{z_j} \label{han1}
+\end{eqnarray}
+$\tilde{F}_j(t_j|\tau_j)$ is the probability, to which, leakage or breakdown do not occur during time $t_j$ and continue the same condition state until time $\tau_j$. If the best pipeline type $i^\ast$ now is used, the average cost $AC_{i^\ast}(z_i^\ast)$ is generated. In addition, the accumulative additional cost generated by continuously using the old pipeline for the $z_j$ period can be determined. 
+\begin{eqnarray}
+&& \overline{CAC}_j^{i^\ast}(z_j)= \{\overline{AC}_j^{i^\ast}(z_j)-AC_{i^\ast}(z_i^\ast)\}z_j
+\end{eqnarray}
+In the end, the best renewal time $z_j^\ast(\tau_j)$ for pipeline type $j$ can be easily estimated by choosing the renewal time satisfying the minimum condition. 
+\begin{eqnarray}
+&& z_j^\ast=\arg \min_{z_j} \{\overline{CAC}_j^{i^\ast}(z_j)\} \label{ssa}
+\end{eqnarray}
+\section{Empirical Study}
+\label{58}
+\subsection{Overview of Empirical Study}
+\label{581}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The water distribution network of Osaka city was mainly constructed during the periods of 1950s and 1960s. The network has undergone nice times of expansion to meet the need of the city \cite{osaka}. The total length of conduct, transmission and distribution pipe is approximately 5,000 km. Since 1965, the City has systematically upgraded the distribution system by installing new pipes, renewing aged ones, lining all pipes, etc. As a result, a network of distribution pipes in the city has been satisfactorily established, eliminating insufficient supply and low water pressure supply areas. To date, the subsequent maintenance and renewal activities have been so far implemented for over $4,000$ km, requiring about more than $390$ billion Japanese Yen.
+
+Technically, the entire water distribution system composes of four distinguish types, which belongs to class A, C, F and FL. The three types C, F and FL are the old cast iron types, which were buried in the early period. At the present, those pipes are no longer in the manufacturing. %Overviews of number of sections for each type of pipelines with respect to the range in length under actual management condition are displayed alternatively in Figure 1, Figure 2, Figure 3 and Figure 4. Type A is ductile cast iron with innovative material composition. For empirical analysis, type A is assumed as the best type of pipe for replacement of old type C, F and FL. Since the difference in length could possible affects the estimation, data filtering is required with some certain upper and lower bounds so as to eliminate the possible error. In addition, it is an effective way of comparison the impact of length, traffic load, outer and inner rut, etc. on deterioration between original data and post-censoring data.
+%Regarding the costs, repair cost is the sum of direct material cost, construction cost, machinery and labor cost. Whilst, the social cost is the sum of loss in monetary term resulting from traffic congestion, business shutdown, etc. due to one time of leakage and repair. As the matter of course, the unit cost of pipeline itself is not significant effect on the overall cost since it only accounts for a very small portion of overall expenses. The value of interest rate (or discounted rate) $\rho$ over a long time horizon can be neglected or approximately assuming to be equal to 1. However, 
+As the matter of course, the social cost $C$, direct cost $I$ and discounted rate $\rho$ plays a centre role in establishing the optimal renewal years as well as the expected LCC, sensitivity analysis with focus on the ranges are drawn for respective types of pipelines. However, for ease of estimation, benchmark case was selected with social cost $C=5$ million Yen, $I =1$ million Yen and $\rho=0.04$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estimation Results}
+\label{582}
+\subsubsection{Weibull's parameters and survival probability}
+\label{5821}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The parameters $\alpha$ and $m$ of embedded hazard function are estimated by maximum likelihood method with historical sectional records for each type of pipeline. Values of $\alpha$ and $m$ are then verified with significant degree of $t$ test values. Table \ref{table51} presents the results of estimation for two comparative cases. The first case refers as case, to which explainatory variables were excluded from estimation. Second case were when the effective length as characteristic variable was considered in estimation. Regarding the second case, as presented in the table, unknown parameter $\beta_1$ is referred to a constant term with its value of $1$ for characteristic variable $x_1$. Unknown parameter $\beta_2$ is referred to the effective length of pipeline system. In this study, other characteristic variables, which reflect the influence of outer and inner rutness, soil unit weight, top traffic volume, etc, were neglected due to its small impact or data unavaibility. The value in blakets in Table \ref{table51} refers to value of statistical $t-test$. It is realized from $t-test$ value that effective length of pipeline somehow effect the deterioration process. This conclusion is further understandable from comparision of AIC (Akaike Information Criteria) \cite{akaike} values. AIC values of case with considering effective length of pipeline are lower than the case without that covariate in estimation (AIC values are shown in the last line of each row in Table \ref{table51}).
+%
+%According to the estimation results presented in Table 1, values of location parameters ($\alpha$) and shape parameters ($m$) among four cases exhibit small variations. Thus, it ought to be recognized that length of pipelines and the outer and inner rut records do not significantly affects on the leakage occurrence. This inference is evidently seen through the graph in Figure 5, Figure 6, Figure 7 and Figure 8. Interestingly, the findings are in line with results obtained from other researches \cite{ahammed95,ahammed97}.
+%While, considerable difference of values is found in case 4. Apparently, it can be conclude that the traffic load turns to be among the salient factor to the failure. 
+
+%Another view of deterioration curve for comparison of survival probabilities among 4 types of pipelines is illustrated in Figure 9. The graph shows relatively the decrease of life expectancies of respective types of pipelines over the time horizon. It is approximately to say that the change of survive for pipelines type C, F and FL reduces fifty percent after 80 years of operation. However, pipelines of type F own its survival probably slightly higher than other twos. Meanwhile, survival probability of pipelines type A demonstrates its long period of time remaining in high values (approximately more than 150 years till the threshold of dropping into fifty percent). This appealing result further proves the advantage of ductile cast iron pipelines over the conventional materials.
+%\end{multicols}
+%\begin{onecolumn}
+\begin{table}%[t]
+\label{table51}
+\caption{Estimation Results for Parameters of Weibull Functions-Types}
+{\small
+\begin{center}
+\begin{tabular}{l|ll|lll}
+\hline
+\multicolumn{1}{c|}{Pipeline} & \multicolumn{2}{c|}{Without covariate} & \multicolumn{3}{c}{With covariate} \\ 
+\multicolumn{1}{c|}{type} & \multicolumn{1}{c}{a} & \multicolumn{1}{c|}{m} & \multicolumn{1}{c}{b1} & \multicolumn{1}{c}{b2} & \multicolumn{1}{c}{m} \\ 
+\hline
+\multicolumn{1}{c|}{C} & \multicolumn{1}{c}{1.11E-05} & \multicolumn{1}{c|}{2.496} & \multicolumn{1}{c}{2.51E-06} & \multicolumn{1}{c}{1.49E-04} & \multicolumn{1}{c}{2.484} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c}{(28.528)} & \multicolumn{1}{c|}{(30.275)} & \multicolumn{1}{c}{(6.402)} & \multicolumn{1}{c}{(19.666)} & \multicolumn{1}{c}{(34.909)} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{2}{c|}{5053.724 } & \multicolumn{3}{c}{4,031.920 } \\ 
+\hline
+\multicolumn{1}{c|}{F} & \multicolumn{1}{c}{2.55E-05} & \multicolumn{1}{c|}{2.293} & \multicolumn{1}{c}{4.92E-06} & \multicolumn{1}{c}{3.25E-04} & \multicolumn{1}{c}{2.288} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c}{(46.256)} & \multicolumn{1}{c|}{(48.825)} & \multicolumn{1}{c}{(9.337)} & \multicolumn{1}{c}{(32.944)} & \multicolumn{1}{c}{(56.613)} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{2}{c|}{13,523.840 } & \multicolumn{3}{c}{11,154.640 } \\ 
+\hline
+\multicolumn{1}{c|}{FL} & \multicolumn{1}{c}{1.81E-05} & \multicolumn{1}{c|}{2.400} & \multicolumn{1}{c}{6.73E-06} & \multicolumn{1}{c}{1.22E-04} & \multicolumn{1}{c}{2.391} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c}{(14.537)} & \multicolumn{1}{c|}{(15.432)} & \multicolumn{1}{c}{(4.375)} & \multicolumn{1}{c}{(7.365)} & \multicolumn{1}{c}{(17.790)} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{2}{c|}{1,331.980 } & \multicolumn{3}{c}{1,114.080 } \\ 
+\hline
+\multicolumn{1}{c|}{A} & \multicolumn{1}{c}{8.87E-05} & \multicolumn{1}{c|}{1.907} & \multicolumn{1}{c}{8.27E-06} & \multicolumn{1}{c}{4.18E-04} & \multicolumn{1}{c}{2.144} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c}{(29.416)} & \multicolumn{1}{c|}{(31.380)} & \multicolumn{1}{c}{(10.117)} & \multicolumn{1}{c}{(26.642)} & \multicolumn{1}{c}{(35.865)} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{2}{c|}{6,654.540 } & \multicolumn{3}{c}{5,588.270 } \\ 
+\hline
+\end{tabular}
+\end{center}
+}
+{\small Note) Value in the blanket $(-)$ are stasitical t-test. Values in the last row of each type are $AIC$ values.}
+\end{table}%[t]
+%
+
+%Further to the value of $t-value$ for statistical test, Akaike Information Criteria (AIC) test is highly recommended to have more comprehensive understanding on the correlation of model's parameters \cite{akaike}. Formula for AIC is as follows.
+%\begin{eqnarray}
+%&& AIC = -2*ln(likelihood)+2*K \label{aic}
+%\end{eqnarray}
+%where $K$ is the number of parameters in the model. As can be seen from Table 2, the ratios of important weight $w_i$ of case 3 and case 4 receive significant small. This proves the fact that their correlation between these two factors can be neglected. From $t-value$ and AIC value, confidently to say, omission of effective length and rut is acceptable in model's calculation. However, other factors such as traffic volume above the pipelines, unit weight of soil, various type of pressure should be recommended as covariates only if the concerning data are available.
+However, as can be proved from Figure \ref{fig52}, Figure \ref{fig53} and Figure \ref{fig54}, the difference in decrease of survival proability over the years are not significant for both cases of pipeline type C, F and FL. A considerable variation between two survival probability curve is realized only for pipeline type A from Figure \ref{fig55}. Since the largest sampling population has been accumulated for pipeline type A (about more than 15,000 data), it can be concluded that, the impact of effective pipeline length has tendency to increase with the larger size of sampling population. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig52} 
+\end{center}
+\caption{Comparision of survival probability of type C with and without covariates.}
+\label{fig52} 
+\end{figure}
+%
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig53} 
+\end{center}
+\caption{Comparision of survival probability of type F with and without covariates.}
+\label{fig53} 
+\end{figure}
+%
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig54} 
+\end{center}
+\caption{Comparision of survival probability of type FL with and without covariates.}
+\label{fig54} 
+\end{figure}
+%
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig55} 
+\end{center}
+\caption{Comparision of survival probability of type A with and without covariates.}
+\label{fig55} 
+\end{figure}
+%%%%%%%%%%%
+A comparative look in the survival probability curve of each pipeline type is drawn in Figure \ref{fig56}. As can be seend from the figure, pipeline type C and FL have faster decrease than pipeline type F. However, all three old pipeline types exert to has $0.5$ probability of being broken after 80 years in operation. On the other hand, pipeline type A deems to has much longer life expectancy than the others.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig56} 
+\end{center}
+\caption{Comparision of survival probability among different types of pipelines.}
+\label{fig56} 
+\end{figure}
+%
+%This estimation approach can be easily implemented in the case if the other characteristic parameters such as the unit weig
+%
+\subsubsection{Optimal renewal time and expected life cycle cost}
+\label{5822}
+%First, we change the variable of the equation by setting $u = \alpha t^m  + \rho t$. Thus, the equation (\ref{gamma}) becomes
+%\begin{eqnarray}
+%\Gamma (u) = \int\limits_0^U {\frac{{\alpha mt^{m - 1} \exp ( - u)du}}{{\alpha mt^{m - 1}  + \rho }}}  = %\int\limits_0^U {\frac{{\exp ( - u)du}}{{1 + \frac{\rho }{{\alpha mt^{m - 1} }}}}} 
+%\end{eqnarray}
+%where the limit $Z$ changes into $U=\alpha Z^m  + \rho Z$. The approximation rule is to set $C(t) = \frac{\rho }{{\alpha mt^{m - 1} }}$ and take the denominator out of the integral sign. Thus, following result is obtained
+%\begin{eqnarray}
+%\Gamma (z) = \frac{{(1 - \exp ( - \alpha z^m  - \rho z))}}{{C(z)}}
+%\end{eqnarray}
+%\begin{eqnarray}
+%\Gamma (m) = e^{ - Cm} \frac{1}{m}\prod\limits_{n = 1}^\infty  {\frac{{e^{m/n} }}{{1 + m/n}}} 
+%\end{eqnarray}
+%where C is a constant, which is estimated by the following series
+%\begin{eqnarray}
+%C = \mathop {\lim 1 + \frac{1}{2} + \frac{1}{3} +  \ldots  + \frac{1}{n} - \ln (n)}\limits_{n \to  + \infty } 
+%\end{eqnarray}
+Estimation for optimal renewal time and expected life cycle cost is carried out in the second phase after obtaining the values for Weibul's parameters and the associate costs. Minimization principle to seek for the optimal duration $z^*$ is empirical analyzed by using equations (\ref{han1}- \ref{sa}). Results of estimation are presented in Figure \ref{fig57} for benchmark case ($C$ = $5$ million Yen for social cost, $I=1$ million Yen for direct repair cost and $\rho=0.04$ for discount rate). It ought to recognize that the optimal renewal duration is in the range of 50 to 60 years for old types of pipelines and about 80 years of optimal renewal duration for type A.
+%As a matter of fact, the direct repair cost in the case of using the old type of material (type C, F and FL) has tendency to own higher value than type A. This is due to the inavailability, scarity or no production line for old type.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig57} 
+\end{center}
+\caption{Estimation results for comparision of expected life cycle cost with switching curves.}
+\label{fig57} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Switching Rate}
+\label{5823}
+Figure \ref{fig57} further describes the changes of LCC for respective old types of pipelines when using type A for replacement. In this case, the optimal renewal years yield slightly shorter than if using the old types of pipeline. For example, if using type A to replace type F, the optimal renewal duration is 59 years instead of 58 years. Based on the definition in equation (\ref{han2}), the switching rate for type C, F and FL are ($\Theta_{A-C}=55/55=1.000$), ($\Theta_{A-F}=58/59=0.983$), ($\Theta_{A-FL}=54/55=0.981$) respectively.
+\subsubsection{Sensitivity Analysis}
+\label{5824}
+It is important to note that the expected optimal renewal time and its associated cost for respective type of pipelines depend strongly on three parameters social cost $C$, direct repair cost $I$ and the discount rate $\rho$. Any change in the values of these parameters could positively lead to large variation in term of optimal renewal years and expected life cycle cost. Thus, sensitivity analysis with ranges in values of parameters should be referred so as to provide a thoughtfully observation into the selection \cite{senanalysis}. Results are shows in Figure \ref{fig58}, Figure \ref{fig59} and Figure \ref{fig510} depicting relationship between optimal renewal duration and discount factor $\rho$, social cost $C$ and direct repair cost $I$, which applies for the renewal case of pipeline type C.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig58} 
+\end{center}
+\caption{Sensitivity analysis-range of discouted rate $\rho$.}
+\label{fig58} 
+\end{figure}
+%
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig59} 
+\end{center}
+\caption{Sensitivity analysis-range of social cost $C$.}
+\label{fig59} 
+\end{figure}
+%
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig510} 
+\end{center}
+\caption{Sensitivity analysis-range of direct repair cost $I$.}
+\label{fig510} 
+\end{figure}
+
+Figure \ref{fig58} draws the change in optimal renewal years when changing the value of discount factor $\rho$. Benchmark optimal renewal duration curve is referred in the case of keeping $C$ = $5$ million Yen, $I$ = $1$ million Yen. Changing in value of either $C$ or $I$ consequently affects the optimal duration for renewal. For example, as can be seen from the figure, comparing to the benchmark case, increasing social cost $C$ = $1$ million relatively reduces the optimal duration about 3 to 10 years. Moreover, when $\rho$ becomes either very small (going close to $0$) nor large, convergence of optimal duration are obtained. Convergence of optimal duration is also realized when $\rho$ receives its value greater than $0.1$. High slope of optimal duration curve is acknowledged when $\rho$ $\le$ $0.05$.
+
+The relationship between optimal renewal duration and change in social cost is sketched in Figure \ref{fig59}. It is realized that the increment in social cost results in the gradual shrink of optimal renewal duration. For example, if $500$ thousand Yen is added up to the benchmark case when keeping the same $I$ = $1$ million Yen and $\rho$ = $0.04$, the optimal duration is shortened about 6 to 10 years. %In addition, the graph further reveals another important point that not always lower value of $\rho$ give lower optimal renewal duration. As can be realized from comparison between benchmark case $\rho$ = $0.02$ and the case when $\rho$ = $0.01$. When social cost advances more than about $5.2$ million Yen, the optimal renewal duration of benchmark case becomes lower.
+
+Figure \ref{fig510} shows the correlation between optimal renewal duration and change in value of direct repair cost $I$. The linear rise of the curve proves a fact that higher direct repair cost leads to higher optimal renewal duration. For benchmark case ($C$ = $5$ million Yen, $I$ = $1$ million yen and $\rho$ = $0.04$), if happening the increase of $500$ thousand Yen in $I$, the optimal renewal duration goes up about 3 to 10 years. In the case when changing the discount factor $\rho$, it is found that the lower value of discount factor is, the smaller variation of optimal duration becomes.
+
+In the case of using average cost analysis, the changes of optimal renewal years against social cost and direct renewal cost are plotted in Figure \ref{fig511}. In this Figure, we assume a constant value of direct cost $I=1$ million Yen when social cost change in the range from $1$ Million Yen to $20$ Million Yen. On the other hand, when direct cost $I$ changes, the social cost $C$ is assmued to equal to $5$ Million Yen. All relative costs are approximately calculated for pipelines with relative length of $140$ m. It is noted from this point that, the range of assumption value for either social cost and direct cost can be changed depending on various local conditions where analysis is deem applicable.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{fig511} 
+\end{center}
+\caption{Sensitivity analysis-Average cost.}
+\label{fig511} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary and Recommendations}
+\label{59}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This paper has presented a methodology to estimate the optimal renewal time of pipeline systems. The Weibull hazard function was employed to evaluate the survival probability of each types of pipeline with respect to the diameter. The mathematical formulation for calculating the total expected life cycle cost was introduced. The total expected life cycle cost took into account social cost and direct renewal cost in the event of leakage or breakdown of the pipeline. A system of water distribution network is comprised of many types of pipe materials, some of which might better be replaced to the optimal type of pipeline with pre-determined plan according to their forecasted survival probability. This is of crucial importance to uphold the safety level of the entire system, especially in the megacities. 
+
+An empirical application of the model to the water supply pipeline system in Osaka city was carried out. Results of the estimation identified the optimal renewal time for each type of pipeline. Sensitivity analysis reveals social cost $C$ and discount factor $I$ as important input factors of the model. These two values should be thoughtfully calculated for a more accurate outcome of optimal renewal time and concerning LCC. From the application view point, this model can be applied not only to water distribution networks but also to other types of underground infrastructure system.%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+%% \section{}
+%% \label{}
+
+%\begin{thebibliography}{00}
+
+%% \bibitem{label}
+%% Text of bibliographic item
+
+%\bibitem{}
+\bibliographystyle{elsarticle-harv} 
+\bibliography{reference}
+%\end{thebibliography}
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.

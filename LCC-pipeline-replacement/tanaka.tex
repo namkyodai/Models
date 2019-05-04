@@ -1,0 +1,797 @@
+\documentstyle[fleqn,keikakun,manyeqns,wmf]{jarticln}
+\columnsep=2zw
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\alph{subsubsection}}
+\renewcommand{\section}[1]
+ {
+\begin{flushleft}
+  \vspace{1\baselineskip}
+  \refstepcounter{section}
+  \bf \thesection . #1
+  \vspace{1\baselineskip}
+  \nopagebreak
+\end{flushleft}
+ }
+\renewcommand{\subsection}[1]
+ {
+\begin{flushleft}
+  \vspace{1\baselineskip}
+  \refstepcounter{subsection}
+  \hspace*{1zw}
+  \bf (\thesubsection ) #1
+  \nopagebreak
+\end{flushleft}
+ }
+\renewcommand{\subsubsection}[1]
+ {
+\begin{flushleft}
+  \stepcounter{subsubsection}
+  \hspace*{1zw}
+  \bf \thesubsubsection ) #1
+  \nopagebreak
+\end{flushleft}
+ }
+\setlength{\textheight}{25.4cm}
+\setlength{\topsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\jot}{0pt}
+\setlength{\textwidth}{50zw}
+\setlength{\oddsidemargin}{-5mm}
+\setlength{\evensidemargin}{-5mm}
+\kanjiskip=-.03zw plus.5pt minus.5pt
+\topmargin -17mm
+
+
+\pagestyle{plain}
+\begin{document}
+\baselineskip=5.3mm %6.262mm
+\mathindent=1zw
+\parindent=1zw
+\title{ {\large \bf 上水道管路の最適予防取替えモデル
+}
+\thanks{キーワーズ：アセットマネジメント，上水道，予防取替え} \\
+{\small \rm AN OPTIMAL PREVENTIVE REPLACEMENT MODEL FOR WATER SUPPLY PIPELINE }${}^*$ \\
+ \hfill \\
+}
+\author{
+田中　尚\thanks{
+正会員 工修　大阪市水道局工務部柴島浄水場　\hfill \break
+　　(〒533-0024 大阪市東淀川区柴島1-3-14 \hfill \break 　
+　　E-mail:tak-tanaka@suido.city.osaka.jp)
+}\hspace{0.5pc}・
+Le Thanh Nam\thanks{
+学生会員　京都大学大学院工学研究科 \hfill \break
+　　(〒615-8540 京都市西京区京都大学桂 \hfill \break 　
+　　E-mail: info.tna@gmail.com)
+}\hspace*{0.5pc}・
+貝戸清之\thanks{
+正会員 大阪大学特任講師 大学院工学研究科 \hfill \break
+　　(〒565-0871 吹田市山田丘2-1 \hfill \break 　
+　　E-mail: kaito@ga.eng.osaka-u.ac.jp)}\hspace{0.5pc}・
+小林潔司\thanks{
+フェロー会員　京都大学教授 経営管理大学院\hfill \break
+　　(〒606-8501 京都市左京区吉田本町　\hfill \break 　
+　　E-mail:kkoba@psa2.kuciv.kyoto-u.ac.jp)
+}\hspace{0.5pc} \hfill \\
+by Hisashi TANAKA${}^{**}$, Le Thanh Nam ${}^{***}$, Kiyoyuki KAITO${}^{****}$and Kiyoshi KOBAYASHI${}^{*****}$ \\
+\\
+ \hfill \\
+}
+%\date{}
+
+\maketitle
+\thispagestyle{plain}
+%
+%............................................................
+%
+%         入力簡単化コマンドの定義
+%
+\def \vect#1{\mbox{\boldmath$ #1 $}}   %ベクトル・太字の定義
+\def \dff#1#2{  \frac{ \partial{#1} }{ \partial{#2} }  }
+\def \dtt#1#2{  \frac{ d #1 }{ d #2 }  }
+%............................................................
+%
+\section{はじめに}
+
+従来より，土木施設を点検することによって，それらの健全度を測定し，期待ライフサイクル費用を最小にしうるような最適修繕投資計画を求める方法論が提案されている\cite{koba}${}^{-}$\cite{koba1}．しかし，上水道管路施設は埋設構造物であり，管路の劣化状態を点検すること自体が極めて困難である．管路施設の劣化状態を把握するための先端的なモニタリング技術の開発が急速に進展しつつあるが，現実のところ，管路の健全度を把握するためには地盤掘削が必要となる．道路の掘削費用や道路施設の占有がもたらす社会的費用は一般的に少なくない．このため，敷設された時点から一定期間が経過した管路に対しては，劣化状態の如何に関わらず予防的に新しい管路に取替えられる場合が多い．
+
+管路施設が破損し，道路施設の陥没事故や水道水の噴出事故が一度発生すれば，道路や周辺施設，利用者に多大な損害を与える．さらに，復旧期間中に交通遮断を実施すれば，社会的費用も発生する（本研究ではこれ以降，これらの損害や費用を総称して社会的損失と呼ぶ）．このため，管路の取替えを予防的に実施し，管路の破損・損壊による社会的損失を抑制することが必要となる．一方で，管路の取替えを頻繁に実施すれば，取替え費用が増加する．したがって，破損事故による社会的損失と取替え費用の総和として定義される期待ライフサイクル費用\cite{hori}を最小化するような管路の最適予防取替え政策が上水道管路施設のアセットマネジメントでは求められる．
+
+実際の管路施設では，敷設時点によって耐久性能が異なる管路が用いられている．当然ながら，管路の取替えを実施する場合，取替える前の管路のタイプと，取替えた後の管路のタイプが異なることが起こりうる．したがって，管路の取替え政策を考えるときには，(1)取替え後における望ましい管路のタイプと，(2)既存の管路の取替えタイミングを同時に決定することが必要となる．すなわち，異なるタイプの管路の間での最適スイッチング政策を決定することも重要な課題である．
+
+以上の問題意識の下に，本研究では期待ライフサイクル費用を最小にするような管路の最適取替えモデルを定式化する．さらに，異なる耐久性能を有する管路間の最適スイッチング政策を分析する方法論を提案する．以下，{\bf \gt 2．}では本研究の基本的な考え方を示す．{\bf \gt 3．}において最適取替えモデルを定式化する．{\bf \gt 4．}では，管路の最適スイッチング政策を求める方法論を提案する．{\bf \gt 5．}では，大阪市水道局が管理する上水道網を対象として実証的な分析を実施する．
+
+
+\section{本研究の基本的な考え方}
+\vspace{-8mm}
+\subsection{既往の研究}
+
+最適な機器や機械の更新政策に関しては，オペレーションズ・リサーチの分野において最適取替え問題としてすでに確立した研究分野となっている\cite{op}．破壊や故障がある定常的な確率過程に従って生起するようなシステムの最適修繕政策に関しては膨大な研究が蓄積されている\cite{op}．特に，劣化状態を離散的な状態変数で記述するマルコフ決定モデル\cite{mad0}は，劣化過程の記述が簡単であり，数多くの実用モデル\cite{mad}${}^{,}$\cite{mad1}が提案されている．土木施設の維持補修問題に関しても，すでに研究が蓄積されている．土木施設の取替え問題に限定しても，青木等は照明ランプ，灯具で構成されるトンネル照明システムの取替え問題を対象として，システム全体の点検・補修タイミング政策を決定する方法論を提案し，ライフサイクル費用とシステムの故障リスクのトレードオフの関係を分析している\cite{aoki}${}^{,}$\cite{aoki1}．その際，照明ランプの劣化水準は，故障の有無という2値変数で表される．灯具の場合には，劣化水準は複数の健全度指標で表現され，予防修繕による長寿命化政策を考慮することが必要となる．これらの既往の研究は，点検費用が取替え費用よりも相当程度小さい場合をとりあげ，点検・補修タイミングの最適化を図っている．しかし，上水道管路施設のような地下埋設施設の場合，施設の劣化状態を点検することが容易ではない．したがって，敷設時点から相当時間が経過した時点で，施設の劣化の有無に関わらず管路施設を取替えるような予防保全政策が採用されることになる．しかし，施設の取替え時点に至るまでに管路施設の損壊事故が発生する可能性を完全に防止することは不可能であり，損壊事故による社会的費用と管路施設の取替え費用の総和として定義される期待ライフサイクル費用を最小にするような管路の取替えタイミングを決定することが必要となる．すでに，小林等は，舗装の劣化過程を確率微分方程式により表現し，舗装の最適補修タイミングを決定するような動的最適化モデル\cite{koba}${}^{,}$\cite{koba2}を定式化している．しかし，最適解を解析的に導出することが不可能であり，数値シミュレーションにより最適政策を求めざるをえず，モデルの操作性に限界があった．本研究で提案する最適取替えモデルも，基本的には小林等のモデル\cite{koba}${}^{,}$\cite{koba2}と同様な再帰構造を有している．しかし，管路の劣化状態を破壊の有無という2値変数で表現するため，管路の劣化プロセスをワイブル劣化ハザードモデルを用いて表現することが可能となる．その結果，最適取替えモデルの構造が簡単になり，モデルの操作性を大幅に改善することができる．さらに，上水道の管路網は，給水人口の増加とともに段階的に発展してきたため，管路網が耐久性の異なる様々なタイプの管路で構成されている．したがって，最適取替え政策を検討する場合，古いタイプの管路から，新しいタイプの管路に移行するタイミング(スイッチタイミングと呼ぶ）を最適化することが必要となる．筆者等の知る限り，このような新技術への移行を考慮した最適取替えモデルに関する研究は見当たらない．
+
+
+\subsection{敷設管路の材質の変遷}
+
+我国の近代水道は，明治20（1887）年に横浜市に創設されたことに端を発する．その際，導・送・配水管材料として普通鋳鉄管が用いられた．昭和8（1933）年には銑鉄に10～20\%の鋼を混入し強度，靭性を増し，管厚を薄くした高級鋳鉄管が登場した．その後，新設管として，高級鋳鉄管が使用されている．さらに，昭和34（1959)年には，より靭性の強いダクタイル鋳鉄管が規格，製造化された．その後，現在に至るまで新設管にはダクタイル鋳鉄管が使用されている．
+
+ダクタイル鋳鉄管は，現在のレベル2地震動において耐えうるものと評価されている．一方，普通鋳鉄管，高級鋳鉄管は，老朽化による漏水事故の他，地震時には管体そのものが破損する可能性が危惧されている．このことより，老朽化した普通鋳鉄管，高級鋳鉄管の取替えが望まれている．また，ダクタイル鋳鉄管においても，地盤変異が大きくなれば継手が離脱してしまう一般継手（T型継手，K型継手等）に加え，継手形式の技術革新により，離脱防止機能を有する耐震継手（S型継手，NS型継手等）が開発された．耐震継手は，平成7（1995）年の阪神・淡路大震災以降は重要路線への使用事例が拡大している．現在では大阪市水道局のように全面的にこの継手を採用している事業体も多い．こうした鋳鉄管以外にも，鋼管が用いられているケースもあるが，こちらはダクタイル鋳鉄管同様にレベル2地震動においても耐えうる耐震性の高い材料ではあるものの，第三者破損等につながる塗装破損の問題から，構造物内や特殊形状の場合等にその使用は限られている．なお，近年においては，新たな耐震管路としてポリエチレン管の使用も広がってきているが，適用事例の対象とした大阪市において当該管路の使用実績が無いことや，全国的に見てもポリエチレン管の経年劣化による漏水データが極めて限られることから，本研究ではとりあげないこととする．
+
+
+\subsection{最適取替え政策の考え方}
+
+配水管事故は一旦発生すると，水道水が路上に噴出することにより，道路交通の遮断や，施設破損，商業活動などの都市活動に支障をきたす．大阪市における近年の事例でも，平成14（2002）年の四ツ橋筋朝日新聞社前で発生した漏水では約半日にわたり幹線道路を通行止めにし，平成17（2005）年の阿倍野ベルタ前での漏水事故では，付近を走る阪堺電車が事故当日の営業停止に追い込まれるなどの被害を出している．こうした社会的に被害を発生させる管路被害をなくすためには，老朽化した普通鋳鉄管，高級鋳鉄管を耐震継手を有するダクタイル鋳鉄管に早期に取替える必要がある．一方で，既設の上水道管路網は膨大な範囲にまたがり，取替え費用は莫大になることが想定される．すなわち，事故による損害と取替え費用の間には，トレードオフの関係が成立する．このような観点から，水道事故がもたらす社会的損失と，管路の取替え費用の双方を同時に考慮することにより，水道管路の長期的なアセットマネジメントにおいて発生するライフサイクル費用の最小化に資するような最適取替え政策を検討することが重要である．さらに，前述したように，水道管路の取替え政策を検討する場合には，普通鋳鉄管，高級鋳鉄管をより高機能の耐久性の高いダクタイル鋳鉄管に順次置換していくことが求められている．したがって，最適取替え政策を検討する場合，管路の耐久性が異なることを考慮したうえで，長期的なライフサイクル費用の最小化を達成できるような取替え政策を検討することが必要となる．
+
+以上の課題に応えるために，以下，{\bf \gt 3.}では，同一のタイプの水道管路を半永久的に利用することを前提として，管路の最適取替え期間を求める最適取替えモデルを定式化する．さらに，{\bf \gt 4.}では，直近の取替えの段階において，新しいタイプの管路に取替え，それ以降においては新しいタイプの管路を継続して定期的に取替える場合を想定する．その上で，長期的なライフサイクル費用を最小にするように，現行の管路の取替え時期と，取替え後の管路タイプ，取替え期間を同時に決定するような拡張モデルを定式化する．
+
+
+\section{最適取替えモデルの定式化}
+\vspace{-8mm}
+\subsection{モデル化の前提条件}
+
+施設管理者は，初期時点から無限に続く時間軸上で，期待ライフサイクル費用を最小にするように管路の取替えを行う．取替え前後における管路のタイプは同一であり，時間軸に沿って同一タイプの管路が半永久的に繰り返し取替えられると考える．管路の劣化水準は，2つの水準$E_i~(i=1,2)$で表される．$E_1$は健全な状態，$E_2$は，管路の破損状態を表す．既存の管路が新しい管路に取替えられた場合，常に管路は健全な状態に戻る．管路が破損した場合，水道水が路上に噴出し，交通の遮断，施設や不動産の損壊等，社会的損害をもたらす．管理者は管路を予防的に頻繁に取替えることにより，社会的損害の発生を抑制することができる．しかし，頻繁な管路の取替えは，取替え費用の増大を招く．したがって，管理者の目的は，管路の破損に伴って生じる社会的費用と，取替え費用の総和で表現される期待ライフサイクル費用の低減を達成できるような最適取替え期間を求めることにある．
+
+
+\subsection{劣化過程のモデル化}
+
+劣化状態が2値で表わされるような管路の劣化過程をワイブル劣化ハザードモデルにより定式化する．ハザードモデルの詳細については参考文献\cite{lanc}${}^{,}$\cite{gouri}に詳しいが，ここでは読者の便宜を図るために概要を簡潔に述べる．
+
+時点$t_0$において，新しい管路に取替えられ，管路が健全な状態$E_0$に回復したとする．いま，管路の寿命を確率変数$\zeta$で表し，確率密度関数$f(\zeta)$，分布関数を$F(\zeta)$に従って分布すると仮定する．ただし，寿命$\tau$の定義域は$[0，\infty)$である．取替え時点$t_0$からある時点$t=t_0+\tau$まで時間が経過したと考える．取替え時点から任意の時点$t_0+\tau \in [t_0,\infty]$まで，管路が故障しないで生存する確率 (以下，生存確率と呼ぶ) $\tilde{F}(\tau)$は，全事象確率$1$から時点$t_0+\tau$までに管路が故障する累積故障確率$F(\tau)$を差し引いた値
+\begin{eqnarray}
+&& \tilde{F}(\tau) = 1 -  F(\tau) \label{funcbF}
+\end{eqnarray}
+により定義できる．ここで，施設が時点$t_0+\tau$まで生存し，かつ期間$[t_0+\tau,t_0+\tau+\Delta \tau]$中にはじめて故障する確率は，
+%
+   \begin{eqnarray}
+      && \lambda_i(\tau) \Delta \tau 
+      = \frac{f(\tau)\Delta \tau}{\tilde{F}(\tau)}  \label{riskbF}
+   \end{eqnarray}
+%
+と表せる．ここで，劣化ハザード関数としてワイブル劣化ハザード関数
+%
+   \begin{eqnarray}
+      && \lambda(\tau)= \alpha m \tau^{m-1} \label{weibul}
+   \end{eqnarray}
+%
+を用いる．ただし，$\alpha,m$は推計すべき未知パラメータである．さらに$\alpha$が，管路特性，使用・環境条件など，管路の寿命に影響を及ぼすような特性で表現できると考えれば，特性ベクトル$\mbox{\boldmath$x$}=(x_1,\cdots,x_M)$を用いて，
+%
+   \begin{eqnarray}
+      && \alpha=\mbox{\boldmath$x$} \mbox{\boldmath$\beta$}^{\prime} \label{eq4}
+   \end{eqnarray}
+%
+と表せる．上式中で，$x_m(m=1,\cdots,M)$は$m$番目の特性変数の観測値を表し，$\mbox{\boldmath$\beta$}=(\beta_1,\cdots,\beta_M)$は未知パラメータベクトルである．$\prime$は転置操作を表す．したがって，管路の寿命に影響を及ぼす上述の特性を考慮する場合には，未知パラメータ$\alpha$の推計は$\mbox{\boldmath$\beta$}$の推計に帰着される．また，式(\ref{weibul})の$m$はハザード率の時間的な増加傾向を表す加速度パラメータである．ワイブル劣化ハザード関数を用いた場合，施設寿命の確率密度関数$f(\tau)$，および管路の生存確率$\tilde{F}(\tau)$は，それぞれ次式で表される．
+%
+   \begin{manyeqns}
+      && f(\tau)=\alpha m\tau^{m-1}\exp(-\alpha \tau^m) \label{tau} \\
+      && \tilde{F}(\tau)=\exp(-\alpha \tau^m) \label{tau1}
+   \end{manyeqns}
+%
+
+
+\subsection{モデルの定式化}
+
+対象とする管路が破壊した時に発生する社会的損失を$c$と表そう．社会的損失は時間を通じて一定と仮定する．管路の寿命が$\tau$となる確率密度$f(\tau)$は式(\ref{tau})で表される．管路の取替え期間を$z$で表せば，取替え期間$[0,z)$の間に管路が破壊することにより発生する社会的損失の (初期時点における) 期待被害額の割引現在価値$EC(z)$は，
+%
+   \begin{eqnarray}
+      && EC(z)=\int_0^{z} c f(t)\exp(-\rho t)dt 
+   \end{eqnarray}
+%
+と表される．ただし，$\rho$は瞬間的割引率である．一方，取替え費用は時間を通じて一定値$I$をとると仮定する．管路は，1) 管路が破損した場合，2) 管路が取替え時期に達した場合に取替えられる．管路が供用中に破損せずに，取替え時期$\tau$に到着する確率 (生存確率$\tilde{F}(\tau)$) が式(\ref{tau1})で表現されることに留意すれば，管路の次回の取替えに関わる期待取替え費用の割引現在価値$EL(z)$は，
+%
+   \begin{eqnarray}
+      && EL(z)=\int_0^{z} I f(t)\exp(-\rho t)dt \nonumber \\
+      && \hspace{8mm} +  \tilde{F}(z)I \exp(-\rho z) 
+   \end{eqnarray}
+%
+と表される．ここで，管路が時間間隔$z$で予防的に取替えられるという政策の下で，管路が取替えられた時点で評価した期待ライフサイクル費用の現在価値を$J(0:z)$と表そう．いま，管路の次回の取替え時点で評価したそれ以降の期待ライフサイクル費用の当該期価値も$J(0:z)$で表されることに留意すれば，管路取替え時点で評価した期待ライフサイクル費用の現在割引現在価値は，再帰的に
+%
+   \begin{eqnarray}
+      && \hspace{-4mm}J(0:z)= \int_0^{z} f(t)\{c+I+J(0:z)\} \exp(-\rho t)dt
+      \nonumber \\
+      && \hspace{9mm} + \tilde{F}(z)\{I+J(0:z)\} \exp(-\rho z)  \label{han0}
+   \end{eqnarray}
+%
+と表現できる．ここで，2つの関数$\Lambda(z)$, $\Gamma(z)$を
+%
+   \begin{manyeqns}
+      && \Lambda(z)= \tilde{F}(z) \exp(-\rho z)  \nonumber \\
+      && \hspace{5mm} =\exp(-\alpha z^m-\rho z) \\
+      && \Gamma(z)= \int_0^z \alpha m\tau^{m-1}\exp(-\alpha \tau^m-\rho t)dt
+      \nonumber\\
+      && \hspace{5mm}= -\int_0^z \exp(-\alpha \tau^m-\rho t)
+      d(\alpha \tau^m-\rho t) \nonumber \\
+      && \hspace{5mm} - \rho\int_0^z \exp(-\alpha \tau^m-\rho t)dt \nonumber \\
+      && \hspace{5mm}=1-\Lambda (z) - \rho\int_0^z \Lambda(t) dt \label{ju}
+   \end{manyeqns}
+%
+と定義しよう．このとき，再帰方程式(\ref{han0})より，期待ライフサイクル費用の現在割引現在価値は，
+%
+   \begin{eqnarray}
+      && J(0:z)= \frac{(c+I)\Gamma(z)+I \Lambda(z)}{1-\Gamma(z)-\Lambda(z)}
+      \label{j0}
+   \end{eqnarray}
+%
+と表すことができる．ここで，施設管理者が解くべき最適点検・修繕問題は，
+%
+   \begin{eqnarray}
+      && \Phi(0)=\min_{z}\{ J(0:z) \}\label{imp}
+   \end{eqnarray}
+%
+と定式化できる．最適値関数$\Phi(0)$は初期時点で評価した最適期待ライフサイクル費用を意味する．最適化問題(\ref{imp})の1階の最適化条件より
+%
+   \begin{manyeqns}
+      && \frac{dJ(0:z)}{dz}=\frac{ \psi(z)}{\{1-\gamma(z)-\Lambda(z)\}^2 }=0 \\
+      && \psi(z)=(c+I)\Gamma^\prime(z)+\Lambda^\prime(z)+
+      c\{\Lambda(z)^\prime\Gamma(z)\nonumber \\
+      && \hspace{5mm} -\Gamma^\prime(z)\Lambda(z)\}\label{oi}
+   \end{manyeqns}
+%
+を得る．ただし，$\Gamma(z)^\prime=d\Gamma(z)/dz， \Lambda(z)^\prime=d\Lambda(z)/dz$である．すなわち，最適取替え期間$z^\ast$は
+%
+   \begin{eqnarray}
+      && \psi(z^\ast)=0
+   \end{eqnarray}
+%
+が成立するような$z^\ast$として与えられる．
+
+
+\subsection{最適取替え期間の計算方法}
+
+最適化条件(\ref{oi})を満足するような最適取替え期間$z^\ast$を求めるためには関数$\Lambda(z)$を具体的に求めることが必要である．しかし，関数$\Lambda(z)$を解析的に求めることは不可能であり，1階の最適化条件(\ref{oi})を用いて最適解を求めることはできない．そこで，本研究では，数値計算により最適解を求めることとした．式(\ref{ju})に着目すれば，式(\ref{j0})の分母は，
+%
+   \begin{eqnarray}
+      && 1-\Lambda (z)-\Gamma(z)=\rho \int\limits_0^z \Lambda(t)dt
+      \label{deno} 
+   \end{eqnarray}
+%
+と表せることができる．さらに，式(\ref{ju})と式(\ref{deno})を式(\ref{j0})に代入することより，
+%
+   \begin{eqnarray}
+      && J(0,z) = \frac{C + I - C\Lambda (z)}
+      {\rho \int \limits_0^z \Lambda (t)dt } - (C + I) \label{a3}
+   \end{eqnarray}
+%
+を得る．すなわち，汎関数$J(0,z)$には$\Lambda (z)$とその積分項が含まれる．ここで，数値計算により積分項を求めるために，区間$[0,M]$を微小区間$\Delta$を用いて離散分割し$z=k\Delta $と表現する．ただし，$k$は整数パラメータ，$M$は十分大きい実数であり，$M=K\Delta$が成立する．このとき，積分値$I_k~(k=1,\cdots,K)$を
+%
+   \begin{eqnarray}
+      && I_k  = \int\limits_0^{kdt} \Lambda(x)dx 
+   \end{eqnarray}
+%
+と定義する．さらに，積分値$I_{k+1}$は，
+%
+   \begin{eqnarray}
+      && I_{k + 1}  = \int\limits_0^{(k + 1)dt} \Lambda(x)dx \nonumber \\
+      && =I_k  + \int\limits_{k.dt}^{(k + 1)dt} \Lambda(x)dx \nonumber \\
+      && = I_k  + \frac{[\Lambda(kdt) + \Lambda((k + 1)dt)]dt}{2} \label{i1}
+   \end{eqnarray}
+%
+と定義される．その上で，$J(0,Z)$の最小値を1次元直接探索法で求めることとした．
+
+
+\section{管路の異質性を考慮した最適取替えモデル}
+\vspace{-8mm}
+\subsection{モデル化の前提条件}
+
+{\bf \gt 3.}で定式化した最適取替えモデルでは，同種の管路を半永久的に用いることを前提としていた．しかし，現実の管路施設は敷設時期が異なる，さまざまな管路で構成されている．さらに，管路網が拡張された歴史的経緯を反映して，さまざまな材質の管路が混在しているのが実情である．材質が異なれば，管路の劣化特性も異なる．管路のアセットマネジメントを実施する場合，1）管路を取替えるにあたり，どのようなタイプの管路を新規に導入するのが望ましいか，2）既設の管路をどの時点で，新しいタイプの管路に取替えることが望ましいか，を決定することが重要な課題となる．以下では，管路施設を導入してから一定の時間が経過した時点で，1）新規に導入する管路のタイプ（ステップ1），2）管路の最適取替えタイミングを決定する（ステップ2）ような方法論を提案する．
+
+\subsection{定式化}
+
+まず，新規に導入する管路のタイプを決定する問題(ステップ1）を考える．いま，$N$種類のタイプの管路が利用可能であると考える．現時点において，タイプ$i~(i=1,\cdots,N)$の管路を導入し，以下最適な取替え期間で管路を取替えた場合に，現時点以降に発生する期待ライフサイクル費用は
+%
+   \begin{eqnarray}
+      && J_i(0:z_i)　\nonumber \\
+      && =\int_0^{z_i} f_i(t)\{c+I_i+J_i(0:z_i)\} \exp(-\rho t)dt  \nonumber \\
+      && \hspace{6mm} + \tilde{F}_i(z_i)\{I+J_i(0:z_i)\} \exp(-\rho z_i)
+      \label{han}
+   \end{eqnarray}
+%
+と表される．このとき，最適な管路タイプ$i^\ast$は，期待ライフサイクル費用を最小にするタイプであり，
+%
+   \begin{eqnarray}
+      && i^\ast=\mbox{arg} \min_{i}\{J_i(0:z_i):i=1,\cdots,N\}
+   \end{eqnarray}
+%
+と定義できる．ここに，$\mbox{arg} \min_{i}\{\cdots\}$は，カッコ内を最小にするような$i$を指示する記号である．
+
+ステップ1において求めた最適な管路タイプ$i^\ast$を与件として，既存の管路を最適に取替えるタイミングを決定する問題（ステップ2）を考える．いま，既存の管路タイプが$M$種類存在すると考える．そのうち，タイプ$j~(j=1，\cdots,M)$の管路に着目する．着目した管路は，直近の敷設，取替え時点から，破損・破壊事故が生起せず，時間$\tau_j$が経過したと考える．このとき，現時点から時間$t_j$後までに管路が破損する条件付確率$F_j(t_j|\tau_j)$は
+%
+   \begin{eqnarray}
+      && F_j(t_j|\tau_j) = \frac{F_j(t_j+\tau_j)-F_j(\tau_j)}
+      {\tilde{F}_j(\tau_j)} \label{bF}
+   \end{eqnarray}
+%
+と表される．式(\ref{bF})の両辺を$t_j$で微分することにより，条件付確率密度関数$f(t_j|\tau_j)$
+%
+   \begin{eqnarray}
+      && f(t_j|\tau_j)= \frac{f(t_j|\tau_j)}{\tilde{F}_j(\tau_j)} \label{skbF}
+   \end{eqnarray}
+%
+を得る．現時点まで管路が破損・破壊しなかった事実を与件として，さらに現時点以降，期間$t_j$にわたって破損・破壊せずに，次の瞬間にはじめて破損・破壊する確率は条件付ハザードモデル
+%
+   \begin{eqnarray}
+      && \lambda_j(t_j|\tau_j) = \frac{f_j(t_j|\tau_j)}
+      {\tilde{F}_j(t_j|\tau_j)}  \label{riskbF}
+   \end{eqnarray}
+%
+を用いて表現できる．ただし，$\tilde{F}_j(t_j|\tau_j)$は，現在時点$\tau_j$まで破損・破壊が発生しなかった上に，さらに追加的に時間$t_j$の間，破損・破壊が発生しない確率を表し，
+%
+   \begin{eqnarray}
+      && \tilde{F}_j(t_j|\tau_j)=1-F(t_j|\tau_j) \nonumber \\
+      && = \exp\left\{-\int_0^{t_j} \lambda(s|\tau_j)ds\right\}
+   \end{eqnarray}
+%
+と表記される．ワイブルハザード関数(\ref{weibul})を用いた場合，施設寿命の条件付確率密度関数$f_j(t_j|\tau_j)$，および管路の条件付生存確率$\tilde{F}_j(t_j|\tau_j)$は，
+%
+   \begin{manyeqns}
+      && f(t_j)=\kappa_j \alpha mt_j^{m-1}\exp\{-\kappa_j 
+      \alpha (t_j+\tau_j)^m\} \\
+      && \tilde{F}(t_j)=\exp\{-\kappa_j \alpha (t_j+\tau_j)^m\}
+   \end{manyeqns}
+%
+と表される．
+
+ここで，直近の敷設時点から時間$\tau_j$が経過したタイプ$j$の管路を，タイプ$i^\ast$の管路に取替える問題を考える．現時点から時間$z_j$後に管路をタイプ$i^\ast$に取替えることにより発生する期待ライフサイクル費用$\tilde{J}_j^{i^\ast}(z_j:\tau_j)$は
+%
+   \begin{eqnarray}
+      && \hspace{-5mm} \tilde{J}_j^{i^\ast}(z_j:\tau_j)\nonumber \\
+      && \hspace{-5mm} =\int_0^{z_j} f_j(t_j|\tau_j)
+      \{c+I_{i^\ast}+J_{i^\ast}(0:z_{i^\ast})\} \exp(-\rho t_j)dt_j
+      \nonumber \\
+      && \hspace{-5mm} + \tilde{F}_j(z_j|\tau_j)
+      \{I+J_{i^\ast}(0:z_{i^\ast})\} \exp(-\rho z_{i^\ast})  \label{han}
+   \end{eqnarray}
+%
+と表される．したがって，時間$\tau$が経過したタイプ$j$の管路の最適取替え時刻$z_j^\ast(\tau_j)$は
+%
+   \begin{eqnarray}
+      && z_j^\ast=\arg \min_{z_j} \{\tilde{J}_j^{i^\ast}(z_j:\tau_j)\}
+      \label{sa}
+   \end{eqnarray}
+%
+と表される．この問題の1階の最適化条件は
+%
+   \begin{eqnarray}
+      && f_j(z_j^{\ast}|\tau_j)\{c+I_{i^\ast}+J_{i^\ast}(0:z_{i^\ast})\}
+      \exp(-\rho z_j^\ast)  \nonumber \\
+      && = \{f_j(z_j^\ast|\tau_j)+\rho \tilde{F}_j(z_j^\ast|\tau_j)\}
+      \nonumber \\
+      && \{I+J_{i^\ast}(0:z_{i^\ast})\} \exp(-\rho z_{i^\ast}) 
+      \label{han1}
+   \end{eqnarray}
+%
+と表される．
+
+
+\section{実証分析}
+\vspace{-8mm}
+
+\subsection{対象管路網と管路情報管理システムの概要}
+
+本研究の実証分析で対象とする大阪市の水道管路網は，現在総延長5,000kmを超えており，我国でも有数の布設延長規模となっている．大阪市においては，水道管路網の敷設が開始されてからすでに100年以上経過しており，水道管路の一部では老朽化が顕在化してきている．さらに，水道管路網は，普通鋳鉄管：$C$，高級鋳鉄管：$F$，$FL$，ダクタイル鋳鉄管，鋼管などといった種々の材質や継手形式が混在した構成になっている．大阪市では，平成9（1997）年度以降，普通鋳鉄管，高級鋳鉄管を，耐久性の高い鋼管あるいは離脱防止継手を有するダクタイル鋳鉄管（以下，高規格耐震管：$A$という）に交換することにより，高規格耐震管路網の構築を目指している．{\bf \gt 表-1}に取替え対象となっている普通鋳鉄管$C$および高級鋳鉄管$F$，$FL$に関する基礎的な情報を示す．なお，$F$と$FL$は同じ高級鋳鉄管ではあるが，$F$は内面にライニングが施されていないのに対し，$FL$は内面にモルタルライニングが施されていることを意味している．
+
+\begin{figure}[t]
+\begin{center}
+{\small {\bf \gt 表-1 対象管路の種類と延長}
+\\}
+{\small 
+\begin{tabular}{lp{18mm}p{25mm}llp{20mm}lp{20mm}l}
+\hline
+\multicolumn{1}{c}{管種} & \multicolumn{1}{c}{管材質等} & \multicolumn{1}{c}{口径 $\phi$ (m)} & \multicolumn{1}{c}{総延長 (km)} \\ 
+\hline
+\multicolumn{1}{c}{$C$} & 普通鋳鉄管　 (～1933) & 90, 100, 125, 150, 200, 230, 250, 300 & \multicolumn{1}{c}{288} \\ 
+\multicolumn{1}{c}{$F$} & 高級鋳鉄管 ライニング無 (1933～1959) & 100, 125, 150, 200, 250, 300 & \multicolumn{1}{c}{843} \\ 
+\multicolumn{1}{c}{$FL$} & 高級鋳鉄管 ライニング有 (1933～1959) & 100, 125, 150, 200, 250, 300 & \multicolumn{1}{c}{80} \\ 
+\hline
+\end{tabular}
+}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+{\small {\bf \gt 表-2} 各種費用の設定（単位：千円）}
+{\small 
+\begin{tabular}{p{10mm}cp{30mm}lll}
+\hline
+管種 & \multicolumn{1}{c}{社会的損失} & \multicolumn{1}{c}{取替え費用} & \multicolumn{1}{c}{総費用} \\ \hline
+$C$ & \multicolumn{1}{c}{3,687} & \multicolumn{1}{c}{2,452} & \multicolumn{1}{c}{6,139} \\ 
+$F$ & \multicolumn{1}{c}{3,687} & \multicolumn{1}{c}{2,484} & \multicolumn{1}{c}{6,171} \\ 
+$FL$ & \multicolumn{1}{c}{3,687} & \multicolumn{1}{c}{2,486} & \multicolumn{1}{c}{6,173} \\ 
+\hline
+\end{tabular}\\
+}
+{\small 注意: 管路延長140mを基本単位として算定した単価\\}
+
+\end{center}
+\end{figure}
+
+
+大阪市水道局では，平成11（1999）年から，管路情報管理システム（マッピングシステム）を活用し，市内の管路図面にリンクする形で管理部署名，管理図面番号，管種（配水管，給水管等），管材質，継手形状，口径，布設年次，事故履歴，竣工図面といった管路情報を管理している．これらの情報に基づいて，管路が破損するまでの生存期間をワイブル劣化ハザードモデルを用いて表現する．一方，管路の破損に伴う社会的損失および取替え費用に関しても，本情報管理システムを利用して以下のような考え方で算定した．はじめに，社会的損失については，松下ら\cite{taniguchi}の管路の取替え優先順位に関する考察を踏襲し，1) 管理事故により迂回を余儀なくさせられる車両，通行人が被る時間損失，2) 生活用水，業務営業用水，工場用水の断水により生じる被害，3) 水道事業体の漏水損失（管路の取替えにより有効率が向上し，給水収益損失を防ぐ）を考慮して評価した．つぎに，管路の取替え費用は，過去の取替え費用の実績値を用いることとした．{\bf \gt 表-2}に，以上の考え方に基づいて算定した社会的損失と取替え費用を示す．なお，以下の実証分析では，管路情報管理システムに情報が収録されている管径$\phi$300以下の管路を分析対象としたことを断っておく．
+
+
+\begin{figure}
+\begin{center}
+{\small {\bf \gt 表-3} ワイブル関数のパラメータの算定}\\
+{\small
+\begin{tabular}{lll}
+\hline
+管種 & \multicolumn{1}{c}{$\alpha_i$} & \multicolumn{1}{c}{$m_i$} \\ 
+\hline
+\multicolumn{1}{c}{$C$} & \multicolumn{1}{c}{1.11E-05} & \multicolumn{1}{c}{2.50} \\ 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(28.53)} & \multicolumn{1}{c}{(30.28)} \\
+\cline{2-3}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{対数尤度：-2524.86} & \multicolumn{1}{c}{} \\
+\cline{2-3}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{AIC：5053.72} & \multicolumn{1}{c}{} \\
+\cline{1-3}
+\multicolumn{1}{c}{$F$} & \multicolumn{1}{c}{2.55E-05} & \multicolumn{1}{c}{2.29} \\ 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(46.26)} & \multicolumn{1}{c}{(48.83)} \\
+\cline{2-3}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{対数尤度：-6759.77} & \multicolumn{1}{c}{} \\
+\cline{2-3}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{AIC：13523.84} & \multicolumn{1}{c}{} \\
+\cline{1-3}
+\multicolumn{1}{c}{$FL$} & \multicolumn{1}{c}{1.81E-05} & \multicolumn{1}{c}{2.40} \\ 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(14.54)} & \multicolumn{1}{c}{(15.43)} \\
+\cline{2-3}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{対数尤度：-662.99} & \multicolumn{1}{c}{} \\
+\cline{2-3}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{AIC：1329.98} & \multicolumn{1}{c}{} \\
+\cline{1-3}
+\multicolumn{1}{c}{$A$} & \multicolumn{1}{c}{8.87E-05} & \multicolumn{1}{c}{1.907} \\ 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(29.42)} & \multicolumn{1}{c}{(31.38)} \\
+\cline{2-3}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{対数尤度：-3324.27} & \multicolumn{1}{c}{} \\
+\cline{2-3}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{AIC：6652.54} & \multicolumn{1}{c}{} \\
+\hline
+\end{tabular}\\
+}
+{\small 注意: 括弧内は$t-$値を示す．}\\
+\end{center}
+\end{figure}
+
+
+
+\subsection{ハザードモデルの推計結果}
+
+管路情報管理システムに収録された事故履歴データ（$C$:1,944件，$F$：6,060件，$FL$：548件，$A$：＊＊件）を用いて，ワイブル劣化ハザードモデルを最尤法により推計した．推計に際しては，管路タイプごとに事故履歴データをグループ化し，それぞれに対してワイブル劣化ハザードモデルの推計を行った．また，未知パラメータ$\alpha_i$に関しては，式(\ref{eq4})で記述したように，
+%
+   \begin{eqnarray}
+      && \alpha_i=\mbox{\boldmath$x$} \mbox{\boldmath$\beta$}_i^{\prime}   \label{(18)}
+   \end{eqnarray}
+%
+と定義した．上式中，$\mbox{\boldmath$x$}$は説明変数ベクトルであり，管種以外の要因が管路寿命に及ぼす影響についても考慮した．複数の説明変数の組み合わせに対して推計を実施した結果，本解析では，説明変数を考慮しないケース（ケース1）：$\alpha_i=\beta_1$と，説明変数として管路長を採用するケース（ケース2）：$\alpha_i=\beta_1+\beta_2 x_2$を採用した．ちなみに，説明変数の候補として交通量や地盤条件などに対しても同様にハザードモデルの推計を行ったが，$t-$値や符号条件からその影響が有意ではないと判断するに至った．両ケースの推計結果を{\bf \gt 表-3}と{\bf \gt 表-4}に示す．同表には各推計パラメータに対する$t-$値，対数尤度，AICも併せて示している．推計結果から，両ケースのいずれの管路においても加速度パラメータ$m_i$が1以上となっており，時間の経過とともに破損確率が大きくなることが見て取れる．さらに，両ケースのAICを比較したところ，どの管路タイプにおいてもAICが小さくなるのはケース2であることから，管路延長の影響を考慮したケース2を最終的なモデルとして採用した．
+
+
+\begin{figure}
+\begin{center}
+{\small {\bf \gt 表-4} ワイブル関数のパラメータの算定}\\
+{\small
+\begin{tabular}{llll}
+\hline
+管種 & \multicolumn{1}{c}{$\beta_1$} & \multicolumn{1}{c}{$\beta_2$} & \multicolumn{1}{c}{$m_i$} \\ 
+\hline
+\multicolumn{1}{c}{$C$} & \multicolumn{1}{c}{2.51E-06} & \multicolumn{1}{c}{1.49E-04} & \multicolumn{1}{c}{2.48} \\
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(6.40)} & \multicolumn{1}{c}{(19.67)} & \multicolumn{1}{c}{(34.91)} \\
+\cline{2-4}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{対数尤度：-2012.96} & \multicolumn{1}{c}{} \\
+\cline{2-4}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{AIC：4031.92} & \multicolumn{1}{c}{} \\
+\cline{1-4}
+\multicolumn{1}{c}{$F$} & \multicolumn{1}{c}{4.92E-06} & \multicolumn{1}{c}{3.25E-04} & \multicolumn{1}{c}{2.29} \\
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(9.34)} & \multicolumn{1}{c}{(32.94)} & \multicolumn{1}{c}{(56.61)} \\
+\cline{2-4}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{対数尤度：-5574.32} & \multicolumn{1}{c}{} \\
+\cline{2-4}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{AIC：11154.64} & \multicolumn{1}{c}{} \\
+\cline{1-4}
+\multicolumn{1}{c}{$FL$} & \multicolumn{1}{c}{6.73E-06} & \multicolumn{1}{c}{1.22E-04} & \multicolumn{1}{c}{2.31} \\
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(4.38)} & \multicolumn{1}{c}{(7.37)} & \multicolumn{1}{c}{(17.79)} \\
+\cline{2-4}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{対数尤度：-553.04} & \multicolumn{1}{c}{} \\
+\cline{2-4}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{AIC：1112.08} & \multicolumn{1}{c}{} \\
+\cline{1-4}
+\multicolumn{1}{c}{$A$} & \multicolumn{1}{c}{8.27E-06} & \multicolumn{1}{c}{4.18E-04} & \multicolumn{1}{c}{2.14} \\
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(10.12)} & \multicolumn{1}{c}{(26.64)} & \multicolumn{1}{c}{(35.87)} \\
+\cline{2-4}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{対数尤度：-2790.14} & \multicolumn{1}{c}{} \\
+\cline{2-4}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{AIC：5586.27} & \multicolumn{1}{c}{} \\
+\hline
+\end{tabular}\\
+}
+{\small 注意: 括弧内は$t-$値を示す．}\\
+\end{center}
+\end{figure}
+
+
+ワイブル劣化ハザードモデルの推計結果を用いて，算出した4種類の管路（$C$，$F$，$FL$，$A$）の生存曲線を{\bf \gt 図-1}に示す．生存曲線はワイブル劣化ハザードモデルの推計結果に基づき，式によって算出した．同図は，それぞれの管路の経年と期待寿命の関係を表している．これらの生存曲線を比較すると，高級鋳鉄管$F$の破損確率がやや高いものの，既設の3種類の管路（$C$，$F$，$FL$）の生存曲線に大きな差異はない．また，埋設時から80～85年程度経過した段階で生存確率が0.5に到達することが確認できる．一方で，高規格耐震管$A$は，約105年で生存確率が0.5となっており，既設3種類の管路よりも1.3倍程度耐久性が向上していることが理解できる．したがって，管路の取替え政策を考える場合，いずれの管路も管路Aに更新することが合理的であると言える．
+
+\begin{figure}[t]
+\wmffile(8cm,6.0cm){zu02.clp}
+\begin{center}
+{\small {\bf \gt 図-1 管路タイプごとの生存曲線}
+}
+\end{center}
+\end{figure}
+
+
+
+\subsection{最適更新タイミングと期待ライフサイクル費用}
+
+ワイブル劣化ハザードモデルの推計結果と{\bf \gt 表-2}に示した各種費用に基づき，管路の最適更新タイミングと期待ライフサイクル費用を算出する．
+
+はじめに，取替え対象となる管路は再び同じタイプの管路へと取替えられるものと考える．最適更新期間$z^*$を求めるために，式（25）～(28)を用いる．それぞれの管路に対して，取替え期間を変数として，期待ライフサイクル費用を試算した結果を{\bf \gt 図-3}に示す．同図より，管路の破損に伴う社会損失と取替え費用の間にはトレードオフ関係が成り立つため，それらの総和である期待ライフサイクル費用の最小値は唯一に定まることが見て取れる．さらに{\bf \gt 表-4}には，管路ごとの期待ライフサイクル費用の最小値と，その最小化を達成する最適取替え期間を整理した．最適取替え期間は，$C$で55年，$F$は59年，$FL$は54年であり，さらに，$A$に関しては期待ライフサイクル費用を最小にする最適な取替え期間は80年であった．
+
+
+\begin{figure}[t]
+\wmffile(8cm,6.0cm){zu03.clp}
+\begin{center}
+{\small {\bf \gt 図-3 期待ライフサイクル費用と最適取替え期間}
+\\}
+\end{center}
+\end{figure}
+
+\begin{figure}[t]
+\wmffile(8cm,6.0cm){zu04.clp}
+\begin{center}
+{\small {\bf \gt 図-4 期待ライフサイクル費用と最適取替え期間}
+}
+\end{center}
+\end{figure}
+
+\begin{figure}[t]
+\begin{center}
+{\small {\bf \gt 表-4 最適取替え期間および期待ライフサイクル費用（円）}
+\\}
+{\small 
+\begin{tabular}{llll}
+\hline
+管種 & \multicolumn{1}{c}{$C$} & \multicolumn{1}{c}{$F$} & \multicolumn{1}{c}{$FL$} \\ 
+ライフサイクル & \multicolumn{1}{c}{4,595} & \multicolumn{1}{c}{4,483} & \multicolumn{1}{c}{4,504} \\ 
+費用（万円） & & & \\
+最適取替え期間(年） & \multicolumn{1}{c}{62} & \multicolumn{1}{c}{66} & \multicolumn{1}{c}{65} \\ 
+\hline
+\end{tabular}
+}
+\end{center}
+\end{figure}
+
+
+% ($C$ = $5$ million Yen for social cost, $I=1$ million Yen for direct repair cost and $\rho=0.04$ for discount rate). 
+
+
+つぎに，取替え前後で管路タイプが異なるような最適取替え政策（いずれの管路も管路Aに取替え）を検討する．{\bf \gt 図-4}は，古いタイプの管路を新しいタイプの管路（高規格耐震管：$A$）に交換する場合の最適取替え期間を算出したものである．先の{\bf \gt 図-3}との比較を通した全体的な傾向として，新しい管路に交換することで取替え期間がわずかながら先延ばしすることが可能である．例えば，タイプCをタイプAに取替える場合，最適取替え期間は54年である．一方，タイプCを継続的に利用する場合最適取替え期間は49年である．管路タイプごとの期待ライフサイクル費用の最小値と最適取替え期間についても先ほどと同じように{\bf \gt 表-5}に整理する．
+
+
+\subsection{感度分析}
+
+管路の最適更新タイミングおよび期待ライフサイクル費用は，様々な要因によって変動する．ここでは，具体的な変動要因として，割引率$\rho$，社会的費用$C$および取替え費用$I$に着目し，これらのパラメータ値の変化が最適取替え政策，期待ライフサイクル費用に及ぼす影響を分析する．以下，社会的損失，取替え費用，割引率の順に感度分析を実施するが，割引率：$\rho=0.04$，社会的損失：$C=5,000千円$，取替え費用：$I=1,000千円$をベンチマークと設定する．また，取替え政策は，全タイプの管路をタイプAに取替える政策を採用している．
+
+{\bf \gt 図-11}は割引率$\rho$を0～0.08まで変化させた時の管路$C$の最適取替え期間の変化を示したものである．最適取換え期間は，同一の割引率のもとで，期待ライフサイクル費用の最小化を達成する取替え期間である．さらに同図には，費用の変化が与える影響についても考察するために，社会的損失を変化させた3ケース（$C=4,000，5,000，6,000$千円）の結果を示している．例えば，ベンチマーク（図中★印）と比較すると，割引率が0.01増減するだけで最適取替え期間が10年程度変動する．さらに，ベンチマークから相対的に社会的損失が20\%（すなわち，$C=4,000$千円）低減することで，最適取替え期間が10年程度遅くなることが理解できる．さらに，割引率$\rho$が小さくなる（0に近付く）とき，3ケースの差はほとんどなくなる．また，割引率が0.05までの範囲で，割引率に対する最適取替え期間の変化が顕著となる．
+
+つぎに，社会的損失の変動が最適取替え期間に与える影響を考察する（{\bf \gt 図-12}）．同図は，割引率を0.03，0.04，0.05と設定した3ケースに対して，社会的損失を3,000千円から8,000千円まで変化させたものであるが，社会的損失の増加が最適取替え期間を逐次的に減少させていることがわかる．例えば，社会的損失をベンチマーク（$rho=0.04$，$C=5,000$千円）よりも500千円増加させただけでも，最適取替え期間が3年早まる．
+
+{\bf \gt 図-13}は，取替え費用$I$に着目した，これまでと同様の感度分析の結果である．最適取替え期間は，取替え費用の増加に対して線形的に変化し，取替え費用が大きくなるほど，取替え期間が大きくなることがわかる．ベンチマークケースに対して，取替え費用が500千円増加すると，最適取替え期間が7～8年増加する．また，割引率に着目すると，割引率が小さい場合は相対的に最適取替え期間に与える影響も小さくなる．
+
+
+
+\begin{figure}[t]
+\wmffile(8cm,6.0cm){zu05.clp}
+\begin{center}
+{\small {\bf \gt 図-5 割引率に対する感度分析}
+}
+\end{center}
+\end{figure}
+
+\begin{figure}[t]
+\wmffile(8cm,6.0cm){zu06.clp}
+\begin{center}
+{\small {\bf \gt 図-6 社会的損失に対する感度分析}
+}
+\end{center}
+\end{figure}
+
+\begin{figure}[t]
+\wmffile(8cm,6.0cm){zu07.clp}
+\begin{center}
+{\small {\bf \gt 図-7 取替え費用に対する感度分析}
+}
+\end{center}
+\end{figure}
+
+\subsection{割引率に関する検討}
+
+瞬間的割引率$\rho$を$0$とした極限において式(\ref{j0})の分母が$0$となり，期待ライフサイクル費用を定義できない．そこで，期待ライフサイクル費用の代わりに
+タイプ$i~(i=1,\cdots,I)$の管路の平均費用(Average Cost)
+\begin{eqnarray}
+&& AC_i(z)=\frac{\int_0^{z} (c+I_i) f_i(t) dt  +  \tilde{F}_i(z)I_i}{z} 
+\end{eqnarray}
+を用いて評価する．タイプ$i$の管路に関して，平均費用を最小に最小にするような更新間隔$z_i^\ast$は最適取り換えモデル
+\begin{eqnarray}
+&& \min_{z}\{ AC_i(z) \}\label{iimp}
+\end{eqnarray}
+を解くことにより求めることができる．つぎに，つぎの更新時点で管路のタイプを取り換える場合，更新後における最適な管路タイプ$i^\ast$は，年平均期待費用を最小にするタイプであり，
+\begin{eqnarray}
+&& i^\ast=\mbox{arg} \min_{i}\{ AC_i(z_i^\ast):i=1,\cdots,N\}
+\end{eqnarray}
+と定義できる．また，既存のタイプ$j$の管路を期間$z_j$にわたり継続的に利用することによって，つぎの更新時期まで平均費用
+\begin{eqnarray}
+&& \hspace{-5mm} \overline{AC}_j^{i^\ast}(z_j)\nonumber \\
+&& \hspace{-5mm} =\frac{\int_0^{z_j} f_j(t_j|\tau_j)(c+I_{i^\ast}) dt_j  + \tilde{F}_j(z_j|\tau_j)I_{i^\ast} }{z_j} \label{han1}
+\end{eqnarray}
+が発生する．ただし，$\tilde{F}_j(t_j|\tau_j)$は，現在時点$\tau_j$まで破損・破壊が発生しなかった上に，さらに追加的に時間$t_j$の間，破損・破壊が発生しない確率である．
+一方，現時点において最適なタイプ$i^\ast$が使用されている場合，毎期平均費用$AC_{i^\ast}(z_i^\ast)$が発生する．この時，既存タイプの管路を$z_j$期にわたり継続的に利用することにより，追加的に発生する累積追加費用(Cummulative Additional Cost)は
+\begin{eqnarray}
+&& \overline{CAC}_j^{i^\ast}(z_j)= \{\overline{AC}_j^{i^\ast}(z_j)-AC_{i^\ast}(z_i^\ast)\}z_j
+\end{eqnarray}
+と表わされる．したがって，時間$\tau$が経過したタイプ$j$の管路の最適取替え時刻$z_j^\ast(\tau_j)$は
+\begin{eqnarray}
+&& z_j^\ast=\arg \min_{z_j} \{\overline{CAC}_j^{i^\ast}(z_j)\} \label{ssa}
+\end{eqnarray}
+と表される．
+
+
+
+
+\section{おわりに}
+
+上水道管路は地下埋設物であり，点検により劣化水準を把握することが困難である．その一方で，管路が破損すれば多大な社会的費用が発生するため，老朽化した管路を予防的に取替えることが必要となる．本研究では，管路の劣化過程をワイブル劣化ハザードモデルで表現し，破損事故による社会的費用と管路の取替え費用で構成される期待ライフサイクル費用を最小にするような管路の最適取替えモデルを提案した．本研究で提案した最適予防取替えモデルを大阪市水道局が管理する上水道管路のアセットマネジメント問題に適用し，本研究で提案した方法論の有効性を実証的に検証した．
+
+本研究で提案した最適予防取替えモデルに関しては，多方面に拡張が可能である．上水道管路のアセットマネジメント問題に関しても，以下のような重要な研究課題が残されている．第1に，新しいタイプの管路に関しては，管路の破損に関する情報の蓄積が十分ではない．今後，新しいデータの蓄積により，ワイブルハザード劣化モデルの精度向上を行うことが望まれる．その際，管路の破損事故のデータが追加された時点で，ワイブル劣化ハザードモデルのベイズ更新が必要となる．第2に，管路施設は単体で機能するわけではなく，多くの管路群によりネットワークが形成されている．管路取替え費用に予算上の制約がある場合，管路取替えの優先順位を決定することが必要となる．このような取替え順位を決定する場合，管路のネットワーク特性や管路の重要性に関する配慮が必要となる．第3に，管路の取替えにより，古いタイプの管路（普通鋳鉄管，高級鋳鉄管）がより耐震性の高い管路（ダクタイル鋳鉄管）に取替えられている．本研究では，地震リスクを考慮していないが，管路施設の耐震性評価を行うためには，地震被害リスクを考慮した最適予防取替えモデルを定式化することが必要となる．
+
+なお，本研究の一部は文部科学省「若手研究者の自立的研究環境促進」事業によって大阪大学グローバル若手研究者フロンティア研究拠点にて実施された．
+
+
+\vspace{5mm}
+\hspace{-5mm} {\gt \bf 付録}
+
+ライフサイクル費用$J(0,z)$を求めるためには，式中のガンマ関数を算出する必要がある．本研究においてはライフサイクル費用を解析的に算出することが困難であるために，数値計算による代用法を述べる．
+%
+   \begin{eqnarray}
+      && J(0:z)= \frac{(c+I)\Gamma(z)+I \Lambda(z)}
+      {1-\Gamma(z)-\Lambda(z)} \label{a1}
+   \end{eqnarray}
+%
+ここで，$\Gamma(z)$と$\Lambda(z)$は次式のとおりに定義することができる．
+%
+   \begin{eqnarray}
+      && \Gamma(z)=\int_0^{z} f(t)\exp(-\rho t)dt \nonumber \\
+      && \hspace{8mm}= \int_0^z \alpha m\tau^{m-1}
+      \exp(-\alpha \tau^m-\rho t)dt \label{gamma1}\\
+      && \Lambda(z)= \tilde{F}(z) \exp(-\rho z)  \nonumber \\
+      && \hspace{8mm} =\exp(-\alpha z^m-\rho z)  \label{alpha1}
+   \end{eqnarray}
+%
+ガンマ関数は，さらに次のように展開することが可能である．
+%
+   \begin{eqnarray}
+      && \hspace{-8mm} \Gamma(z)= \int_0^z (\alpha m\tau^{m-1}+\rho-\rho)
+      \exp(-\alpha \tau^m-\rho t)dt \label{gamma1} \nonumber \\
+      && \Leftrightarrow  - \int\limits_0^z 
+      {\exp ( - \alpha t^m  - \rho t)d( - \alpha t^m  - \rho t)}\nonumber \\ 
+      && -\rho \int\limits_0^z {\exp ( - \alpha t^m  - \rho t)dt}\nonumber  \\ 
+      &&= 1 - \Lambda (z) - \rho \int\limits_0^Z {\exp (-\alpha t^m -\rho t)dt}
+      \label{gamma2}
+   \end{eqnarray}
+%
+式(\ref{a1})の分母は
+%
+   \begin{eqnarray}
+      1 - \Lambda (z) - \Gamma (z) 
+      = \rho \int\limits_0^z {\exp ( - \alpha t^m  - \rho t)dt} \label{deno} 
+   \end{eqnarray}
+%
+で与えられる．式(\ref{gamma2})と(\ref{deno})を式(\ref{a1})に代入すると，
+%
+   \begin{eqnarray}
+      && \hspace{-8mm} J(0,z) \nonumber \\
+      && \hspace{-5mm}= \frac{{(C + I)\left[{\Gamma(z)+\Lambda(z)-1} \right]
+      + C + I - C\Lambda (z)}}{{1 - \Lambda (z) - \Gamma (z)}}
+      \nonumber \label{a2}\\
+      && \hspace{-5mm}=\frac{{C+I-C\Lambda (z)}}
+      {{\rho \int\limits_0^z {\Lambda (t)dt} }}-(C + I) \label{a3}
+   \end{eqnarray}
+%
+を得る．上式より明らかなように，$\Lambda (z)$の積分を算出することが必要となる．このとき，離散級数を用いて積分を拡張したときの一般形は，
+%
+   \begin{eqnarray}
+      && I_k  = \int\limits_0^{kdt} {f(x)dx} 
+   \end{eqnarray}
+%
+となる．ここで，$k$は繰り返し回数であり，$dt$は微小時間間隔である．例えば，$dt$は$d=0.01$，あるいは$0.001$，さらにはそれら以上に小さい値を取る．本研究の場合には，具体的に，
+%
+   \begin{eqnarray}
+      && I_{k + 1}  = \int\limits_0^{(k + 1)dt} {f(x)dx} \nonumber \\
+      && =I_k  + \int\limits_{k.dt}^{(k + 1)dt} {f(x)dx} \nonumber \\
+      && = I_k  + \frac{{[f(kdt) + f\{ (k + 1)dt\} ]dt}}{2} \label{i1}
+   \end{eqnarray}
+%
+で表わされる．最終的に，積分は数値計算により簡単に算出することができる．以上より，式(\ref{a3})を直接的に解く代わりに，$Z$を変数としたときのライフサイクル費用$J(0,Z)$の最小値をニュートン法などを援用して数値的に評価することが可能となる．
+
+
+\vspace*{\baselineskip}
+\begin{bib}
+{\small
+\bibitem{koba} 田村謙介，小林潔司：
+不確実性下における道路舗装の修繕ルールに関する研究，
+土木計画学研究・論文集，No.18(1)，pp.97-107，2001.
+
+\bibitem{koba2} 田村謙介・慈道充・小林潔司：
+予算制約を考慮した道路舗装の修繕ルール，
+土木計画学研究・論文集，Vol.19(1)，pp.71-82，2002.
+
+\bibitem{koba1} 小林潔司：
+分権的ライフサイクル費用評価と集計的効率性，
+土木学会論文集，No.793/IV-68，pp.59-71, 2005.
+
+\bibitem{hori} 堀倫裕，小濱健吾，貝戸清之，小林潔司：
+下水処理施設の最適点検・補修モデル，
+土木計画学・研究論文集，Vol.25(1)，pp.213-224，2008.
+
+\bibitem{op} 例えば，Heyman, D.P. and Sobel, M.J.(eds.): Stochastic Models, {\it Handbooks in Operations Research and Management Science}, Vol.2, North-Holland, 1990.
+
+\bibitem{mad0} 例えば，Eckles, J.E.: Optimal maintenance with incomplete information, {\it Operations Research}, Vol.16, pp.1058-1067, 1968.
+
+\bibitem{mad} Madanat, S.: Incorporating inspection decisions in pavement management, {\it Transportation Research}, Part B, Vol.27B, pp.425-438, 1993.
+
+\bibitem{mad1} Madanat, S. and Ben-Akiva, M.: Optimal inspection and repair policies for infrastructure facilities, {\it Transportation Science}, Vol.28, pp.55-62, 1994.
+
+\bibitem{aoki}青木一也，山本浩司，小林潔司：
+劣化予測のためのハザードモデルの推計，
+土木学会論文集，No.791/VI-67，pp.111-124，2005.
+
+\bibitem{aoki1}青木一也，山本浩司，小林潔司：
+トンネル照明システムの最適点検・更新政策，
+土木学会論文集，No.805/VI-69，pp.105-116，2005.
+
+\bibitem{lanc} Lancaster, T.: {\it The Econometric Analysis of
+Transition Data}, Cambridge University Press, 1990.
+
+\bibitem{gouri} Gourieroux, C.: {\it Econometrics of Qualitative Dependent
+Variables}, Cambridge University Press, 2000.
+
+\bibitem{taniguchi}松下智美，村上博哉，谷口靖博：
+配水管事故未然防止の観点から見た小口径管の改良優先度の決定に関わる一手法，
+第56回全国水道研究発表会講演集，pp.76-77，2005.
+}
+\end{bib}
+
+
+\begin{table}[hb]
+\begin{center}
+\begin{tabular*}{170mm}{@{\extracolsep{\fill}}l} \hline %{p{1.5cm}p{15cm}p{1.5cm}} \hline
+ 下水処理施設の最適点検・補修モデル${}^{*}$ \\
+\multicolumn{1}{r}{堀倫裕${}^{**}$，小濱健吾${}^{***}$，貝戸清之${}^{****}$，小林潔司${}^{*****}$} \\
+ 　　　{\small　
+\noindent 本研究では，上水道管路施設の予防的保全政策を検討する問題をとりあげる．上水道管路は埋設施設であり，}\\
+　{\small 　劣化状態を直接観測することは困難である．管路施設に損傷が発生すれば，道路や周辺施設の損壊，交通サービス}\\
+　{\small 　の遮断をもたらし，多大な社会的損失が発生する．老朽化した管路の破損事故を未然に防ぐために，経年的に老朽}\\
+　{\small 　化した管路施設を予防的に取替えることが必要となる．本研究では，期待ライフサイクル費用の最小化を目的と}\\
+　{\small 　した最適取替えモデルを提案した．さらに，現実の管路施設が敷設時点が異なる多様なタイプの管路で構成されて}\\
+　{\small 　いることに考慮し，管路タイプの最適スィッチング政策について分析した．最後に，大阪市の上水道管路の保全問}\\
+　{\small 　題をとりあげ，本研究で提案したモデルの有効性を実証的に検証した．} \\\hline
+
+  An Optimal Inspection/Rehabilitation Model for Sewage Work Facilities${}^*$ \\
+ \multicolumn{1}{r}{By Michihiro HORI${}^{**}$, Kengo OBAMA${}^{***}$, Kiyoyuki KAITO${}^{****}$ and Kiyoshi KOBAYASHI${}^{*****}$~~~~} \\
+% \multicolumn{1}{r}{Kiyoshi KOBAYASHI${}^{*****}$ and Kiyoshi KOBAYASHI${}^{*6}$~~~~} \\
+ 　　　{\small ~
+This paper focuses upon the preventive maintenance management policies of water supply pipeline}\\
+{\small 　systems. The deterioration processes of the pipeline cannot be easily observed. If pipeline facilities}\\
+{\small 　fail, the large amounts of economic loss might be generated by physical damages of highways and}\\
+{\small 　and surrounding facilities and traffic congestion. In order to prevent the failures of pipeline　facilities,}\\
+{\small 　the deteriorated pipeline facilities should be replaced by the new ones. In this paper, the optimal}\\
+{\small 　replacement model is formulated to find the optimal replacement policy which can minimize the expected}\\
+{\small 　life cycle cost. The model is extended to investigate the optimal switching policy from the existing}\\
+{\small 　types to the new ones. The paper is concluded by illustrating the case studies conducted in Osaka city.} \\\hline
+\end{tabular*}
+\end{center}
+\end{table}
+\end{document}
+
+
+
+
