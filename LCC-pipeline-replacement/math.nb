@@ -1,0 +1,271 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      7185,        262]
+NotebookOptionsPosition[      6232,        224]
+NotebookOutlinePosition[      6575,        239]
+CellTagsIndexPosition[      6532,        236]
+WindowFrame->Normal
+ContainsDynamic->False*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "this", " ", "is", " ", "the", " ", "interpolation", " ", "of", " ", 
+    "mathematic", " ", "for", " ", "Optimal", " ", "renewal", " ", "time", 
+    " ", "model"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "[", 
+     RowBox[{"alpha_", ",", "m_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "d"}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "alpha"}], "*", 
+        RowBox[{"t", "^", "m"}]}], ")"}]}], "+", 
+     RowBox[{"d", "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"ln", 
+         RowBox[{"(", "alpha", ")"}]}], "+", 
+        RowBox[{"ln", 
+         RowBox[{"(", "m", ")"}]}], "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"m", "-", "1"}], ")"}], "*", "ln", 
+         RowBox[{"(", "t", ")"}]}], "-", 
+        RowBox[{"alpha", "*", 
+         RowBox[{"t", "^", "m"}]}]}], ")"}]}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "First", " ", "derivative", " ", "that", " ", "consider", " ", "variable",
+      " ", "alpha", " ", "and", " ", "m"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"alpha", ",", "m"}], "]"}], ",", "alpha"}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.4364102875625*^9, 3.436410320546875*^9}, {
+  3.436410596453125*^9, 3.436410689109375*^9}, {3.436410721234375*^9, 
+  3.43641090728125*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}]}], " ", 
+   SuperscriptBox["t", "m"]}], "+", 
+  RowBox[{"d", " ", 
+   RowBox[{"(", 
+    RowBox[{"ln", "-", 
+     SuperscriptBox["t", "m"]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{
+  3.436411207390625*^9, {3.436440211078125*^9, 3.436440214140625*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"D", "[", 
+   RowBox[{
+    RowBox[{"f", "[", 
+     RowBox[{"alpha", ",", "m"}], "]"}], ",", "m"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.436411197515625*^9, 3.436411198375*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", "alpha"}], " ", 
+   RowBox[{"(", 
+    RowBox[{"1", "-", "d"}], ")"}], " ", 
+   SuperscriptBox["t", "m"], " ", 
+   RowBox[{"Log", "[", "t", "]"}]}], "+", 
+  RowBox[{"d", " ", 
+   RowBox[{"(", 
+    RowBox[{"ln", "+", 
+     RowBox[{"ln", " ", "t"}], "-", 
+     RowBox[{"alpha", " ", 
+      SuperscriptBox["t", "m"], " ", 
+      RowBox[{"Log", "[", "t", "]"}]}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{
+  3.436411209921875*^9, {3.436440171140625*^9, 3.43644017565625*^9}, 
+   3.436440216609375*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "start", " ", "to", " ", "estimate", " ", "the", " ", "second", " ", 
+    "derivative", " ", "of", " ", "alpha", " ", "and", " ", "m"}], "*)"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.436411153453125*^9, 3.436411172953125*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"alpha", ",", "m"}], "]"}], ",", "alpha"}], "]"}], ",", 
+   "alpha"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4364112691875*^9, 3.436411305484375*^9}, 
+   3.43641137390625*^9}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{
+  3.43641129184375*^9, 3.436411374515625*^9, {3.4364401990625*^9, 
+   3.436440222234375*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"alpha", ",", "m"}], "]"}], ",", "alpha"}], "]"}], ",", "m"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.436411387078125*^9, 3.436411392625*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}]}], " ", 
+   SuperscriptBox["t", "m"], " ", 
+   RowBox[{"Log", "[", "t", "]"}]}], "-", 
+  RowBox[{"d", " ", 
+   SuperscriptBox["t", "m"], " ", 
+   RowBox[{"Log", "[", "t", "]"}]}]}]], "Output",
+ CellChangeTimes->{3.43641139428125*^9, 3.436440225640625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"alpha", ",", "m"}], "]"}], ",", "m"}], "]"}], ",", "alpha"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.436411407796875*^9, 3.4364114145*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}]}], " ", 
+   SuperscriptBox["t", "m"], " ", 
+   RowBox[{"Log", "[", "t", "]"}]}], "-", 
+  RowBox[{"d", " ", 
+   SuperscriptBox["t", "m"], " ", 
+   RowBox[{"Log", "[", "t", "]"}]}]}]], "Output",
+ CellChangeTimes->{3.436411421375*^9, 3.43644022815625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"alpha", ",", "m"}], "]"}], ",", "m"}], "]"}], ",", "m"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{3.436411430375*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", "alpha"}], " ", 
+   RowBox[{"(", 
+    RowBox[{"1", "-", "d"}], ")"}], " ", 
+   SuperscriptBox["t", "m"], " ", 
+   SuperscriptBox[
+    RowBox[{"Log", "[", "t", "]"}], "2"]}], "-", 
+  RowBox[{"alpha", " ", "d", " ", 
+   SuperscriptBox["t", "m"], " ", 
+   SuperscriptBox[
+    RowBox[{"Log", "[", "t", "]"}], "2"]}]}]], "Output",
+ CellChangeTimes->{3.43641143171875*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.436411432953125*^9, 3.43641143696875*^9}}]
+},
+WindowSize->{611, 502},
+WindowMargins->{{145, Automatic}, {Automatic, 26}},
+FrontEndVersion->"6.0 for Microsoft Windows (32-bit) (April 28, 2007)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[590, 23, 1523, 43, 152, "Input"],
+Cell[2116, 68, 359, 12, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2512, 85, 237, 6, 52, "Input"],
+Cell[2752, 93, 549, 17, 30, "Output"]
+}, Open  ]],
+Cell[3316, 113, 327, 7, 72, "Input"],
+Cell[CellGroupData[{
+Cell[3668, 124, 294, 9, 31, "Input"],
+Cell[3965, 135, 142, 3, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4144, 143, 263, 8, 31, "Input"],
+Cell[4410, 153, 361, 11, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4808, 169, 261, 8, 31, "Input"],
+Cell[5072, 179, 358, 11, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5467, 195, 235, 8, 31, "Input"],
+Cell[5705, 205, 417, 13, 30, "Output"]
+}, Open  ]],
+Cell[6137, 221, 91, 1, 31, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
