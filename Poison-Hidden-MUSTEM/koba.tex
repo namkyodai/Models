@@ -1,0 +1,1106 @@
+%%#!platex
+%
+% Example of Japanese Paper of JSCE
+% for LaTeX2e users
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% もし jis フォントメトリックを使う場合は，以下をアンコメントしてください．
+% \DeclareFontShape{JY1}{mc}{m}{n}{<-> s * jis}{}
+% \DeclareFontShape{JY1}{gt}{m}{n}{<-> s * jisg}{}
+%
+ \documentclass{jsce}
+
+\usepackage{epic,eepic,eepicsup,graphicx}
+% amsを使う方は以下をアンコメントしてください．
+%\usepackage{amssymb,amsmath}
+
+% もし TX フォントの方が好きな場合には以下をアンコメントしてください．
+% \usepackage{txfonts}
+% あるいは，v, w に丸みを帯びたものの方がお好きな場合は
+% \usepackage[varg]{txfonts}
+%
+\finalversion % 最後の最後はヘッダが不要らしい
+%
+%\volumenumber{9} % H_AND_F
+%\journalnumber{4}
+%\pubmonth{5}
+%\pubyear{1993}
+%\procnumber{400}
+%\procnumberofthefield{22}
+%\firstpagenumber{1}
+%\firstenglishpagenumber{1}
+%\fieldnumber{4}
+%
+%
+\title{ポワソン隠れマルコフモデルによる舗装劣化過程のモデル化}
+%
+\endtitle{MODELING PAVEMENT DETERIORATION PROCESSES BY POISSON HIDDEN MAROKOV MODELS}
+%
+\author{
+Le Thanh NAM\thanks{学生会員　大阪大学特任研究員 大学院工学研究科グローバル若手研究者フロンティア研究拠点\newline
+（〒565-0871 吹田市山田丘2-1）
+\email{nam@wakate.frc.eng.osaka-u.ac.jp
+}}
+・
+貝戸清之\thanks{正会員　大阪大学特任講師 大学院工学研究科グローバル若手研究者フロンティア研究拠点（〒565-0871 吹田市山田丘2-1）
+\email{kaito@ga.eng.osaka-u.ac.jp}}
+・
+小林潔司\thanks{フェロー会員　京都大学教授 経営管理大学院経営管理講座（〒606-8501 京都市左京区吉田本町）\hfill
+\email{kkoba@psa.mbox.media.kyoto-u.ac.jp}}
+}
+%
+\endauthor{Le Thanh NAM, Kiyoyuki KAITO, and Kiyoshi KOBAYASHI}
+%
+\abstract{浄水場施設\vspace{-1mm}}
+%
+\keywords{pot hole, proportional hazard model, bench marking, asset management}
+%
+\endabstract{The carbonation of concrete components has become on of the major subjects in the asset management of water treatment facilities. The root-$T$ formula, which postulates that the carbonation depth is proportional to the root of the exposure time length, has been the basic hypothesis in explaining the short- and medium term carbonation processes. Yet, no sufficient data sources are available so far to describe the long-term carbonation. In this paper, the accelerated hazard model is presented to forecast the long-term carbonation processes based upon the observation sets of carbonated concrete samples. As far as our dataset is concerned, the hypothesis of the root-$T$ formula is statistically rejected. The carbonation has progressed faster than expected by the root-$T$ formula.
+  }%
+% \titlepagecontrol{1}
+%
+\receivedate{2009.1. 7}  %********* DATE ******
+% \receivedate{January 15, 1991}
+%
+% from ttn2n1.sty
+\newcount\TestCount
+\def\La{\TestCount=\the\fam \leavevmode L\raise.42ex
+    \hbox{$\fam\TestCount\scriptstyle\kern-.3em \if@bold a\else A\fi$}}
+\def\LaTeX{\La\kern-.15em\TeX}
+\def\theenumi{\alph{enumi}}
+\def\labelenumi{(\theenumi)}
+\begin{document}
+
+\maketitle
+
+\section{はじめに}
+
+道路舗装には，1) 安全で快適な走行を行うための表面的な路面性状などの機能と，2) 長期にわたってサービスを提供するための構造的
+な耐久性が要求される．しかし，財政縮減の中，老朽化が進む膨大な道路ストックに対して，維持管理業務の効率性を一層高めることは
+極めて困難を伴う．このような状況の下，その解決策としてアセットマネジメント\cite{koba1}が着目され，近年，特に目視点検データ
+に基づく統計的劣化予測に関する研究の進展が著しい\cite{weibull}${}^{-}$\cite{hu}．さらに，これらの劣化予測手法と連動したライ
+フサイクル費用評価手法\cite{otaz1}${}^{,}$\cite{kait1}も提案され，それらの実用化に期待が寄せられている．
+
+しかしながら，例えば近畿地方整備局が管理する積雪地の道路舗装の一部では，冬季の融雪や除雪対策としての散水により，路面が常に
+滞水状態におかれることが少なくなく，ポットホールが多発するという特有の現象を確認することができる．ポットホール等の路面異常
+に対しては，通常常温混合物を用いて迅速に応急的な補修がなされるが，積雪地では常温混合物が本来の性能を発揮するだけの施工条件
+を満たすことは難しく，すぐに混合物が剥離してしまう事例が多い．したがって，維持補修費用の低減化を達成するためには，短期的に
+は積雪・降雨期におけるポットホールの効果的な応急補修の方法を検討することが重要となる．また，実態に即した対策を講じることは，
+道路利用者の安全性の向上にも資することができる．さらに，長期的には，ポットホールの発生を未然に防ぐために，路面の補修方法や
+道路舗装全体の補修・更新政策を検討することが必要となる．
+
+本研究では，積雪・降雨期におけるポットホールの応急補修の効率化のための基礎的情報を獲得することを目的として，応急補修に利用される常温混合物の耐久性を評価する方法論を提案する．滞水状態にある路面のポットホールに関してはその発生メ
+カニズムについて，いくつかの研究\cite{yama1}の蓄積があるものの，積雪地での実際のポットホールの発生状況や常温混合物の耐久性
+を統計的見地から分析した事例は著者らの知る限り見当たらない．実証分析結果に基づいて，積雪地に適した補修工法，補修材料を開
+発していくことは重要な課題であるといえよう．
+
+以上の問題意識の下に，本研究では，積雪地において発生したポットホールに対して，一般的な常温混合物を用いて補修を行った際の常温混合物の剥離までの時間を実際の点検データを用いて統計的に推計し，その耐久性を実証的に分析する．具体的には，常温混合物の剥離過程 (ポットホールの発生過程) をワイブル劣化ハザードモデルによって表現し\cite{weibull}，そのモデルの推計結果を用いて常温混合物の剥離までの時間 (耐久性) を評価する．また，常温混合物の耐久性は，常温混合物による応急補修を行う地点の構造条件，環境条件，施工条件など，多数の要因によって左右される．これらの多数の要因が同時に，かつ相互依存的に影響を及ぼす可能性が否めないために，耐久性に対する影響要因を一意に特定することは難しいと考えられるが統計学的見地から考察を加えていく．なお，本研究は，積雪地のポットホール対策として適切な補修工法や補修材料を開発・提案するものではないが，積雪地の現状に即した道路舗装の維持管理手法を構築するための基礎検討を行うものである．以下，{\bf \gt 2．}では本研究の基本的な位置づけを述べる．{\bf \gt 3．}では，ワイブル劣化ハザードモ
+デルについて説明し，{\bf \gt 4．}では，積雪地の一般国道を対象として取得した実データを用いて，常温混合物の耐久性を実証的に分析する．
+
+
+
+\section{本研究の基本的な考え方}
+
+\subsection{従来の研究概要}
+
+
+
+
+
+土木施設の統計的劣化予測モデルとしてマルコフ劣化モデルが提案されている．初期の段階におけるマルコフ推移確率の推計方法として，
+健全度間の推移状態に関する実データの数え上げにより，推移確率を推計する方法\cite{yasuda}${}^{,}$\cite{toukei}が
+提案されている．また，杉崎等\cite{sugisaki}は，異なる測定間隔を有
+する目視点検データを用いて，マルコフ推移確率を集計的に推計する方法を提案している．その後，マルコフ推移確率の推計は，
+ハザード解析手法の導入により，飛躍的に発展した．中でも，Mishalani and Madanat\cite{mishalani}は，2つの隣接する健全度のみを
+対象として，マルコフ推移確率を指数ハザードモデルを
+用いて表現する方法を提案した．これとは独立に，津田等は，2つ以上の任意の健全度間における推移状態を表現する
+多段階指数ハザードモデル\cite{markov}を提案し，マルコフ推移確率を推計する一般的な方法論を提案した．その後，マルコフ推移確率が過去
+の記憶を有する非斉次マルコフ推移確率を推計するための多段階ワイブル劣化ハザードモデル\cite{hu}，異なる劣化パターン間の
+推移過程を表現する階層型指数劣化ハザードモデル\cite{kumada}，異なる損傷間の競争関係をモデル化する競合型マルコフ劣化
+モデルが提案されている．また，マルコフ推移確率の推計方法に関しては，
+測定データが非常に少ない段階で，技術者の経験情報と測定結果を結合してマルコフ推移確率を推計するベイズ推計モデル
+\cite{bayse}${}^{,}$\cite{19}，予防補修により測定データが欠損することにより発生する欠損バイアスを補正する方法\cite{18}，
+ハザード率の異質性を考慮したランダム比例ワイブル劣化ハザードモデル\cite{20}が提案されている．以上の方法は，いずれも
+構造物の健全度が確定的に観測できることを想定したものである．これに対して，測定値に観測誤差が存在するなど不完全な情報に
+基づいて劣化過程を予測するマルコフ劣化予測モデルに関しては，ほとんど研究が進展していない．その中で，小林らは
+健全度に測定誤差が存在する場合を対象として，測定誤差の背後に隠れているマルコフ推移確率を推計する隠れマルコフ劣化モデル
+\cite{hidden}を提案している．本研究で対象とする舗装の劣化過程は，路面の劣化過程と舗装の耐荷力低下過程という2種類のマルコフ過程が存在し，
+耐荷力の低下が路面の劣化過程に影響を及ぼすという階層性を有している．さらに、路面性状調査では路面の健全度が観測できるが、
+耐荷力の低下を観測するためにはFWD調査等による調査が必要である。本研究では、路面性状調査、FWD調査結果を用いて、複合的な
+舗装の劣化過程を表現するための階層的隠れマルコフ劣化モデルを提案することとする。筆者らの知る限り、階層的隠れマルコフ
+劣化モデルに関する研究事例は、他に例をみない．
+
+
+\subsection{舗装の劣化特性}
+
+一般に，舗装は，表層，基層，路盤、路床という複数の層で構成される多層構造を有している．本研究では路面と舗装構造
+に着目し，舗装を2つのサブシステムで構成される構造物としてモデル化する．
+このうち，路面は自動車利用による摩耗や繰り返し荷重，天候・気象等の影響により劣化が進展する．さらに，舗装の各層に
+おける構造的欠陥が存在すれば路面の劣化速度に影響を及ぼす．舗装を構成する各層も雨水や地下水の浸透，繰り返し荷重の作用等により
+構造的劣化が進展し、耐荷力が低下する．このような舗装の劣化過程を，摸式的に{\bf \gt 図-1}に示している．図の上段は路面の
+劣化過程を，下段は舗装全体の耐荷力の低下過程を示している．同図においては，路面の劣化過程の方が，舗装構造の耐荷力の低下過程
+よりも，早く劣化が進展するように描かれている．
+舗装マネジメントにおいては，路面の劣化状態に対して，維持すべき管理目標 (健全度) が規定されており，路面の健全度が
+管理目標に達した時点で路面の補修が実施され，舗装の健全度は初期状態まで回復する．舗装構造の耐荷力も時間の経過ととも
+に低下していく．耐荷力が低下することにより，路面の劣化速度が加速される．このため，初期時点から路面の補修回数が増加するほど，舗装の補修間隔
+が短くなる．このため，舗装の耐荷力が低下した場合，路面のみの補修だけではなく，舗装全体を補修することが
+ライフサイクル費用を抑制する上でも望ましくなる．本研究では{\bf \gt 図-1}に示すように，路面の劣化過程を上位システム，耐荷力の低下過程を下位
+システムとする階層的隠れマルコフ劣化モデルを提案する．
+
+\begin{figure}[t]
+\begin{center}
+\vspace{7cm}
+%\includegraphics[width=8cm]{figure/fig01.eps}\\
+{\small {\bf \gt 図-2} 局所時間軸}
+\end{center}
+\end{figure}
+
+
+
+\section{モデルの定式化}
+
+\subsection{前提条件}
+
+ポワソン隠れマルコフ劣化モデルを定式化するために，{\bf \gt 図-2}に示すような時間軸を導入する．道路管理者が
+カレンダー時刻$s_0$に道路舗装を補修し，それ以降の時刻にわたって日常点検により道路舗装を管理する問題を考え
+る．対象とする道路はそれを構成する複数の単位区間により構成される。ここでは，記述の便宜を図るために、ある単位
+区間のみに着目して議論を進める。のちに、{\bf \gt 4. }で、路線全体に関する議論に拡張する。
+
+いま、カレンダー時刻$s_0$を初期時点$t=0$とする離散時間軸$t=0,1,2,\cdots,\infty$を導入する．離散時間軸上の点を時点とよび
+カレンダー時刻と区別する．離散時点間の期間長を$1$に基準化する。対象とする舗装は，離散時間軸上の時点$t=0,t_1,\cdots,t_n,\cdots$に
+おいて路面性状が調査され、調査時点$t_n$において舗装健全度$h(t_n)=i~(i=1,\cdots,I)$が観測される．連続する2つの調査時点間の
+期間を$\tau_n=[t_n,t_{n+1})$と呼び、期間長を$T_n=t_{n+1}-t_n$と表す。舗装の健全度はレーティング指標$i~(i=1,\cdots,I)$
+で表される。$i$の値が大きくなるほど路面性状が劣化している．$h(t_n)=I$の場合は，舗装が使用限界に到達していることを意味する．
+初期時点$t=0$において$h(0)=1$である。さらに、各時点$t=0,1,\cdots$において道路巡回が実施され、ポットホールの発生を点検する。
+ポットホールが発見された場合、直ちに補修される。期間$\tau_n$内におけるポットホールの発生過程を分析するために、路面性状調査
+時点$t_n$を始点$u_n=0$とする局所離散時間軸
+$u_n=0,1\cdots,T_n$を考える．ただし、局所離散時間軸上の局所時点$u_n$は、離散時間軸上の時点$t_n+u_n$と対応し、$t_{n+1}=t_n+T_n$
+が成立する。局所時点$u_n$におけるポットホールの発生戸数を表す状態変数を$g(u_n)=y_n~(y_n=0,1,\cdots)$と表記する。
+時点$t_n$と$t_{n+1}=t_n+T_n$における路面性状調査により、路面の健全度が$h(t_n)=i$と$h(t_{n+1})=j$と判明したと考える。
+ただし、$i \leq j$が成立する。この時、期間$[t_n,t_{n+1})$内の局所時点$u_n=1,\cdots,T_{n}-1$における健全度$h(t_n+u_n)$に
+関する情報は獲得できないが、舗装健全度$h(t_n+u_n)$に関して
+\begin{eqnarray}
+&& h(t_n)=i\leq \cdots \leq  h(t_n+u_n) \leq \cdots \leq h(t_{n+1})=j \nonumber \\ && \label{uu} 
+\end{eqnarray}
+が成立する。
+
+
+\subsection{舗装の劣化過程}
+
+舗装の補修が実施された時点$s_0$を起点とする離散時間軸$t=0,1,\cdots$を考える。離散時間軸上の期間$[t,t+1)$におけ
+る舗装健全度の劣化過程を
+表すマルコフ推移確率は，時点$t$における健全度$h(t)=i$を与件とし，時点$t+1$に
+おいて健全度$h(t+1)=j$が生起する条件付確率
+   \begin{eqnarray}
+      && \hspace{-5mm}
+      \mbox{Prob}[h(t+1)=j|h(t)=i] =p^{ij} 
+      \label{(5)}
+   \end{eqnarray}
+として定義できる．マルコフ推移確率は，津田等\cite{markov}が開発したマルコフ劣化モデルを用いて表現できる．そのために，時点$t$
+における健全度$i~(i=1,\cdots,I-1)$のハザード率\cite{lancaster}${}^{,}$\cite{gouri}$\lambda^{i}$を
+\begin{eqnarray}
+&& \lambda^{i}=\mbox{\boldmath$x$}\mbox{\boldmath$\beta$}^i      \label{(18)}
+\end{eqnarray}
+と表す．ただし，$\mbox{\boldmath$x$}=(x_{1},\cdots,x_{Q})$は，説明変数ベクトルであ
+る．$\mbox{\boldmath$\beta$}^{i}=(\beta_1^{i},\cdots,\beta_{Q}^{i})^\prime$は未知パラメータベクトルである．
+ここで、パラメータベクトルを$\mbox{\boldmath$\beta$}=(\mbox{\boldmath$\beta$}^{1},\cdots,\mbox{\boldmath$\beta$}^{I-1})$と表記する。
+記号$\prime$は
+転置を、$Q$は説明変数の数を表す．ハザード率$\lambda^{i}$は，期間$[t,t+1)$に対して定義されている．このとき，時点$t$におい
+て健全度$i$の状態
+から，時点$t+1$においても健全度$i$が継続する確率は，
+\begin{eqnarray}
+p^{ii} &=& \mbox{Prob}[h(t+1)=i|h(t)=i] \nonumber \\
+&=& \exp(-\lambda^{i}) \label{poi0}
+\end{eqnarray}
+となる．さらに，時点$t$と時点$t+1$の間で健全度が$i$から$j~(>i)$に推移するマルコフ推移確率$p^{ij}~(i=1,\cdots,I-1;j=i,\cdots,I)$は，
+%
+\begin{eqnarray}
+      && p^{ij}=\mbox{Prob}[h(t+1)=j|h(t)=i] \nonumber \\
+      &&=\sum_{m=i}^{j}\prod_{s=i}^{m-1}\frac{\lambda^{s}}
+      {\lambda^{s}-\lambda^{m}}\prod_{s=m}^{j-1}\frac{\lambda^{s}}{\lambda^{s+1}
+      -\lambda^{m}}\exp(-\lambda^{m})\nonumber\\
+      && (i=1,\cdots,I-1;j=i+1,\cdots,I) \label{poi}
+   \end{eqnarray}
+%
+と表すことができる\cite{markov}．ただし，表記上の規則として，
+%
+   \begin{eqnarray}
+      && \left\{
+      \begin{array}{ll}
+      \prod_{s=i}^{m-1}\frac{\lambda^{s}}{\lambda^{s}-\lambda^{m}}
+      =1 & (m=iの時）\\
+      \prod_{s=m}^{j-1}\frac{\lambda^{s}}{\lambda^{s+1}-\lambda^{m}}
+      =1 & (m=jの時）
+      \end{array}
+      \right. \nonumber
+   \end{eqnarray}
+%
+が成立すると考える．さらに，表記の便宜上，
+%
+   \begin{eqnarray}
+      && \prod_{s=i,\neq m}^{j-1}\frac{\lambda^{s}}{\lambda^{s}-\lambda^{m}}
+      \exp (-\lambda^{m})\nonumber \\
+      && =\prod_{s=i}^{m-1}\frac{\lambda^{s}}{\lambda^{s}-\lambda^{m}}
+      \prod_{s=m}^{j-1}\frac{\lambda^{s}}{\lambda^{s+1}-\lambda^{m}}
+      \exp(-\lambda^{m})\nonumber
+   \end{eqnarray}
+%
+と簡略化する．また，$p^{iI}$に関しては，マルコフ推移確率の条件より次式で表せる．
+%
+   \begin{eqnarray}
+&& p^{iI}=1-\sum_{j=i}^{I-1}p^{ij}　\label{oil} \\
+&& ~(i=1,\cdots,I-1) \nonumber      
+   \end{eqnarray}
+以上の推移確率を用いれば，期間$[t,t+1)$で定義される条件付確率(\ref{poi0})を要素とするマルコフ推移行列を
+\begin{eqnarray}
+&& {\boldmath P}=\left(
+\begin{array}{lll}
+p^{11} & \cdots & p^{1I} \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & p^{II}
+\end{array}
+\right) \label{h1}
+\end{eqnarray}
+と定義することができる．さらに、期間$[t,t+u]~(u=1,2,\cdots)$における推移確率行列 (以下、$u$期推移確率行列と呼ぶ) は
+\begin{eqnarray}
+&& {\boldmath P}(u)= \{{\boldmath P}\}^u
+\end{eqnarray}
+と表される。なお、$u$期推移確率行列を
+\begin{eqnarray}
+&& {\boldmath P}(u)=\left(
+\begin{array}{lll}
+p^{11}(u) & \cdots & p^{1I}(u) \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & p^{II}(u)
+\end{array}
+\right) \label{nnj1}
+\end{eqnarray}
+と表記する。ただし、$u$期推移確率行列の各要素は、マルコフ劣化ハザードモデル(\ref{poi0}),(\ref{poi})を用いて
+\begin{manyeqns}
+p^{ii}(u) &=& \exp(- \lambda^{i} u ) \label{ppoi0} \\
+p^{ij}(u) &=& \sum_{m=i}^{j}\prod_{s=i}^{m-1}\frac{\lambda^{s} }
+      {\lambda^{s}-\lambda^{m}}\prod_{s=m}^{j-1}\frac{\lambda^{s}}{\lambda^{s+1}
+      -\lambda^{m}} \nonumber \\
+&& \exp(-\lambda^{m}u) \label{ppoi}
+\end{manyeqns}
+%
+と表すことができる\cite{markov}．
+
+
+
+\subsection{ポワソン隠れマルコフ過程}
+
+時点$t_n~(n=1,2,\cdots)$において実施される路面性状調査において舗装の健全度に関する情報を獲得することができる。しかし、
+局所時点$u_n~(u_n=1,\cdots,T_n-1)$においては、舗装の健全度に関する情報を獲得できない。すなわち、局所時点
+$u_n$の健全度は、観測者に観察できない確率変数であるが、ひとまず健全度$h(t_n+u_n)=l_{u_n}$が既知であると仮定する。
+
+いま、2つの連続する路面性状調査時点$t_n,t_{n+1}$における健全度$h(t_n)=i,h(t_{n+1})=j$を既知とし、2つの調査時点を用いて
+定義される期間$\tau_n=[t_n,t_{n+1})$に着目する。当該期間$\tau_n$において舗装の補修が実施されないと考える。さらに、調
+査時点$t_n$を始点とする局所時点$u_n=0,1,\cdots,T_n-1$における
+ポットホールの発生個数$g(u_n)=y_{u_n}~(u_n=0,\cdots,T_n-1)$も観測されている。一方、局所時点$u_n~(u_n=1,\cdots,T_n-1)$に関する
+健全度$h(t_n+u_n)$に関する情報は獲得できないが、健全度$h(t_n)=i,h(t_{n+1})=j$に関する情報より、式(\ref{uu})が成立することは保証
+される。ここで、期間$\tau_n$を構成する局所期間$\iota_{u_n}=[u_n,u_n+1)~(u_n=0,\cdots,T_n-1)$に着目する。当該期間において
+ポットホールが到着率$\mu(l_{u_n})>0$
+\begin{eqnarray}
+&& \mu(l_{u_n})= \mbox{\boldmath$z$}\mbox{\boldmath$\alpha$}^{l_{u_n}}      \label{(18)}
+\end{eqnarray}
+で表されるポワソン過程に従って生起すると考える。ただし，$\mbox{\boldmath$z$}=(z_{1},\cdots,z_{P})$は，説明変数ベクトルであ
+る．$\mbox{\boldmath$\alpha$}^{l_{u_n}}=(\alpha_1^{l_{u_n}},\cdots,\alpha_{P}^{l_{u_n}})^\prime$は未知パラメータベクトルであり、
+$\mbox{\boldmath$\alpha$}=(\mbox{\boldmath$\alpha$}^1,\cdots,\mbox{\boldmath$\alpha$}^{I-1})$と表記する。記
+号$\prime$は
+転置を、$P$は説明変数の数を表す．到着率$\mu(l_{u_n})$は，局所期間$[u_n,u_n+1)$に対して定義されている．このとき，時点$t$におい
+て平均$\mu(l_{u_n})$のポワソン過程に従って到着すると考える。ただし、$l_{u_n}$は局所時点$u_n$における舗装の健全度であり、
+局所期間$\iota_{u_n}$において一定であると
+仮定する。局所期間$\iota_{u_n}$の期間長が$1$に基準化されていることより、局所期間$\iota_{u_n}$中に$y_{u_n}$個のポットホールが
+発生する条件付き確率
+$\pi_{u_n}(y_{u_n}|l_{u_n})$は
+\begin{eqnarray}
+\pi_{u_n}(y_{u_n}|l_{u_n}) &=& \mbox{Prob}[g(u_n)=y_{u_n}|h(t_n+u_n)=l_{u_n}] \nonumber \\
+&=&\exp\{-\mu(l_{u_n})\}\frac{\left\{\mu(l_{u_n})\right\}^{y_{u_n}}}{n!},\label{poisson1}
+\end{eqnarray}
+と表すことができる。当然のことながら、式(\ref{poisson1})に関して$\sum_{y_n=0}^\infty \pi_n(y_{u_n}|l_{u_n})=1$が成立する。ただし、$0!=1$である。
+さらに、時点$t_n$において健全度が$h(t_n)=i$である条件の下で、局所時点$u_n$において舗装の健全度が$l_{u_n}$となる条件
+付き確率$\rho_{u_n}(l_{u_n}|i)$を
+\begin{eqnarray}
+&& \rho_{u_n}(l_{u_n}|i) \nonumber \\
+&&=\mbox{Prob}\{h(t_n+u_n)=l_{u_n}|h(t_n)=i\} \nonumber \\
+&& = p^{il_{u_n}}(u_n)
+\end{eqnarray}
+と定義すれば、局所期間$\iota_{u_n}$に$y_{u_n}$個のポットホールが発生する確率
+$\tilde{\pi}_{u_n}(y_{u_n})$は
+\begin{eqnarray}
+&& \tilde{\pi}_{u_n}(y_{u_n}) = \sum_{l_{u_n}=i}^j \pi_{u_n}(y_{u_n}|l_{u_n}) \rho(l_{u_n}|i)  
+\end{eqnarray}
+と定義される。ここで、路面性状調査時点$t_n,t_{n+1}$における健全度$h(t_n)=i$の下で、局所時
+点$u_n~(u_n=0,\cdots,T_n-1)$における
+ポットホール数の観測値ベクトル$\bar{\mbox{\boldmath$y$}}_n=(\bar{y}_0,\cdots,\bar{y}_{T_n})$と時点$t_{n+1}$
+において健全度$h(t_n)=i$が観測される条件付き確率 (尤度) ${\cal L}(\xi_n,\mbox{\boldmath$\theta$})$
+を定義する。ただし、記号「$\bar{　}$」は観測値であることを意味し、$\bar{\xi}_n=\{\bar{\mbox{\boldmath$y$}}_n,\bar{i},\bar{j}\}$は観測値ベクトルを、
+$\mbox{\boldmath$\theta$}=(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$})$は未知パラメータベクトル
+を意味する。
+
+尤度${\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$})$を、時点$t_n$に健全度$h(t_n)=i$が観測された
+という条件の下で、1) 局所時点$u_n~(u_n=0,\cdots,T_n-1)$においてポットホール数の観測値ベクトル$\bar{\mbox{\boldmath$y$}}_n$
+が測定され、2) 時点$t_{n+1}$に健全度$h(t_{n+1})=j$が観測される条件付き確率 (尤度) の積として定義する。すなわち、
+尤度${\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$})$は、再帰的に
+\begin{manyeqns}
+&& {\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$}) = \pi_{0}(\bar{y}_0|i) \sum_{l_1=i}^j p^{il_1}\ell_{1}(l_1) \label{mu0}\\
+&& \ell_{u_n}(l_{u_n})= \pi_{u_n}(\bar{y}_{u_n}|l_{u_n}) \nonumber \\
+&& \hspace{10mm} \sum_{l_{u_n+1}=l_{u_n}}^j p^{l_{u_n}l_{u_{n+1}+1}} \ell_{u_n}(l_{u_n+1}) \\
+&& (1\leq u_n \leq T_n-1) \nonumber \\
+&& \ell_{T_{n}-1}(l_{T_n-1})= \pi_{T_{n-1}}(\bar{y}_{T_n-1}|l_{T_n-1}) p^{l_{T_n-1}j}  \label{mu1}
+\end{manyeqns}
+と定義できる．
+
+
+\section{推計方法}
+
+\subsection{データセット}
+
+道路管理者が$K$個の道路区間で構成される路線全体を管理する問題を考える。各道路区間$k~(k=1,\cdots,K)$に対して、直近の補修時点$s_0^k$
+を始点とする離散時間軸$t^k=0,1,\cdots$を考え、時点$t_n^k~(n=1,\cdots,N^k)$において路面性状調査が実施され、健全度
+$h(t_n^k)$を観測したと考える。$N^k$は
+路面性状調査の実施回数を表す。さらに、各期間$\tau_n^k=[t_n^k,t_{n+1}^k)~(n=0,\cdots,N^k-1)$に対して、各局所時点$u_n^k~(u_n^k=0,\cdots,T^k_n-1)$
+において道路巡回が実施され、ポットホール個数ベクトル$\bar{\mbox{\boldmath$y$}}_n^k=(\bar{y}_{0},\cdots,\bar{y}_{T_n^k-1})$が観測された
+と考える。この時、道路区間$k$の期間$\tau_n^k$のそれぞれに対してデータ$\bar{\xi}_n^k=\{\bar{\mbox{\boldmath$y$}}_n^k,\bar{h}(t_n^k),\bar{h}(t_{n+1}^k)\}$
+を定義する。さらに、データセット全体を集合$\bar{\Xi}=\{\bar{\xi}_n^k:n=0,\cdots,N^k,k=1,\cdots,K\}$と定義する。データ$\bar{\xi}_n^k$が
+観測される尤度${\cal L}(\bar{\xi}_n^k,\mbox{\boldmath$\theta$})$は、式(\ref{mu0})-(\ref{mu1})を用いて定義される。したがって、
+データセット全体$\Xi$が観測される確率 (尤度) は
+\begin{eqnarray}
+&& {\cal L}(\bar{\Xi},\mbox{\boldmath$\theta$}) = \prod_{k=1}^K \prod_{n=1}^{N_k} {\cal L}(\bar{\xi}_n^k,\mbox{\boldmath$\theta$}) \label{yy}
+\end{eqnarray}
+と定式化される。したがって、ポワソン隠れマルコフモデルの推計問題は、尤度関数(\ref{yy})を最大にするようなパラメータ
+ベクトル$\hat{\mbox{\boldmath$\theta$}}$を求める問題に帰着する。
+
+ポワソン隠れマルコフ劣化モデルの尤度関数(\ref{mu0})-(\ref{mu1})は，パラメータに関して高次の非線
+形多項式となっており，1階の最適化条件が (複素数解を含めて) 非常の
+多くの解を有している点にある\cite{titter}．当然のことながら，ポットホールの発生確率$\pi_{u_n^k}(\bar{y}_{u_n^k}|l_{u_n^k})$, 
+推移確率$p^{l_{u_n^k}l_{u_{n+1}^k}}$の推定値は実数解でなければならない．さらに，
+これらの確率の推定値として、数ある実数解の中から0と1の間にある解を選択しなければならない．最尤法の代わりにベイズ推計法を用いれ
+ば，高次の非線形多項式を解く問題を回避できる．しかし，尤度関数(\ref{mu0})-(\ref{mu1})が，極めて多くの項を含んでおり，計算
+量が膨大になってしまう欠点がある\cite{robert}${}^{-}$\cite{ce}．このような最尤法の難点を克服するために，尤度関数の完備化
+操作が必要となる．
+
+\subsection{完備化操作}
+
+再び、ある道路区間$k$に着目する。さらに、路面性状調査が時点$t_n^k,t_{n+1}^k$において実施され、路面の健全度
+$\bar{i}_n^k,~\bar{j}_{n+1}^k$が測定されたと考えよう．さらに，ポワソン隠れマルコフ劣化モデルを推計するために，
+期間$[t_n^k,t_{n+1}^k)$における路面の健全度の推移パタ－ンを潜在変数ベクトル$\mbox{\boldmath$m$}_n^k=(m_1^k,\cdots,m_{T_n^k-1}^k)$を
+用いて表す。劣化過程の性質より，施設が補修されない限り，
+\begin{eqnarray}
+&& \bar{i}_n^k\leq m_1^k \leq \cdots \leq m_{T_{n}^k-1}^k \leq \bar{j}_{n+1}^{k} \label{stk0} 
+\end{eqnarray}
+を満足する．真の健全度ベクトル$\mbox{\boldmath$m$}_n^k$は本来測定不可能であり，時点$t_n^k,t_{n+1}^k$における健全度
+$\bar{i}_n^k, \bar{j}_{n+1}^{k}$しか観測できない。しかし、議論の便宜上，ひとまず潜在変数の値が
+$\tilde{\mbox{\boldmath$m$}}_n^k=(\tilde{m}_1^k,\cdots,\tilde{m}_{T_n^k-1}^k)$に確定したと仮定する．
+さらに，潜在変数$\mbox{\boldmath$m$}_n^k$の仮想的実現値$\tilde{\mbox{\boldmath$m$}}_n^k$に対して，ダミー変数
+\begin{eqnarray}
+&& \delta_{s_{u_n^k}}^k=\left\{
+\begin{array}{ll}
+1 & \tilde{m}_{u_n^k} =s_{u_n^k}\\
+0 & \tilde{m}_{u_n^k} \ne s_{u_n^k}
+\end{array}
+\right.\\
+&& (s_{u_n^k}=\bar{i}_n^k,\cdots,\bar{j}_n^k;u_n^k=1,\cdots,T_n^k-1) \nonumber
+\end{eqnarray}
+を導入する。潜在変数の仮想的実現値ベクトル$\tilde{\mbox{\boldmath$m$}}_n^k$を与件とすれば、尤度関数(\ref{mu0})-(\ref{mu1})を
+\begin{eqnarray}
+&& \overline{\cal L}_n^k(\tilde{\mbox{\boldmath$m$}}_n^k,\bar{\xi}_n^k,\mbox{\boldmath$\theta$})\nonumber \\
+&& = \prod_{u_n^k=0}^{T_n^k-1} \sum_{s_{u_n^k}=\bar{i}_n^k}^{\bar{j}_n^k} 
+\pi_{u_n^k}(\bar{y}_{u_n^k}|s_{u_n^k})^{\delta_{s_{u_n^k}}} \{p^{s_{u_n^k}s_{u^k_{n+1}}}\}^{\delta_{s_{u^k_{n}}}} 
+\nonumber \\
+&&= \prod_{u_n^k=0}^{T_n^k-1} \pi_{u_n^k}(\bar{y}_{u_n^k}|\tilde{m}_{u_n^k}) p^{\tilde{m}_{u_n^k}\tilde{m}_{u^k_{n}+1}} 
+ \label{hyuudo2}
+\end{eqnarray}
+と書き換えることができる\cite{demp}．以上の操作を完備化(completion)と言う．完備化された尤度関数(\ref{hyuudo2}) (以下，完備化尤度関数と呼ぶ) 
+(\ref{hyuudo2})は，通常の尤度関数(\ref{mu0})-(\ref{mu1})より大幅に簡略化されていることが理解できる．ただし，完備化尤度
+関数(\ref{hyuudo2})
+の中に含まれる潜在変数$\tilde{\mbox{\boldmath$m$}}_n^k$は，測定できない変数である．そこで，完備化尤度関数を用いて，潜在変数の確率分
+布を推計することを考える．完備化尤度関数を展開すれば，潜在変数$\tilde{\mbox{\boldmath$m$}}_n^k$に関する全条件付事後分布
+(full conditional posterior distribution)を導出できる．劣化過程の特性により，補修が実施されない限り，条件(\ref{stk0})
+が成立する．ここで，$\tilde{\mbox{\boldmath$m$}}_{-u_n^k}=(\tilde{m}_1,\cdots,\tilde{m}_{u^k_n-1},\tilde{m}_{u^k_n+1},\cdots,\tilde{m}_{T_n^k}),
+\tilde{\mbox{\boldmath$m$}}_{-u_n^k}^m=(\tilde{m}_1,$$\cdots,$$\tilde{m}_{u^k_n-1},m,\tilde{m}_{u^k_n+1},\cdots,\tilde{m}_{T_n^k})$とすれば，
+$m_{u_n^k}=m ~(m$ $\in \{\tilde{m}_{u^k_n-1},$$\cdots, \tilde{m}_{u^k_n+1}\})$の全条件付事後確率は，ベイズの法則より
+\begin{eqnarray}
+&& \mbox{Prob}\{m_{u_n^k}=m|\tilde{\mbox{\boldmath$m$}}_{-u_n^k}\}\nonumber \\
+&& \hspace{4mm}  =\frac{\overline{\cal L}(\tilde{\mbox{\boldmath$m$}}_{-u_n^k}^m)}{\sum_{m=\tilde{m}_{u^k_n-1}}^{\tilde{m}_{u^k_n+1}} 
+\overline{\cal L}(\tilde{\mbox{\boldmath$m$}}_{-u_n^k}^m)} \nonumber \\
+&& \hspace{4mm} =\frac{
+\pi_{u_n^k}(\bar{y}_{u_n^k}|m) p^{m\tilde{m}_{u^k_{n}+1}} }{
+\sum_{m=\tilde{m}_{u^k_n-1}}^{\tilde{m}_{u^k_n+1}} \pi_{u_n^k}(\bar{y}_{u_n^k}|m) p^{m\tilde{m}_{u^k_{n}+1}} } \label{hhu}
+\end{eqnarray}
+と表される。すなわち，ポットホールの発生確率$\pi_{u_n^k}(\bar{y}_{u_n^k}|l_{u_n^k})$と推移確率$p^{l_{u_n^k}l_{u_{n+1}^k}}$~$(u_n^k=0,\cdots,T_n^k-1;n=1,\cdots,N^k,k=1,\cdots,K)$
+が求まれば，$\tilde{\mbox{\boldmath$m$}}_{-u_n^k}$を与件とした局所時点$u_n^k$の健全度$m_{u_n^k} \in \{
+\tilde{m}_{u^k_n-1},\tilde{m}_{u^k_n+1}\}$の全条件付事後確率を求めることができる．完備化尤度関数(\ref{hyuudo2})では，
+潜在変数$\mbox{\boldmath$m$}_n^k$は確定的である．ただし，ポットホールの発生確率と健全度間の推移確率
+には未知パラメータ
+$\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}$が含まれており，潜在変数に関する全条件付事後確率を先験的に求めることができない．全条件付事後確率(\ref{hhu})を用いたMCMC法を用いて，反復的に潜在変数$\mbox{\boldmath$s$}$をランダム発生させ，パラメータ$\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}$をベイズ推計することになる．これらの未知パラメータと全条件付き事後確率を求める方法についても，{\bf \gt 5． (4) }で改めてとりあげる．このような手続きにより，完備化尤度関数を用いて求めたパラメータのベイズ推計値が，真の尤度関数を用いて求めたパラメータの最尤推計値に収束することが証明されている\cite{die}．
+
+\subsection{ＭＣＭＣ法}
+
+隠れマルコフ劣化モデルを含む混合分布モデルの推計では，尤度関数が高度な非線形を有しているため，通常の最尤法やベイズ推計法
+を用いることが困難である\cite{titter}${}^{,}$\cite{robert}．このようなことから，混合分布モデルの推計方法として，通常の
+尤度関数ではなく，完備化尤度関数を定義するとともに，MCMC法を用いて混合分布モデルを推計する方法が提案されている\cite{die}${}^{-}$\cite{robe}．
+既往の隠れマルコフ劣化モデルでは，マルコフ推移確率が定数で与えられ，これらの定数パラメータを集計的に推計するに留ま
+っている．しかし、本研究で提案するポワソン隠れマルコフ劣化ハザードモデルでは，マルコフ劣化ハザードモデルを用いて，マルコフ
+推移確率を推計することが必要となる．すでに、小林等は\cite{koba}，隠れマルコフ劣化モデルを推計
+するためのMCMC法の中に，マルコフ推移確率のベイズ推計アルゴリズムを内包したようなMCMCアルゴリズムを開発している。
+本研究では、小林等が提案したMCMC法を修正し、ポワソン隠れマルコフモデルのベイズ推計法を提案する。
+
+まず，ポットホール発生確率(\ref{pmi})に含まれるパラメータ$\mbox{\boldmath$\alpha$}_i=(\alpha_1^i,\cdots,\alpha_P^i)$は，
+式(\ref{a1}),(\ref{a2})を満足する定数である．これらの定数の事前確率密度関数として，ディリクレ分布を仮定しよう．すなわち，パラメータ$\mbox{\boldmath$\alpha$}_i$の事前確率密度関数を
+\begin{eqnarray}
+&& \eta_i(\mbox{\boldmath$\alpha$}_i|\mbox{\boldmath$\nu$}^i)=\Psi_i(\mbox{\boldmath$\nu$}^i) \prod_{m=1}^i (\alpha_m^i)^{\nu_m^i-1} \label{nu11} \\&& \Psi_i(\mbox{\boldmath$\nu$}^i)=\frac{\Gamma(\nu_1^i+\cdots+\nu_i^i)}{\Gamma(\nu_1^i)\cdots\Gamma(\nu_i^i)} \nonumber \\
+&& \sum_{m=1}^i \alpha_m^i =1 \nonumber
+\end{eqnarray}
+と表現する．ただし，$\mbox{\boldmath$\nu$}^i=(\nu_1^i,\cdots,\nu_i^i)$は定数パラメータベクトルである．$\mbox{\boldmath$\alpha$}_i$がディリクレ分布に従う場合，これらのパラメータは自動的に式(\ref{a1}),(\ref{a2})を満足する．つぎに，$\mbox{\boldmath$\beta$}_i$の事前確率密度関数が，標準的な事前確率密度関数として用いられる多次元正規分布に従うと仮定しよう．すなわち，$\mbox{\boldmath$\beta$}_i \sim {\cal N}_M(\mbox{\boldmath$\zeta$}_i,\mbox{\boldmath$\Sigma$}_i)$である．ただし，$M$次元正規分布${\cal N}_M(\mbox{\boldmath$\zeta$}_i,\mbox{\boldmath$\Sigma$}_i)$の確率密度関数は，
+ %
+ %
+   \begin{eqnarray}
+      && \hspace{-2mm}
+      h(\mbox{\boldmath$\beta$}_i|
+      \mbox{\boldmath$\zeta$}_i,\mbox{\boldmath$\Sigma$}_i)
+      = \frac{1}{(2\pi)^{\frac{M}{2}}\sqrt{|\mbox{\boldmath$\Sigma$}_i|}}
+      \nonumber \\
+      && \cdot \exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\beta$}_i
+      -\mbox{\boldmath$\zeta$}_i)
+      \mbox{\boldmath$\Sigma_i$}^{-1}
+      (\mbox{\boldmath$\beta$}_i-\mbox{\boldmath$\zeta$}_i)^\prime\Big\}
+            \label{Kseiki}
+   \end{eqnarray}
+ %
+ %
+となる．ただし，$\mbox{\boldmath$\zeta$}_i$は${\cal N}_M(\mbox{\boldmath$\zeta$}_i,\mbox{\boldmath$\Sigma$}_i)$の事前期待値ベクトル，$\mbox{\boldmath$\Sigma$}_i$は事前分散共分散行列である．この時，完備化事後確率密度関数$\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$s$},\mbox{\boldmath$\xi$})$は，
+ %
+ %
+   \begin{eqnarray}
+      && \rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$s$},\mbox{\boldmath$\xi$})   \propto \tilde{\cal L}(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$},\mbox{\boldmath$s$},\mbox{\boldmath$\xi$})\prod_{i=1}^{I-1}\Bigl\{h(\mbox{\boldmath$\beta$}_i|\mbox{\boldmath$\mu$}_i,\mbox{\boldmath$\Sigma$}_i) \nonumber \\
+      && \hspace{12mm} \eta_i(\mbox{\boldmath$\alpha$}_i|\mbox{\boldmath$\nu$}^i)\Bigr\}
+      \nonumber \\
+      && \propto \prod_{k=1}^K \left[ \prod_{t=1}^{T^k} \sum_{l=s_{t-1}^k}^{s_t^k} \Bigl\{ \prod_{i=s_{t-1}^k,\neq l}^{l-1}\frac{\theta_i^k}{\theta_{i}^k-\theta_{l}^k} \exp (-\theta_{l}^kz_t^k)\Bigr\} \right.\nonumber \\
+      && \hspace{2mm}\cdot \prod_{i=1}^{I-1}\exp\Big\{-\frac{1}{2}
+      (\mbox{\boldmath$\beta$}_i-\mbox{\boldmath$\zeta$}_i)
+      \mbox{\boldmath$\Sigma_i$}^{-1}
+      (\mbox{\boldmath$\beta$}_{i}-\mbox{\boldmath$\zeta$}_i)^\prime\Big\} \nonumber \\
+      && \left.\hspace{2mm}\cdot \left(\prod_{t=1}^{T^k} \alpha_{\bar{m}_t^k}^{s_{t}^k}\right)\left( \prod_{i=1}^{I}\prod_{m=1}^{i} (\alpha_m^i)^{\nu_m^{i}-1}\right) \right] \label{post1}
+   \end{eqnarray}
+ %
+ %
+となる．
+
+
+%
+%
+
+\subsection{ギブスサンプリング}
+
+
+隠れマルコフ劣化モデルでは，事後確率密度関数$\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$\xi$})$を直接解析的に求めることができない．そこで，代表的なMCMC法であるギブスサンプリング法\cite{gibbs1}を用いて，パラメータ$\mbox{\boldmath$\alpha$}$，$\mbox{\boldmath$\beta$}$の標本サンプルを事後確率密度関数から抽出する．式(\ref{post1})において，$\mbox{\boldmath$\alpha$}$，$\mbox{\boldmath$\beta$}$は互いに独立であり，これらのパラメータの完備化条件付事後密度関数$\rho(\mbox{\boldmath$\alpha$}|\mbox{\boldmath$s$},\mbox{\boldmath$\xi$})$，$\rho(\mbox{\boldmath$\beta$}|\mbox{\boldmath$s$},\mbox{\boldmath$\xi$})$は
+\begin{manyeqns}
+&& \hspace{-3mm} \rho(\mbox{\boldmath$\alpha$}|\mbox{\boldmath$s$},\mbox{\boldmath$\xi$}) \propto \Bigl( \prod_{k=1}^K \prod_{t=1}^{T^k} \alpha_{\bar{m}_t^k}^{s_{t}^k} \Bigr) \nonumber \\
+&& \hspace{15mm} \Bigl\{ \prod_{i=1}^I \prod_{m=1}^{i} (\alpha_m^{i})^{\nu_m^{i}-1}\Bigr\}
+\label{k1}
+\\
+&& \hspace{-3mm} \rho(\mbox{\boldmath$\beta$}|\mbox{\boldmath$s$},\mbox{\boldmath$\xi$}) \propto \Big\{ \prod_{k=1}^K \Bigl[\prod_{t=1}^{T^k} \sum_{l=s_{t-1}^k}^{s_t^k} \nonumber \\
+&& \Bigl[ \prod_{i=s_{t-1}^k,\neq l}^{l-1}\frac{\theta_i^k}{\theta_{i}^k-\theta_{l}^k} \exp (-\theta_{l}^kz_t^k)\Bigr]\Bigr\} \nonumber \\
+      &&\hspace{2mm} \prod_{i=1}^{I-1}\exp\Big\{-\frac{1}{2}
+      (\mbox{\boldmath$\beta$}_i-\mbox{\boldmath$\zeta$}_i)
+      \mbox{\boldmath$\Sigma_i$}^{-1}
+      (\mbox{\boldmath$\beta$}_{i}-\mbox{\boldmath$\zeta$}_i)^\prime\Big\}  \label{k2}
+\end{manyeqns}
+と表せる．また，潜在変数$\mbox{\boldmath$s$}$の全条件付事後分布は式(\ref{k3})で表される．以上のギブスサンプラーを用いたMCMC法により，隠れマルコフ劣化モデルを推計することが可能となる．{\bf \gt 図-4}に，隠れマルコフ劣化モデルをベイズ推計するための具体的手順を整理している．読者の便宜を図るために，同図中には，推計法の詳細を説明する節番号や式番号を明記している．以下では，以上の各ステップの内容を，より詳細に説明する．
+
+\subsubsection{ステップ1　初期値設定}
+
+事前分布(\ref{nu11}),(\ref{Kseiki})のパラメータベクトル (行列) $\mbox{\boldmath$\nu$}^i~(i=1,\cdots,I)$, $\mbox{\boldmath$\zeta$}_i, \mbox{\boldmath$\Sigma$}_i~(i=1,\cdots,I-1)$の値を任意に設定する．潜在変数の初期値$\mbox{\boldmath$s$}^{(0)}=(\mbox{\boldmath$s$}^{(1,0)},\cdots,\mbox{\boldmath$s$}^{(K,0)})$を設定する．ただし，$\mbox{\boldmath$s$}^{(k,0)}=(s_1^{k,0},\cdots,s_T^{k,0})$であり，$1\leq s_1^{k,0}\leq \cdots \leq s_T^{k,0}\leq I$, $m_t^k\leq s_t^{k,0}~(t=1,\cdots,T;k=1,\cdots,K)$を満足する．さらに，パラメータ推計量の初期値$\mbox{\boldmath$\alpha$}^{(0)}$，$\mbox{\boldmath$\beta$}^{(0)}$を任意に設定する．これらの初期値の影響は，MCMC法によるシミュレーション回数が蓄積されるにつれ，次第に薄れていく．MCMCのサンプル標本回数$n$を$n=1$とする．
+
+\subsubsection{ステップ2　パラメータ$\mbox{\boldmath$\alpha$}^{(n)}$の標本抽出}
+
+{\bf \gt ステップ2}では，潜在変数$\mbox{\boldmath$s$}^{(n-1)}$を与件とし，条件付システム誤差分布のパラメータ$\mbox{\boldmath$\alpha$}^{(n)}=(\mbox{\boldmath$\alpha$}_1^{(n)},\cdots,\mbox{\boldmath$\alpha$}_{I-1}^{(n)})$に関するパラメータ標本を獲得する．ただし，$\mbox{\boldmath$\alpha$}_i^{(n)}$$=(\alpha_m^{i,n}:m=1,\cdots,i)$と表記する．{\bf \gt ステップ2}で用いるギブスサンプラーは式(\ref{k1})で表される完備化条件付事後密度関数$\rho(\mbox{\boldmath$\alpha$}^{(n)}|\mbox{\boldmath$s$}^{(n-1)},\mbox{\boldmath$\xi$})$で与えられる．真の健全度$\mbox{\boldmath$s$}^{(n-1)}$と測定データ$\mbox{\boldmath$\xi$}$を与件としたとき，完備化された$\mbox{\boldmath$\alpha$}_i^{(n)}$に関するギブスサンプラーを
+\begin{eqnarray}
+&& \tilde{\rho}(\mbox{\boldmath$\alpha$}_i^{(n)}|\mbox{\boldmath$s$}^{(n-1)},\mbox{\boldmath$\xi$}) \nonumber \\
+&& \propto \left\{ \prod_{k=1}^K \prod_{t=1}^{T^k} \alpha_{\bar{m}_t^k}^{s_{t}^{k,(n-1)}} \right\}\left\{\prod_{m=1}^{i} (\alpha_m^{i,n})^{\nu_m^{i}-1} \right\} \nonumber \\
+&& =\prod_{m=1}^i (\alpha_m^{i,n})^{\nu_m^{i}+N_m^{i,(n-1)}-1} \label{dir}
+\end{eqnarray}
+と表すことができる．ただし，$N_m^{i,(n-1)}$は見かけの健全度の測定値$\bar{\mbox{\boldmath$m$}}$と潜在変数$\mbox{\boldmath$s$}^{(n-1)}$を与件とした時，
+\begin{eqnarray}
+&& N_m^{i,(n-1)}=\#\Big\{\bar{m}_t^k=m \cap s_t^{k,(n-1)}=i\Big\}
+\end{eqnarray}
+と定義される．ただし，$\#\{　\}$は，括弧$\{　\}$内に含まれる定義式が成立するような測定サンプル数を表す．式(\ref{dir})は，パラメータ$\nu_m^{i}+N_m^{i,(n-1)}-1$を有するディリクレ分布に他ならない．更新されたディリクレ分布(\ref{dir})を用いて，ギブスサンプリングにより，条件付システム誤差分布のパラメータ標本$\mbox{\boldmath$\alpha$}_i^{(n)}=(\alpha_1^{i,(n)}, \cdots,\alpha_{i}^{i,(n)})$を標本抽出する．すべての$i~(i=1,\cdots,I)$に対してパラメータ標本$\mbox{\boldmath$\alpha$}_i^{(n)}$を求める．
+
+\subsubsection{ステップ3　パラメータ$\mbox{\boldmath$\beta$}^{(n)}$の標本抽出}
+
+{\bf \gt ステップ3}では，真の健全度で定義される多段階指数ハザードモデルのパラメータ標本を抽出する．{\bf \gt ステップ3}のアルゴリズムを説明するために，未知パラメータベクトル$\mbox{\boldmath$\beta$}$から第$(e,q)~(e,q=1,\cdots,M)$要素$\beta_{eq}$を除いた未知パラメータベクトルを$\mbox{\boldmath$\beta$}_{-eq}$と表そう．この時，式(\ref{k2})より，$\mbox{\boldmath$\beta$}_{-eq}$を既知とした時の$\beta_{eq}$の条件付き事後確率密度関数$\rho(\beta_{eq}|\mbox{\boldmath$\beta$}_{-eq},\mbox{\boldmath$s$},\mbox{\boldmath$\xi$})$は
+%
+   \begin{eqnarray}
+      && \hat{\rho}(\beta_{eq}|\mbox{\boldmath$\beta$}_{-eq},\mbox{\boldmath$s$},
+      \mbox{\boldmath$\xi$}) \nonumber \\
+     && \propto \prod_{i=1}^{e} \prod_{j=e}^I \prod_{k=1}^K  \prod_{t=1}^{T^k} \Bigl\{ \prod_{l=i}^{j-1} (\theta_l^k)^{\delta_{ij}^{tk}-\delta_{ie}^{tk}} \sum_{h=i}^{j} \nonumber \\
+     && \hspace{2mm} \cdot \prod_{l=i,\neq h}^{h-1}\frac{1}{\theta_{l}^k-\theta_{h}^k} \exp (-\theta_{h}^k z_t^k)\Bigl\}^{\delta_{ij}^{tk}} \nonumber \\
+      &&\hspace{2mm} \cdot \prod_{i=1}^{I-1}\exp\Big\{-\frac{1}{2}
+      (\mbox{\boldmath$\beta$}_i-\mbox{\boldmath$\zeta$}_i)
+      \mbox{\boldmath$\Sigma_i$}^{-1}
+      (\mbox{\boldmath$\beta$}_{i}-\mbox{\boldmath$\zeta$}_i)^\prime\Big\}\Bigr] \nonumber \\
+      && \hspace{2mm} \propto
+\prod_{i=1}^{e} \prod_{j=e}^I \prod_{k=1}^K  \prod_{t=1}^{T^k} \Bigl[ \prod_{l=i}^{j-1} \{\exp(\beta_{eq} x_q^k)\}^{\delta_{ij}^{tk}-\delta_{ie}^{tk}}  \nonumber \\
+     && \hspace{2mm} \sum_{h=i}^{j} \prod_{l=i,\neq h}^{h-1}\frac{1}{\theta_{l}^k-\theta_{h}^k} \exp (-\theta_{h}^k z_t^k)\Bigl]^{\delta_{ij}^{tk}} \nonumber \\
+&&    \hspace{2mm} \exp\Big\{-\frac{\sigma_{e}^{qq}}{2}(\beta_{eq}-\hat{\zeta}_{e}^q)^2 \Big\} \nonumber \\
+&& \hspace{10mm}
+      \hat{\zeta}_{e}^q
+      = \zeta_{e}^q+\sum_{h=1,\neq q}^{M}(\beta_{eh}-\zeta_{e}^h)\sigma_e^{hq}
+       \label{condition1}
+      \end{eqnarray}
+%
+%
+と表せる．ただし，$\delta_{ie}^{tk}$，$\delta_{ij}^{tk}$は
+\begin{eqnarray}
+&& \delta_{ie}^{tk}=\left\{
+\begin{array}{ll}
+1 & s_{t-1}^k=i=eの時 \\
+0 & それ以外の時
+\end{array}
+\right. \nonumber \\
+&& \delta_{ij}^{tk}=\left\{
+\begin{array}{ll}
+1 & s_{t-1}^k=i,~s_t^k=jの時 \\
+0 & それ以外の時
+\end{array}
+\right. \nonumber
+\end{eqnarray}
+となるダミー変数である．$\zeta_{e}^q$は事前期待値ベクトル$\mbox{\boldmath$\zeta$}_e$の第$q$要素であり，$\sigma_{e}^{hq}$は事前分散共分散行列$\mbox{\boldmath$\Sigma_e$}^{-1}$の第$(h,q)$要素である．また，$\sum_{h=1,\neq q}^{M}$は$1$から$M$までの要素のうち$q$を除いた要素の総和を意味する．
+これらの条件付き確率密度関数から標本を発生させ，その標本を用いてパラメータ$\mbox{\boldmath$\beta$}$の事後分布に関する各種の統計量を計算することができる．MCMC法から得られた標本を用いて，事後分布の各種統計量を求める方法については，{\bf 5． (5) }で述べる．このとき，$\mbox{\boldmath$\beta$}^{(n)}=(\beta_{11}^{(n)},\cdots,\beta_{I-1M}^{(n)})$を以下の手順でランダムサンプリングする．\\
+・{\bf \gt ステップ3-1}　$\hat{\rho}(\beta_{11}^{(n)}|\mbox{\boldmath$\beta$}_{-11}^{(n-1)},
+      \mbox{\boldmath$s$}^{(n-1)},\mbox{\boldmath$\xi$})$から$\beta_{11}^{(n)}$を乱数発生する．\\
+・{\bf \gt ステップ3-2}　$\hat{\rho}(\beta_{12}^{(n)}|\mbox{\boldmath$\beta$}_{-12}^{(n-1)},
+      \mbox{\boldmath$s$}^{(n-1)},\mbox{\boldmath$\xi$})$から$\beta_{12}^{(n)}$を乱数発生する．\\
+・{\bf \gt ステップ3-3}　以下，同様の手順を繰り返す．\\
+・{\bf \gt ステップ3-4}　$\hat{\rho}(\beta_{I-1,M}^{(n)}|\mbox{\boldmath$\beta$}_{-(I-1M)}^{(n-1)},\mbox{\boldmath$s$}^{(n-1)},\mbox{\boldmath$\xi$})$から$\beta_{I-1M}^{(n)}$を乱数発生する．\\
+なお，ギブスサンプリングを行うためには$(I-1)×M$個の条件付き事後確率密度関数$\hat{\rho}(\beta_{eq}^{(n)}|\mbox{\boldmath$\beta$}_{-eq}^{(n-1)},\mbox{\boldmath$s$}^{(n-1)},\mbox{\boldmath$\xi$})$を求めることが必要となる．本研究では，式(\ref{condition1})から事後分布のパラメータ$\mbox{\boldmath$\beta$}$の標本をサンプリングする手法として，適応的棄却サンプリング\cite{gilks}を用いる．
+
+\subsubsection{ステップ4　潜在変数の更新}
+
+全条件付事後確率(\ref{k3})に基づいて，新しい潜在変数$\mbox{\boldmath$s$}^{(n)}$をランダムサンプリングする．いま，潜在変数ベクトル$\mbox{\boldmath$s$}_{-t}^{k,(n-1)}=(s_1^{k,n},\cdots,s_{t-1}^{k,n},s_{t+1}^{k,(n-1)},\cdots,s_{T^k}^{k,(n-1)})$を定義する．この時，$s_t^{k,n} ~(s_t^{k,n} \in \{s_{t-1}^{k,n},\cdots, s_{t+1}^{k,(n-1)}\})$の全条件付事後確率は，
+\begin{eqnarray}
+&& \mbox{Prob}\{s_t^k=i|\mbox{\boldmath$\alpha$},\mbox{\boldmath$s$}_{-t}^{k,(n-1)},\mbox{\boldmath$\xi$}\} \nonumber \\
+&& =\left\{
+\begin{array}{l}
+\frac{\omega_{it}^{k,(n-1)} f_i(m_t^k|\mbox{\boldmath$\alpha$}_i^{(n)})}{\sum_{j=1}^{s_{2}^{k,(n-1)}} \omega_{jt}^{k,(n-1)} f_j(m_t^k|\mbox{\boldmath$\alpha$}_j^{(n)})} \\
+　　　　(t=1の時) \\
+\frac{\omega_{it}^{k,(n-1)} f_i(m_t^k|\mbox{\boldmath$\alpha$}_i^{(n)})}{\sum_{j=s_{t-1}^{k,n}}^{s_{t+1}^{k,(n-1)}} \omega_{jt}^{k,(n-1)} f_j(m_t^k|\mbox{\boldmath$\alpha$}_j^{(n)})} \\
+　　　　(2\leq t <T^kの時) \\
+\frac{\omega_{it}^{k,(n-1)} f_i(m_t^k|\mbox{\boldmath$\alpha$}_i^{(n)})}{\sum_{j=s_{t-1}^{k,n}}^I \omega_{jt}^{k,(n-1)} f_j(m_t^k|\mbox{\boldmath$\alpha$}_j^{(n)})} \\
+　　　　(t=T^kの時) 
+\end{array}
+\right.\label{k33}
+\end{eqnarray}
+と表される．ただし，
+\begin{eqnarray}
+&& \omega_{jt}^{k,(n-1)}=\left\{
+\begin{array}{ll}
+\pi_{1j}\pi_{js_2^{k,(n-1)}} & t=1 \\
+\pi_{s_{t-1}^{k,n}j}\pi_{js_{t+1}^{k,(n-1)}} & 2\leq t < T^k \\
+\pi_{s_{T^k-1}^{k,n}j} & t=T^k
+\end{array}
+\right.
+\end{eqnarray}
+である．すべての$k~(k=1,\cdots,K)$に対して，$t=1$より逐次，潜在変数$s_t^{k,n}~(t=1,\cdots,T^k)$を求める．
+
+
+\subsubsection{ステップ5　アルゴリズムの終了判定}
+
+以上で求めたパラメータ推計量の更新値$\mbox{\boldmath$\alpha$}^{(n)}$,$\mbox{\boldmath$\beta$}^{(n)}$，潜在変数の更新値$\mbox{\boldmath$s$}^{(n)}$を記録する．$n\leq \overline{n}$の場合，$n=n+1$として，{\bf \gt ステップ2}へ戻る．そうでない場合，アルゴリズムを終了する．
+
+なお，以上のアルゴリズムの初期段階においては，パラメータの初期値設定の影響が残存している．このため，シミュレーション回数$n$が十分大きな値になるまでは，パラメータ標本の発生過程が定常過程に到達していないと考え，発生したパラメータ標本を除去することが望ましい．ここで，パラメータ標本として採用するシミュレーション回数$n$の最小値を$\underline{n}$と表そう．すなわち，ギブスサンプリングで求めたサンプル$\mbox{\boldmath$\alpha$}^{(n)},\mbox{\boldmath$\beta$}^{(n)}~(n=\underline{n}+1,\underline{n}+2,\cdots,\overline{n})$を，事後確率密度関数$\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$\xi$})$からの標本と見なすこととする．したがって，これらの標本を用いて，パラメータベクトル$\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}$の事後分布に関する各種の統計量を計算することも可能となる．なお，ギブスサンプリングの定常性に関しては，次節で述べるGewekeの検定統計量を用いて判断するできる．
+
+\subsection{事後分布に関する統計量}
+
+MCMC法によって得られた標本に基づいて，パラメータベクトル$\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}$に関する統計的性質を分析することができる．MCMC法を用いた場合，パラメータの事後確率密度関数$\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$\xi$})$を解析的な関数として表現することはできない．得られた標本を用いてノンパラメトリックに分布関数や密度関数を推計することとなる．いま，ギブスサンプリングから得られた標本を$\mbox{\boldmath$\theta$}^{(n)}=(\mbox{\boldmath$\alpha$}^{(n)},\mbox{\boldmath$\beta$}^{(n)})~(n=1,\cdots,\overline{n})$と表そう．この内，最初の$\underline{n}$個の標本は収束過程からの標本と考え，標本集合から除去する．その上で，パラメータの標本添字集合を${\cal M}=\{\underline{n}+1,\cdots,\overline{n})$と定義しよう．このとき，パラメータ$\mbox{\boldmath$\alpha$}$および$\mbox{\boldmath$\beta$}$の同時確率分布関数$G(\mbox{\boldmath$\alpha$}),G(\mbox{\boldmath$\beta$})$は
+ %
+ %
+   \begin{manyeqns}
+ && G(\mbox{\boldmath$\alpha$})
+      =\frac{\mbox{\#}(\mbox{\boldmath$\alpha$}^{(n)}
+      \leq \mbox{\boldmath$\alpha$}, n\in {\cal M})}
+      {\overline{n}-\underline{n}} \\
+      && G(\mbox{\boldmath$\beta$})
+      =\frac{\mbox{\#}(\mbox{\boldmath$\beta$}^{(n)}
+      \leq \mbox{\boldmath$\beta$}, n\in {\cal M})}
+      {\overline{n}-\underline{n}}
+   \end{manyeqns}
+ %
+ %
+と表すことができる．ただし，$\mbox{\#}(\mbox{\boldmath$\beta$}^{(n)} \leq \mbox{\boldmath$\beta$}, n\in {\cal M})$は論理式$\mbox{\boldmath$\beta$}^{(n)} \leq \mbox{\boldmath$\beta$}, n\in {\cal M}$が成立するサンプルの総数である．また，パラメータ$\mbox{\boldmath$\beta$}_i$の事後分布の期待値ベクトル$\tilde{\mbox{\boldmath$\zeta$}_i}(\mbox{\boldmath$\beta$}_i)$，分散・共分散行列$\tilde{\mbox{\boldmath$\Sigma$}_i}(\mbox{\boldmath$\beta$}_i)$は，それぞれ
+ %
+ %
+   \begin{manyeqns}
+      && \hspace{-7mm}
+      \tilde{\mbox{\boldmath$\zeta$}_i}(\mbox{\boldmath$\beta$}_i)=
+      (\tilde{\zeta}(\beta_{i,1}),\cdots,\tilde{\zeta}
+      (\beta_{i,M}))^\prime \nonumber \\
+       && \hspace{4mm}
+      =\Big(\sum_{n=\underline{n}+1}^{\overline{n}}
+      \frac{\beta_{i,1}^{(n)}}{\overline{n}-\underline{n}},
+      \cdots, \sum_{n=\underline{n}+1}^{\overline{n}}
+      \frac{\beta_{i,M}^{(n)}}{\overline{n}-\underline{n}}\Big)^\prime
+      \label{mu3} \\
+ %
+      && \hspace{-7mm}
+      \tilde{\mbox{\boldmath$\Sigma$}_i}(\mbox{\boldmath$\beta$}_i)=
+      \left(
+      \begin{array}{lll}
+         \tilde{\sigma}^2(\beta_{i,1}) & \cdots
+            & \tilde{\sigma}(\beta_{i,1}\beta_{i,M}) \\
+         \vdots & \ddots & \vdots \\
+         \tilde{\sigma}(\beta_{i,M}\beta_{i,1}) & \cdots
+            & \tilde{\sigma}^2(\beta_{i,M}) \\
+      \end{array}
+      \right)
+      \label{mu4}
+   \end{manyeqns}
+ %
+ %
+と表される．ただし，
+ %
+ %
+   \begin{manyeqns}
+      && \hspace{-3mm} \tilde{\sigma}^2(\beta_{i,m})=
+      \sum_{n=\underline{n}+1}^{\overline{n}}
+      \frac{\{\beta_{i,m}^{(n)}-\tilde{\zeta}(\beta_{i,m})\}^2}
+      {\overline{n}-\underline{n}} \\
+      && \hspace{-3mm} \tilde{\sigma}(\beta_{i,m}\beta_{i,l}) \nonumber \\
+      && =\sum_{n=\underline{n}+1}^{\overline{n}}
+      \frac{\{\beta_{i,m}^{(n)}-\tilde{\zeta}(\beta_{i,m})\}
+      \{\beta_{i,l}^{(n)}-\tilde{\zeta}(\beta_{i,l})\}}{\overline{n}-\underline{n}}
+      \nonumber \\
+      &&
+   \end{manyeqns}
+ %
+ %
+である．また，ギブスサンプリングによる標本を用いて，パラメータ$\mbox{\boldmath$\alpha$}$，$\mbox{\boldmath$\beta$}$の信用区間を定義できる．たとえば，パラメータ$\mbox{\boldmath$\beta$}$の$100(1-2\varepsilon)\%$
+信用区間は，標本順序統計量$(\underline{\beta}^{\varepsilon}_{i,m},\overline{\beta}^{\varepsilon}_{i,m})~(i=1,\cdots,I-1, \quad m=1,\cdots,M)$
+ %
+ %
+   \begin{manyeqns}
+      && \hspace{-8mm} \underline{\beta}^{\varepsilon}_{i,m}
+      =\arg \max_{\beta_{i,m}^\ast} \nonumber \\
+      && \left\{ \frac{\#(\beta_{i,m}^{(n)} \leq \beta_{i,m}^\ast,n
+      \in {\cal M})}
+      {\overline{n}-\underline{n}}\leq \varepsilon \right\} \label{sin1} \\
+ %
+      && \hspace{-8mm} \overline{\beta}^{\varepsilon}_{i,m}
+      =\arg \min_{\beta_{i,m}^{\ast\ast}} \nonumber \\
+      && \left\{ \frac{\#(\beta_{i,m}^{(n)} \geq
+      \beta_{i,m}^{\ast\ast},n\in {\cal M})}
+      {\overline{n}-\underline{n}}\leq \varepsilon \right\} \label{sin2}
+   \end{manyeqns}
+ %
+ %
+を用いて$\underline{\beta}^{\varepsilon}_{i,m}< \beta_{i,m} <\overline{\beta}^{\varepsilon}_{i,m}$と定義できる．
+
+MCMC法では，初期パラメータ値$\mbox{\boldmath$\theta$}^{(0)}$が不変分布である事後分布からの標本である保証はない．ギブスサンプリングで発生させた$\overline{n}$個のサンプルの内，最初の$\underline{n}$個の標本$\mbox{\boldmath$\theta$}^{(n)}=(\mbox{\boldmath$\alpha$}^{(n)},\mbox{\boldmath$\beta$}^{(n)})~(n=1,\cdots,\underline{n})$を事後分布に収束する過程からのサンプリングと考える．その上で，第$\underline{n}+1$回以降の標本をとりあげよう．$\underline{n}+1$以降の標本が，不変分布である事後分布からの標本であるかどうかをGewekeの方法\cite{geweke}を用いて仮説検定を試みる．いま，パラメータのギブス標本$\mbox{\boldmath$\theta$}^{(n)}~(n=1,\cdots,\overline{n})$の中から，最初の$n_1$個と最後の$n_2$個のデータをとりあげよう．Gewekeは，$n_1=0.1(\overline{n}-underkine{n}),n_2=0.5(\overline{n}-underkine{n})$を推奨している\cite{geweke}．この時，パラメータ$\alpha$の不変分布への収束を判断するためのGeweke検定統計量は，
+\begin{eqnarray}
+&& Z_{\alpha_m^i}=\frac{{}_1\bar{\alpha}_m^i-{}_2\bar{\alpha}_m^i}{\sqrt{\nu_1^2(\alpha_m^i)+\nu_2^2(\alpha_m^i)}}\sim  {\cal N}(0,1)\label{loo} \\
+&& {}_1\bar{\alpha}_m^i = \frac{\sum_{k=\underline{n}+1}^{\underline{n}+n_1} \alpha_m^{i,k}}{n_1} \quad {}_2\bar{\alpha}_m^i=\frac{\sum_{k=\overline{n}-n_2+1}^{\overline{n}} \alpha_m^{i,k}}{n_2} \nonumber \\
+&& \nu_1^2(\alpha_m^i)=\frac{2\pi \hat{f}_{\alpha_m^i}^1(0)}{n_1} \quad \nu_2^2(\alpha_m^i)=\frac{2\pi \hat{f}_{\alpha_m^i}^2(0)}{n_2} \nonumber
+\end{eqnarray}
+と定義できる．ただし，${f}_{\alpha_m^i}^l(x)~(l=1,2)$はスペクトル密度関数であり，$2\pi{f}_{\alpha_m^i}^l(0)$の推定値は
+\begin{eqnarray}
+&&2\pi \hat{f}_{\alpha_m^i}^l(0)={}_l\hat{\omega}_0+2\sum_{s=1}^q w(s,q){}_l\hat{\omega}_m^i  \\
+&& {}_1\hat{\omega}_0=n_1^{-1}\sum_{g=\underline{n}+1}^{\underline{n}+n_1}(\alpha_m^{i,g}-{}_1\bar{\alpha}_m^i)^2 \nonumber \\
+&& {}_2\hat{\omega}_0=n_2^{-1}\sum_{g=\overline{n}-n_2+1}^{\overline{n}}(\alpha_m^{i,g}-{}_2\bar{\alpha}_m^i)^2\nonumber \\
+&& {}_1\hat{\omega}_m^i=n_1^{-1}\sum_{g=\underline{n}+s+1}^{\underline{n}+n_1}(\alpha_m^{i,g}-{}_1\bar{\alpha}_m^i)(\alpha_m^{i,(g-s)}-{}_1\bar{\alpha}_m^i) \nonumber \\
+&& {}_2\hat{\omega}_m^i=n_2^{-1}\sum_{g=\overline{n}-n_2+s+1}^{\overline{n}}(\alpha_m^{i,g}-{}_2\bar{\alpha}_m^i)(\alpha_m^{i,(g-s)}-{}_2\bar{\alpha}_m^i) \nonumber \\
+&& w(s,q)=1-\frac{s}{q+1} \nonumber
+\end{eqnarray}
+として求まる\cite{chib1}${}^{,}$\cite{newe1}．$q$はスペクトル密度の近似度を表すパラメータであるが，Gewekeに従って$20$を採用する\cite{geweke}．同様に，パラメータ$\beta_{i,m}~(i,m=1,\cdots,M)$に関してもGeweke検定統計量を
+\begin{eqnarray}
+&& Z_{\beta_{i,m}}=\frac{{}_1\bar{\beta}_{i,m}-{}_2\bar{\beta}_{i,m}}{\sqrt{\nu_1^2(\beta_{i,m})+\nu_2^2(\beta_{i,m})}}\sim  {\cal N}(0,1)\label{looo} \\
+&& {}_1\bar{\beta}_{i,m} = \frac{\sum_{k=\underline{n}+1}^{\underline{n}+n_1} \beta_{i,m}^{(k)}}{n_1} \quad {}_2\bar{\beta}_{i,m}=\frac{\sum_{k=\overline{n}-n_2+1}^{\overline{n}} \beta_{i,m}^{(k)}}{n_2} \nonumber \\
+&& \nu_1^2(\beta_{i,m})=\frac{2\pi \hat{f}_{\beta_{i,m}}^1(0)}{n_1} \quad \nu_2^2(\beta_{i,m})=\frac{2\pi \hat{f}_{\beta_{i,m}}^2(0)}{n_2} \nonumber
+\end{eqnarray}
+と定義する．ここで，$\alpha_m^i$の不変分布への収束性に関する帰無仮説$H_0$と対立仮説$H_1$を
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+H_0: |Z_{\alpha_m^i}|\leq z_{\psi/2} \\
+H_1: |Z_{\alpha_m^i}|>z_{\psi/2}
+\end{array}
+\right.
+\end{eqnarray}
+と設定しよう．ただし，$z_{\psi/2}$は帰無仮説を棄却するための臨界的な値である．有意水準$\psi\%$で帰無仮説を仮説検定する場合，$z_{\psi/2}$は$\psi/2\%=1-\Phi(z_{\psi/2})$を満足する値として定義できる．ただし，$\Phi(z)$は標準正規分布の分布関数である．同様に，$\beta_{i,m}~(i,m=1,\cdots,M)$に関しても，仮説検定を行うことができる．
+
+
+
+\section{適用事例}
+
+\subsection{対象地域の概要}
+
+We conduct an empirical study using a set of monitoring data on potholes in Japanese national road system. Data was recorded during the 3 years period from 2007 to 2009. Total numbers of road sections are 236. Each road section represents for an average sectional length of 100 meters. Fig. \ref{fig4} displays the numbers of potholes in monthly basis. 
+
+
+
+In this study, we use only the numbers of potholes and their occurrence time as observed information. Potholes are recorded in 3 different categories according to their shapes (oval, rectangle, and triangle). In addition, the depth and size of each pothole is also carefully documented. Minimum and maximum depth of pothole are 12 mm and 100mm respectively. Size of each pothole is quantified into area value, with minimum value of $10,000mm^2$ and maximum value of $13,000,000mm^2$. In actual practice, after observing potholes, repairs are carried out to fill up the potholes so as the performance condition of a road section will be maintained in good condition.
+
+According to research literature, the occurence of pothole is largely linked with occurence of crack, particularly with alligator crack. Thus, for convenience of estimation, we decide to use cracking index for representing condition states of road sections. The range of condition states is from $1$ to $5$, with $i=1$ as new condition state and $i=5$ as absorbing condition state. Description of condition states is presented in Table \ref{table2}. 
+%
+\begin{table*}
+\caption{Description of condition state.}
+\label{table2}
+{\small
+\begin{center}
+\begin{tabular}{c|c}\hline
+Condition states & Range of cracking values (\%)\\\hline
+1 & $<$  15 \\
+2 & 15 $<$ () $<$ 30 \\
+3 & 30 $<$ () $<$ 45 \\
+4 & 45 $<$ () $<$ 60 \\
+5 & $>$ 60  \\\hline
+\end{tabular}
+\end{center}
+}
+\end{table*}
+
+We use another source of monitoring data (reference monitoring data), which contains $3,533$ samples of the same roads for estimating Markov transition probability separately. This pool of samples was recorded during the period from 1965 to 2006. We call this sampling data as ``referred database''. The model shown in the Appendix is used for this purpose. Detailed estimation approach using also maximum likelihood estimation method should be referred to paper of
+ \cite{kobayashitsuda}.
+
+Moreover, in order to give a realistic values for initial value of Poisson parameter $\lambda_i$, we apply the conventional Poisson hazard model for estimation. Following equation describes the mathematical formula of conventional Poisson hazard model. The detailed estimation approach can be referred to the paper of \cite{Okizukakaito09}.
+
+\begin{eqnarray}
+&& Prob\left\{h_i(t)=n_i|\lambda_i\right\}=\frac{(\lambda_it_i)^{n_i}}{n_i!}exp(-\lambda_it_i)\label{poisson}
+\end{eqnarray}
+Where $i$ reflects the condition states in Markov hazard model.
+
+\subsection{Estimation results}
+\label{sec62}
+\begin{table}[t]
+\caption{Estimation results of conventional Markov model on reference monitoring data.}
+\label{table3}
+\begin{center}
+{\small 
+\begin{tabular}{c|c|c|c}\hline
+Condition & Constant&Rut&Smoothness\\
+ state & $\beta_{i1}$ & $\beta_{i2}$& $\beta_{i3}$\\ \hline
+1 & 0.018  &  0 &  0.140 \\
+& (12.253) & -  &  22.019\\\hline
+2 & 0.047 &  -0.024  &  0.049 \\\
+& (4.021) &  (-0.581) &  (1.493)\\\hline
+3 & 0.268  &  -0.551 &  0.420\\
+& (3.266) & (-1.994) &  (1.515)\\\hline
+4 & -0.022 &  1.932 &  0.3446\\
+& (-0.465) &(3.467)&  (3.287)\\\hline
+\end{tabular}
+}
+\end{center}
+{\small Note) $t-$ values are shown in parenthesis}
+\end{table}
+
+\begin{table}[t]
+\caption{Markov transition probability with referred database}
+\label{table4}
+\begin{center}
+{\small
+\begin{tabular}{c|ccccc}\hline
+Condition&\multicolumn{5}{|c}{Condition state}\\
+State & 1 & 2 & 3 & 4& 5 \\\hline
+1 & 0.9973  & 0.0026 & 0.0 & 0.0& 0.0 \\
+2 & 0.0  & 0.9951 & 0.0048 & 0.0001& 0.0017 \\
+3 & 0.0  & 0.0 & 0.9768 & 0.0229& 0.0003 \\
+4 & 0.0  & 0.0 & 0.0 & 0.9722& 0.0278 \\
+5 & 0.0  & 0.0 & 0.0 & 0.0& 1.0 \\\hline
+\end{tabular}
+}
+\end{center}
+{\small Note) Interval of transition is one month.}
+\end{table}
+
+Applying multi-state Markov hazard model on referred database, we come up with initial value of Markov transition probability for Poisson hidden Markov model. Table \ref{table3} displays the obtained values of unknown parameter of multi-state Markov hazard model, while table \ref{table4} presents the values of transition probabilities. 
+
+As previously mentioned, the conventional Poisson hazard model expressed in equation (\ref{poisson}) is used with potholes data of targeted road sections. Results of estimation give values of Poisson parameter $\lambda_i=(0.0,0.0,1.2,1.5, 2.0)$, with $i=(1,\cdots,5)$. A general conclusion can be drawn from interpreting values of Poisson parameter $\lambda_i$ if we focus only on conventional Poisson hazard model. If the condition states are new $(i=1,2)$, there is almost no occurrence of potholes. However, when deterioration start in faster manner, with condition states $(i=3,4,5)$, road sections are exposed to have higher change of getting potholes. 
+
+We employ the obtained values of $\pi_{ij}$ and $\lambda_i$ as prior information for the Poisson hidden Markov model. Estimation results are new values of Markov transition probability for target section, which is shown in Table \ref{table5}.
+
+\begin{table}[t]
+\caption{Markov transition probability of targeted road}
+\label{table5}
+\begin{center}
+{\small
+\begin{tabular}{c|ccccc}\hline
+Condition&\multicolumn{5}{|c}{Condition state}\\
+State & 1 & 2 & 3 & 4& 5 \\\hline
+1 & 0.8824  & 0.1176 & 0.0 & 0.0& 0.0 \\
+2 & 0.0  & 0.88235 & 0.1177 & 0.0& 0.0 \\
+3 & 0.0  & 0.0 & 0.9473 & 0.0525& 0.0002 \\
+4 & 0.0  & 0.0 & 0.0 & 0.9998& 0.0002 \\
+5 & 0.0  & 0.0 & 0.0 & 0.0& 1.0 \\\hline
+\end{tabular}
+}
+\end{center}
+%{\small Note) Interval of transition is one year.}
+\end{table}
+
+Results of statistical tests for the estimation results with Poisson hidden Markov model are presented in Table \ref{table6}. Values in the blankets next to the recorded numbers of potholes are residuals values of the best-fit function using the Poisson hidden Markov model. 
+\begin{table}[t]
+\caption{Results of statistical test for Poisson hidden Markov model.}
+\label{table6}
+\begin{center}
+{\small
+\begin{tabular}{l|l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Month} & \multicolumn{1}{c|}{Potholes} & \multicolumn{1}{c|}{Month} & \multicolumn{1}{c|}{Pothole} & \multicolumn{1}{c|}{Month} & \multicolumn{1}{c}{Pothole} \\ 
+\hline
+\multicolumn{1}{c|}{7-Jun} & \multicolumn{1}{c|}{5 (6.21E-02)} & \multicolumn{1}{c|}{8-Jan} & \multicolumn{1}{c|}{15 (1.58E+00)} & \multicolumn{1}{c|}{8-Aug} & \multicolumn{1}{c}{4 (-2.00E+00)} \\ 
+\multicolumn{1}{c|}{7-Jul} & \multicolumn{1}{c|}{16 (1.85E+00)} & \multicolumn{1}{c|}{8-Feb} & \multicolumn{1}{c|}{61 (NA)} & \multicolumn{1}{c|}{8-Sep} & \multicolumn{1}{c}{7 (-8.71E-01)} \\ 
+\multicolumn{1}{c|}{7-Aug} & \multicolumn{1}{c|}{3 (-2.42E+00)} & \multicolumn{1}{c|}{8-Mar} & \multicolumn{1}{c|}{14 (1.30E+00)} & \multicolumn{1}{c|}{8-Oct} & \multicolumn{1}{c}{3 (-2.42E+00)} \\ 
+\multicolumn{1}{c|}{7-Sep} & \multicolumn{1}{c|}{1 (-3.41E+00)} & \multicolumn{1}{c|}{8-Apr} & \multicolumn{1}{c|}{9 (-2.00E-01)} & \multicolumn{1}{c|}{8-Nov} & \multicolumn{1}{c}{7 (-8.71E-01)} \\ 
+\multicolumn{1}{c|}{7-Oct} & \multicolumn{1}{c|}{3 (-2.42E+00)} & \multicolumn{1}{c|}{8-May} & \multicolumn{1}{c|}{4 (-2.00E+00)} & \multicolumn{1}{c|}{8-Dec} & \multicolumn{1}{c}{2 (-3.01E+00)} \\ 
+\multicolumn{1}{c|}{7-Nov} & \multicolumn{1}{c|}{5 (-1.60E+00)} & \multicolumn{1}{c|}{8-Jun} & \multicolumn{1}{c|}{10 (1.18E-01)} & \multicolumn{1}{c|}{9-Jan} & \multicolumn{1}{c}{28 (4.75E-01)} \\ 
+\multicolumn{1}{c|}{7-Dec} & \multicolumn{1}{c|}{14 (-1.30E+00)} & \multicolumn{1}{c|}{8-Jul} & \multicolumn{1}{c|}{3 (-2.42E+00)} & \multicolumn{1}{c|}{9-Feb} & \multicolumn{1}{c}{22 (3.54E-02)} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{l}{Loglikelihood} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{-144.4761} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\end{tabular}}
+\end{center}
+\end{table}
+
+Based on the obtained values of Markov transition probability in table \ref{table4} and table \ref{table5}, we can further draw deterioration curves of targeted road sections with multi-stage Markov hazard model on referred database and Poisson hidden Markov model on potholes information in Fig. \ref{fig5}. Generally, it is suffice to state from the figure that deterioration of targeted road section is faster than that of referred road section. Probabilistically, the life expectancy of targeted road section is about 4 to 5 years faster than the historial estimation based on multi-stage Markov hazard model. 
+
+As the matter of course, estimation results will be altered given the different source of observed data. To further illustrate this situation, we double the numbers of potholes as another source of data. Estimation results by employing Poisson hidden Markov hazard model is used to draw the deterioration curve, which is also presented in Fig. \ref{fig5}. Simply comparing the 3 deterioration curves, it is clear to state that if there is a increase in the numbers of potholes, the hidden Markov transition probability will increase its intensity and so does with the slope of deterioratoin curve.
+
+
+%%%%%%
+\section{Conclusions and Recommendations}
+
+This paper has presented a new approach to estimate the Markov transition probability of pavement under shortage of monitoring data using a Poisson hidden Markov hazard model. The underlying Markov transition probability of targeted road sections is considered as hidden information. In order to estimate the hidden Markov transition probability, we consider its condition states to link with occurrence of potholes, which can be randomly follow Poisson process. Thus, given the observed numbers of potholes as monitoring data in a specific operation period, we can use Poisson hidden Markov model to determine the underlying Markov transition probability.
+
+Empirical study of the model on potholes data of Japanese national roads reveal with positive estimation results. Markov transition probability of targeted road sections is predicted with given initial values of Poisson parameter of targeted road sections and Markov transition probability using referred database. The initial Poisson parameter for each condition state is estimated based on conventional Poisson hazard model. Whilts, initial values of Markov transition probability are obtained by using conventional multi-state Markov hazard model on reference road sections.
+
+Though we discuss in details of Poisson hidden Markov hazard model for application in PMS. Our study has not targeted some following points, which can be considered as important direction and recommendation for future expansion of the model.
+
+\begin{itemize}
+	\item This paper with its model focuses only on pavement management system with potholes data. However, the model can be widely applied on other types of infrastructure. For example in bridge management system, the falling of bridge concrete deck below the slab can be counted as an indicator for predicting Markov transition probability of the upper concrete slab, which is often under direct loads of vehicles.
+	\item The estimation methodology of the model is based on Maximum likelihood estimation approach. However, likelihood estimation is subjected with several limitation such as: local optimality and costly simulation. Another more robust estimation should be with Bayesian estimation and Markov Chain Monte Carlo method for estimation of Poissoin hidden Markov model. 
+\end{itemize}
+
+\section{ACKNOWLEDGEMENT}\label{sec7}
+The authors would like to thank to Frontier Research Center for Global Young Researchers, Graduate School of Engineering, Osaka University, Japan for financial supports. In addition, thanks are extended to members of Laboratory of Prof. Kiyoshi Kobayashi at Kyoto University, Japan for critical comments and suggestions.
+
+\section{Appendix. Mathematical formulation of the exponential Markov hazard model}\label{sec8}
+%
+%
+From monitoring data of two visual inspection times $t$ and $t+1$, the Markov transition probability can be described as follows:
+%
+\begin{eqnarray}
+&& \mbox{Prob}[g(t+1)=j|g(t)=i]=\pi^{ij}.\label{pro}
+\end{eqnarray}
+Markov transition probability matrix can be written in the following form: 
+\begin{eqnarray}
+&& {\bf \Pi}=\left(
+\begin{array}{ccc}
+\pi^{11} & \cdots & \pi^{1I} \\
+\vdots & \ddots & \vdots \\
+0 & \cdots  & \pi^{II}
+\end{array}
+\right),\label{marko}
+\end{eqnarray}
+where
+\begin{eqnarray}
+\left.
+\begin{array}{l}
+\pi^{ij}\geq 0 ~(i,j=1,\cdots,I)\\
+\pi^{ij}=0  ~(\hspace{1mm} when \hspace{1mm} i > j) \\
+\sum_{j=i}^I \pi^{ij}=1 \\
+\end{array}
+\right\}.\label{suii}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%
+In hazard analysis, the life expectancy of condition state $i$ is assumed to be a stochastic variable, with the probability density function $f_i(\zeta_i)$ and distribution function $F_i(\zeta_i)$ \cite{lancaster90,gouri}. The conditional probability, to which condition state $i$ at time $y_i$ reaching condition state $i+1$ at $y_i+\Delta_i$, can be expressed as hazard function $\lambda_i(y_i)\Delta{y_i}$:
+\begin{eqnarray}
+\lambda_i(y_i)\Delta y_i = \frac{f_i(y_i) \Delta y_i}{\tilde{F}_i(y_i)},
+\end{eqnarray}
+where $\tilde{F}_i(y_i)=1-F_i(y_i)$  is referred as the survival function of condition state $i$ during the time interval from $y_i=0$ to $y_i$. It is assumed that the deterioration process satisfies the Markov property and the hazard function is independent of the time instance $y_i$. Thus, we can define a fixed value for $\lambda_i>0$ as the hazard rate:
+\begin{eqnarray}
+&& \lambda_i(y_i) = \theta_i.
+\end{eqnarray}
+The life expectancy of condition state $i$, which advances longer than the duration $y_i$, is referred as the value of the survival function $\tilde{F}_i(y_i)$ and can be expressible in the exponential form:
+\begin{eqnarray}
+&& \tilde{F}_i(y_i)=\exp(-\theta_i y_i). \label{prop}
+\end{eqnarray}
+The survival probability function is identical to the transition probability $\pi^{ii}$ when the duration $y_i$ equals to the duration $z$ of the inspection period $z_i$ between $[t,t+1)$:
+\begin{eqnarray}
+&& \tilde{F}_i(t+z | \zeta_i \ge t) =\mbox{Prob} \{ \zeta_i \ge t+z | \zeta_i \ge t \} = \frac{\exp \{-\theta_i(t+z)\}}{\exp( - \theta_i t)} =\exp (-\theta_i z),
+\end{eqnarray}
+\begin{eqnarray}
+&& \mbox{Prob}[g(t+1)=i|g(t)=i]=\exp(-\theta_i z).\label{opoi0}
+\end{eqnarray}
+By defining the subsequent conditional probability of condition state $j$ to $i$, with respect to the actual interval time $z$ of inspection, a general mathematical formula for estimating the Markov transition probability can be defined:
+\begin{eqnarray}
+&& \pi^{ij}(z)=\mbox{Prob}[h(t+1)=j|h(t)=i]  =\sum_{k=i}^{j}\prod_{m=i,\neq k}^{k-1}\frac{\theta_m}{\theta_{m}-\theta_{k}} \exp (-\theta_{k}z),
+\end{eqnarray}
+where
+\begin{eqnarray}
+&& \prod_{m=i,\neq k}^{k-1}\frac{\theta_m}{\theta_{m}-\theta_{k}} \exp (-\theta_{k}z) =\prod_{m=i}^{k-1}\frac{\theta_m}{\theta_{m}-\theta_{k}}\prod_{m=k}^{j-1}\frac{\theta_m}{\theta_{m+1}-\theta_{k}}\exp(-\theta_{k} z),\nonumber
+\end{eqnarray}
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+\prod_{m=i}^{k-1}\frac{\theta_m}{\theta_{m}-\theta_{k}}=1 & (k=i) \\
+\prod_{m=k}^{j-1}\frac{\theta_m}{\theta_{m+1}-\theta_{k}}=1 & (k=j) 
+\end{array}
+\right. (i=1,\cdots,I-1;j=i+1,\cdots,I). \label{opoi} \nonumber
+\end{eqnarray}
+Transition probability from condition state $i$ to absorbing condition state $I$ is eventually defined in the following equation:
+\begin{eqnarray}
+&& \pi^{iI}(z)=1-\sum_{j=i}^{I-1}\pi^{ij}(z)~(i=1,\cdots,I-1).\label{oil}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The likelihood function of hazard rate $\theta_i$ can be expressed by means of multiplicative form with  characteristic variable $\mbox{\boldmath$x$}$ and unknown parameter $\mbox{\boldmath$\beta$}_i^\prime$.
+\begin{eqnarray}
+&& \theta_i=\theta_i(\mbox{\boldmath$x$}) =\mbox{\boldmath$x$}\mbox{\boldmath$\beta$}_i^\prime. \label{hazard11}
+\end{eqnarray}
+The life expectancy $RMD_i(\mbox{\boldmath$x$})$ (RMD stands for remaining duration) of condition state $i$ is evaluated by means of the survival probability of condition state $i$ over continuous time.
+\begin{eqnarray}
+&& RMD_i(\mbox{\boldmath$x$})= \int^{\infty}_{0}\tilde{F}_i(y_i|\theta_i(\mbox{\boldmath$x$}))dy_i  = \int^{\infty}_{0}\exp \{-\theta_i(\mbox{\boldmath$x$})y_i\}dy_i=\frac{1}{\mbox{\boldmath$x$}\mbox{\boldmath$\beta$}_i^\prime}.\label{kenzen}
+\end{eqnarray}
+The average life expectancy of condition state $j~(>1)$ can be defined by the summation of the life expectancy over the range of condition states counted from $i=1$:
+\begin{eqnarray}
+&& ET_j(\mbox{\boldmath$x$})=\sum_{i=1}^j \frac{1}{\mbox{\boldmath$x$}\mbox{\boldmath$\beta$}_i^\prime}, \label{hy}
+\end{eqnarray}
+where $ET_j$ stands for average life expectancy or average elapsed time of condition state $j$.
+
+
+
+
+\vskip 1em
+
+\begin{thebibliography}{99}
+
+\bibitem{par} Paroli, R., Redaelli, G., and Spezia, L.: Poisson hidden Markov models for time series of overdispersed insurance 
+counts, 
+
+
+\bibitem{koba}小林潔司，上田孝行：インフラストラクチャのマネジメント：研究展望，土木学会論文集，No.744/IV-61，pp.15-27，2003．
+
+\bibitem{r1} 青木一也，若林伸幸，大和田慶，小林潔司：橋梁マネジメントシステムアプリケーション，土木情報利用技術論文集，Vol.14，pp.199-210, 2005. 
+
+\bibitem{r2} 貝戸清之，保田敬一，小林潔司，大和田慶：平均費用法に基づいた橋梁部材の最適補修戦略，土木学会論文集，No.801/I-73，pp.83-96, 2005. 
+
+
+\bibitem{yasuda} 保田敬，小林潔司：BMSにおける点検結果と状態推移確率がLCCに及ぼす影響，建設マネジメント論文集，Vol.11，pp.111-122，2004.
+
+\bibitem{toukei}Lee, T.C., Judge, G.G. and Zellner, A.: {\it Estimating
+the Parameters of the Markov Probability Model from Aggregate Time Series
+Data}, Amsterdam, North-Holland, 1970.
+
+\bibitem{sugisaki}杉崎光一，貝戸清之，小林潔司：目視検査周期の不均一性を考慮した統計的劣化予測手法の構築，構造工学論文集，Vol.52A，pp.781-790，2006.
+
+\bibitem{kaito2}貝戸清之，阿部允，藤野陽三：実測データに基づく構造物の劣化予測，土木学会論文集，No.744/IV-61, pp.29-38, 2003.
+
+\bibitem{aoki2} 青木一也，山本浩司，小林潔司：
+                劣化予測のためのハザードモデルの推計，
+                土木学会論文集，No.791/VI-67，pp.111-124，2005.
+
+\bibitem{mishalani}Mishalani, R. and Madanat S.：Computation of infrastructure transition probabilities using stochastic duration models, {\it ASCE Journal of Infrastructure Systems}, Vol.8, No.4, 2002.
+
+\bibitem{markov}津田尚胤，貝戸清之，青木一也，小林潔司：橋梁劣化予測のためのマルコフ推移確率の推定，土木学会論文集，No.801/I-73，pp.68-82, 2005．
+
+\bibitem{hu} 青木一也，山本浩司，津田尚胤，小林潔司：多段階ワイブル劣化ハザードモデル，土木学会論文集，No.798/VI-68，pp.125-136, 2005．
+
+\bibitem{kumada} 貝戸清之，熊田一彦，林秀和，小林潔司：階層型指数劣化ハザードモデルによる舗装ひび割れ過程のモデル化，土木学会論文集Ｆ, Vol. 63, No. 3, pp.386-402，2007. 
+
+\bibitem{bayse} 津田尚胤，貝戸清之，山本浩司，小林潔司：ワイブル劣化ハザードモデルのベイズ推計法，土木学会論文集，No.798/VI-68，pp.125-136, 2006．
+
+\bibitem{19} 貝戸清之，小林潔司：マルコフ劣化ハザードモデルのベイズ推定，土木学会論文集A，Vol.63, No.2. pp.336-355, 2007. 
+
+\bibitem{18} 小林潔司，熊田一彦，佐藤正和，岩崎洋一郎，青木一也：サンプル欠損を考慮した舗装劣化予測モデル，土木学会論文集F，Vol.63，No.1，pp.1-15，2007.
+
+\bibitem{20} 貝戸清之，山本浩司，小濱健吾，岡田貢一，小林潔司：ランダム比例ワイブル劣化ハザードモデル：大規模情報システムへの適用，土木学会論文集F，Vol. 64, No. 2 pp.115-129, 2008. 
+
+\bibitem{hidden} 
+
+\bibitem{lancaster}Lancaster, T.: {\it The Econometric Analysis of
+Transition Data}, Cambridge University Press, 1990.
+
+\bibitem{gouri} Gourieroux, C.: {\it Econometrics of Qualitative Dependent
+Variables}, Cambridge University Press, 2000.
+
+\bibitem{koba}小林潔司，貝戸清之，林秀和：測定誤差を考慮した隠れマルコフ劣化モデル，土木学会論文集
+
+
+\bibitem{mac} MacDonald, I.L. and Zucchini, W.: {\it Hidden Markov and Other Models for Discrete-valued Time Series}, Chapman \& Hall, 1997.
+
+\bibitem{hami89} Hamilton, J.: A new approach to the economic analysis of nonstationary series and the business cycle, {\it Econometrica}, Vol. 57(2), pp.357-384. 1989.
+
+\bibitem{Die-Ino}
+Diebold, F.X. and Inoue, A.: Long memory and regime switching, {\it Journal of Econometrics}, Vol.105, pp.131-159, 2001.
+
+\bibitem{kim-nel} Kim, C.-J. and Nelson, C.R.: {\it State-Space Models with Regime Switching : Classical and Gibbs-Sampling Approaches with Applications}, MIT Press, 1999.
+
+\bibitem{wago} 和合肇：ベイズ計量経済分析，マルコフ連鎖モンテカルロ法とその応用，東洋経済新報社，2005.
+
+\bibitem{die} Diebolt, J. and Robert, C.P.: Estimation of finite mixture distributions through Bayesian sampling, {\it Journal of the Royal Statistical Society}, Series B, Vol.56, pp.363-375, 1994.
+
+\bibitem{titter}Titterington, D.M., Smithe, A.F.M. and Makov, U.E.: {\it Statistical Analysis of Finite Mixture Distributions}, John Wiley ＆ Sons., 1985.
+
+\bibitem{robert}Robert, C.P.: Mixtures of Distributions: Inference and Estimation, in: Gillks, W.R., Richardson, S. and Spiegelhalter, D.J. (eds.): {\it Markov Chain Monte Carlo in Practice}, Chapman ＆ Hall, 1996.
+
+\bibitem{robe} Robert, C.P., Ryd{\'e}n, T. and Titterington, D.M.: Bayesian inference in hidden Markov models through the reversible jump Markov chain Monte Carlo method, {\it Journal of the Royal Statistical Society}, Series B, Vol.62, pp.57-75, 2000.
+
+\bibitem{demp}Dempster, A.P., Laird, N. M. and Rubin, D. B.:  Maximum likelihood from incomplete data via the EM Algorithm, {\it Journal of the Royal Statistical Society}, Series B, Vol.39, pp.1-38, 1977.
+
+\bibitem{ce} Celeux, G., Hurn, M. and Robert, C.P.: Computational and inferential difficulties with mixture posterior distributions, {\it Journal of the American Statistical Association}, Vol.95, pp.957-970, 2000.
+
+\bibitem{bauer} Bauer, W.: Recent developments in econometric estimation of frontiers, {\it Journal of  Econometrics}, Vol.46, pp.39-56, 1990.
+
+\bibitem{jj} Kumbhakar, S. C. and Lovell, C.A.K.: {\it Stochastic Frontier Analysis}, Cambridge University Press, 2000.
+
+\bibitem{ibra1} Ibrahim, J.G., Ming-Hui, C. and Sinha, D.:
+                {\it Bayesian Survival Analysis},
+                Springer Series in Statics, 2001.
+
+\bibitem{gibbs1} Geman, S. and Geman, D.: Stochastic relaxation, Gibbs distributions and the Bayesian restoration of images, {\it Transactions on Pattern Analysis and Machine Intelligence}, Vol.6, pp.721-741, 1984.
+
+\bibitem{gibbs2} Gelfand, A.E. and Smith, A.F.M.: Sampling-based approaches to calculating marginal densities, {\it Journal of the American Statistical Association}, Vol.85, pp.398-409, 1990.
+
+
+\bibitem{gilks} Gilks, W.R. and Wild, P.: Adaptive rejection sampling for Gibbs sampling, {\it Applied Statistics}, Vol.41, pp.337-348, 1992.
+
+\lastpagecontrol{20cm}
+\bibitem{chib1} Chib, S.:
+                Marginal likelihood from Gibbs output,
+                {\it Journal of the American Statistical Association},
+                Vol.90, pp.1313-1321,1995.
+
+
+\bibitem{newe1} Newey, W. K. and West, K. D.:
+                A simple, positive semi-definite, heteroskedasticity
+                and autocorrelation coisistent covariance matrix,
+                {\it Econometrica}, Vol.55, pp.703-708,1987.
+
+%\bibitem{han} Han, C. and Carlin, B.P.: MCMC methods for computing Bayes factors, A comparative review, {\it Biometrika}, Vol.84, pp.711-732, 2000.
+
+\bibitem{geweke} Geweke, J.: Evaluating the Accuracy of Sampling-based Approaches to the Calculation of Posterior Moments, in: Bernardo, J.M., Berger, J.M., Dawid, A.P., and Smith, A.F.M. (eds.) :{\it Bayesian Statistics 4}, pp.169-193, Oxford University Press, 1996.
+
+
+\end{thebibliography}
+\lastpagesettings
+\end{document}
+
+
+
+
+
+\bibitem{13)}岩崎学：統計的データ解析のための数値計算法入門, 統計ライブラリー，朝倉書店, 2004.
+
+\bibitem{isoda}磯田和男，大野豊：数値計算ハンドブック，オーム社，1990.
+
+\bibitem{chow}森棟公夫：計量経済学，東洋経済新報社，1999.
+
+
+
+
+\end{thebibliography}
+\lastpagesettings
+\end{document}
+

@@ -1,0 +1,903 @@
+%%
+%% This is file `elsarticle-template-harv.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% elsarticle.dtx  (with options: `harvtemplate')
+%% 
+%% Copyright 2007, 2008 Elsevier Ltd.
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% -------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+%% SP 2008/03/01
+
+%% This package is optional, but maybe not belong to Elsavier journal format
+\documentclass[a4paper,oneside,onecolumn,preprint,10pt,authoryear]{elsarticle}
+\usepackage{epsfig}
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% if you use PostScript figures in your article
+%% use the graphics package for simple commands
+ \usepackage{graphicx}
+\usepackage{epstopdf} 
+ \usepackage[a4paper, top=19mm, bottom=24mm, left=20mm, right=20mm]{geometry}
+%% or use the graphicx package for more complicated commands
+ %\usepackage{graphicx}
+%% or use the epsfig package if you prefer to use the old commands
+ \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+ \usepackage{amsthm}
+ \usepackage{manyeqns}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+ \usepackage{lineno}
+
+ \usepackage{natbib} % for reference stype
+ 
+ % for left aligned equations
+ \usepackage{fleqn}
+ 
+ % for optional font package, if document is to be formatted with Times and compatible math fonts
+ \usepackage{txfonts}
+ 
+ % for hyper linking in document
+ 
+ \usepackage{hyperref}
+ 
+ \usepackage{pifont} %for open star in the title
+ 
+
+\journal{Journal of Mathematical Problems in Engineering}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+% \author{Kiyoshi Kobayashi\corref{cor1}\fnref{kobayashi}}
+ %\ead{kkoba@psa.mbox.media.kyoto-u.ac.jp}
+ %% \ead[url]{home page}
+  %\fntext[kobayashi]{a}s
+ % \cortext[cor1]{Corresponding author. Tel.: +81 75 383 3222; Fax +81 75 383 3224.}
+%\author{Kiyoyuki Kaito\corref{}\fnref{kaito}}
+ %\ead{kaito@ga.eng.osaka-u.ac.jp}
+%\author{Nam Le Thanh\corref{c}\fnref{nam}}
+ %\ead{info.tna@t06.mbox.media.kyoto-u.ac.jp}
+%\address{Department of Urban Management, Graduate School of Engineering, Kyoto University, Japan\fnref{add1}}
+%% \fntext[label3]{}
+%% \ead[url]{home page}
+ %% \cortext[cor1]{}
+%\address{Frontier Research Center, Osaka University, Japan\fnref{add2}}
+%% \fntext[label3]{}
+%% \ead[url]{home page}
+ %% \cortext[cor1]{}
+%\address{Department of Urban Management, Graduate School of Engineering, Kyoto University, Japan\fnref{add3}}
+%% \fntext[label3]{}
+
+\title{Modeling Pavement Deterioration Processes by Poisson Hidden Markov Model}
+
+%% use optional labels to link authors explicitly to addresses:
+\author[nam]{L.T. Nam \corref{cor1}}
+\ead{namkyodai@gmail.com}
+\author[kaito]{K. Kaito  }
+\ead{kaito@ga.eng.osaka-u.ac.jp}
+\author[fujiwara]{E. Fujiwara}
+\ead{fujiwara.e@hy7.ecs.kyoto-u.ac.jp}
+\author[kobayashi]{K. Kobayashi}
+\ead{kkoba@psa.mbox.media.kyoto-u.ac.jp}
+
+\cortext[cor1]{Corresponding author. Tel.: +81(0)80 3827 3007.}
+%\fntext[nam]{Researcher}
+%\fntext[kaito]{Associate Professor}
+%\fntext[fujiwara]{Graduate Student}
+%\fntext[kobayashi]{Professor}
+\address[nam]{Frontier Research Center, Graduate School of Engineering, Osaka University, Japan}
+\address[kaito]{Frontier Research Center, Graduate School of Engineering, Osaka University, Japan}
+\address[fujiwara]{Department of Urban Management, Graduate School of Engineering, Kyoto University, Japan}
+\address[kobayashi]{Department of Urban Management, Graduate School of Engineering,  Kyoto University, Japan}
+
+
+%\author[kobayashi,kaito,nam]{}
+%\address[add1]{}
+%\address[add2]{}
+%\address[add3]{}
+
+\begin{abstract}
+Shortages in annual budget allocation for road asset management system often limit managers to  decisions of having full scale visual inspections. Hence, lack of monitoring data is quite a prevailing risk in infrastructure asset management practices. In many cases, road authorities have only information on numbers of potholes occurrences, while information on other pavement distress is absent or unrealizable. However, managers still need to make decision on maintainance and repair strategies for overall surface treatment under shortage of monitoring data. In this paper, we develop Poisson hidden Markov model to solve such limitations. The model discusses the probabilistic and functional relationship between Markov transition probabilities among condition states and the Poisson process of each state, which is linked to the occurrence of potholes. Markov transition probability is considered as hidden information. We use estimated Poisson parameters to trigger the Markov transition probability. An empirical study on a set of monitoring data in Japan is presented as for verifying the soundness of our model in practical application.
+\end{abstract}
+
+\begin{keyword}
+Hidden markov chain \sep Pavement management \sep Bayesian learning \sep Markov chain monte carlo \sep Poisson process
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+%% \linenumbers
+
+%% main text
+\section{Introduction}
+\label{sec1}
+%
+Managing a network of infrastructure systems will be at ease if abundance of resources is available and mobilizable at any circumstance. However, real world infrastructure management often faces shortage of annual budget allocation due to various economical and political reasons, thus, demanding management with difficulties and challenges. Regarding govermental budget allocation for infrastructure management, share on  pavement management system (PMS) is often the biggest amount. This is owning to the fact that PMS is recognized as one of the most important infrastructure system in the modern society, generally being described as blood vessels of the society. Because of its importance, literature on PMS has been extensively studied and documented over the past decades. Recently, with macroscopic orientation, research on PMS has focused remarkably on application of stochastic models with Markov chain theory \citep{Nakat2008,Shin2003,kobayashitsuda}. This trend of stochastic application are also widely used for management of other infrastructure systems such as: bridge management system (BMS) \citep{kobayashitsuda,pontis} and pipeline management system \citep{Sinha2007,Sinha2004}, etc.
+
+Markov chain model has its advantage that it generalizes deterioration process of PMS as  transition patterns among condition states. Condition states of roads are performance indexes, which take into account values of various key performance indexes. For example, condition states like Pavement Condition Index (PCI) in America or Management Control Index (MCI) in Japan are weighted values in discrete numbers of pavement distresses (cracking, rut, roughness, etc) \citep{shahin05,Nam2009}. Furthermore, Markov models can be used to address uncertainty under the absence of historical data. A great advantage of applying Markov model is due to its assumption that probability of observing future state depends only on probability of observed condition states at the present. This implication can be used to solve the shortage of monitoring data in infrastructure management. %To date, development both on academic research and practical application with Markov models for PMS can be seen with many competitive PMS software packages.
+
+However, there is a fact that, management and maintenance of PMS frequently face local matters that are not fully discussed in Markov models. For example, condition states of pavement are weighted values of several selected pavement distresses, which might not encompass other important distresses like the occurence of potholes. Engineers and researchers would believe that pothole occurrence is, in some extend, a local matter, and thus requires different statistical modeling approach in comparison with Markov chain models. However, it has been learned that there is a strong correlation between occurence of pothole and the overal deterioration process \citep{donglin03}. In another words, there exist a structural relation between occurence of pothole and Markov transition probability among each condition states. Keeping abreast of this problem, our paper is thus to consider pothole management and application of Markov chain model, with significant assumption that condition state transition probabilities are in close relation with numbers of potholes appearing on the road surface.
+
+Further regarding the management of pothole in PMS, up to present, most of research has applied stochastic models with Poisson distribution \citep{madanatpoisson}. These types of model are literaturely named as ``Poisson hazard model''. In the models, Poisson parameters are estimated based on the observed numbers of pothole, which are recorded by means of monitoring and inspection. The existing approaches  using Poisson hazard model in PMS still remain with ad-hoc and limitations as Poisson process itself is memoryless process and neglecting the conditional dependency on Markov transition probability \citep{namlt2009}.
+
+There exists a high probability that the Poisson process with potholes and Markov chain process with pavement condition state are in close linked to each other. If it is of the true assumption, it open up an opportunity for us to formulate a new type of model for pavement management under constraint of incomplete data. For example, in many situations, our monitoring data comprises of only records on pothole over the years, while information on other pavement distresses are in poor, insufficient, or missing. 
+
+In this paper, we proposes an analytical model called ``Poisson hidden Markov model'', which has not been discussed so far in the literature of infrastructure management. The Poisson process is attached with each condition state in Markov model. Our assumption is that there is a shortage of information on condition states of existing roads, and thus, it is impossible to run Markov model. If we have sufficient enough data on potholes in the database. The information of pothole is then used to find or update the Markov transition probability. In following section, we give a brief literature background on Poisson model and Markov chain model applied in PMS. Section \ref{sec3} details the relationship of pothole occurrence and the transition of condition states in deterioration process, and discuss the formulation of Poisson hidden Markov model. Estimation methodology of the model is then described in section \ref{sec4}. Section \ref{sec5} presents an empirical study of the model on a data-set of Japanese national road system. The last section gives a conclusion of our study and point out critical points for future expansion of the model.
+\section{Literature review and background}
+\label{sec2}
+\begin{figure}
+\begin{center}
+\begin{footnotesize}
+\includegraphics[scale=0.5]{fig1}\\
+\end{footnotesize}
+\end{center}
+\caption{Transition pattern of condition states and numbers of pothole occurences.}
+\label{fig1}
+\end{figure}
+Markov chain models have been widely applied in the practice of deterioration-forecasting in infrastructure management \citep{Nakat2008,Shin2003,kobayashitsuda}. In Markov chain models, healthy status or performance of an infrastructure component is described in discrete condition states, which are defined by means of single performance index or an aggregate index. Values of indexes are measured by monitoring and visual inspection. For example, in the case of pavement management system, condition states include the extend of several pavement distress such as rut, crack, international roughtness index, and some aggregate condition states, such as the PCI and MCI \citep{shahin05,Nam2009}. Deterioration of an infrastructure component is portrayed as a transition process of condition states along the duration.
+
+Running simulation with Markov chain model requires at least two consecutive sets of inspection data. However, in many cases, it is not easy to have sufficient numbers of data to use in empirical study with Markov chain model. In addition, visual inspection data itself is sometimes subjected to bias and not reliable. These problems will further impose higher uncertainty level in estimation results. Consequently, decision making is somehow diverted with unsuitable options. 
+
+Regarding the application of Poisson process in infrastructure asset management, significant literature review can be referred to paper of \citet{madanatpoisson}. Of that paper, the authors discuss local deterioration of condition states, which follows Poisson process beside its Markov transition properties. For example, numbers of potholes with respect to the same condition state are counted and used for estimation of Poisson parameter. Paper of \citet{Okizukakaito09} introduces the application of Poisson mixture hazard model for potholes management and bridge concrete deck management. The authors employs conventional Poisson model with its mixture $\epsilon$ factor representing the mixing mechanism of various technological group in a set of monitoring data. However, from theoretical viewpoint, the past models focused on matters that are independently from the streamline of Markov chain model. Thanks to stochastic development in recent decades, a powerful type of model called ``Hidden Markov Model (HMM)'' have been introduced to infrastructure management \cite{Kobayashi2009}. With HMM, various approach to solve the problem of hierarchical dependency can be discussed, including the Poisson process and Markov chain.
+
+Hidden Markov hazard model was firstly introduced in the field of infrastructure asset management with paper of \citet{Kobayashi2009}. Of that paper, authors proposed a novel methodology for eliminating measurement errors and for defining true hazard rate of a system with multidimensional condition states. These types of models with underlying hidden Markov chain can be viewed as the current frontier stochastic research in infrastructure asset management. In this approach, the theory of Bayesian inference and Markov Chain Monte Carlo appeals to have high potential. It is likely that the trend to follow hidden Markov process will gain its ground for current and future research on the field of infrastructure asset management.
+
+Poisson hidden Markov model has been studied and employed \citep{paroli2000,Scott00bayesianmethods} in applied statistic, actuarial science, and biotechnology. However, so far, there has been no research on using Poisson hidden Markov model in management and maintenance of infrastructure system. As earlier mentioned, past research focus only either Poisson regression model or Markov chain model. In this research, we combine both two process in one model for predicting Markov transition probability. The novel idea of our research is to propose a new engineering oriented mathematical methodology by taking advantage of conventional Markov hazard model and Poisson model, using the monitoring data of potholes occurences to generate the Markov transition probability.
+%%%%%
+\section{Pothole occurences and deterioration pattern}
+\label{sec3}
+Fig. \ref{fig1} describes the natural deterioration process of pavement sections. As we can see from the figure, after the opening of a new road, condition states $i(i=1,\cdots I)$ get worse throughout operational time horizon, so does with numbers of potholes. In this respect, it is possible to state that number of pothole is more or less conditional dependent on the transition pattern of condition state $i$. Correlation between potholes occurence and transition of pavement distresses has been proved \citep{donglin03}. 
+
+In actual management practices, there are many cases that visual inspections record only pavement distress and convert its values into discrete condition states. However, in the same period, numbers of pothole are missing. In another case, we have a rich numbers of potholes, but not having any information on levels of condition states. In another word, information on the transition of condition states is partially observed or unobserved.
+
+Our study focus on the case that monitoring data of pavement distress is missing. Under that circumstance, simulation with multi-state Markov hazard model is not possible. What in rich quantity of data-set are numbers of potholes, which have been recorded over frequent periods. Given the assumption that occurrence of pothole follows Poisson process, the underlying transition probability, which probabilistically determines the rate of potholes occurrence, is followed with Markov process. The Markov process is thus considered as hidden property of deterioration process. An illustration of the Poisson hidden Markov model is presented in Fig. \ref{fig2}.
+
+In Fig. \ref{fig2}, transition of condition states $h(t_n=i)$ and $h(t_{n+1}=j)$, $(\hspace{2mm}i,j=1,\cdots, I)$ of a road section at respective time $t_n$ and $t_{n+1}$ follow Markov chain process with transition probability $\pi_{ij}$. This transition probability can be estimated by numerical regression analysis given monitoring data. However, within the period $\tau_n=t_{n+1}-t_n$, condition state of a road section is considered as unknown. We can only assume that condition state of that road section should be in between $i$ and $j$ if there has been no M\&R action in the period $\tau_n=t_{n+1}-t_n$. Therefore, information with underlying Markov process in $\tau_n$ is not observable. Instead, we can observe numbers of potholes $g(u_n)=y_{u_n}, (u_n=0, \cdots, T_n-1)$. The occurrence of potholes is considered to follow Poisson process. Following sections describe Markov transition probability $\pi_{ij}$ and Poisson hidden Markov model.
+\begin{figure}
+\begin{center}
+\begin{footnotesize}
+\includegraphics[scale=0.5]{fig2}\\
+\end{footnotesize}
+\end{center}
+\caption{Conditional dependence of Poisson parameters on Markov process.}
+\label{fig2}
+\end{figure}
+
+\section{Model formulation}
+\label{sec4}
+\subsection{Markov transition probability}
+\label{sec41}
+In infrastructure management practices, healthy status or performance of an infrastructure component is described in discrete condition states, which are defined by means of a single performance index or an aggregate index. Values of indexes are measured by monitoring and visual inspection. For example, in the case of the PMS, condition states include the extend of several pavement distress such as rut and cracking, or aggregate condition states, such as the Pavement Condition Index (PCI) \citep{shahin05}.
+
+In the paper of \citet{kobayashitsuda}, the author proposed a profound research methodology to illustrate the deterioration process by means of Markov transition probability among discrete condition states. For convenience of readers, the summary of the mathematical formulation of that paper is given in the Appendix. In our paper, we employ a general mathematical form for Markov transition probability $\pi_{ij}$ from paper of \citet{kobayashitsuda}. 
+
+\begin{eqnarray}
+&& \pi^{ij}(z)=\sum_{k=i}^{j}\prod_{m=i}^{k-1}\frac{\lambda_m}{\lambda_{m}-\lambda_{k}}\prod_{m=k}^{j-1}\frac{\lambda_m}{\lambda_{m+1}-\lambda_{k}}\exp(-\lambda_{k} z),
+\end{eqnarray}
+Where $\lambda$ is hazard rate for respective condition state $i$ and $z$ is time interval between two inspections. Detailed description is given in the Appendix and paper of \citet{kobayashitsuda}. The methodology given in the paper is considered as a backbone and profound research in stochastic modeling and application on the field of infrastructure asset management.
+%%%%%%%%%
+\subsection{Poisson Hidden Markov Process}
+\label{sec42}
+Information regarding condition state of a road section can be determined by evaluating inspection data observed at respective time  $t_n~(n=1,2,\cdots)$. However, as shown in Fig. \ref{fig2}, it is certain that condition state of the road section at time $u_n, (u_n=1,\cdots,T_n-1)$ within the local period $\tau_n$ is unidentified. In another word, condition state $h(t_n+u_n)=l_{u_n}$ is hidden. 
+
+We pay attention on a local period $\tau_n=[t_n,t_{n+1})$, where having the observed information $h(t_n)=i,h(t_{n+1})=j$ at $t_n,t_{n+1}$. Within this period, M\&R has not been carried out. The only observable information is numbers of potholes $g(u_n)=y_{u_n}$ at respective internal time $(u_n=0,\cdots,T_n-1)$. The occurrence of pothole is assumed as a random process with Poisson distribution, in which, arrival rate $\mu(l_{u_n},\bar{z}_{u_n}) > 0 $ is defined in following equation.
+
+\begin{eqnarray}
+&& \mu(l_{u_n},\bar{z}_{u_n})= \mbox{\boldmath$z$}\mbox{\boldmath$\alpha$}^{l_{u_n}}, \label{(18)}
+\end{eqnarray}
+Where, $\mbox{\boldmath$z$}_{u_n}=(z_{1,u_n},\cdots,z_{P,u_n})$ is vector of explanatory variable and  $\mbox{\boldmath$\alpha$}^{l_{u_n}}=(\alpha_1^{l_{u_n}},\cdots,\alpha_{P}^{l_{u_n}})^\prime$ is vector of unknown parameters, which can be written as  $\mbox{\boldmath$\alpha$}=(\mbox{\boldmath$\alpha$}^1,\cdots,\mbox{\boldmath$\alpha$}^{I-1})$. The sign $\prime$ indicates transformation of vector and $P$ shows the number of explanatory variables. It is important to note that the arrival rate $\mu(l_{u_n},\bar{z_{u_n}})$ is averagely defined only in the period $[u_n, u_n+1)$. The condition state $l_{u_n}$ is assumed to be constant in the period $\iota_{u_n}$. This assumption is the crux of our model as it allows  the application of Poisson process in an appropriate way. Reason is due to the fact that Poisson arrival rate depends greatly on the length of observation time. With this assumption, we can describe the conditional probability $\pi_{u_n}(y_{u_n}|l_{u_n},z_{u_n})$ that numbers of potholes $y_{u_n}$ occur in the period $\iota_{u_n}$ as follows:
+%% 
+\begin{eqnarray}
+&& \pi_{u_n}(y_{u_n}|l_{u_n},\bar{z_{u_n}}) =\mbox{Prob}[g(u_n)=y_{u_n}|h(t_n+u_n)=l_{u_n},\bar{z_{u_n}}]=\exp\{-\mu(l_{u_n})\}\frac{\left\{\mu(l_{u_n})\right\}^{y_{u_n}}}{y_{u_n}!},\label{poisson1}
+\end{eqnarray}
+where $y_{u_n}$ is numbers of potholes accumulated till time $u_n$. Equation (\ref{poisson1}) is also satisfied with condition $\sum_{y_n=0}^\infty \pi_n(y_{u_n}|l_{u_n})=1$. In addition, we can defined the conditional state probability $\rho_{u_n}(l_{u_n}|i)$, which represents the event that condition state becomes $l_{u_n}$ at time $u_n$ given $h(t_n) = i$ at $t_n$. 
+\begin{eqnarray}
+&& \rho_{u_n}(l_{u_n}|i)=\mbox{Prob}\{h(t_n+u_n)=l_{u_n}|h(t_n)=i\}= p^{il_{u_n}}(u_n),
+\end{eqnarray}
+We further define the probability $\tilde{\pi}_{u_n}(y_{u_n})$, to which $y_{u_n} $ numbers of potholes appeared in the period $\iota_{u_n}$ as
+%%
+\begin{eqnarray}
+&& \tilde{\pi}_{u_n}(y_{u_n},\bar{z_{u_n}}) = \sum_{l_{u_n}=i}^j \pi_{u_n}(y_{u_n}|l_{u_n},\bar{z_{u_n}}) \rho_{u_n}(l_{u_n}|i).  
+\end{eqnarray}
+Conditional state probability $h(t_n)=i$ is expressed in observed value vector $\bar{\mbox{\boldmath$y$}}_n=(\bar{y}_0,\cdots,\bar{y}_{T_n})$ within the interval $\tau_n$. As a result, probabilistically, we can propose likelihood ${\cal L}(\xi_n,\mbox{\boldmath$\theta$})$ to represent the occurrence of all mentioned events. Vector of observed values is  $\bar{\xi}_n=\{\bar{\mbox{\boldmath$y$}}_n,\bar{z_{u_n}},\bar{i},\bar{j}\}$ and $\mbox{\boldmath$\theta$}=(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$})$ is vector of unknown parameters, which are indicated in equation (\ref{hazard11}) and (\ref{(18)}). The sign $\bar{ }$ denotes the measureable information.
+
+Likelihood function ${\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$})$ will be estimated under the conditions: 1) condition state $h(t_n)=i$ is observed at $t_n$, 2) observed values vector $\bar{\mbox{\boldmath$y$}}_n$, representing numbers of pothole occurrence, are measured in respective time $u_n~(u_n=0,\cdots,T_n-1)$ within duration $[t_n,t_{n+1})$, 3) condition state $h(t_{n+1}=j)$ is observed at $t_{n+1}$. Following equations recurrently describe the likelihood function ${\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$})$:
+%%%
+\begin{manyeqns}
+&& {\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$}) = \pi(\bar{y}_0|i,\bar{z_{0}}) \sum_{l_1=i}^j p_{il_1}\ell_{1}(l_1), \label{mu0}\\
+&& \ell_{u_n}(l_{u_n})= \pi(\bar{y}_{u_n}|l_{u_n},\bar{z_{u_n}})\sum_{l_{u_n+1}=l_{u_n}}^j p_{l_{u_n}l_{u_{n+1}+1}} \ell_{u_n}(l_{u_n+1}), \\
+&& (1\leq u_n \leq T_n-1), \nonumber \\
+&& \ell_{T_{n}-1}(l_{T_n-1})= \pi(\bar{y}_{T_n-1}|l_{T_n-1},\bar{z_{T_n-1}}) p_{l_{T_n-1}j} . \label{mu1}
+\end{manyeqns}
+\section{Estimation Methodology}
+\label{sec5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Monitoring data}
+\label{sec51}
+In general, the entire monitoring data on a road system consists of $K$ numbers of road sections. Healthy status of individual road section $k$ will be inspected frequently to reveal its condition state and number of pothole accumulated. It is assumed that at time $t_n$, condition state $h(t^k_n)$ is detected on road section $k$. If the observed condition state is over the standard limit state for M\&R, an immediate M\&R should be applied to renew its performance. In this respect, we can introduce a new starting point $s_0^k$ right after each $M\&R$ at $(t^k=0,\cdots)$, for each road section $k (k=1,\cdots,K)$. In short, it is understood that M\&R is executed in $t_n^k~(n=1,\cdots,N^k)$, with $N^k$ representing the sequent numbers of inspections. In addition, monitoring data consists also the numbers of potholes appeared in each period $\tau_n^k=[t_n^k,t_{n+1}^k)~(n=0,\cdots,N^k-1)$ at $u_n^k~(u_n^k=0,\cdots,T^k_n-1)$. The observed value vector of potholes is $\bar{\mbox{\boldmath$y$}}_n^k=(\bar{y}_{0},\cdots,\bar{y}_{T_n^k-1})$. Briefly, data vector $\bar{\xi}_n^k=\{\bar{\mbox{\boldmath$y$}}_n^k,\bar{z^k_{u_n}},\bar{h}(t_n^k),\bar{h}(t_{n+1}^k)\}$ is defined in each period $\tau^k_n$ of section $k$. The entire data set can be denoted as $\bar{\Xi}=\{\bar{\xi}_n^k:n=0,\cdots,N^k,k=1,\cdots,K\}$. Likelihood ${\cal L}(\bar{\xi}_n^k,\mbox{\boldmath$\theta$})$, concerning measurable data $\bar{\xi}_n^k$, has been defined in equations (\ref{mu0}) - (\ref{mu1}). Hence, the joint probability (or likelihood), taking account of entire data set $\Xi$, can be ultimately formulated as follows:
+%%%%%%
+\begin{eqnarray}
+&& {\cal L}(\bar{\Xi},\mbox{\boldmath$\theta$}) = \prod_{k=1}^K \prod_{n=1}^{N} {\cal L}(\bar{\xi}_n^k,\mbox{\boldmath$\theta$}). \label{yy}
+\end{eqnarray}
+To this point, it is suffice to say that solving the crux of Poisson hidden Markov model returns in the problem of estimating parameter vector $\hat{\mbox{\boldmath$\theta$}}$ that maximizes the likelihood function in equation (\ref{yy}).
+
+Likelihood function in equations (\ref{mu0}) - (\ref{mu1}) of Poisson hidden Markov model is regarded as a nonlinear polynomial function, with hyper-parameters (high-order parameters). It has been proved that solving a set of likelihood function like (\ref{mu0}) - (\ref{mu1}) on real data by using conventional likelihood maximization method will encounter troublesome, complexity, and costly \cite{robert}. Reasons are due to the fact that, numerical solution with likelihood maximization approach on nonlinear polynomial function has tendency to ends up with local optimal values of parameters and repeated truncates. Efforts in coping with these problems can be referred to the application of Bayesian inference statistic \cite{titter}. In this paper, we propose Bayesian estimation and MCMC method as the best handy approach to obtain optimal values of model's parameters.
+%%%%% 
+\subsection{Complete Likelihood Function}
+\label{sec52}
+As earlier mention, in the period $[t^k_n,t^k_{n+1})$, condition state $\bar{i}_n^k,~\bar{j}_{n+1}^k$ are measurable. The only hidden information is condition state at time $t^k_n+u_n$ (see Fig. \ref{fig2}). To disclose the hidden condition state, we describe it in the form of hidden variable vector $\mbox{\boldmath$m$}_n^k=(m_1^k,\cdots,m_{T_n-1}^k)$, which must satisfy following conditions in the situation that no M\&R has been carried out. 
+%%%%%%
+\begin{eqnarray}
+&& \bar{i}_n^k\leq m_1^k \leq \cdots \leq m_{T_{n}-1}^k \leq \bar{j}_{n+1}^{k} \label{stk0} 
+\end{eqnarray}
+True information on the values of $\mbox{\boldmath$m$}_n^k$ cannot visually measured. However, for the convenience of estimation, we assume it to have a fixed value as $\tilde{\mbox{\boldmath$m$}}_n^k=(\tilde{m}_1^k,\cdots,\tilde{m}_{T_n-1}^k)$. In addition, following dummy variable is introduced to supplement the satisfaction of hidden condition state.
+%%%
+\begin{eqnarray}
+&& \delta_{s_{u_n}}^k=\left\{
+\begin{array}{ll}
+1 & \tilde{m}_{u_n}^k =s_{u_n}^k\\
+0 & \tilde{m}_{u_n}^k \ne s_{u_n}^k
+\end{array}
+\right.\\
+&& (s_{u_n}=\bar{i}_n^k,\cdots,\bar{j}_n^k;u_n=1,\cdots,T_n-1) \nonumber
+\end{eqnarray}
+Suffice it to say that if visual observation disclose $\tilde{\mbox{\boldmath$m$}}_n^k$ as true value, and according to \citet{demp}, we can rewrite likelihood function in (\ref{mu0}) - (\ref{mu1}) as follows:
+%%%%%
+\begin{eqnarray}
+&& \overline{\cal L}_n(\tilde{\mbox{\boldmath$m$}}_n^k,\bar{\xi}_n^k,\mbox{\boldmath$\theta$})
+ = \prod_{u_n=0}^{T_n-1} \sum_{s_{u_n+1}^k=\bar{i}_n^k}^{\bar{j}_n^k} 
+\pi^k(\bar{y}_{u_n}^k|s_{u_n}^k,\bar{z^k_{u_n}})^{\delta_{s_{u_n}}^k} \{p_{s_{u_n}^ks^k_{u_{n+1}}}\}^{\delta^k_{s_{u_{n}}}} 
+\nonumber \\
+&&\hspace{20mm}  = \prod_{u_n=0}^{T_n-1} \pi^k(\bar{y}^k_{u_n}|\tilde{m}^k_{u_n},\bar{z^k_{u_n}}) p_{\tilde{m}_{u_n^k}\tilde{m}_{u^k_{n}+1}} 
+ \label{hyuudo2}
+\end{eqnarray}
+Equation (\ref{hyuudo2}) is considered as complete (or full) conditional posterior distribution \citep{dani-hed}. with a finer explicit form than that in the likelihood equations (\ref{mu0})-(\ref{mu1}). Nevertheless, a difficulty remains at this point is how to assign a realistic value for hidden variable $\mbox{\boldmath$m$}$ since it is unobservable. 
+
+It is noted that condition (\ref{stk0}) is satisfied as long as there is no M\&R in the period $\tau_n$. In view of probability distribution, hidden variable $\mbox{\boldmath$m$}$ can be derived by applying the full conditional posterior distribution in Bayesian inference. In which, the prior probability distribution in Bayesian estimation is assumed as follows: 
+%%%
+\begin{eqnarray}
+&& \mbox{Prob}\{m_{u_n}^k=m|\tilde{\mbox{\boldmath$m$}}_{-u_n}^k\}
+ =\frac{\overline{\cal L}(\tilde{\mbox{\boldmath$m$}}_{-u_n}^{m,k},\tilde{\xi}^k_n,\theta)}{\sum_{m=\tilde{m}_{u_n-1}^k}^{\tilde{m}_{u_n+1}^k} 
+\overline{\cal L}(\tilde{\mbox{\boldmath$m$}}_{-u_n}^{m,k},\tilde{\xi}^k_n,\theta)} =\frac{\pi^k(\bar{y}_{u_n}^k|m,\bar{z^k_{u_n}}) p^k_{m\tilde{m}^k_{u_{n}+1}} }{
+\sum_{m=\tilde{m}^k_{u_n-1}}^{\tilde{m}^k_{u_n+1}} \pi^k(\bar{y}^k_{u_n}|m,\bar{z^k_{u_n}}) p^k_{m\tilde{m}^k_{u_{n}+1}} }\nonumber\\
+&& \hspace{40mm}=\frac{
+\pi^k(\bar{y}_{u_n}^k|m,\bar{z^k_{u_n}}) \omega_{m,t}^k(\tilde{m}_{u_{n}-1}^k,\tilde{m}_{u_{n}+1}^k,\bar{z^k_{u_n}}) }{
+\sum_{m=\tilde{m}_{u_n-1}^k}^{\tilde{m}_{u_n+1}^k} \pi^k(\bar{y}_{u_n}^k|m,\bar{z^k_{u_n}}) \omega_{m,t}^k(\tilde{m}_{u_{n}-1}^k,\tilde{m}_{u_{n}+1}^k,\bar{z^k_{u_n}}) },
+ \label{hhu}
+\end{eqnarray}
+where
+\begin{eqnarray}
+&& \omega_{m,t}^k(\tilde{m}_{u_{n}-1}^k,\tilde{m}_{u_{n}+1}^k) 
+=\left\{
+\begin{array}{ll}
+p^k_{\bar{j}_n^k,m}p^k_{m,\tilde{m}_2^{k}} & u_n=1 \\
+p^k_{\tilde{m}_{u_{n}-1}^k,m} p^k_{m\tilde{m}_{u_{n}+1}^k} & 2\leq u_n \leq T_n-2 \\
+p^k_{\tilde{m}_{T_n-2}^k,m}p^k_{m,\bar{j}_{n}^k} & u_n=T_n-1
+\end{array},
+\right.
+\end{eqnarray}
+and $m^k_{u_n}=m ~(m$ $\in \{\tilde{m}^k_{u_n-1},$$\cdots, \tilde{m}^k_{u_n+1}\})$, $\tilde{\mbox{\boldmath$m$}}_{-u_n}^k=(\tilde{m}^k_1,\cdots,\tilde{m}^k_{u_n-1},\tilde{m}^k_{u_n+1},\cdots,\tilde{m}^k_{T_n})$, and $\tilde{\mbox{\boldmath$m$}}_{-u_n}^{m,k}=(\tilde{m}^k_1, $  $ \cdots,$ $\tilde{m}^k_{u_n-1}, \tilde{m}^k_{u_n} ,\tilde{m}^k_{u_n+1}, \cdots, \tilde{m}^k_{T_n})$.
+
+It is clear at this point that if the posterior probability distribution of hidden variable $m^k_{u_n} \in \{\tilde{m}^k_{u_n-1},\cdots,\tilde{m}^k_{u_n+1}\}$ at time $u^k_n$ is measurable, transition probability $\pi^k(\bar{y}^k_{u_n}|m,\bar{z^k_{u_n}})$ and probability distribution function $p_{mm_{u_{n+1}^k}}$~$(u_n=0,\cdots,T_n-1;n=1,\cdots,N,k=1,\cdots,K)$ can be ultimately estimated. It is also noted that the posterior probability distribution of hidden variable $m^k_{u_n} \in \{\tilde{m}^k_{u_n-1},\cdots,\tilde{m}^k_{u_n+1}\}$ is conditionally depended on the observed value of $\tilde{\mbox{\boldmath$m$}}^k_{-u_n}$. 
+
+To solve the likelihood equation (\ref{hyuudo2}), it is required to estimate the value of hidden variable $\mbox{\boldmath$m$}$. As a result, the main task is to estimate the unknown parameters $\mbox{\boldmath$\alpha$}$ and $\mbox{\boldmath$\beta$}$, which are embedded in the transition probability functions. In fact, there is no possibility to seek for the posterior distribution of all hidden variables. Thus, MCMC simulation is recommended to use in randomly generating the hidden variable $\mbox{\boldmath$m$}$.
+\subsection{Markov Chain Monte Carlo Method}
+\label{sec53}
+In statistics with Bayesian inference, prior and posterior probabilities are employed with aim to estimate the values of model's parameters \citep{wago, jeffgill}. However, in hazard analysis, it is hard to define the prior probability distribution, even in a simple hazard model \citep{Ibrahim2001a}. Methods to overcome the problems in the assumption of the prior probability distribution often require numerical analysis with multi-dimensional integration, and thus remain as a limitation in Bayesian estimation.
+
+In recent years, an appealing solution to the problem in Bayesian estimation has been proposed, with the application of MCMC simulation. The MCMC simulation technique does not require a high level of derivative and multi-dimensional integration of model's objective functions \citep{wago, jeffgill}. As a result, estimation results in a great deal of applied statistic research have been improved through a combination of the Bayesian estimation and MCMC simulation.
+
+In MCMC simulation, Gibbs sampling and Metropolis Hastings (Metropolis-Hastings or MH) techniques have been extensively discussed \citep{wago, jeffgill}. Reference to the research on image restoration is a good example of MCMC simulation \citep{geman84}. Of that study, an algorithm of Gibbs sampling was used to estimate the posterior distribution in Bayesian estimation \citep{gibbs2}. In MH law, the iterative parameter $\mbox{\boldmath$\beta$}$ is defined by repeatedly generating random numbers through  conditional probability density function. In this research, we propose an extended estimation methodology to estimate the parameters of the hidden Markov model based on the literature of Bayesian estimation and MCMC simulation.
+
+%Further to the estimation for model's parameters in hidden Markov models, analytical approach using the method of maximum likelihood has already exhibited its limitation \citep{titter,robert}. Since hidden Markov model is considered as one type of mixture distribution model, a great deal of research suggested to define a set of complete likelihood functions instead of using conventional likelihood functions \citep{die,robe}. In view of MCMC simulation, it is necessary to develop an explicit algorithm for estimating the Markov transition probability with multi-condition states. In this research, we propose an analytical approach using Bayesian estimation and MCMC simulation for estimating the Markov transition probability of the conventional exponential hazard model, which is briefly presented in the Appendix.
+\subsection{Bayesian Estimation}
+\label{sec54}
+In Bayesian estimation for our model, we introduce multidimensional normal distribution as conjugate prior distribution for both parameters. The prior probability density function in $P$ dimension of parameter $\alpha^i=(\alpha^i_1,\cdots,\alpha^i_P)$ is assmued with multidimensional normal distribution  $\mbox{\boldmath$\alpha$}_i\sim{\cal{N}}_P(\mbox{\boldmath$\zeta$}^{i,\alpha},\mbox{\boldmath$\Sigma$}^{i,\alpha})$, which can be expressed as follows:
+ %
+   \begin{eqnarray}
+      && \hspace{-2mm}
+      \phi(\mbox{\boldmath$\alpha$}^i|
+      \mbox{\boldmath$\zeta$}^{i,\alpha},\mbox{\boldmath$\Sigma$}^{i,\alpha})
+      = \frac{1}{(2\pi)^{\frac{P}{2}}\sqrt{|\mbox{\boldmath$\Sigma$}^{i,\alpha}|}}
+      \cdot \exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\alpha$}^i
+      -\mbox{\boldmath$\zeta$}^{i,\alpha})
+      \lbrace\mbox{\boldmath$\Sigma^{i,\alpha}$}\rbrace^{-1}
+      (\mbox{\boldmath$\alpha$}^i-\mbox{\boldmath$\zeta$}^{i,\alpha})^\prime\Big\},
+            \label{Kseiki}
+   \end{eqnarray}
+ %
+where $\mbox{\boldmath$\Sigma$}^{i,\alpha}$ and $\mbox{\boldmath$\zeta$}^{i,\alpha}$ of ${\cal N}_P(\mbox{\boldmath$\zeta$}^{i,\alpha},\mbox{\boldmath$\Sigma$}^{i,\alpha})$  are  covariance matrix and standard covariance of the prior distribution. Similarly, we assume conjugate multidimensional normal distribution $\mbox{\boldmath$\beta$}^i \sim {\cal N}_{Q}(\mbox{\boldmath$\zeta$}^{i,\beta},\mbox{\boldmath$\Sigma$}^{i,\beta})$ for for the prior probability density function in $Q$ dimension:
+%
+   \begin{eqnarray}
+      && \hspace{-2mm}
+      \psi(\mbox{\boldmath$\beta$}^i|
+      \mbox{\boldmath$\zeta$}^{i,\beta},\mbox{\boldmath$\Sigma$}^{i,\beta})
+      = \frac{1}{(2\pi)^{\frac{Q}{2}}\sqrt{|\mbox{\boldmath$\Sigma$}^{i,\beta}|}}
+      \cdot \exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\beta$}^i
+      -\mbox{\boldmath$\zeta$}^{i,\beta})
+      \mbox{\boldmath$\Sigma^{i,\beta}$}^{-1}
+      (\mbox{\boldmath$\beta$}^i-\mbox{\boldmath$\zeta$}^{i,\beta})^\prime\Big\},
+            \label{Kseiki1}
+   \end{eqnarray}
+ %
+ %
+where $\mbox{\boldmath$\Sigma$}^{i,\beta}$ and $\mbox{\boldmath$\zeta$}^{i,\beta}$ of ${\cal N}_{M^*}(\mbox{\boldmath$\zeta$}_i,\mbox{\boldmath$\Sigma$}_i)$  are covariance matrix and standard covariance of the prior distribution. As a result, a proportional result of the probability density function $\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$\bar{m}$},\mbox{\boldmath$\bar{\xi}$})$ can be formulated instead of expressing solely in likelihood form.
+
+%
+\begin{eqnarray}
+      && \rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\tilde{\mbox{\boldmath$m$}},\bar{\mbox{\boldmath$\xi$}}) 
+      \propto {\cal L}(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$},\tilde{\mbox{\boldmath$m$}},\bar{\mbox{\boldmath$\xi$}})\prod_{i=1}^{I-1}\Bigl\{\phi(\mbox{\boldmath$\alpha$}^i|\mbox{\boldmath$\zeta$}^{i,\alpha},\mbox{\boldmath$\Sigma$}^{i,\alpha}) 
+\psi(\mbox{\boldmath$\beta$}^i|\mbox{\boldmath$\zeta$}^{i,\beta},\mbox{\boldmath$\Sigma$}^{i,\beta})\Bigl\}
+      \nonumber \\
+      && \propto \prod_{k=1}^K \prod_{n=1}^{N} \prod_{u_n=0}^{T_n-1} \left[
+            \exp\left(- \mbox{\boldmath$z$}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^k} \right)\left(
+      \mbox{\boldmath$z$}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^k}\right)^{\bar{y}_{u_n}^k} \right.
+       \left. \sum_{l=\tilde{m}_{n}^k}^{\tilde{m}_{n+1}^k} \Bigl\{ \prod_{i=\tilde{m}_{n}^k,\neq l}^{l-1}\frac{\lambda_i^k}{\lambda_{i}^k-\lambda_{l}^k} \exp (-\lambda_{l}^k)\Bigr\} \right] \nonumber \\
+      && \prod_{i=1}^{I-1}
+      \exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\alpha$}^i
+      -\mbox{\boldmath$\zeta$}^{i,\alpha})
+      \{\mbox{\boldmath$\Sigma$}^{i,\alpha}\}^{-1}
+      (\mbox{\boldmath$\alpha$}^{i}-\mbox{\boldmath$\zeta$}^{i,\alpha})^\prime 
+       -\frac{1}{2}
+      (\mbox{\boldmath$\beta$}^{i}-\mbox{\boldmath$\zeta$}^{i,\beta})
+      \{\mbox{\boldmath$\Sigma$}^{i,\beta}\}^{-1}
+      (\mbox{\boldmath$\beta$}^{i}-\mbox{\boldmath$\zeta$}^{i,\beta})^\prime\Big\}. \label{post1}
+   \end{eqnarray}
+ %
+ %
+ %
+\subsection{Gibbs sampling}
+\label{sec55}
+As the matter of fact, a direct estimation for the probability density function $\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$\xi$})$ in hidden Markov deterioration hazard model is impracticable. By using the MCMC simulation, specimens of parameters $\mbox{\boldmath$\alpha$}$ and $\mbox{\boldmath$\beta$}$ can be alternately extracted from the probability density function \citep{geman84}. In equation (\ref{post1}), the parameters $\mbox{\boldmath$\alpha$}$ and $\mbox{\boldmath$\beta$}$ can be mutually used to express the probability density function. Approximation of $\rho(\mbox{\boldmath$\alpha$}|\mbox{\boldmath$m$}, \mbox{\boldmath$\xi$})$ and $ \rho(\mbox{\boldmath$\beta$}|\mbox{\boldmath$m$},\mbox{\boldmath$\xi$})$ can be further described as follows:
+%%%%%%%%%%
+\begin{manyeqns}
+&& \rho(\mbox{\boldmath$\alpha$}|\tilde{\mbox{\boldmath$m$}},\bar{\mbox{\boldmath$\xi$}}) \propto \prod_{k=1}^K \prod_{n=1}^{N} \prod_{u_n=0}^{T_n-1} \left[
+            \exp\left(- \mbox{\boldmath$z$}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^k} \right)\left(
+      \mbox{\boldmath$z$}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^k}\right)^{\bar{y}_{u_n}^k} \prod_{i=1}^{I-1} \right.
+            \exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\alpha$}^i
+      -\mbox{\boldmath$\zeta$}^{i,\alpha})
+      \{\mbox{\boldmath$\Sigma$}^{i,\alpha}\}^{-1}
+      (\mbox{\boldmath$\alpha$}^{i}-\mbox{\boldmath$\zeta$}^{i,\alpha})^\prime \Big\}, \label{k1}\\
+&& \rho(\mbox{\boldmath$\beta$}|\tilde{\mbox{\boldmath$m$}},\bar{\mbox{\boldmath$\xi$}}) \propto 
+ \prod_{k=1}^K \prod_{n=1}^{N} \prod_{u_n=0}^{T_n-1} \sum_{l=\tilde{m}_{n}^k}^{\tilde{m}_{n+1}^k} \Bigl\{ \prod_{i=\tilde{m}_{n}^k,\neq l}^{l-1}\frac{\lambda_i^k}{\lambda_{i}^k-\lambda_{l}^k} \exp (-\lambda_{l}^k)\Bigr\} \prod_{i=1}^{I-1}
+            \exp\Big\{-\frac{1}{2}
+      (\mbox{\boldmath$\beta$}^{i}-\mbox{\boldmath$\zeta$}^{i,\beta})
+      \{\mbox{\boldmath$\Sigma$}^{i,\beta}\}^{-1}
+      (\mbox{\boldmath$\beta$}^{i}-\mbox{\boldmath$\zeta$}^{i,\beta})^\prime\Big\}. \label{k2}
+\end{manyeqns}
+A detailed procedure of the analytical approach using  Bayesian estimation and MCMC simulation is given in following steps.
+%%%%%%%%%%%%
+\subsubsection{Step 1: Initial parameter values} \label{sec551}
+Parameter vectors $\mbox{\boldmath$\zeta$}^{i,r}$ $\mbox{\boldmath$\Sigma$}^{i,r}$, $(i=1,\cdots,I-1; r = \alpha,\beta)$ of the prior probability distribution in equations (\ref{Kseiki}) and (\ref{Kseiki1}) have an arbitrarily set of values. Value of hidden variable $\mbox{\boldmath$\tilde{m}$}^{(0)}=(\mbox{\boldmath$\tilde{m}$}_n^{(k,0)},k=1,\cdots,K; n=1,\cdots,N)$ is initially chosen so as to satisfying $\mbox{\boldmath$\tilde{m}$}^{(k,0)}=(\tilde{m}_1^{k,0},\cdots,\tilde{m}_{T_n-1}^{k,0})$, $1\leq \tilde{m}_1^{k,0}\leq \cdots \leq \tilde{m}_{T_n-1}^{k,0}\leq I$, and $\tilde{m}_{u_n}^k\leq \tilde{m}_{u_n}^{k,0}~(u_n=1,\cdots,T_n-1;k=1,\cdots,K)$. Influence of initial values $\mbox{\boldmath$\alpha$}^{(0)}$ and $\mbox{\boldmath$\beta$}^{(0)}$ gradually becomes weaker as more information generated by MCMC simulation is accumulated. To begin with the iteration, a sampling number $v$ in MCMC simulation is assigned as $v=1$.
+
+\subsubsection{Step 2: Sampling parameter $\mbox{\boldmath$\alpha$}^{(v)}$} \label{sec552}
+This section describes an algorithm for estimating unknown parameter $\mbox{\boldmath$\alpha$}$ of the Poisson distribution. Additional notation of the unknown parameter is $\mbox{\boldmath$\alpha$}^(v)=(\alpha^{1(v)},\cdots,\alpha^{I-1(v)})$. Thus, for respective condition state $i$, we can express expected sampling vector as $\mbox{\boldmath$\alpha$}^{i(v)}=(\alpha^{i(v)}_z: z=1,\cdots,P)$. Given the proportional result in equation (\ref{k1}), with obtained hidden variable $\tilde{m}^{(v-1)}$ and measurable data $\bar{\xi}$, we can generate new value of $\alpha$ based on conditional probability density $ \rho(\mbox{\boldmath$\alpha$}^{(v)}|\tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}})$
+
+\begin{eqnarray}
+&& \hat{\rho}(\mbox{\boldmath$\alpha$}^{i(v)}|\tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}}) \propto \prod_{k=1}^K \prod_{n=1}^{N} \prod_{u_n=0}^{T_n} 
+ \left\{ \exp\left(- \mbox{\boldmath$z$}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^{k(v-1)}(v)} \right)\left(
+      \mbox{\boldmath$z$}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^{k(v-1)}(v)}\right)^{\bar{y}_{u_n}^k}\right\}^{\delta_{i}^{u_nk}}
+\nonumber \\
+&& \prod_{i=1}^{I-1}\exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\alpha$}^{i(v)}
+      -\mbox{\boldmath$\zeta$}^{i,\alpha})
+      \{\mbox{\boldmath$\Sigma$}^{i,\alpha}\}^{-1}
+      (\mbox{\boldmath$\alpha$}^{i(v)}-\mbox{\boldmath$\zeta$}^{i,\alpha})^\prime \Big\}, \label{dir}
+\end{eqnarray}
+where dummy variable $\delta_{i}^{u_nk}$ satisfies 
+\begin{eqnarray}
+&& \delta_{i}^{u_nk}=\left\{
+\begin{array}{ll}
+1 & \hspace{2mm} when \hspace{2mm}\tilde{m}_{u_n}^k=i\\
+0 & \hspace{2mm} otherwise
+\end{array}.\right.
+\end{eqnarray}
+Equation (\ref{dir}) can be written in following way to further expressed the way to update each of parameter $\alpha_{p}^i$. 
+ \begin{eqnarray}
+      && \hat{\rho}(\alpha_{p}^i|\mbox{\boldmath$\alpha$}_{-p}^i,\tilde{\mbox{\boldmath$m$}}^{(v-1)},
+      \bar{\mbox{\boldmath$\xi$}}) \propto 
+\prod_{k=1}^K \prod_{n=1}^{N} \prod_{u_n=0}^{T_n} 
+  \left\{\exp \left(- z_{p,u_n}^k \alpha_p^{\tilde{m}_{u_n}^{k(v-1)}(v)} \right)
+\left(\mbox{\boldmath$z$}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^{k(v-1)}(v)}\right)^{\bar{y}_{u_n}^k}\right\}^{\delta_{i}^{u_nk}} 
+ \exp\Big\{-\frac{\sigma_{pp}^i}{2}(\alpha_{p}^i-\hat{\zeta}_{p}^i)^2 \Big\} \nonumber \\
+&& \hspace{10mm}
+      \hat{\zeta}_{p}^i
+      = \zeta_{p}^i+\sum_{h=1,\neq p}^{P}(\alpha_{h}^h-\zeta_h^{i})\sigma_{hp}^i
+       \label{condition1}
+      \end{eqnarray}
+
+$\zeta_{p}^i$ and $\sigma_{hp}^{i}$ are the prior expected values of vector $\mbox{\boldmath$\zeta$}_i$ and prior standard covariance of the entire procession $\mbox{\boldmath$\Sigma_i$}^{-1}$ with respect to condition states $p$ and $(h,p)$. In addition, $\sum_{h=1,\neq p}^{P}$ is the summation $\sum_{h=1,\neq p}^{P}$, excluding the index $p$. Expected value is generated by using the conditional probability density functions. By using generated condition states, we can come up with the posterior distribution of parameter $\mbox{\boldmath$\alpha$}$. A detailed MCMC simulation for estimating the posterior distribution is further presented in the subsequent writings. However, to this point, a summation of the random sampling procedure for parameter $\mbox{\boldmath$\alpha$}^{(v)}=(\alpha_{1}^{1(v)},\cdots,\alpha_{P}^{I-1(v)})$ is presented as follows:
+\begin{itemize}
+\item {Step 2.1 - value of parameter $\alpha_{1}^{1(v)}$ is randomly generated from 
+$\hat{\rho}(\alpha_{1}^{1(v)}|\mbox{\boldmath$\alpha$}_{-1}^{1(v-1)},\mbox{\boldmath$\tilde{m}$}^{(v-1)},\mbox{\boldmath$\bar{\xi}$})$}.
+%%%
+\item{Step 2.2 - value of parameter $\alpha_{2}^{1(v)}$ is randomly generated from $\hat{\rho}(\alpha_{2}^{1(v)}|\mbox{\boldmath$\alpha$}_{-2}^{1(v-1)},\mbox{\boldmath$\tilde{m}$}^{(v-1)},\mbox{\boldmath$\bar{\xi}$})$}.
+%%%
+\item{Step 2.3 - similar procedure in step 2.1 and step 2.2 is repeated.}
+%%
+\item{Step 2.4 - value of parameter $\alpha_{P}^{I-1(v)}$ is randomly generated from $\hat{\rho}(\alpha_{P}^{I-1(v)}|\mbox{\boldmath$\alpha$}_{-P}^{I-1(v-1)},\mbox{\boldmath$\tilde{m}$}^{(v-1)},\mbox{\boldmath$\bar{\xi}$})$}.
+\end{itemize}
+%Gibbs sampling is applied to generate condition states from $(I-1)P$ conditional posterior probability density functions. The so-called ``adaptive sampling rejection'' \citep{gilks} is used as a technique to generate the specimens of parameter in the posterior distribution. %, which is explained in equation (\ref{condition1}).
+
+\subsubsection{Step 3: Sampling parameter $\mbox{\boldmath$\beta$}^{(v)}$} \label{sec553}
+Sampling for parameter $\mbox{\boldmath$\beta$}^{(v)}$ follows similar steps like in sub-section \ref{sec552}. Here, we briefly define the density function using in numerical sampling process for parameter $\beta^{(v)}$. With respect to Bayesian estimation approach and according to equation (\ref{k2}) , parameter $\beta_{eq}$ $(e,q)~(e,q=1,\cdots,Q)$ can be generated by means of $\mbox{\boldmath$\beta$}_{-eq}$, the hidden condition state $\mbox{\boldmath$\tilde{m}$}$, and the data set $\mbox{\boldmath$\bar{\xi}$})$. Following density function is employed in generation process.
+
+\begin{eqnarray}
+      && \hat{\rho}(\beta_{q}^e|\mbox{\boldmath$\beta$}_{-q}^e,\tilde{\mbox{\boldmath$m$}}^{(v-1)},
+      \bar{\mbox{\boldmath$\xi$}}) 
+      \propto
+\prod_{i=1}^{i} \prod_{j=i}^I \prod_{k=1}^K  \prod_{u_n=1}^{T_n-1} \Bigl[ \prod_{l=i}^{j-1} \{\exp(\beta_{q}^i x_q^k)\}^{\delta_{ij}^{u_nk}-\delta_{ie}^{u_nk}}  \nonumber \\
+     && \hspace{2mm} \sum_{h=i}^{j} \prod_{l=i,\neq h}^{h-1}\frac{1}{\lambda_{l}^k-\lambda_{h}^k} \exp (-\lambda_{h}^k)\Bigl]^{\delta_{ij}^{tk}}
+ \exp\Big\{-\frac{\sigma_{qq}^e}{2}(\beta_{q}^e-\hat{\zeta}_{q}^e)^2 \Big\}, \nonumber \\
+&& \hspace{10mm}
+      \hat{\zeta}_{q}^e
+      = \zeta_{q}^e+\sum_{h=1,\neq q}^{Q}(\beta_{h}^e-\zeta_h^{e})\sigma_{hq}^e,
+       \label{condition2}
+      \end{eqnarray}
+where, dummy variables ,$\delta_{ie}^{u_nk}$ and $\delta_{ij}^{u_nk}$ satisfy following conditions:
+\begin{eqnarray}
+&& \delta_{ie}^{u_nk}=\left\{
+\begin{array}{ll}
+1 & \hspace{2mm} when \hspace{2mm}\tilde{m}_{u_n}^k=i=e\\
+0 & \hspace{2mm} otherwise
+\end{array},
+\right. \nonumber \\
+&& \delta_{ij}^{u_nk}=\left\{
+\begin{array}{ll}
+1 & \hspace{2mm} when \hspace{2mm}\tilde{m}_{u_n}^k=i,~\tilde{m}_{u_n+1}^k=j\\
+0 & \hspace{2mm} otherwise
+\end{array}.
+\right. \nonumber
+\end{eqnarray}
+$\zeta_{q}^e$ and $\sigma_{hq}^{e}$ are the prior expected values of vector $\mbox{\boldmath$\zeta$}_e$ and prior standard covariance of the entire procession $\mbox{\boldmath$\Sigma_e$}^{-1}$ with respect to condition states $p$ and $(h,p)$. In addition, $\sum_{h=1,\neq q}^{Q}$ is the summation $\sum_{h=1,\neq q}^{Q}$, excluding the index $q$.
+\subsubsection{Step 4: Updating hidden variable}  \label{sec554}
+Given the prior value of hidden variable $\mbox{\boldmath$\tilde{m}$}_{-u_n}^{k,(v-1)}=(\tilde{m}_1^{k,v},\cdots,\tilde{m}_{u_n-1}^{k,v},\tilde{m}_{u_n+1}^{k,(v-1)},\cdots,\tilde{m}_{T^k-1}^{k,(v-1)})$, a new hidden variable $\mbox{\boldmath$m$}^{(v)}$ is randomly selected based on the conditional probability law in equation (\ref{hhu}). Random generation applies for all condition states $m_{u_n}^{k,(v)} ~(m_{u_n}^{k,(v)} \in \{\tilde{m}_{u_n-1}^{k,(v)},\cdots, \tilde{m}_{u_n+1}^{k,(v-1)}\})$. 
+
+\begin{eqnarray}
+&& \hspace{-1mm}\mbox{Prob}\{m_{u_n}^{k(v)}=m|\mbox{\boldmath$\alpha$}^{(v)},\tilde{\mbox{\boldmath$m$}}_{-u_n}^{k(v-1)},
+\bar{\mbox{\boldmath$\xi$}}\} =\frac{
+\pi^k(\bar{y}_{u_n}^{k(v)}|m,\bar{z}_{u_n}^k) \omega_{m,u_n}^k(\tilde{m}_{u_{n}-1}^{k(v)},\tilde{m}_{u_{n}+1}^{k(v-1)}) }{
+\sum_{m=\tilde{m}_{u_n-1}^{k(v)}}^{\tilde{m}_{u_n+1}^{k(v-1)}} \pi^k(\bar{y}_{u_n}^{k(v)}|m,\bar{z}_{u_n}^k) \omega_{m,u_n}^k(\tilde{m}_{u_{n}-1}^{k(v)},\tilde{m}_{u_{n}+1}^{k(v-1)}) }  \label{hhu1}
+\end{eqnarray}
+where, 
+\begin{eqnarray}
+&& \omega_{m,u_n}^k(\tilde{m}_{u_{n}-1}^{k(v)},\tilde{m}_{u_{n}+1}^{k(v-1)}) \nonumber \\
+&& =\left\{
+\begin{array}{ll}
+p^k_{\bar{j}_n^k,m}p^k_{m,\tilde{m}_2^{k(v-1)}} & u_n=1 \\
+p^k_{\tilde{m}_{u_{n}-1}^{k(v),m}} p^k_{m,\tilde{m}_{u_{n}+1}^{k(v-1)} }& 2\leq u_n \leq T_n-2 \\
+p^k_{\tilde{m}_{T_n-2}^{k(v)},m}p^k_{m,\bar{j}_{n}^k} & u_n=T_n-1
+\end{array}
+\right.
+\end{eqnarray}
+
+%\begin{eqnarray}
+%&& \mbox{Prob}\{m_{u_n}^{k(v)}=m|\mbox{\boldmath$\alpha$}^{(v)},\tilde{\mbox{\boldmath$m$}}_{-u_n}^{k(v-1)},
+%\bar{\mbox{\boldmath$\xi$}}\}  =\left\{
+%\begin{array}{l}
+%\frac{
+%\pi^k(\bar{y}_{1}^k|m) p^k_{m\tilde{m}_{2}^{k(v-1)}} }{
+%\sum_{m=\bar{i}_n^k}^{\tilde{m}_{2}^{k(v-1)}} \pi^k(\bar{y}_{1}^k|m) p^k_{m\tilde{m}_{2}^{k(v-1)}} } \\
+%   \hspace{2mm}when \hspace{2mm}(u_n=1) \\
+%\frac{
+%\pi^k(\bar{y}_{u_n}^k|m) p^k_{m\tilde{m}_{u_{n}+1}^{k(v-1)}} }{
+%\sum_{m=\tilde{m}_{u_n-1}^{k(v)}}^{\tilde{m}_{u_n+1}} \pi^k(\bar{y}_{u_n}^k|m) p^k_{m\tilde{m}_{u_{n}+1}^{k(v-1)}} } \\
+%    \hspace{2mm}when \hspace{2mm}(1\leq u_n <T_n-1) \\
+%\frac{
+%\pi^k(\bar{y}_{T_n-1}^k|m) p^k_{m\bar{j}_n^t} }{
+%\sum_{m=\tilde{m}_{T_n-1}^{k(v)}}^{\bar{j}_n^k} \pi^k(\bar{y}_{T_n-1}^k|m) p^k_{m\bar{j}_n^k} } \\
+%    \hspace{2mm}when\hspace{2mm} (u_n=T_n-1) 
+%\end{array}.
+%\right.\label{k33}
+%\end{eqnarray}
+Hidden variable $m_{u_n}^{k,(v)}~(u_n=1,\cdots,T^n-1)$ is estimated one after the other,  starting from $u_n=1$ for all number of sample $k~(k=1,\cdots,K)$.
+\subsubsection{Step 5: Determining algorithm adjustment} \label{sec555}
+After step \ref{sec554}, values of parameters $\mbox{\boldmath$\alpha$}^{(v)}$, $\mbox{\boldmath$\beta$}^{(v)}$, and hidden variable $\mbox{\boldmath$\tilde{m}$}^{(v)}$ are recorded. At the next iteration $v=v+1$, the program returns to step \ref{sec552}. If the algorithm satisfies $v\leq \overline{v}$, the program stops. 
+
+A major concern is the number of condition state $v$ generated by the program. The number should be carefully examined. In several cases, steady condition states might not be reached even though a large number of condition states have been accumulated. It is therefore desirable to eliminate the problem by introducing a minimum set of parameter value as $\underline{v}$. In fact, values of parameters $\mbox{\boldmath$\alpha$}^{(v)}$ and $\mbox{\boldmath$\beta$}^{(v)}~(v=\underline{v}+1,\underline{v}+2,\cdots,\overline{v})$ are embedded in the posterior probability density function $\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$\xi$})$ through the Gibbs sampling. As a result, estimation for the posterior distribution of parameters $\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}$ becomes analytical feasible. To verify the estimation results, we apply Geweke statistical test.  
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Posterior distribution statistics} \label{sec56}
+Statistical testing for parameter $\mbox{\boldmath$\alpha$}$ and $\mbox{\boldmath$\beta$}$ can be carried out based on samples generated by using MCMC simulation. However, in the simulation, probability density function $\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\mbox{\boldmath$\xi$})$ cannot  be considered as an analytical function. Therefore, instead of using the full parametric approach for statistical testing, non-parametric approach is recommended. From the Gibbs sampling, samples concerning $\mbox{\boldmath$\theta$}^{(v)}=(\mbox{\boldmath$\alpha$}^{(v)},\mbox{\boldmath$\beta$}^{(v)})~(v=1,\cdots,\overline{v})$ are generated. In this section, only evaluation of statistical inference for parameter $\alpha$ is presented. Regarding the statistical inference for parameter $\beta$, a similar approach is applied.
+
+Among generated samples, the first $\underline{v}$ samples are removed. A new set of samples is then defined as a replacement, with its subscriptions as ${\cal M}=\{\underline{v}+1,\cdots,\overline{v})$. By applying this approach, a joint probability distribution function $G(\mbox{\boldmath$\alpha$})$ can be defined: 
+ %
+  \begin{eqnarray}
+ && G(\mbox{\boldmath$\alpha$})
+      =\frac{\mbox{\#}(\mbox{\boldmath$\alpha$}^{(n)}
+      \leq \mbox{\boldmath$\alpha$}, n\in {\cal M})}
+      {\overline{n}-\underline{v}},
+   \end{eqnarray}
+ %
+ %
+where $\mbox{\#}(\mbox{\boldmath$\alpha$}^{(v)} \leq \mbox{\boldmath$\alpha$}, v\in {\cal M})$ is regarded as total number of samples, from which logical expression $\mbox{\boldmath$\alpha$}^{(v)} \leq \mbox{\boldmath$\alpha$}, v\in {\cal M}$ is satisfied. Moreover, expected values  $\tilde{\mbox{\boldmath$\zeta$}^i}(\mbox{\boldmath$\alpha$}^i)$ and standard covariance $\tilde{\mbox{\boldmath$\Sigma$}^i}(\mbox{\boldmath$\alpha$}^i)$ of the posterior distribution of unknown parameter $\mbox{\boldmath$\alpha$}$ are defined respectively as follows:
+%
+   \begin{eqnarray}
+      && \hspace{-7mm}
+      \tilde{\mbox{\boldmath$\zeta$}_i}(\mbox{\boldmath$\alpha$}^i)=
+      (\tilde{\zeta}(\alpha^i_1),\cdots,\tilde{\zeta}
+      (\alpha^i_P))^\prime =\Big(\sum_{v=\underline{v}+1}^{\overline{v}}
+      \frac{\alpha_1^{i(v)}}{\overline{v}-\underline{v}},
+      \cdots, \sum_{v=\underline{v}+1}^{\overline{v}}
+      \frac{\alpha_P^{i(v)}}{\overline{v}-\underline{v}}\Big)^\prime,
+      \label{mu3} \\
+ %
+      && \hspace{-7mm}
+      \tilde{\mbox{\boldmath$\Sigma$}^i}(\mbox{\boldmath$\alpha$}^i)=
+      \left(
+      \begin{array}{lll}
+         \tilde{\sigma}^2(\alpha^i_1) & \cdots
+            & \tilde{\sigma}(\alpha^i_1\alpha^i_P) \\
+         \vdots & \ddots & \vdots \\
+         \tilde{\sigma}(\alpha^i_P\alpha^i_1) & \cdots
+            & \tilde{\sigma}^2(\alpha^i_P) \\
+      \end{array}
+      \right),
+      \label{mu4}
+   \end{eqnarray}
+ %
+ %
+where
+%
+ %
+   \begin{eqnarray}
+      && \hspace{-3mm} \tilde{\sigma}^2(\alpha^i_z)=
+      \sum_{v=\underline{v}+1}^{\overline{v}}
+      \frac{\{\alpha_z^{i(v)}-\tilde{\zeta}(\alpha^i_z)\}^2}
+      {\overline{v}-\underline{v}}, \\
+      && \hspace{-3mm} \tilde{\sigma}(\alpha^i_z\alpha^i_r) 
+       =\sum_{v=\underline{v}+1}^{\overline{v}}
+      \frac{\{\alpha_z^{i(v)}-\tilde{\zeta}(\alpha^i_z)\}
+      \{\alpha_r^{i(v)}-\tilde{\zeta}(\alpha^i_r)\}}{\overline{v}-\underline{v}}.
+      \nonumber 
+    \end{eqnarray}
+ %
+ %
+The credible interval of parameter $\mbox{\boldmath$\alpha$}$ and $\mbox{\boldmath$\beta$}$ are examined and determined by using samples generated from Gibbs sampling. For example, the $100(1-2\varepsilon)\%$ credible interval of parameter $\mbox{\boldmath$\alpha$}$ is defined by using statistical sampling order  $(\underline{\alpha}^{i\varepsilon}_z,\overline{\alpha}^{i\varepsilon}_z)~(i=1,\cdots,I-1,\quad z=1,\cdots,P)$ with $\underline{\alpha}^{i\varepsilon}_z< \alpha^i_z <\overline{\alpha}^{i\varepsilon}_z$:
+%%%
+ \begin{eqnarray}
+      && \hspace{-8mm} \underline{\alpha}^{i\varepsilon}_z
+      =\arg \max_{\alpha_z^i\ast} 
+       \left\{ \frac{\#(\alpha_z^{i(v)} \leq \alpha_z^i\ast,v
+      \in {\cal M})}
+      {\overline{v}-\underline{v}}\leq \varepsilon \right\}, \label{sin1} \\
+ %
+      && \hspace{-8mm} \overline{\alpha}^{i\varepsilon}_z
+      =\arg \min_{\alpha_z^{i\ast\ast}} 
+      \left\{ \frac{\#(\alpha_m^{i(v)} \geq
+      \alpha_m^{i\ast\ast},v\in {\cal M})}
+      {\overline{v}-\underline{v}}\leq \varepsilon \right\}. \label{sin2}
+   \end{eqnarray}
+ %
+ %
+It is noted that initial value of parameter $\mbox{\boldmath$\theta$}^{(0)}$ does not guarantee for true condition states neither for prior distribution and posterior distribution in MCMC simulation. Thus, it is necessary to consider $\overline{v}$ samples generated by Gibbs sampling as the posterior distribution of the first $\underline{v}$ set $\mbox{\boldmath$\theta$}^{(v)}=(\mbox{\boldmath$\alpha$}^{(v)},\mbox{\boldmath$\beta$}^{(v)})~(v=1,\cdots,\underline{v})$. When the number of samples increases to be $\underline{v}+1$, a hypothetical test using Geweke statistical test is performed to verify whether the samples coming from the prior or the posterior distribution \citep{geweke}. In the next step, sampling distribution $\mbox{\boldmath$\theta$}^{(v)}~(v=1,\cdots,\overline{v})$ is divided into two subsets $v_1$ and $v_2$. In Geweke statistical test, ranges of two subsets are recommended as $v_1=0.1(\overline{v}-\underline{v})$ and $v_2=0.5(\overline{v}-\underline{v})$ respectively \citep{geweke}. According to \citet{chib1,newe1}, Geweke statistical test used to verify values of parameter $\alpha$ can be outlined as follows:
+\begin{eqnarray}
+&& Z_{\alpha_z^i}=\frac{{}_1\bar{\alpha}_z^i-{}_2\bar{\alpha}_z^i}{\sqrt{\nu_1^2(\alpha_z^i)+\nu_2^2(\alpha_z^i)}}\sim  {\cal N}(0,1),\label{loo} \\
+&& {}_1\bar{\alpha}_z^i = \frac{\sum_{v=\underline{v}+1}^{\underline{v}+v_1} \alpha_z^{i,v}}{v_1}, \quad {}_2\bar{\alpha}_z^i=\frac{\sum_{v=\overline{v}-v_2+1}^{\overline{v}} \alpha_z^{i,v}}{v_2}, \quad
+ \nu_1^2(\alpha_z^i)=\frac{2\pi \hat{f}_{\alpha_z^i}^1(0)}{v_1}, \quad \nu_2^2(\alpha_z^i)=\frac{2\pi \hat{f}_{\alpha_z^i}^2(0)}{v_2}, \nonumber
+\end{eqnarray}
+where ${f} _ {\alpha_z^i} ^l(x) ~ (l=1,2) $ is the probability density function and the value of $2\pi{f} _ {\alpha_z^i} ^l(0) $ is estimated from following equations:
+\begin{eqnarray}
+&&2\pi \hat{f}_{\alpha_z^i}^l(0)={}_l\hat{\omega}_0+2\sum_{s=1}^q w(s,q){}_l\hat{\omega}_z^i , \\
+&& {}_1\hat{\omega}_0=v_1^{-1}\sum_{g=\underline{v}+1}^{\underline{v}+v_1}(\alpha_z^{i,g}-{}_1\bar{\alpha}_z^i)^2, \quad
+ {}_2\hat{\omega}_0=v_2^{-1}\sum_{g=\overline{v}-v_2+1}^{\overline{v}}(\alpha_z^{i,g}-{}_2\bar{\alpha}_z^i)^2,\nonumber \\
+&& {}_1\hat{\omega}_z^i=v_1^{-1}\sum_{g=\underline{v}+s+1}^{\underline{v}+v_1}(\alpha_z^{i,g}-{}_1\bar{\alpha}_z^i)(\alpha_z^{i,(g-s)}-{}_1\bar{\alpha}_z^i), \quad
+{}_2\hat{\omega}_z^i=v_2^{-1}\sum_{g=\overline{v}-v_2+s+1}^{\overline{v}}(\alpha_z^{i,g}-{}_2\bar{\alpha}_z^i)(\alpha_z^{i,(g-s)}-{}_2\bar{\alpha}_z^i), \nonumber \\
+&& w(s,q)=1-\frac{s}{q+1}. \nonumber
+\end{eqnarray}
+Values of coefficient $q$, which represents for the approximate value of spectrum density, should equals to $20$ as recommended in the practice of Geweke statistical test \citep{geweke}. 
+
+In this test, the null hypothesis $H_0$ and the alternative hypothesis $\alpha_z^i$ concerning the invariance distribution of the setting-values for parameter $\alpha_z^i$ can be defined as
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+H_0: |Z_{\alpha_z^i}|\leq z_{\psi/2} \\
+H_1: |Z_{\alpha_z^i}|>z_{\psi/2}
+\end{array},
+\right.
+\end{eqnarray}
+where $z_{\psi/2}$ is the critical value to be applied for rejecting the null hypothesis. If the given hypothesis is accepted, the null hypothesis can be defined by a significant level $\psi\%$, to which the condition $z_{\psi/2}$ $\psi/2\%=1-\Phi(z_{\psi/2})$ is satisfied. $\Phi(Z)$ is the distribution function of the standard normal distribution. 
+%%%%%%%%%%%%
+\section{Empirical study}
+\label{sec6}
+\subsection{Outline of Empirical Study}
+\label{sec61}
+We conduct an empirical study using a set of monitoring data on potholes in Japanese national road system (route number 9 in Kansai region). Data was recorded during the three years period from 2007 to 2009. However, the actual numbers of correponding months are 21 months since the starting month in 2007 was in June, and the ending month of monitoring period was Febuary in 2009 (refer to Fig. \ref{fig4}). Total numbers of road sections are 109. Each road section represents for an average sectional length of 100 meters. Fig. \ref{fig4} displays the numbers of potholes in monthly basis. 
+
+\begin{figure}[t]
+\begin{center}
+\begin{footnotesize}
+\includegraphics[scale=0.5]{fig4}\\
+\end{footnotesize}
+\end{center}
+\caption{Distribution of potholes over 3 years.}
+\label{fig4}
+\end{figure}
+
+In this study, we use only numbers of potholes, environment characteristics, and their occurrence time as observed information. Potholes are recorded in 3 different categories according to their shapes (oval, rectangle, and triangle). In addition, the depth and size of each pothole is also carefully documented. Minimum and maximum depth of pothole are 12 mm and 100mm respectively. Size of each pothole is quantified into area value, with minimum value of $10,000mm^2$ and maximum value of $13,000,000mm^2$. In actual practice, after observing potholes, repairs are carried out to fill up the potholes so as the performance condition of a road section will be maintained in good condition. 
+
+Distribution of potholes as shown in Fig. \ref{fig4} reveals the fact that occurences of potholes are not in similar pattern around the year. There are a jump in potholes occurence during and right after the winter period. A plausible reason for monthly potholes distribution could be due to the fact that, during the winter period, surface of roads were usually wet because of water spraying activities in melting down the possible accumulated fronzen snow. Therefore, it is advisable for our estimation to consider several important characteristic variables, which could have a close correlation with the occurence of potholes. Among collected variables, temperature and existence of water spraying activities are selected. Particularly, for water spraying varible, the dummy variable $\delta$ is attached. Road sections with water spraying to remove top snow cover are assigned with $\delta=1$, while dummy variable $\delta=0$ is given to road sections without water spraying activities. The use of dummy variable reflexs the fact that there are many road sections, like thoses inside the tunnel, are subjected in the category without being effected by snow during winter period. Moreover, we also assume that occurred potholes of the same road section solely represents the countable numbers of potholes for that section regardess of the different positions of potholes. Within 109 target sections, the total observed potholes were 236.
+
+According to \citet{Okizukakaito09}, occurence of pothole is largely linked with occurence of crack, particularly with alligator crack. Thus, for convenience of estimation, we decide to use cracking index for representing condition states of road sections. The range of condition states is from $1$ to $5$, with $i=1$ as new condition state and $i=5$ as absorbing condition state. Description of condition states is presented in Table \ref{table1}. Selection of range of condition state based on cracking value is refered to the paper of \citet{kumadakoba}.
+%
+\begin{table*}
+\caption{Description of condition state.}
+\label{table1}
+{\small
+\begin{center}
+\begin{tabular}{c|c}\hline
+Condition states & Range of cracking values (\%)\\\hline
+1 & $<$  Cr=0 \\
+2 & 0 $<$ Cr $<$ 2.5 \\
+3 & 2.5 $\leq$ Cr $<$ 5 \\
+4 & 5 $\leq$ Cr $<$ 10 \\
+5 & 10 $\leq$ Cr  \\\hline
+\end{tabular}
+\end{center}
+}
+\end{table*}
+
+Monitoring data on cracks contains $109$ samples of the same roads in yearly basic, which corresponds to time period $[t,t+1]$ of our model. Within this time period, we have inspection data of potholes as earlier discussed. 
+%%%%%
+\subsection{Estimation results}
+\label{sec62}
+
+\begin{table}%[t]
+\caption{Estimation results of Poisson Hidden Markov model.}
+\label{table2}
+\begin{center}
+{\small 
+\begin{tabular}{l|l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Condition} & \multicolumn{3}{c|}{Poisson parameters} & \multicolumn{2}{c}{Hidden Markov parameters} \\ 
+\cline{2-6}
+\multicolumn{1}{c|}{states} & \multicolumn{1}{c|}{Constant term} & \multicolumn{1}{c|}{temperature}& \multicolumn{1}{c|}{snow remover} &  \multicolumn{1}{c|}{Hazard rate}& \multicolumn{1}{c}{Expectancy}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{$\alpha_{i0}$} & \multicolumn{1}{c|}{$\alpha_{i1}$}& \multicolumn{1}{c|}{$\alpha_{i2}$} &  \multicolumn{1}{c|}{$E(\lambda_i)$}& \multicolumn{1}{c}{$E(RMD)$}\\ 
+\hline
+\multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1.304} & \multicolumn{1}{c|}{0.145}& \multicolumn{1}{c|}{1.361} &  \multicolumn{1}{c|}{}& \multicolumn{1}{c}{}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(0.951-1.668)}  & \multicolumn{1}{c|}{(-0.557-0.941)}& \multicolumn{1}{c|}{(1.021-1.691)}&  \multicolumn{1}{c|}{0.099}& \multicolumn{1}{c}{10.09}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-1.875}  & \multicolumn{1}{c|}{1.102}&  \multicolumn{1}{c|}{0.307}&  \multicolumn{1}{c|}{}& \multicolumn{1}{c}{}\\ 
+\hline
+\multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2.573} & \multicolumn{1}{c|}{0.304}& \multicolumn{1}{c|}{2.728}&  \multicolumn{1}{c|}{}& \multicolumn{1}{c}{}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(2.095-3.076)} & \multicolumn{1}{c|}{(-0.655-1.392)}& \multicolumn{1}{c|}{(2.242-3.221)}&  \multicolumn{1}{c|}{0.215}& \multicolumn{1}{c}{4.436}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-0.554}  & \multicolumn{1}{c|}{-0.217}& \multicolumn{1}{c|}{0.714}&  \multicolumn{1}{c|}{}& \multicolumn{1}{c}{}\\ 
+\hline
+\multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3.862}  & \multicolumn{1}{c|}{0.451}& \multicolumn{1}{c|}{4.108}&  \multicolumn{1}{c|}{}& \multicolumn{1}{c}{}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(3.265-4.484)}  & \multicolumn{1}{c|}{(-0.786-1.771)}& \multicolumn{1}{c|}{(3.488-4.736)}&  \multicolumn{1}{c|}{0.334}& \multicolumn{1}{c}{2.995}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-1.882}  & \multicolumn{1}{c|}{1.774}& \multicolumn{1}{c|}{-0.176}& \multicolumn{1}{c|}{}& \multicolumn{1}{c}{}\\ 
+\hline
+\multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{5.071}  & \multicolumn{1}{c|}{0.714}& \multicolumn{1}{c|}{5.470}&  \multicolumn{1}{c|}{}& \multicolumn{1}{c}{}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(4.375-5.856)}  & \multicolumn{1}{c|}{(-0.884-2.241)} & \multicolumn{1}{c|}{(4.750-6.243)}&  \multicolumn{1}{c|}{0.579}& \multicolumn{1}{c}{1.726}\\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-1.719}  & \multicolumn{1}{c|}{0.745}& \multicolumn{1}{c|}{-0.566}&  \multicolumn{1}{c|}{}& \multicolumn{1}{c}{}\\ 
+\hline
+\end{tabular}}
+\end{center}
+{\small Note) Values in blankets are 95\% credible intervals and values in the third row of each condition states are $Z-score$ of Geweke test}
+\end{table}
+
+Table \ref{table2} summaries our estimation results using Poisson Hidden Markov Model. These results are obtained after running simulation with $10,000$ iterations. Values of each parameter $\alpha_i$ and $\beta_i$ are evaluated through examining convergent condition of $10,000$ generated samples (for each parameter) with subtracting the burn-in $3000$ initial values. We check and verify convergent conditions by running Geweke tests for each group of samples. Values of Geweke tests are ``Z-score'', which are shown in the last row of each condition state in table \ref{table2}. Theoritically, if $Z-score$ is less than 1.96, the pool of generated samples is considered as good result in running simulation \cite{geweke}. 
+
+The fundamental estimation results, which are here given in Table \ref{table2}, give us an interesting findings that occurence of potholes are in strong correlation with water spraying characteristics. In another words, snowing puts a high influence on the rate of potholes occurence. This finding explains the cause of massive of potholes right after the winter period in every year. Temperature is also a factor contributing to deterioration, which might result in potholes. However, impact value of temperature is not considerably high. 
+
+We can further observe the estimation results by drawing the density distribution of obtained Poisson parameters for respective condition states. The distributions are shown in Fig. \ref{fig5}. In MCMC simulation, the converge values of estimation should be the mean of simulated samples. As can be seen from Fig. \ref{fig5}, the picks of each distribution graph are choosen as parameter values, which are presented in Table \ref{table2}. After obtaining values of Poisson parameters for each condition state, we can summary the mean or the arrival rate $\mu_i$. Four graph on the right side of Fig. \ref{fig5} illustrate the cummulative distribution of the arrival rate of potholes corresponding to each condition states. It should be noted here that the interval of our estimation is 15 days. So if we consider the expected number of potholes in a month for condition state $i=1$ could be around 5. This finding is somehow similar to the findings in the paper of \citet{kaitokuchi09}, which proposes Weibull hazard model for analyzing the potholes occurence based on the same monitoring data. 
+
+\begin{figure}%[t]
+\begin{center}
+\begin{footnotesize}
+\includegraphics[scale=0.6]{fig5}\\
+\end{footnotesize}
+\end{center}
+\caption{Distribution of sampled values $\alpha_i$ in simulation and cummulative distribution functions with arrival rates $\mu_i$}
+\label{fig5}
+\end{figure}
+%%%%%%
+
+\begin{table}[t]
+\caption{Updated Markov transition probability}
+\label{table4}
+\begin{center}
+{\small
+\begin{tabular}{c|ccccc}\hline
+Condition&\multicolumn{5}{|c}{Condition state}\\
+State & 1 & 2 & 3 & 4& 5 \\\hline
+1 & 0.9057  & 0.0847 & 0.0086 & 0.0009& 0.0001 \\
+2 & 0.0  & 0.8060 & 0.1640 & 0.0248&  0.0052 \\
+3 & 0.0  & 0.0 & 0.7161 & 0.2120& 0.0719 \\
+4 & 0.0  & 0.0 & 0.0 & 0.5602& 0.4398 \\
+5 & 0.0  & 0.0 & 0.0 & 0.0& 1.0 \\\hline
+\end{tabular}
+}
+\end{center}
+{\small Note) Interval of transition is one year term.}
+\end{table}
+
+\begin{figure}%[t]
+\begin{center}
+\begin{footnotesize}
+\includegraphics[scale=0.4]{fig6}\\
+\end{footnotesize}
+\end{center}
+\caption{Deterioration curve and condition state distribution.}
+\label{fig6}
+\end{figure}
+
+Estimation for expected hazard rate $E(\lambda_i)$ and expected life expectancy of each condition state $E(RMD)_i$ as shown in table \ref{table2} are by means of equations (\ref{hazard11}) and (\ref{kenzen}). It should be noted here that our empirical study did not consider the characteristic variables in equation (\ref{hazard11}) due to limitation of monitoring data. Therefore, obtained values of unknown parameter with respect to each condition state are eventually the hazard rates (refer to Table \ref{table2}). 
+
+Condition state $1$ is believed to last about 10 years. After 10 years, there is a sharp descrease in value of condition states. About 4.5 years are remaining duration of condition state 2, while of that for condition state 3 are 4 years. As condition state reaching to absorbing condition state, we observe the quicker deterioration (about 2 years for condition state 4 to remain). We demonstrate the deterioration curve on the left side of Fig. \ref{fig6} (the actual deterioration curve). The obtained Markov transition probability is given in Table \ref{table4}. Picture of deterioration pattern over the elapsed years is also sketched on the right side of Fig. \ref{fig6}. The deterioration pattern of each condition state is visually represented by percentage (vertical axis) over the course of 20 years (horizontal axis).
+
+%As the matter of course, estimation results will be altered given the different source of observed monitoring data. To further illustrate this situation, we carry out sensitivity analsysis by re-calculating expected hazard rate $E(\lambda_i)$ and life expectancy $E(RMD_i)$ with an additional scenario. The additional scenario is by doubling the observed numbers of potholes. Comparision of deterioration curves in sensitivity analysis is also displayed in Fig. \ref{fig6}. As a result, we can see how large the deviations of deterioration curves in comparison with  actual deterioration curve draw from actual observed numbers of potholes.
+%%% 
+\section{Conclusions and Recommendations}
+\label{sec7}
+This paper has presented a new approach to estimate the Markov transition probability of pavement under shortage of monitoring data using a Poisson hidden Markov hazard model. The underlying Markov transition probability of targeted road sections is considered as hidden information. In order to estimate the hidden Markov transition probability, we consider its condition states to link with occurrence of potholes, which can be randomly follow Poisson process. Thus, given the observed numbers of potholes as monitoring data in a specific operation period, we can use Poisson hidden Markov model to determine the underlying Markov transition probability.
+
+Numerical solution to our model is with Bayesian estimation and Markov Chain Monte Carlo method. This analytical method has great advantage over the conventional Maximum likelihood estimation, and it is considered as a novel mathematical approach to solve engineering problems under shortage of monitoring data. 
+
+Empirical study of the model on potholes data of Japanese national roads reveal with positive estimation results. Markov transition probability of targeted road sections is predicted by applying Bayesian method and Markov Chain Monte Carlo simulation in updating hidden condition states. In order to updating the hidden condition states, as random variables in our models, we assume model's parameters to follow conjudgate multidimensional normal distribution.
+
+%Though we discuss in details of Poisson hidden Markov hazard model for application in PMS. Our study has not targeted some following points, which can be considered as important direction and recommendation for future expansion of the model.
+%
+%\begin{itemize}
+	%\item This paper focuses only on pavement management system with potholes data. However, the model can be widely applied on other types of infrastructure. For example in bridge management system, the falling of bridge concrete deck below the slab can be counted as an indicator for predicting Markov transition probability of the upper concrete slab, which is often under direct loads of vehicles.
+	%\end{itemize}
+
+\section{ACKNOWLEDGEMENT}\label{sec8}
+The authors would like to thank to Frontier Research Center for Global Young Researchers, Graduate School of Engineering, Osaka University, Japan for financial supports. In addition, thanks are extended to members of Laboratory of Prof. Kiyoshi Kobayashi at Kyoto University, Japan for critical comments, suggestions, and contributions.
+
+\section{Appendix. Mathematical formulation of the exponential Markov hazard model}\label{sec8}
+%
+%
+From monitoring data of two visual inspection times $t$ and $t+1$, the Markov transition probability can be described as follows:
+%
+\begin{eqnarray}
+&& \mbox{Prob}[g(t+1)=j|g(t)=i]=\pi^{ij}.\label{pro}
+\end{eqnarray}
+Markov transition probability matrix can be written in the following form: 
+\begin{eqnarray}
+&& {\bf \Pi}=\left(
+\begin{array}{ccc}
+\pi^{11} & \cdots & \pi^{1I} \\
+\vdots & \ddots & \vdots \\
+0 & \cdots  & \pi^{II}
+\end{array}
+\right),\label{marko}
+\end{eqnarray}
+where
+\begin{eqnarray}
+\left.
+\begin{array}{l}
+\pi^{ij}\geq 0 ~(i,j=1,\cdots,I)\\
+\pi^{ij}=0  ~(\hspace{1mm} when \hspace{1mm} i > j) \\
+\sum_{j=i}^I \pi^{ij}=1 \\
+\end{array}
+\right\}.\label{suii}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%
+In hazard analysis, the life expectancy of condition state $i$ is assumed to be a stochastic variable, with the probability density function $f_i(\zeta_i)$ and distribution function $F_i(\zeta_i)$ \citep{lancaster90,gouri}. The conditional probability, to which condition state $i$ at time $y_i$ reaching condition state $i+1$ at $y_i+\Delta_i$, can be expressed as hazard function $\lambda_i(y_i)\Delta{y_i}$:
+\begin{eqnarray}
+\lambda_i(y_i)\Delta y_i = \frac{f_i(y_i) \Delta y_i}{\tilde{F}_i(y_i)},
+\end{eqnarray}
+where $\tilde{F}_i(y_i)=1-F_i(y_i)$  is referred as the survival function of condition state $i$ during the time interval from $y_i=0$ to $y_i$. It is assumed that the deterioration process satisfies the Markov property and the hazard function is independent of the time instance $y_i$. Thus, we can define a fixed value for $\lambda_i>0$ as the hazard rate:
+\begin{eqnarray}
+&& \lambda_i(y_i) = \lambda_i.
+\end{eqnarray}
+The life expectancy of condition state $i$, which advances longer than the duration $y_i$, is referred as the value of the survival function $\tilde{F}_i(y_i)$ and can be expressible in the exponential form:
+\begin{eqnarray}
+&& \tilde{F}_i(y_i)=\exp(-\lambda_i y_i). \label{prop}
+\end{eqnarray}
+The survival probability function is identical to the transition probability $\pi^{ii}$ when the duration $y_i$ equals to the duration $z$ of the inspection period $z_i$ between $[t,t+1)$:
+\begin{eqnarray}
+&& \tilde{F}_i(t+z | \zeta_i \ge t) =\mbox{Prob} \{ \zeta_i \ge t+z | \zeta_i \ge t \} = \frac{\exp \{-\lambda_i(t+z)\}}{\exp( - \lambda_i t)} =\exp (-\lambda_i z),
+\end{eqnarray}
+\begin{eqnarray}
+&& \mbox{Prob}[g(t+1)=i|g(t)=i]=\exp(-\lambda_i z).\label{poi0}
+\end{eqnarray}
+By defining the subsequent conditional probability of condition state $j$ to $i$, with respect to the actual interval time $z$ of inspection, a general mathematical formula for estimating the Markov transition probability can be defined:
+\begin{eqnarray}
+&& \pi^{ij}(z)=\mbox{Prob}[h(t+1)=j|h(t)=i]  =\sum_{k=i}^{j}\prod_{m=i,\neq k}^{k-1}\frac{\lambda_m}{\lambda_{m}-\lambda_{k}} \exp (-\lambda_{k}z),
+\end{eqnarray}
+where
+\begin{eqnarray}
+&& \prod_{m=i,\neq k}^{k-1}\frac{\lambda_m}{\lambda_{m}-\lambda_{k}} \exp (-\lambda_{k}z) =\prod_{m=i}^{k-1}\frac{\lambda_m}{\lambda_{m}-\lambda_{k}}\prod_{m=k}^{j-1}\frac{\lambda_m}{\lambda_{m+1}-\lambda_{k}}\exp(-\lambda_{k} z),\nonumber
+\end{eqnarray}
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+\prod_{m=i}^{k-1}\frac{\lambda_m}{\lambda_{m}-\lambda_{k}}=1 & (k=i) \\
+\prod_{m=k}^{j-1}\frac{\lambda_m}{\lambda_{m+1}-\lambda_{k}}=1 & (k=j) 
+\end{array}
+\right. (i=1,\cdots,I-1;j=i+1,\cdots,I). \label{poi} \nonumber
+\end{eqnarray}
+Transition probability from condition state $i$ to absorbing condition state $I$ is eventually defined in the following equation:
+\begin{eqnarray}
+&& \pi^{iI}(z)=1-\sum_{j=i}^{I-1}\pi^{ij}(z)~(i=1,\cdots,I-1).\label{oil}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The likelihood function of hazard rate $\lambda_i$ can be expressed by means of multiplicative form with  characteristic variable $\mbox{\boldmath$x$}$ and unknown parameter $\mbox{\boldmath$\beta$}_i^\prime$.
+\begin{eqnarray}
+&& \lambda_i=\lambda_i(\mbox{\boldmath$x$}) =\mbox{\boldmath$x$}\mbox{\boldmath$\beta$}_i^\prime. \label{hazard11}
+\end{eqnarray}
+The life expectancy $RMD_i(\mbox{\boldmath$x$})$ (RMD stands for remaining duration) of condition state $i$ is evaluated by means of the survival probability of condition state $i$ over continuous time.
+\begin{eqnarray}
+&& RMD_i(\mbox{\boldmath$x$})= \int^{\infty}_{0}\tilde{F}_i(y_i|\lambda_i(\mbox{\boldmath$x$}))dy_i  = \int^{\infty}_{0}\exp \{-\lambda_i(\mbox{\boldmath$x$})y_i\}dy_i=\frac{1}{\mbox{\boldmath$x$}\mbox{\boldmath$\beta$}_i^\prime}.\label{kenzen}
+\end{eqnarray}
+The average life expectancy of condition state $j~(>1)$ can be defined by the summation of the life expectancy over the range of condition states counted from $i=1$:
+\begin{eqnarray}
+&& ET_j(\mbox{\boldmath$x$})=\sum_{i=1}^j \frac{1}{\mbox{\boldmath$x$}\mbox{\boldmath$\beta$}_i^\prime}, \label{hy}
+\end{eqnarray}
+where $ET_j$ stands for average life expectancy or average elapsed time of condition state $j$.
+
+
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+%% \section{}
+%% \label{}
+
+%\begin{thebibliography}{00}
+
+%% \bibitem{label}
+%% Text of bibliographic item
+
+%\bibitem{}
+\bibliographystyle{elsarticle-harv} 
+\bibliography{reference}
+%\end{thebibliography}
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.
