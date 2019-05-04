@@ -1,0 +1,16 @@
+I - Instruction on using subroutine from Fortran
+setwd("C:/Users/namazu/Documents/Markovmodelwith-R/")
+1. gauss.dll is converted from gauss.f for calculating invert matrix A
+2. invertmatrix.dll is converted from invertmatrix.f for calculating invertmatix
+
+Calling dll file into R shared library 
+dyn.load("gauss.dll")
+#dyn.load("invertmatrix.dll") this is still have internal problem when converting to dll library.
+
+
+II-Supporting R program
+
+1. markovgiventheta.R
+This program shows a basic calculationg of Markov transition probability given values of theta.
+
+

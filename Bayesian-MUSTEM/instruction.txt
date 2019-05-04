@@ -1,0 +1,41 @@
+Instruction to use Markov Program in R language.
+
+1. A little about R
+R is a statistical computing software, which is open-source, but very powerful. In comparision with other software like Matlap, Fortran, or C++. It has most of similar functions and tools. More better, yes, i believe so, its graphical library allows users to create magnificient and beautiful graphs for publication.
+	
+	Users type R on google search. You can find instruction to install R and required packages
+
+2. This program was written by Nam Lethanh. You can use it with your own risk. I try to make it as robust as possible. However, due to time limitation, its coding could not be really optimized. If you can give me any suggestion or contribution to the program. I would really appreciate your helps. Your name, offcourse, will be entitled as contributors of this program.
+
+3. How to run the program
+	- Install R on your PC
+	- Install following R packages from CRAN library
+	(LearnBayes, coda, lattice, MCMCpack). You just type install.packages() from the promt command in R environment.
+	- Load all files (data.csv; program.R; thetavalue.R; prob.R; mylogposterior.R; and markovgiventheta.R) and save it under same folder in your PC. I would recommend you to use LINUX instead of WINDOW to run the program. Simply because LINUX is very much in advance than WINDOW. Offcourse, if you are not LINUX fan, R running on WINDOW has no problem as well (But more time required to compute anyway, no problem if your PC is super fast).
+	- locate working directory of R into the exact folder where you save all above files. Simply by typing setwd("the path to the working folder")
+	- Check working folder is correct or not by typing getwd() --> so if the working directory points to the folder containing R files, it is perfect then
+	- type source("program.R")
+	and wait till program finish its computational process. It might take hours depending on your numbers of data.
+	
+Important note:
+The defaul characteristic variables in our program is 1. it means mmax=1. You can find this value in line 7 of program.R file. If you have more than 1 covariate. You can set the value here by modifying its value direcly from program.R file.
+
+Other important note is about mylogposterior.R file. You can modify the initial value of mean (mu) and covarian matrix (sigma) to your own wish. It may depend on how many covariates you have. The mu and sigma should be in correspond to the number of unknown parameter.
+
+I would recommend you to read the book "Bayesian Computation with R (2nd edition) by JIM ALBERT if you wish to study about Bayesian computing and MCMC method.
+
+Thank you!
+any suggestion is welcomed and appreciated. Pls email to 
+
+Nam Lethanh, research fellow
+Frontier Research Center for Global Young Researchers
+Graduate School of Engineering, Osaka University
+namkyodai@gmail.com
+
+This project is supported by the laboratory of Prof. Kiyoshi Kobayashi at Gradate School of Engineering, Kyoto University, Japan and the laboratory of Prof. Kiyoyuki Kaito at Frontier Research Center for Global Young Researchers at Osaka University
+
+
+
+
+
+	
