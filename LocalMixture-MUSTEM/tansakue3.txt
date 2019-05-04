@@ -1,0 +1,24 @@
+ MAXOBJ=        -251
+          43
+ optimal=           0
+ MAXOBJ=        -638
+          39
+ optimal=           1
+ MAXOBJ=        -275
+          41
+ optimal=           1
+ MAXOBJ=        -195
+          44
+ optimal=           0
+ MAXOBJ=        -219
+          42
+ optimal=           1
+ MAXOBJ=        -221
+          49
+ optimal=           0
+ MAXOBJ=        -183
+          49
+ optimal=           0
+ MAXOBJ=        -398
+          42
+ optimal=           1

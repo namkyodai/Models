@@ -1,0 +1,1158 @@
+ Output of initial value
+  -1.09617647710795       0.201480612696746        3.30884562751169     
+  -1.52614542983396       0.206687809264178        3.19035968485706     
+  -1.96387376011903       0.713509542120714       7.146987081245088E-002
+  -2.46033263203160       0.872292083785661       0.518299010024824     
+ eta=  -2.28429192015365     
+ ALL           1
+dels   -0.30974E-01   -0.18239E+01   -0.19162E+01    0.18301E+01   -0.82171E+01    0.51479E+01    0.10000E-01    0.10000E-01    0.10000E-01    0.10000E-01    0.10000E-01    0.10000E-01    0.10000E-01
+ALL    1    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1127150281E+01 -0.1065202673E+01
+ALL    1    2 Infinity            Infinity            Infinity             0.2014806127E+00 -0.1622447601E+01  0.2025408827E+01
+ALL    1    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.1392665286E+01  0.5225025969E+01
+ALL    1    4 Infinity            Infinity            Infinity            -0.1526145430E+01  0.3039220369E+00 -0.3356212897E+01
+ALL    1    5 Infinity            Infinity            Infinity             0.2066878093E+00 -0.8010385855E+01  0.8423761474E+01
+ALL    1    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.8338282100E+01 -0.1957562731E+01
+ALL    1    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1953873760E+01 -0.1973873760E+01
+ALL    1    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7235095421E+00  0.7035095421E+00
+ALL    1    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.8146987081E-01  0.6146987081E-01
+ALL    1   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2450332632E+01 -0.2470332632E+01
+ALL    1   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8822920838E+00  0.8622920838E+00
+ALL    1   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5282990100E+00  0.5082990100E+00
+ALL    1   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.2274291920E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -1.548690196767988E-002
+ Data replacement 280           2  0.201480612696746     
+ -0.911964107040385     
+ Data replacement 280           3   3.30884562751169     
+ -0.958090170773815     
+ Data replacement 280           4  -1.52614542983396     
+  0.915033733364970     
+ Data replacement 280           5  0.206687809264178     
+  -4.10853683233119     
+ Data replacement 280           6   3.19035968485706     
+   2.57396120775886     
+ Data replacement 280           7  -1.96387376011903     
+  5.000000000000000E-003
+ Data replacement 280           8  0.713509542120714     
+  5.000000000000000E-003
+ Data replacement 280           9  7.146987081245088E-002
+  5.000000000000000E-003
+ Data replacement 280          10  -2.46033263203160     
+  5.000000000000000E-003
+ Data replacement 280          11  0.872292083785661     
+  5.000000000000000E-003
+ Data replacement 280          12  0.518299010024824     
+  5.000000000000000E-003
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL           2
+dels   -0.15487E-01   -0.91196E+00   -0.95809E+00    0.91503E+00   -0.41085E+01    0.25740E+01    0.50000E-02    0.50000E-02    0.50000E-02    0.50000E-02    0.50000E-02    0.50000E-02   -0.11422E+01
+ALL    2    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1111663379E+01 -0.1080689575E+01
+ALL    2    2 Infinity            Infinity            Infinity             0.2014806127E+00 -0.7104834943E+00  0.1113444720E+01
+ALL    2    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.2350755457E+01  0.4266935798E+01
+ALL    2    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.6111116965E+00 -0.2441179163E+01
+ALL    2    5 Infinity            Infinity            Infinity             0.2066878093E+00 -0.3901849023E+01  0.4315224642E+01
+ALL    2    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.5764320893E+01  0.6163984771E+00
+ALL    2    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1958873760E+01 -0.1968873760E+01
+ALL    2    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7185095421E+00  0.7085095421E+00
+ALL    2    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7646987081E-01  0.6646987081E-01
+ALL    2   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2455332632E+01 -0.2465332632E+01
+ALL    2   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8772920838E+00  0.8672920838E+00
+ALL    2   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5232990100E+00  0.5132990100E+00
+ALL    2   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -7.743450983839942E-003
+ Data replacement 280           2  0.201480612696746     
+ -0.455982053520192     
+ Data replacement 280           3   3.30884562751169     
+ -0.479045085386907     
+ Data replacement 280           4  -1.52614542983396     
+  0.457516866682485     
+ Data replacement 280           5  0.206687809264178     
+  -2.05426841616559     
+ Data replacement 280           6   3.19035968485706     
+   1.28698060387943     
+ Data replacement 280           7  -1.96387376011903     
+  2.500000000000000E-003
+ Data replacement 280           8  0.713509542120714     
+  2.500000000000000E-003
+ Data replacement 280           9  7.146987081245088E-002
+  2.500000000000000E-003
+ Data replacement 280          10  -2.46033263203160     
+  2.500000000000000E-003
+ Data replacement 280          11  0.872292083785661     
+  2.500000000000000E-003
+ Data replacement 280          12  0.518299010024824     
+  2.500000000000000E-003
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL           3
+dels   -0.77435E-02   -0.45598E+00   -0.47905E+00    0.45752E+00   -0.20543E+01    0.12870E+01    0.25000E-02    0.25000E-02    0.25000E-02    0.25000E-02    0.25000E-02    0.25000E-02   -0.11422E+01
+ALL    3    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1103919928E+01 -0.1088433026E+01
+ALL    3    2 Infinity            Infinity            Infinity             0.2014806127E+00 -0.2545014408E+00  0.6574626662E+00
+ALL    3    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.2829800542E+01  0.3787890713E+01
+ALL    3    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1068628563E+01 -0.1983662297E+01
+ALL    3    5 Infinity            Infinity            Infinity             0.2066878093E+00 -0.1847580607E+01  0.2260956225E+01
+ALL    3    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.4477340289E+01  0.1903379081E+01
+ALL    3    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1961373760E+01 -0.1966373760E+01
+ALL    3    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7160095421E+00  0.7110095421E+00
+ALL    3    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7396987081E-01  0.6896987081E-01
+ALL    3   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2457832632E+01 -0.2462832632E+01
+ALL    3   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8747920838E+00  0.8697920838E+00
+ALL    3   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5207990100E+00  0.5157990100E+00
+ALL    3   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -3.871725491919971E-003
+ Data replacement 280           2  0.201480612696746     
+ -0.227991026760096     
+ Data replacement 280           3   3.30884562751169     
+ -0.239522542693454     
+ Data replacement 280           4  -1.52614542983396     
+  0.228758433341242     
+ Data replacement 280           5  0.206687809264178     
+  -1.02713420808280     
+ Data replacement 280           6   3.19035968485706     
+  0.643490301939716     
+ Data replacement 280           7  -1.96387376011903     
+  1.250000000000000E-003
+ Data replacement 280           8  0.713509542120714     
+  1.250000000000000E-003
+ Data replacement 280           9  7.146987081245088E-002
+  1.250000000000000E-003
+ Data replacement 280          10  -2.46033263203160     
+  1.250000000000000E-003
+ Data replacement 280          11  0.872292083785661     
+  1.250000000000000E-003
+ Data replacement 280          12  0.518299010024824     
+  1.250000000000000E-003
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL           4
+dels   -0.38717E-02   -0.22799E+00   -0.23952E+00    0.22876E+00   -0.10271E+01    0.64349E+00    0.12500E-02    0.12500E-02    0.12500E-02    0.12500E-02    0.12500E-02    0.12500E-02   -0.11422E+01
+ALL    4    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1100048203E+01 -0.1092304752E+01
+ALL    4    2 Infinity            Infinity            Infinity             0.2014806127E+00 -0.2651041406E-01  0.4294716395E+00
+ALL    4    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3069323085E+01  0.3548368170E+01
+ALL    4    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1297386996E+01 -0.1754903863E+01
+ALL    4    5 Infinity            Infinity            Infinity             0.2066878093E+00 -0.8204463988E+00  0.1233822017E+01
+ALL    4    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3833849987E+01  0.2546869383E+01
+ALL    4    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1962623760E+01 -0.1965123760E+01
+ALL    4    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7147595421E+00  0.7122595421E+00
+ALL    4    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7271987081E-01  0.7021987081E-01
+ALL    4   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2459082632E+01 -0.2461582632E+01
+ALL    4   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8735420838E+00  0.8710420838E+00
+ALL    4   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5195490100E+00  0.5170490100E+00
+ALL    4   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -1.935862745959986E-003
+ Data replacement 280           2  0.201480612696746     
+ -0.113995513380048     
+ Data replacement 280           3   3.30884562751169     
+ -0.119761271346727     
+ Data replacement 280           4  -1.52614542983396     
+  0.114379216670621     
+ Data replacement 280           5  0.206687809264178     
+ -0.513567104041399     
+ Data replacement 280           6   3.19035968485706     
+  0.321745150969858     
+ Data replacement 280           7  -1.96387376011903     
+  6.250000000000000E-004
+ Data replacement 280           8  0.713509542120714     
+  6.250000000000000E-004
+ Data replacement 280           9  7.146987081245088E-002
+  6.250000000000000E-004
+ Data replacement 280          10  -2.46033263203160     
+  6.250000000000000E-004
+ Data replacement 280          11  0.872292083785661     
+  6.250000000000000E-004
+ Data replacement 280          12  0.518299010024824     
+  6.250000000000000E-004
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL           5
+dels   -0.19359E-02   -0.11400E+00   -0.11976E+00    0.11438E+00   -0.51357E+00    0.32175E+00    0.62500E-03    0.62500E-03    0.62500E-03    0.62500E-03    0.62500E-03    0.62500E-03   -0.11422E+01
+ALL    5    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1098112340E+01 -0.1094240614E+01
+ALL    5    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.8748509932E-01  0.3154761261E+00
+ALL    5    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3189084356E+01  0.3428606899E+01
+ALL    5    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1411766213E+01 -0.1640524647E+01
+ALL    5    5 Infinity            Infinity            Infinity             0.2066878093E+00 -0.3068792948E+00  0.7202549133E+00
+ALL    5    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3512104836E+01  0.2868614534E+01
+ALL    5    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963248760E+01 -0.1964498760E+01
+ALL    5    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7141345421E+00  0.7128845421E+00
+ALL    5    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7209487081E-01  0.7084487081E-01
+ALL    5   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2459707632E+01 -0.2460957632E+01
+ALL    5   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8729170838E+00  0.8716670838E+00
+ALL    5   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5189240100E+00  0.5176740100E+00
+ALL    5   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -9.679313729799928E-004
+ Data replacement 280           2  0.201480612696746     
+ -5.699775669002406E-002
+ Data replacement 280           3   3.30884562751169     
+ -5.988063567336344E-002
+ Data replacement 280           4  -1.52614542983396     
+  5.718960833531062E-002
+ Data replacement 280           5  0.206687809264178     
+ -0.256783552020699     
+ Data replacement 280           6   3.19035968485706     
+  0.160872575484929     
+ Data replacement 280           7  -1.96387376011903     
+  3.125000000000000E-004
+ Data replacement 280           8  0.713509542120714     
+  3.125000000000000E-004
+ Data replacement 280           9  7.146987081245088E-002
+  3.125000000000000E-004
+ Data replacement 280          10  -2.46033263203160     
+  3.125000000000000E-004
+ Data replacement 280          11  0.872292083785661     
+  3.125000000000000E-004
+ Data replacement 280          12  0.518299010024824     
+  3.125000000000000E-004
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL           6
+dels   -0.96793E-03   -0.56998E-01   -0.59881E-01    0.57190E-01   -0.25678E+00    0.16087E+00    0.31250E-03    0.31250E-03    0.31250E-03    0.31250E-03    0.31250E-03    0.31250E-03   -0.11422E+01
+ALL    6    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1097144408E+01 -0.1095208546E+01
+ALL    6    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.1444828560E+00  0.2584783694E+00
+ALL    6    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3248964992E+01  0.3368726263E+01
+ALL    6    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1468955821E+01 -0.1583335038E+01
+ALL    6    5 Infinity            Infinity            Infinity             0.2066878093E+00 -0.5009574276E-01  0.4634713613E+00
+ALL    6    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3351232260E+01  0.3029487109E+01
+ALL    6    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963561260E+01 -0.1964186260E+01
+ALL    6    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7138220421E+00  0.7131970421E+00
+ALL    6    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7178237081E-01  0.7115737081E-01
+ALL    6   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460020132E+01 -0.2460645132E+01
+ALL    6   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8726045838E+00  0.8719795838E+00
+ALL    6   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5186115100E+00  0.5179865100E+00
+ALL    6   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -4.839656864899964E-004
+ Data replacement 280           2  0.201480612696746     
+ -2.849887834501203E-002
+ Data replacement 280           3   3.30884562751169     
+ -2.994031783668172E-002
+ Data replacement 280           4  -1.52614542983396     
+  2.859480416765531E-002
+ Data replacement 280           5  0.206687809264178     
+ -0.128391776010350     
+ Data replacement 280           6   3.19035968485706     
+  8.043628774246453E-002
+ Data replacement 280           7  -1.96387376011903     
+  1.562500000000000E-004
+ Data replacement 280           8  0.713509542120714     
+  1.562500000000000E-004
+ Data replacement 280           9  7.146987081245088E-002
+  1.562500000000000E-004
+ Data replacement 280          10  -2.46033263203160     
+  1.562500000000000E-004
+ Data replacement 280          11  0.872292083785661     
+  1.562500000000000E-004
+ Data replacement 280          12  0.518299010024824     
+  1.562500000000000E-004
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL           7
+dels   -0.48397E-03   -0.28499E-01   -0.29940E-01    0.28595E-01   -0.12839E+00    0.80436E-01    0.15625E-03    0.15625E-03    0.15625E-03    0.15625E-03    0.15625E-03    0.15625E-03   -0.11422E+01
+ALL    7    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096660443E+01 -0.1095692511E+01
+ALL    7    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.1729817344E+00  0.2299794910E+00
+ALL    7    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3278905310E+01  0.3338785945E+01
+ALL    7    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1497550626E+01 -0.1554740234E+01
+ALL    7    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.7829603325E-01  0.3350795853E+00
+ALL    7    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3270795973E+01  0.3109923397E+01
+ALL    7    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963717510E+01 -0.1964030010E+01
+ALL    7    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7136657921E+00  0.7133532921E+00
+ALL    7    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7162612081E-01  0.7131362081E-01
+ALL    7   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460176382E+01 -0.2460488882E+01
+ALL    7   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8724483338E+00  0.8721358338E+00
+ALL    7   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5184552600E+00  0.5181427600E+00
+ALL    7   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -2.419828432449982E-004
+ Data replacement 280           2  0.201480612696746     
+ -1.424943917250602E-002
+ Data replacement 280           3   3.30884562751169     
+ -1.497015891834086E-002
+ Data replacement 280           4  -1.52614542983396     
+  1.429740208382766E-002
+ Data replacement 280           5  0.206687809264178     
+ -6.419588800517484E-002
+ Data replacement 280           6   3.19035968485706     
+  4.021814387123226E-002
+ Data replacement 280           7  -1.96387376011903     
+  7.812500000000000E-005
+ Data replacement 280           8  0.713509542120714     
+  7.812500000000000E-005
+ Data replacement 280           9  7.146987081245088E-002
+  7.812500000000000E-005
+ Data replacement 280          10  -2.46033263203160     
+  7.812500000000000E-005
+ Data replacement 280          11  0.872292083785661     
+  7.812500000000000E-005
+ Data replacement 280          12  0.518299010024824     
+  7.812500000000000E-005
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL           8
+dels   -0.24198E-03   -0.14249E-01   -0.14970E-01    0.14297E-01   -0.64196E-01    0.40218E-01    0.78125E-04    0.78125E-04    0.78125E-04    0.78125E-04    0.78125E-04    0.78125E-04   -0.11422E+01
+ALL    8    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096418460E+01 -0.1095934494E+01
+ALL    8    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.1872311735E+00  0.2157300519E+00
+ALL    8    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3293875469E+01  0.3323815786E+01
+ALL    8    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1511848028E+01 -0.1540442832E+01
+ALL    8    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.1424919213E+00  0.2708836973E+00
+ALL    8    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3230577829E+01  0.3150141541E+01
+ALL    8    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963795635E+01 -0.1963951885E+01
+ALL    8    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135876671E+00  0.7134314171E+00
+ALL    8    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7154799581E-01  0.7139174581E-01
+ALL    8   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460254507E+01 -0.2460410757E+01
+ALL    8   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8723702088E+00  0.8722139588E+00
+ALL    8   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5183771350E+00  0.5182208850E+00
+ALL    8   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -1.209914216224991E-004
+ Data replacement 280           2  0.201480612696746     
+ -7.124719586253008E-003
+ Data replacement 280           3   3.30884562751169     
+ -7.485079459170429E-003
+ Data replacement 280           4  -1.52614542983396     
+  7.148701041913828E-003
+ Data replacement 280           5  0.206687809264178     
+ -3.209794400258742E-002
+ Data replacement 280           6   3.19035968485706     
+  2.010907193561613E-002
+ Data replacement 280           7  -1.96387376011903     
+  3.906250000000000E-005
+ Data replacement 280           8  0.713509542120714     
+  3.906250000000000E-005
+ Data replacement 280           9  7.146987081245088E-002
+  3.906250000000000E-005
+ Data replacement 280          10  -2.46033263203160     
+  3.906250000000000E-005
+ Data replacement 280          11  0.872292083785661     
+  3.906250000000000E-005
+ Data replacement 280          12  0.518299010024824     
+  3.906250000000000E-005
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL           9
+dels   -0.12099E-03   -0.71247E-02   -0.74851E-02    0.71487E-02   -0.32098E-01    0.20109E-01    0.39063E-04    0.39063E-04    0.39063E-04    0.39063E-04    0.39063E-04    0.39063E-04   -0.11422E+01
+ALL    9    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096297469E+01 -0.1096055486E+01
+ALL    9    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.1943558931E+00  0.2086053323E+00
+ALL    9    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3301360548E+01  0.3316330707E+01
+ALL    9    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1518996729E+01 -0.1533294131E+01
+ALL    9    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.1745898653E+00  0.2387857533E+00
+ALL    9    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3210468757E+01  0.3170250613E+01
+ALL    9    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963834698E+01 -0.1963912823E+01
+ALL    9    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135486046E+00  0.7134704796E+00
+ALL    9    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7150893331E-01  0.7143080831E-01
+ALL    9   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460293570E+01 -0.2460371695E+01
+ALL    9   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8723311463E+00  0.8722530213E+00
+ALL    9   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5183380725E+00  0.5182599475E+00
+ALL    9   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -6.049571081124955E-005
+ Data replacement 280           2  0.201480612696746     
+ -3.562359793126504E-003
+ Data replacement 280           3   3.30884562751169     
+ -3.742539729585215E-003
+ Data replacement 280           4  -1.52614542983396     
+  3.574350520956914E-003
+ Data replacement 280           5  0.206687809264178     
+ -1.604897200129371E-002
+ Data replacement 280           6   3.19035968485706     
+  1.005453596780807E-002
+ Data replacement 280           7  -1.96387376011903     
+  1.953125000000000E-005
+ Data replacement 280           8  0.713509542120714     
+  1.953125000000000E-005
+ Data replacement 280           9  7.146987081245088E-002
+  1.953125000000000E-005
+ Data replacement 280          10  -2.46033263203160     
+  1.953125000000000E-005
+ Data replacement 280          11  0.872292083785661     
+  1.953125000000000E-005
+ Data replacement 280          12  0.518299010024824     
+  1.953125000000000E-005
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          10
+dels   -0.60496E-04   -0.35624E-02   -0.37425E-02    0.35744E-02   -0.16049E-01    0.10055E-01    0.19531E-04    0.19531E-04    0.19531E-04    0.19531E-04    0.19531E-04    0.19531E-04   -0.11422E+01
+ALL   10    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096236973E+01 -0.1096115981E+01
+ALL   10    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.1979182529E+00  0.2050429725E+00
+ALL   10    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3305103088E+01  0.3312588167E+01
+ALL   10    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1522571079E+01 -0.1529719780E+01
+ALL   10    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.1906388373E+00  0.2227367813E+00
+ALL   10    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3200414221E+01  0.3180305149E+01
+ALL   10    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963854229E+01 -0.1963893291E+01
+ALL   10    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135290734E+00  0.7134900109E+00
+ALL   10    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7148940206E-01  0.7145033956E-01
+ALL   10   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460313101E+01 -0.2460352163E+01
+ALL   10   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8723116150E+00  0.8722725525E+00
+ALL   10   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5183185413E+00  0.5182794788E+00
+ALL   10   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -3.024785540562478E-005
+ Data replacement 280           2  0.201480612696746     
+ -1.781179896563252E-003
+ Data replacement 280           3   3.30884562751169     
+ -1.871269864792607E-003
+ Data replacement 280           4  -1.52614542983396     
+  1.787175260478457E-003
+ Data replacement 280           5  0.206687809264178     
+ -8.024486000646855E-003
+ Data replacement 280           6   3.19035968485706     
+  5.027267983904033E-003
+ Data replacement 280           7  -1.96387376011903     
+  9.765625000000000E-006
+ Data replacement 280           8  0.713509542120714     
+  9.765625000000000E-006
+ Data replacement 280           9  7.146987081245088E-002
+  9.765625000000000E-006
+ Data replacement 280          10  -2.46033263203160     
+  9.765625000000000E-006
+ Data replacement 280          11  0.872292083785661     
+  9.765625000000000E-006
+ Data replacement 280          12  0.518299010024824     
+  9.765625000000000E-006
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          11
+dels   -0.30248E-04   -0.17812E-02   -0.18713E-02    0.17872E-02   -0.80245E-02    0.50273E-02    0.97656E-05    0.97656E-05    0.97656E-05    0.97656E-05    0.97656E-05    0.97656E-05   -0.11422E+01
+ALL   11    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096206725E+01 -0.1096146229E+01
+ALL   11    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.1996994328E+00  0.2032617926E+00
+ALL   11    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3306974358E+01  0.3310716897E+01
+ALL   11    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1524358255E+01 -0.1527932605E+01
+ALL   11    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.1986633233E+00  0.2147122953E+00
+ALL   11    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3195386953E+01  0.3185332417E+01
+ALL   11    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963863994E+01 -0.1963883526E+01
+ALL   11    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135193077E+00  0.7134997765E+00
+ALL   11    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7147963644E-01  0.7146010519E-01
+ALL   11   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460322866E+01 -0.2460342398E+01
+ALL   11   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8723018494E+00  0.8722823182E+00
+ALL   11   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5183087756E+00  0.5182892444E+00
+ALL   11   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -1.512392770281239E-005
+ Data replacement 280           2  0.201480612696746     
+ -8.905899482816260E-004
+ Data replacement 280           3   3.30884562751169     
+ -9.356349323963037E-004
+ Data replacement 280           4  -1.52614542983396     
+  8.935876302392285E-004
+ Data replacement 280           5  0.206687809264178     
+ -4.012243000323427E-003
+ Data replacement 280           6   3.19035968485706     
+  2.513633991952017E-003
+ Data replacement 280           7  -1.96387376011903     
+  4.882812500000000E-006
+ Data replacement 280           8  0.713509542120714     
+  4.882812500000000E-006
+ Data replacement 280           9  7.146987081245088E-002
+  4.882812500000000E-006
+ Data replacement 280          10  -2.46033263203160     
+  4.882812500000000E-006
+ Data replacement 280          11  0.872292083785661     
+  4.882812500000000E-006
+ Data replacement 280          12  0.518299010024824     
+  4.882812500000000E-006
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          12
+dels   -0.15124E-04   -0.89059E-03   -0.93563E-03    0.89359E-03   -0.40122E-02    0.25136E-02    0.48828E-05    0.48828E-05    0.48828E-05    0.48828E-05    0.48828E-05    0.48828E-05   -0.11422E+01
+ALL   12    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096191601E+01 -0.1096161353E+01
+ALL   12    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2005900227E+00  0.2023712026E+00
+ALL   12    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3307909993E+01  0.3309781262E+01
+ALL   12    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1525251842E+01 -0.1527039017E+01
+ALL   12    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2026755663E+00  0.2107000523E+00
+ALL   12    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3192873319E+01  0.3187846051E+01
+ALL   12    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963868877E+01 -0.1963878643E+01
+ALL   12    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135144249E+00  0.7135046593E+00
+ALL   12    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7147475362E-01  0.7146498800E-01
+ALL   12   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460327749E+01 -0.2460337515E+01
+ALL   12   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722969666E+00  0.8722872010E+00
+ALL   12   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5183038928E+00  0.5182941272E+00
+ALL   12   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -7.561963851406194E-006
+ Data replacement 280           2  0.201480612696746     
+ -4.452949741408130E-004
+ Data replacement 280           3   3.30884562751169     
+ -4.678174661981518E-004
+ Data replacement 280           4  -1.52614542983396     
+  4.467938151196142E-004
+ Data replacement 280           5  0.206687809264178     
+ -2.006121500161714E-003
+ Data replacement 280           6   3.19035968485706     
+  1.256816995976008E-003
+ Data replacement 280           7  -1.96387376011903     
+  2.441406250000000E-006
+ Data replacement 280           8  0.713509542120714     
+  2.441406250000000E-006
+ Data replacement 280           9  7.146987081245088E-002
+  2.441406250000000E-006
+ Data replacement 280          10  -2.46033263203160     
+  2.441406250000000E-006
+ Data replacement 280          11  0.872292083785661     
+  2.441406250000000E-006
+ Data replacement 280          12  0.518299010024824     
+  2.441406250000000E-006
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          13
+dels   -0.75620E-05   -0.44529E-03   -0.46782E-03    0.44679E-03   -0.20061E-02    0.12568E-02    0.24414E-05    0.24414E-05    0.24414E-05    0.24414E-05    0.24414E-05    0.24414E-05   -0.11422E+01
+ALL   13    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096184039E+01 -0.1096168915E+01
+ALL   13    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2010353177E+00  0.2019259077E+00
+ALL   13    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308377810E+01  0.3309313445E+01
+ALL   13    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1525698636E+01 -0.1526592224E+01
+ALL   13    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2046816878E+00  0.2086939308E+00
+ALL   13    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3191616502E+01  0.3189102868E+01
+ALL   13    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963871319E+01 -0.1963876202E+01
+ALL   13    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135119835E+00  0.7135071007E+00
+ALL   13    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7147231222E-01  0.7146742941E-01
+ALL   13   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460330191E+01 -0.2460335073E+01
+ALL   13   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722945252E+00  0.8722896424E+00
+ALL   13   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5183014514E+00  0.5182965686E+00
+ALL   13   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -3.780981925703097E-006
+ Data replacement 280           2  0.201480612696746     
+ -2.226474870704065E-004
+ Data replacement 280           3   3.30884562751169     
+ -2.339087330990759E-004
+ Data replacement 280           4  -1.52614542983396     
+  2.233969075598071E-004
+ Data replacement 280           5  0.206687809264178     
+ -1.003060750080857E-003
+ Data replacement 280           6   3.19035968485706     
+  6.284084979880041E-004
+ Data replacement 280           7  -1.96387376011903     
+  1.220703125000000E-006
+ Data replacement 280           8  0.713509542120714     
+  1.220703125000000E-006
+ Data replacement 280           9  7.146987081245088E-002
+  1.220703125000000E-006
+ Data replacement 280          10  -2.46033263203160     
+  1.220703125000000E-006
+ Data replacement 280          11  0.872292083785661     
+  1.220703125000000E-006
+ Data replacement 280          12  0.518299010024824     
+  1.220703125000000E-006
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          14
+dels   -0.37810E-05   -0.22265E-03   -0.23391E-03    0.22340E-03   -0.10031E-02    0.62841E-03    0.12207E-05    0.12207E-05    0.12207E-05    0.12207E-05    0.12207E-05    0.12207E-05   -0.11422E+01
+ALL   14    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096180258E+01 -0.1096172696E+01
+ALL   14    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2012579652E+00  0.2017032602E+00
+ALL   14    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308611719E+01  0.3309079536E+01
+ALL   14    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1525922033E+01 -0.1526368827E+01
+ALL   14    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2056847485E+00  0.2076908700E+00
+ALL   14    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190988093E+01  0.3189731276E+01
+ALL   14    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963872539E+01 -0.1963874981E+01
+ALL   14    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135107628E+00  0.7135083214E+00
+ALL   14    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7147109152E-01  0.7146865011E-01
+ALL   14   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460331411E+01 -0.2460333853E+01
+ALL   14   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722933045E+00  0.8722908631E+00
+ALL   14   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5183002307E+00  0.5182977893E+00
+ALL   14   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -1.890490962851548E-006
+ Data replacement 280           2  0.201480612696746     
+ -1.113237435352032E-004
+ Data replacement 280           3   3.30884562751169     
+ -1.169543665495380E-004
+ Data replacement 280           4  -1.52614542983396     
+  1.116984537799036E-004
+ Data replacement 280           5  0.206687809264178     
+ -5.015303750404284E-004
+ Data replacement 280           6   3.19035968485706     
+  3.142042489940021E-004
+ Data replacement 280           7  -1.96387376011903     
+  6.103515625000000E-007
+ Data replacement 280           8  0.713509542120714     
+  6.103515625000000E-007
+ Data replacement 280           9  7.146987081245088E-002
+  6.103515625000000E-007
+ Data replacement 280          10  -2.46033263203160     
+  6.103515625000000E-007
+ Data replacement 280          11  0.872292083785661     
+  6.103515625000000E-007
+ Data replacement 280          12  0.518299010024824     
+  6.103515625000000E-007
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          15
+dels   -0.18905E-05   -0.11132E-03   -0.11695E-03    0.11170E-03   -0.50153E-03    0.31420E-03    0.61035E-06    0.61035E-06    0.61035E-06    0.61035E-06    0.61035E-06    0.61035E-06   -0.11422E+01
+ALL   15    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096178368E+01 -0.1096174587E+01
+ALL   15    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2013692890E+00  0.2015919364E+00
+ALL   15    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308728673E+01  0.3308962582E+01
+ALL   15    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526033731E+01 -0.1526257128E+01
+ALL   15    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2061862789E+00  0.2071893396E+00
+ALL   15    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190673889E+01  0.3190045481E+01
+ALL   15    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873150E+01 -0.1963874370E+01
+ALL   15    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135101525E+00  0.7135089318E+00
+ALL   15    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7147048116E-01  0.7146926046E-01
+ALL   15   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332022E+01 -0.2460333242E+01
+ALL   15   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722926941E+00  0.8722914734E+00
+ALL   15   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182996204E+00  0.5182983997E+00
+ALL   15   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -9.452454814257742E-007
+ Data replacement 280           2  0.201480612696746     
+ -5.566187176760162E-005
+ Data replacement 280           3   3.30884562751169     
+ -5.847718327476898E-005
+ Data replacement 280           4  -1.52614542983396     
+  5.584922688995178E-005
+ Data replacement 280           5  0.206687809264178     
+ -2.507651875202142E-004
+ Data replacement 280           6   3.19035968485706     
+  1.571021244970010E-004
+ Data replacement 280           7  -1.96387376011903     
+  3.051757812500000E-007
+ Data replacement 280           8  0.713509542120714     
+  3.051757812500000E-007
+ Data replacement 280           9  7.146987081245088E-002
+  3.051757812500000E-007
+ Data replacement 280          10  -2.46033263203160     
+  3.051757812500000E-007
+ Data replacement 280          11  0.872292083785661     
+  3.051757812500000E-007
+ Data replacement 280          12  0.518299010024824     
+  3.051757812500000E-007
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          16
+dels   -0.94525E-06   -0.55662E-04   -0.58477E-04    0.55849E-04   -0.25077E-03    0.15710E-03    0.30518E-06    0.30518E-06    0.30518E-06    0.30518E-06    0.30518E-06    0.30518E-06   -0.11422E+01
+ALL   16    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096177422E+01 -0.1096175532E+01
+ALL   16    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014249508E+00  0.2015362746E+00
+ALL   16    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308787150E+01  0.3308904105E+01
+ALL   16    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526089581E+01 -0.1526201279E+01
+ALL   16    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2064370441E+00  0.2069385745E+00
+ALL   16    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190516787E+01  0.3190202583E+01
+ALL   16    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873455E+01 -0.1963874065E+01
+ALL   16    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135098473E+00  0.7135092369E+00
+ALL   16    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7147017599E-01  0.7146956564E-01
+ALL   16   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332327E+01 -0.2460332937E+01
+ALL   16   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722923890E+00  0.8722917786E+00
+ALL   16   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182993152E+00  0.5182987048E+00
+ALL   16   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -4.726227407128871E-007
+ Data replacement 280           2  0.201480612696746     
+ -2.783093588380081E-005
+ Data replacement 280           3   3.30884562751169     
+ -2.923859163738449E-005
+ Data replacement 280           4  -1.52614542983396     
+  2.792461344497589E-005
+ Data replacement 280           5  0.206687809264178     
+ -1.253825937601071E-004
+ Data replacement 280           6   3.19035968485706     
+  7.855106224850052E-005
+ Data replacement 280           7  -1.96387376011903     
+  1.525878906250000E-007
+ Data replacement 280           8  0.713509542120714     
+  1.525878906250000E-007
+ Data replacement 280           9  7.146987081245088E-002
+  1.525878906250000E-007
+ Data replacement 280          10  -2.46033263203160     
+  1.525878906250000E-007
+ Data replacement 280          11  0.872292083785661     
+  1.525878906250000E-007
+ Data replacement 280          12  0.518299010024824     
+  1.525878906250000E-007
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          17
+dels   -0.47262E-06   -0.27831E-04   -0.29239E-04    0.27925E-04   -0.12538E-03    0.78551E-04    0.15259E-06    0.15259E-06    0.15259E-06    0.15259E-06    0.15259E-06    0.15259E-06   -0.11422E+01
+ALL   17    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176950E+01 -0.1096176004E+01
+ALL   17    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014527818E+00  0.2015084436E+00
+ALL   17    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308816389E+01  0.3308874866E+01
+ALL   17    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526117505E+01 -0.1526173354E+01
+ALL   17    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2065624267E+00  0.2068131919E+00
+ALL   17    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190438236E+01  0.3190281134E+01
+ALL   17    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873608E+01 -0.1963873913E+01
+ALL   17    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135096947E+00  0.7135093895E+00
+ALL   17    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7147002340E-01  0.7146971822E-01
+ALL   17   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332479E+01 -0.2460332785E+01
+ALL   17   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722922364E+00  0.8722919312E+00
+ALL   17   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182991626E+00  0.5182988574E+00
+ALL   17   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -2.363113703564436E-007
+ Data replacement 280           2  0.201480612696746     
+ -1.391546794190041E-005
+ Data replacement 280           3   3.30884562751169     
+ -1.461929581869225E-005
+ Data replacement 280           4  -1.52614542983396     
+  1.396230672248794E-005
+ Data replacement 280           5  0.206687809264178     
+ -6.269129688005355E-005
+ Data replacement 280           6   3.19035968485706     
+  3.927553112425026E-005
+ Data replacement 280           7  -1.96387376011903     
+  7.629394531250000E-008
+ Data replacement 280           8  0.713509542120714     
+  7.629394531250000E-008
+ Data replacement 280           9  7.146987081245088E-002
+  7.629394531250000E-008
+ Data replacement 280          10  -2.46033263203160     
+  7.629394531250000E-008
+ Data replacement 280          11  0.872292083785661     
+  7.629394531250000E-008
+ Data replacement 280          12  0.518299010024824     
+  7.629394531250000E-008
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          18
+dels   -0.23631E-06   -0.13915E-04   -0.14619E-04    0.13962E-04   -0.62691E-04    0.39276E-04    0.76294E-07    0.76294E-07    0.76294E-07    0.76294E-07    0.76294E-07    0.76294E-07   -0.11422E+01
+ALL   18    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176713E+01 -0.1096176241E+01
+ALL   18    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014666972E+00  0.2014945282E+00
+ALL   18    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308831008E+01  0.3308860247E+01
+ALL   18    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526131468E+01 -0.1526159392E+01
+ALL   18    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066251180E+00  0.2067505006E+00
+ALL   18    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190398960E+01  0.3190320409E+01
+ALL   18    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873684E+01 -0.1963873836E+01
+ALL   18    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135096184E+00  0.7135094658E+00
+ALL   18    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146994711E-01  0.7146979452E-01
+ALL   18   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332556E+01 -0.2460332708E+01
+ALL   18   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722921601E+00  0.8722920075E+00
+ALL   18   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990863E+00  0.5182989337E+00
+ALL   18   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -1.181556851782218E-007
+ Data replacement 280           2  0.201480612696746     
+ -6.957733970950203E-006
+ Data replacement 280           3   3.30884562751169     
+ -7.309647909346123E-006
+ Data replacement 280           4  -1.52614542983396     
+  6.981153361243972E-006
+ Data replacement 280           5  0.206687809264178     
+ -3.134564844002678E-005
+ Data replacement 280           6   3.19035968485706     
+  1.963776556212513E-005
+ Data replacement 280           7  -1.96387376011903     
+  3.814697265625000E-008
+ Data replacement 280           8  0.713509542120714     
+  3.814697265625000E-008
+ Data replacement 280           9  7.146987081245088E-002
+  3.814697265625000E-008
+ Data replacement 280          10  -2.46033263203160     
+  3.814697265625000E-008
+ Data replacement 280          11  0.872292083785661     
+  3.814697265625000E-008
+ Data replacement 280          12  0.518299010024824     
+  3.814697265625000E-008
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          19
+dels   -0.11816E-06   -0.69577E-05   -0.73096E-05    0.69812E-05   -0.31346E-04    0.19638E-04    0.38147E-07    0.38147E-07    0.38147E-07    0.38147E-07    0.38147E-07    0.38147E-07   -0.11422E+01
+ALL   19    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176595E+01 -0.1096176359E+01
+ALL   19    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014736550E+00  0.2014875704E+00
+ALL   19    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308838318E+01  0.3308852937E+01
+ALL   19    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526138449E+01 -0.1526152411E+01
+ALL   19    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066564636E+00  0.2067191549E+00
+ALL   19    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190379323E+01  0.3190340047E+01
+ALL   19    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873722E+01 -0.1963873798E+01
+ALL   19    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095803E+00  0.7135095040E+00
+ALL   19    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146990896E-01  0.7146983267E-01
+ALL   19   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332594E+01 -0.2460332670E+01
+ALL   19   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722921219E+00  0.8722920456E+00
+ALL   19   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990482E+00  0.5182989719E+00
+ALL   19   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -5.907784258911089E-008
+ Data replacement 280           2  0.201480612696746     
+ -3.478866985475101E-006
+ Data replacement 280           3   3.30884562751169     
+ -3.654823954673061E-006
+ Data replacement 280           4  -1.52614542983396     
+  3.490576680621986E-006
+ Data replacement 280           5  0.206687809264178     
+ -1.567282422001339E-005
+ Data replacement 280           6   3.19035968485706     
+  9.818882781062565E-006
+ Data replacement 280           7  -1.96387376011903     
+  1.907348632812500E-008
+ Data replacement 280           8  0.713509542120714     
+  1.907348632812500E-008
+ Data replacement 280           9  7.146987081245088E-002
+  1.907348632812500E-008
+ Data replacement 280          10  -2.46033263203160     
+  1.907348632812500E-008
+ Data replacement 280          11  0.872292083785661     
+  1.907348632812500E-008
+ Data replacement 280          12  0.518299010024824     
+  1.907348632812500E-008
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          20
+dels   -0.59078E-07   -0.34789E-05   -0.36548E-05    0.34906E-05   -0.15673E-04    0.98189E-05    0.19073E-07    0.19073E-07    0.19073E-07    0.19073E-07    0.19073E-07    0.19073E-07   -0.11422E+01
+ALL   20    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176536E+01 -0.1096176418E+01
+ALL   20    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014771338E+00  0.2014840916E+00
+ALL   20    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308841973E+01  0.3308849282E+01
+ALL   20    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526141939E+01 -0.1526148920E+01
+ALL   20    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066721364E+00  0.2067034821E+00
+ALL   20    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190369504E+01  0.3190349866E+01
+ALL   20    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873741E+01 -0.1963873779E+01
+ALL   20    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095612E+00  0.7135095230E+00
+ALL   20    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146988989E-01  0.7146985174E-01
+ALL   20   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332613E+01 -0.2460332651E+01
+ALL   20   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722921029E+00  0.8722920647E+00
+ALL   20   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990291E+00  0.5182989910E+00
+ALL   20   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -2.953892129455544E-008
+ Data replacement 280           2  0.201480612696746     
+ -1.739433492737551E-006
+ Data replacement 280           3   3.30884562751169     
+ -1.827411977336531E-006
+ Data replacement 280           4  -1.52614542983396     
+  1.745288340310993E-006
+ Data replacement 280           5  0.206687809264178     
+ -7.836412110006694E-006
+ Data replacement 280           6   3.19035968485706     
+  4.909441390531282E-006
+ Data replacement 280           7  -1.96387376011903     
+  9.536743164062500E-009
+ Data replacement 280           8  0.713509542120714     
+  9.536743164062500E-009
+ Data replacement 280           9  7.146987081245088E-002
+  9.536743164062500E-009
+ Data replacement 280          10  -2.46033263203160     
+  9.536743164062500E-009
+ Data replacement 280          11  0.872292083785661     
+  9.536743164062500E-009
+ Data replacement 280          12  0.518299010024824     
+  9.536743164062500E-009
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          21
+dels   -0.29539E-07   -0.17394E-05   -0.18274E-05    0.17453E-05   -0.78364E-05    0.49094E-05    0.95367E-08    0.95367E-08    0.95367E-08    0.95367E-08    0.95367E-08    0.95367E-08   -0.11422E+01
+ALL   21    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176507E+01 -0.1096176448E+01
+ALL   21    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014788733E+00  0.2014823521E+00
+ALL   21    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308843800E+01  0.3308847455E+01
+ALL   21    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526143685E+01 -0.1526147175E+01
+ALL   21    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066799729E+00  0.2066956457E+00
+ALL   21    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190364594E+01  0.3190354775E+01
+ALL   21    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873751E+01 -0.1963873770E+01
+ALL   21    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095517E+00  0.7135095326E+00
+ALL   21    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146988035E-01  0.7146986128E-01
+ALL   21   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332622E+01 -0.2460332642E+01
+ALL   21   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722920933E+00  0.8722920742E+00
+ALL   21   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990196E+00  0.5182990005E+00
+ALL   21   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -1.476946064727772E-008
+ Data replacement 280           2  0.201480612696746     
+ -8.697167463687754E-007
+ Data replacement 280           3   3.30884562751169     
+ -9.137059886682653E-007
+ Data replacement 280           4  -1.52614542983396     
+  8.726441701554966E-007
+ Data replacement 280           5  0.206687809264178     
+ -3.918206055003347E-006
+ Data replacement 280           6   3.19035968485706     
+  2.454720695265641E-006
+ Data replacement 280           7  -1.96387376011903     
+  4.768371582031250E-009
+ Data replacement 280           8  0.713509542120714     
+  4.768371582031250E-009
+ Data replacement 280           9  7.146987081245088E-002
+  4.768371582031250E-009
+ Data replacement 280          10  -2.46033263203160     
+  4.768371582031250E-009
+ Data replacement 280          11  0.872292083785661     
+  4.768371582031250E-009
+ Data replacement 280          12  0.518299010024824     
+  4.768371582031250E-009
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          22
+dels   -0.14769E-07   -0.86972E-06   -0.91371E-06    0.87264E-06   -0.39182E-05    0.24547E-05    0.47684E-08    0.47684E-08    0.47684E-08    0.47684E-08    0.47684E-08    0.47684E-08   -0.11422E+01
+ALL   22    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176492E+01 -0.1096176462E+01
+ALL   22    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014797430E+00  0.2014814824E+00
+ALL   22    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308844714E+01  0.3308846541E+01
+ALL   22    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526144557E+01 -0.1526146302E+01
+ALL   22    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066838911E+00  0.2066917275E+00
+ALL   22    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190362140E+01  0.3190357230E+01
+ALL   22    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873755E+01 -0.1963873765E+01
+ALL   22    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095469E+00  0.7135095374E+00
+ALL   22    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146987558E-01  0.7146986604E-01
+ALL   22   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332627E+01 -0.2460332637E+01
+ALL   22   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722920886E+00  0.8722920790E+00
+ALL   22   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990148E+00  0.5182990053E+00
+ALL   22   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -7.384730323638861E-009
+ Data replacement 280           2  0.201480612696746     
+ -4.348583731843877E-007
+ Data replacement 280           3   3.30884562751169     
+ -4.568529943341327E-007
+ Data replacement 280           4  -1.52614542983396     
+  4.363220850777483E-007
+ Data replacement 280           5  0.206687809264178     
+ -1.959103027501674E-006
+ Data replacement 280           6   3.19035968485706     
+  1.227360347632821E-006
+ Data replacement 280           7  -1.96387376011903     
+  2.384185791015625E-009
+ Data replacement 280           8  0.713509542120714     
+  2.384185791015625E-009
+ Data replacement 280           9  7.146987081245088E-002
+  2.384185791015625E-009
+ Data replacement 280          10  -2.46033263203160     
+  2.384185791015625E-009
+ Data replacement 280          11  0.872292083785661     
+  2.384185791015625E-009
+ Data replacement 280          12  0.518299010024824     
+  2.384185791015625E-009
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          23
+dels   -0.73847E-08   -0.43486E-06   -0.45685E-06    0.43632E-06   -0.19591E-05    0.12274E-05    0.23842E-08    0.23842E-08    0.23842E-08    0.23842E-08    0.23842E-08    0.23842E-08   -0.11422E+01
+ALL   23    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176484E+01 -0.1096176470E+01
+ALL   23    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014801778E+00  0.2014810476E+00
+ALL   23    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308845171E+01  0.3308846084E+01
+ALL   23    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526144994E+01 -0.1526145866E+01
+ALL   23    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066858502E+00  0.2066897684E+00
+ALL   23    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190360912E+01  0.3190358457E+01
+ALL   23    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873758E+01 -0.1963873763E+01
+ALL   23    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095445E+00  0.7135095397E+00
+ALL   23    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146987320E-01  0.7146986843E-01
+ALL   23   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332630E+01 -0.2460332634E+01
+ALL   23   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722920862E+00  0.8722920814E+00
+ALL   23   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990124E+00  0.5182990076E+00
+ALL   23   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -3.692365161819431E-009
+ Data replacement 280           2  0.201480612696746     
+ -2.174291865921938E-007
+ Data replacement 280           3   3.30884562751169     
+ -2.284264971670663E-007
+ Data replacement 280           4  -1.52614542983396     
+  2.181610425388741E-007
+ Data replacement 280           5  0.206687809264178     
+ -9.795515137508368E-007
+ Data replacement 280           6   3.19035968485706     
+  6.136801738164103E-007
+ Data replacement 280           7  -1.96387376011903     
+  1.192092895507813E-009
+ Data replacement 280           8  0.713509542120714     
+  1.192092895507813E-009
+ Data replacement 280           9  7.146987081245088E-002
+  1.192092895507813E-009
+ Data replacement 280          10  -2.46033263203160     
+  1.192092895507813E-009
+ Data replacement 280          11  0.872292083785661     
+  1.192092895507813E-009
+ Data replacement 280          12  0.518299010024824     
+  1.192092895507813E-009
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          24
+dels   -0.36924E-08   -0.21743E-06   -0.22843E-06    0.21816E-06   -0.97955E-06    0.61368E-06    0.11921E-08    0.11921E-08    0.11921E-08    0.11921E-08    0.11921E-08    0.11921E-08   -0.11422E+01
+ALL   24    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176481E+01 -0.1096176473E+01
+ALL   24    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014803953E+00  0.2014808301E+00
+ALL   24    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308845399E+01  0.3308845856E+01
+ALL   24    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526145212E+01 -0.1526145648E+01
+ALL   24    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066868297E+00  0.2066887888E+00
+ALL   24    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190360299E+01  0.3190359071E+01
+ALL   24    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873759E+01 -0.1963873761E+01
+ALL   24    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095433E+00  0.7135095409E+00
+ALL   24    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146987200E-01  0.7146986962E-01
+ALL   24   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332631E+01 -0.2460332633E+01
+ALL   24   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722920850E+00  0.8722920826E+00
+ALL   24   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990112E+00  0.5182990088E+00
+ALL   24   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -1.846182580909715E-009
+ Data replacement 280           2  0.201480612696746     
+ -1.087145932960969E-007
+ Data replacement 280           3   3.30884562751169     
+ -1.142132485835332E-007
+ Data replacement 280           4  -1.52614542983396     
+  1.090805212694371E-007
+ Data replacement 280           5  0.206687809264178     
+ -4.897757568754184E-007
+ Data replacement 280           6   3.19035968485706     
+  3.068400869082051E-007
+ Data replacement 280           7  -1.96387376011903     
+  5.960464477539063E-010
+ Data replacement 280           8  0.713509542120714     
+  5.960464477539063E-010
+ Data replacement 280           9  7.146987081245088E-002
+  5.960464477539063E-010
+ Data replacement 280          10  -2.46033263203160     
+  5.960464477539063E-010
+ Data replacement 280          11  0.872292083785661     
+  5.960464477539063E-010
+ Data replacement 280          12  0.518299010024824     
+  5.960464477539063E-010
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          25
+dels   -0.18462E-08   -0.10871E-06   -0.11421E-06    0.10908E-06   -0.48978E-06    0.30684E-06    0.59605E-09    0.59605E-09    0.59605E-09    0.59605E-09    0.59605E-09    0.59605E-09   -0.11422E+01
+ALL   25    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176479E+01 -0.1096176475E+01
+ALL   25    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014805040E+00  0.2014807214E+00
+ALL   25    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308845513E+01  0.3308845742E+01
+ALL   25    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526145321E+01 -0.1526145539E+01
+ALL   25    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066873195E+00  0.2066882990E+00
+ALL   25    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190359992E+01  0.3190359378E+01
+ALL   25    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873760E+01 -0.1963873761E+01
+ALL   25    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095427E+00  0.7135095415E+00
+ALL   25    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146987141E-01  0.7146987022E-01
+ALL   25   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332631E+01 -0.2460332633E+01
+ALL   25   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722920844E+00  0.8722920832E+00
+ALL   25   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990106E+00  0.5182990094E+00
+ALL   25   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -9.230912904548576E-010
+ Data replacement 280           2  0.201480612696746     
+ -5.435729664804846E-008
+ Data replacement 280           3   3.30884562751169     
+ -5.710662429176658E-008
+ Data replacement 280           4  -1.52614542983396     
+  5.454026063471853E-008
+ Data replacement 280           5  0.206687809264178     
+ -2.448878784377092E-007
+ Data replacement 280           6   3.19035968485706     
+  1.534200434541026E-007
+ Data replacement 280           7  -1.96387376011903     
+  2.980232238769531E-010
+ Data replacement 280           8  0.713509542120714     
+  2.980232238769531E-010
+ Data replacement 280           9  7.146987081245088E-002
+  2.980232238769531E-010
+ Data replacement 280          10  -2.46033263203160     
+  2.980232238769531E-010
+ Data replacement 280          11  0.872292083785661     
+  2.980232238769531E-010
+ Data replacement 280          12  0.518299010024824     
+  2.980232238769531E-010
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          26
+dels   -0.92309E-09   -0.54357E-07   -0.57107E-07    0.54540E-07   -0.24489E-06    0.15342E-06    0.29802E-09    0.29802E-09    0.29802E-09    0.29802E-09    0.29802E-09    0.29802E-09   -0.11422E+01
+ALL   26    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176478E+01 -0.1096176476E+01
+ALL   26    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014805583E+00  0.2014806671E+00
+ALL   26    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308845570E+01  0.3308845685E+01
+ALL   26    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526145375E+01 -0.1526145484E+01
+ALL   26    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066875644E+00  0.2066880542E+00
+ALL   26    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190359838E+01  0.3190359531E+01
+ALL   26    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873760E+01 -0.1963873760E+01
+ALL   26    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095424E+00  0.7135095418E+00
+ALL   26    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146987111E-01  0.7146987051E-01
+ALL   26   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332632E+01 -0.2460332632E+01
+ALL   26   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722920841E+00  0.8722920835E+00
+ALL   26   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990103E+00  0.5182990097E+00
+ALL   26   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -4.615456452274288E-010
+ Data replacement 280           2  0.201480612696746     
+ -2.717864832402423E-008
+ Data replacement 280           3   3.30884562751169     
+ -2.855331214588329E-008
+ Data replacement 280           4  -1.52614542983396     
+  2.727013031735927E-008
+ Data replacement 280           5  0.206687809264178     
+ -1.224439392188546E-007
+ Data replacement 280           6   3.19035968485706     
+  7.671002172705129E-008
+ Data replacement 280           7  -1.96387376011903     
+  1.490116119384766E-010
+ Data replacement 280           8  0.713509542120714     
+  1.490116119384766E-010
+ Data replacement 280           9  7.146987081245088E-002
+  1.490116119384766E-010
+ Data replacement 280          10  -2.46033263203160     
+  1.490116119384766E-010
+ Data replacement 280          11  0.872292083785661     
+  1.490116119384766E-010
+ Data replacement 280          12  0.518299010024824     
+  1.490116119384766E-010
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          27
+dels   -0.46155E-09   -0.27179E-07   -0.28553E-07    0.27270E-07   -0.12244E-06    0.76710E-07    0.14901E-09    0.14901E-09    0.14901E-09    0.14901E-09    0.14901E-09    0.14901E-09   -0.11422E+01
+ALL   27    1 Infinity            Infinity            Infinity            -0.1096176477E+01 -0.1096176478E+01 -0.1096176477E+01
+ALL   27    2 Infinity            Infinity            Infinity             0.2014806127E+00  0.2014805855E+00  0.2014806399E+00
+ALL   27    3 Infinity            Infinity            Infinity             0.3308845628E+01  0.3308845599E+01  0.3308845656E+01
+ALL   27    4 Infinity            Infinity            Infinity            -0.1526145430E+01 -0.1526145403E+01 -0.1526145457E+01
+ALL   27    5 Infinity            Infinity            Infinity             0.2066878093E+00  0.2066876868E+00  0.2066879317E+00
+ALL   27    6 Infinity            Infinity            Infinity             0.3190359685E+01  0.3190359762E+01  0.3190359608E+01
+ALL   27    7 Infinity            Infinity            Infinity            -0.1963873760E+01 -0.1963873760E+01 -0.1963873760E+01
+ALL   27    8 Infinity            Infinity            Infinity             0.7135095421E+00  0.7135095423E+00  0.7135095420E+00
+ALL   27    9 Infinity            Infinity            Infinity             0.7146987081E-01  0.7146987096E-01  0.7146987066E-01
+ALL   27   10 Infinity            Infinity            Infinity            -0.2460332632E+01 -0.2460332632E+01 -0.2460332632E+01
+ALL   27   11 Infinity            Infinity            Infinity             0.8722920838E+00  0.8722920839E+00  0.8722920836E+00
+ALL   27   12 Infinity            Infinity            Infinity             0.5182990100E+00  0.5182990102E+00  0.5182990099E+00
+ALL   27   13 Infinity            Infinity            Infinity            -0.2284291920E+01 -0.3426442880E+01  0.1000000000E-04
+ objt= Infinity                objb= Infinity               
+ Data replacement 280           1  -1.09617647710795     
+ -2.307728226137144E-010
+ Data replacement 280           2  0.201480612696746     
+ -1.358932416201212E-008
+ Data replacement 280           3   3.30884562751169     
+ -1.427665607294165E-008
+ Data replacement 280           4  -1.52614542983396     
+  1.363506515867963E-008
+ Data replacement 280           5  0.206687809264178     
+ -6.122196960942730E-008
+ Data replacement 280           6   3.19035968485706     
+  3.835501086352564E-008
+ Data replacement 280           7  -1.96387376011903     
+  7.450580596923828E-011
+ Data replacement 280           8  0.713509542120714     
+  7.450580596923828E-011
+ Data replacement 280           9  7.146987081245088E-002
+  7.450580596923828E-011
+ Data replacement 280          10  -2.46033263203160     
+  7.450580596923828E-011
+ Data replacement 280          11  0.872292083785661     
+  7.450580596923828E-011
+ Data replacement 280          12  0.518299010024824     
+  7.450580596923828E-011
+ Data replacement 280          13  -2.28429192015365     
+  -1.14215096007682     
+ ALL          28
+dels   -0.23077E-09   -0.13589E-07   -0.14277E-07    0.13635E-07   -0.61222E-07    0.38355E-07    0.74506E-10    0.74506E-10    0.74506E-10    0.74506E-10    0.74506E-10    0.74506E-10   -0.11422E+01
+ ep00(           1 )   1.00000000000000     
+ ep00(           2 )   1.00000000000000     
+ ep00(           3 )   1.00000000000000     
+ ep00(           4 )   1.00000000000000     
+ ep00(           5 )   1.00000000000000     
+ ep00(           6 )   1.00000000000000     
+ ep00(           7 )   1.00000000000000     
+ ep00(           8 )   1.00000000000000     
+kth==epk    1(  137)/    8 0.64950E+00
+kth==epk    2(  275)/    8 0.99097E+00
+kth==epk    3(  138)/    8 0.99575E+00
+kth==epk    4(  138)/    8 0.51091E+00
+kth==epk    5(  138)/    8 0.11931E+01
+kth==epk    6(  138)/    8 0.56649E+00
+kth==epk    7(  139)/    8 0.51179E+00
+kth==epk    8(  134)/    8 0.11545E+01
