@@ -1,0 +1,1102 @@
+\documentclass[a4paper,oneside,onecolumn,preprint,10pt,authoryear]{elsarticle}
+
+\usepackage{epsfig}
+
+%% if you use PostScript figures in your article
+%% use the graphics package for simple commands
+ \usepackage{graphics}
+ \usepackage[a4paper, top=19mm, bottom=24mm, left=20mm, right=20mm]{geometry}
+%% or use the graphicx package for more complicated commands
+ \usepackage{graphicx}
+%% or use the epsfig package if you prefer to use the old commands
+ \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+ \usepackage{amsthm}
+ \usepackage{manyeqns}
+%\usepackage{endfloat}
+\usepackage{setspace}
+\usepackage{longtable}
+\usepackage{graphicx}
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+ \usepackage{lineno}
+
+ \usepackage{natbib} % for reference stype
+ 
+ % for left aligned equations
+ \usepackage{fleqn}
+ 
+ % for optional font package, if document is to be formatted with Times and compatible math fonts
+ \usepackage{txfonts}
+ 
+ % for hyper linking in document
+ 
+ \usepackage{hyperref}
+ 
+ \usepackage{pifont} %for open star in the title
+ 
+
+\journal{Transportation Research Part B}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{A Competing Markov Model for Prediction of Pavement Cracking Processes}
+
+%% use optional labels to link authors explicitly to addresses:
+\author[kobayashi]{K. Kobayashi}
+\ead{kkoba@psa.mbox.media.kyoto-u.ac.jp}
+\author[kaito]{K. Kaito}
+\ead{kaito@ga.eng.osaka-u.ac.jp}
+\author[nam]{N. Lethanh \corref{cor1}}
+\ead{lethanh@ibi.baug.ethz.ch }
+
+\cortext[cor1]{Corresponding author. Tel.: +41 446 333 083; Fax +41 762 072 105.}
+%\fntext[kobayashi]{Professor}
+%\fntext[kaito]{Associate Professor}
+%\fntext[nam]{Graduate Student}
+
+\address[kobayashi]{Department of Urban Management, Graduate School of Engineering, Kyoto University, Kyoto 615-8540, Japan}
+\address[kaito]{Department of Civil Engineering, Osaka University, Suita, Osaka 565-0871, Japan}
+\address[nam]{Institute of Construction and Infrastructure Management, Swiss Federal Institute of Technology (ETH), Zurich 8093, Switzerland}
+%\author[kobayashi,kaito,nam]{}
+%\address[add1]{}
+%\address[add2]{}
+%\address[add3]{}
+
+\begin{abstract}
+
+
+
+Cracks on pavement structural surface progress in several formations and under different deterioration mechanisms. In monitoring practice, it is often that cracking type with its worst damage level is selected as a representative condition state, while other cracking types and their damage levels are neglected in records, remaining as hidden information. Therefore, the practice in monitoring has a potential to conceal with a bias selection process, which possibly result in not optimal intervention strategies. In overcoming these problems, our paper presents an innovative non-homogeneous Markov hazard model, with competing hazard rates. Cracking condition states are classified in three types (longitudinal crack, horizontal crack, and alligator crack), with three respective damage levels. The dynamic selection of cracking condition states are undergone a competing process of cracking types and damage levels. We apply a numerical solution using Bayesian estimation and Markov Chain Monte Carlo method to solve the problem of high-order integration of complete likelihood function. An empirical study on a data-set of Japanese pavement system is presented to demonstrate the applicability and contribution of the model in the real world.
+\end{abstract}
+
+\begin{keyword}
+Bayesian estimation \sep Markov Chain Monte Carlo \sep Gibbs sampling \sep Statistical deterioration prediction \sep Markov chain model \sep Infrastructure management \sep Pavement cracking processes
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+\section{Introduction} \label{sec1}
+Modeling deterioration of civil infrastructures with statistical approach has been significantly documented in recent years. One of the great advantages of applying statistical deterioration forecasting models is of its capability to incorporate uncertainties. The uncertainty in deterioration process of civil infrastructure can be reduced by making use of historical monitoring data. Among the statistical modeling models, models with Markov chain have been widely applied in real world \citep{kobayashitsuda,Robelin07,Kobayashi2012a}. In Markov deterioration forecasting models, the deterioration process of civil infrastructures is described by the transition probability among discrete condition states, which are deducted values or composite values from performance indicators of civil infrastructures (e.g. Pavement service indicator (PSI) is a composite condition state, which is evaluated using performance indicators such as cracking, roughness, etc. \citep{shahin05}. 
+
+In Pavement management systems (PMSs), quality of a road surface is generally valuated by its riding quality and the skid resistance. The riding quality and skid resistance are reflected and quantified by evaluating pavement performance indicators such as cracking, rutting, and longitudinal profile \citep{Fukuhara1990}. Measured values of those indicators are monitoring data, which are stored in the data bank of the PMS. Monitoring data are used for the evaluation of pavement condition, deterioration forecasting, and supporting decision makers to select optimal intervention strategies (OISs). If the monitoring data appears to possess measurement errors or bias selection of data, it is likely that accurate deterioration forecasting is flaw, as a results, decision makers would end up with intervention strategies (ISs), which are not optimal and considerable amount of benefits incurred to stakeholders (e.g. owner, users, and the public) reduced \citep{Kobayashi2012a}. 
+
+The deterioration of pavement is a complex process and therefore a single performance indicator would not be possible to perfectly capture the process \citep{Dore2009,Kenneth2010} (e.g. riding quality of pavement is measured not only by cracking, but also by rutting, and longitudinal profile). Even when considering a  single performance indicator alone, its deterioration mechanism and progress could be complicated. One of the typical example that shows the complex deterioration concerning one performance indicator is the mechanism and development of cracks. 
+
+Cracking is one of the popular deterioration phenomena in the PMSs, especially in the cold regions \citep{Dore2009}. Cracks appear on the road surface in different patterns and directions. Cracks are progressed and observed in horizontal direction, longitudinal direction, or the combination of the twos. Reasons for crack initiation can be numerous (e.g. rain water infiltrated directly into pavement structures and causes the reduction in the cohesion of materials, or contraction and expansion of materials due to high fluctuation of ambient temperature). If a small crack initiated on a particular location of the pavement section, the overall deterioration process of a road section would significantly advanced with a greater speed. 
+
+In practices, when percentage of cracks on a pavement section reaches to a certain  alarming level (level at which riding quality, skid resistance, and greater negative impact is anticipated, or the alarming level specified as technical standard and requirement for interventions, etc.), interventions (e.g. crack sealing and crack filling) should be implemented to prevent cracking from further advancement and also to ensure the riding quality in acceptable standards for users. However, as earlier mentioned, cracking is a complex one. It progresses in various directions and possibily with different levels of damages \citep{Kaito2007}. Mechanism of horizontal cracking could be different from that of longitudinal cracking. Moreover, treatments for different cracking types are not always the sames. Therefore, it is important to understand the deterioration process of each crack types. This paper focuses on deterioration prediction of cracking, which is a good representation of complex pavement performance indicators, with multiple types.
+
+Thanks to the development of high-tech inspection and measurement devices for civil infrastructures in the past decades, especially the application of high definition cameras and image processing techniques \citep{Kawashima1984,Fukuhara1990,Mohajeri1991,Wang2011}, a small crack, even with 1 mm width, can be detected \citep{Fukuhara1990}. Basically, cracks are classified into three types: horizontal crack (or transverse crack), longitudinal crack, and alligator crack \citep{Rababaah2005,Kaito2007,Nakat2008}. Despite the fact that there are different types of cracks that can be recorded and stored in the data bank of the PMS, the use of crack is often referred and represented to its general name as ``crack'' without much attention of the actual type of crack itself. In many  practical cases, the percentage of crack on a road section is the representation of  the percentage of a type of crack at its worst deterioration condition. The representative crack and its corresponding deterioration condition is used directly for deterioration prediction using Markov model with single dimension of condition states (e.g. a single dimension Markov model is formulated using only a vector of condition states).
+
+There is a problem in practice that selection of representative crack to be used in Markov models is, in many cases, driven by the bias or default assumption on which cracking types and their corresponding levels of deterioration. For example, during the courses of inspections, engineers often select the cracking type with its worst deterioration condition among other cracking types to be the representative of crack for the examined road section. Under this situation, there is a bias in the selection of crack for use in the Markov deterioration model with single dimension of condition states. The practice of selecting the typical cracking type with its worst deterioration condition among other cracking types is not only considered as bias selection process, but also a competitive selection process as well. For example, in the first inspection time, horizontal crack is selected to be representative crack of the investigated road section. However, in the second inspection time on the same road section (or other inspection on different road section), longitudinal crack is selected to be the  representative one.
+
+To overcome the limitation of using Markov model with single dimension of condition states, \citet{Kaito2007} developed a novel hierarchical Markov model (hereafter referred as HIMA model) and successfully tested it on a set of cracking data in Japan. To the best of authors knowledge, the cited model is the first one in the field addressing the multiple dimensions of deterioration and multiple condition states with Markov chain model. The HIMA model was developed as a novel extension of the multi-stage exponential Markov model (MUSTEM), which was previously developed also by the same research group \citep{kobayashitsuda, Kobayashi2012} at Kyoto University. The fundamental difference between the HIMA model and the MUSTEM model is their dimensions of deterioration types and condition states. In the MUSTEM model, only single dimension of condition stages is used. Whilst, in the HIMA model, the authors proposed to use three dimensions of crack initiation with multiple discrete condition states. 
+
+In the HIMA model, cracks are classified into three types: horizontal crack, longitudinal crack, and alligator crack. The deterioration of each cracking type is expressed as Markov transition probabilities (m.t.p) among its damage level. Based on cracking types and their corresponding damage levels, a multi-dimension discrete condition states are defined (Table \ref{table1}). The authors have successfully conducted an empirical study of the model on a set of cracking data of Japanese national roads to prove the applicability and usefulness of the model. Moreover, the authors concluded that the model is more effective under the condition of having sufficient amount of data concerning each cracking type and its damage level. In addition, the HIMA model has a default assumption that no selection bias and measurement errors exist in monitoring activities concerning the measurement of cracking types and their damage levels. %In another words, the competitive selection process for cracks is not integrated in the HIMA model.
+%
+\begin{table}[t]
+\begin{center}
+\caption{Condition states concerning the cracking modes.}
+\label{table1}
+{\footnotesize
+\begin{tabular}{c|ccc}\hline
+Damage levels& \multicolumn{3}{c}{Cracking types ($l$)} \\\cline{2-4}
+      & Longitudinal crack& Horizontal crack& Alligator crack \\\hline
+$i=0$ & \multicolumn{3}{c}{$(0,0)$} \\
+$i=1$ & $(1,1)$ & $(1,2)$ & $(1,3)$ \\
+$i=2$ & $(2,1)$ & $(2,2)$ & $(2,3)$ \\
+$i=3$ & $(3,1)$ & $(3,2)$ & $(3,3)$ \\\hline
+\end{tabular}
+}
+\end{center}
+\end{table}
+
+The present paper proposes a new deterioration forecasting model in the streamline of Markov deterioration forecasting models for infrastructure asset management. The model is a novel extension of the HIMA model, which expresses the cracking condition states on pavement structural surface in multiple directions. We discuss the bias in selecting cracking condition states as a competitive process, and propose a numerical solution using Bayesian estimation and Markov Chain Monte Carlo (MCMC) simulation. To test our model, we apply an empirical study on a set of cracking data of national road system in Japan.
+%
+
+Following section gives a brief review of the HIMA model, which discussed cracking process and selection bias in monitoring and management practices in the PMS. Section \ref{mustem} summaries important formulation of the MUSTEM model, which is considered as the core of the HIMA model and the proposed model in this paper. Section \ref{coha} includes the mathematical formulation of the new model. Numerical solution as estimation method for the proposed model is detailed in Section \ref{sec5}. Section \ref{sec6} includes an empirical example. The last section concludes the paper and gives recommendation for practical use of the model and future study. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cracking Process and Selection Bias} \label{hima}
+\subsection{Cracking and deterioration condition states} \label{hima1}
+Cracks appears due to the combination of various aspects and therefore being considered as a complex process. There always exists a certain level of uncertainty in forecasting cracking condition states. In view of management, ambiguity in capturing the true cracking types and the damage levels could lead to non-optimal managerial decisions. For example, cracks are observed in longitudinal direction, horizontal direction, and in alligator crack. Depending on cracking types and actual damage levels, interventions activities are then designated. However, interventions are arranged on regular basis, and thus interventions cannot be spontaneously applied at right time and right place to heal all cracking types. In addition, an interventions activity, designated for mending horizontal cracks, do not genuinely heal longitudinal cracks. As a result, expected values of longitudinal cracks could be neglected. Thus, it is true to state that using a single cracking type for making decision is not an optimal choice. 
+
+In the paper of \citet{Kaito2007}, the authors developed the HIMA model to address the multiple progression of cracking. In the cited paper, cracking process of road surface is described by means of condition states with two variables, damage level $i$ and cracking type $l$. Cracking type is expressed by variable $l~(l=0,\cdots,L)$, with $l=0$ indicating no sign of crack. Cracking type $l~(l=1,\cdots,L)$ can be of longitudinal crack, horizontal crack, and alligator crack. Damage level is defined as state variable $i~(i=0,1,\cdots,I)$, representing deterioration level of respective cracking type. Damage level $i=0$ when there is no sign of deterioration and damage level $I$ is referred as ``absorbing state'', which demands an immediate intervention. Under this assumption, overall deterioration of crack can be relatively described by a pair of state variables, which is defined as ``pair condition state'' $(i,l)$. Condition state $(0,0)$ and $(I,L)$ respectively refer to no sign of crack and ``absorbing condition state'' of a road section. Description of cracking types and damage levels are given in Table \ref{table1}.  
+
+\subsection{Selection bias and representation matter} \label{hima2}
+In many PMSs, an entire road length is often divided into smaller sections ($s_k, k=1,\cdots,K$) or divisions for conveniences of monitoring and management (Fig. \ref{fig1}). Within a road section, cracks might occur in several types ($l$), with different damage levels ($i$). In practice, inspectors often decide to use the worst damage level, corresponding to a specific cracking type, to be the representative condition state. However, there is no guarantee which condition state is the worst. This practice exposes as a shortcoming that true information of other cracking types is omitted, remaining as hidden information. For example, as shown in Table \ref{table1}, the progress of crack on a road section is described by $3$ condition states: longitudinal crack $(2,1)$, horizontal crack $(2,2)$, and alligator crack $(1,3)$). It is not certain at a point in time to verify which condition state is the best representative among these three. However, it is often the case that inspectors select condition state $(2,2)$ (horizontal crack) to be the representative value for deterioration of cracks of that road section. Given that reality, true information of other cracking types (longitudinal crack $(2,1)$ and alligator crack $(1,3)$) is neglected and not recorded in the database. This problem could result in non-optimal estimation results of deterioration and also influence the true likelihood of the OISs.
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[scale=0.3]{fig1} 
+\end{center}
+%\footnotesize Note) The solid distribution represents longitudinal crack and the dotted distributions represents horizontal crack.
+\caption{Measured areas in a road section and the value distribution of cracking types}
+\label{fig1}
+\end{figure}
+
+The process to select representative condition states as mentioned is viewed as a bias selection process. The selection bias is a type of systematic measurement errors, which deems unsolvable by using conventional errors elimination techniques \citep{Kobayashi2012a}. The bias selection process in the practice of inspections therefore targets only a typical cracking type and its damage level. However, in our paper, we develop a model to capture the cracking progress of not only typical crack but also other cracking types. The missing information of cracking types, which were not selected and recorded, and their corresponding damage levels, is addressed. In the paper, condition states concerning missing cracking types and their damage levels are regarded as ``latent'' or ``hidden'' variables.
+
+The selection bias in defining a representative cracking type can be interpreted from Fig. \ref{fig1}. As shown in the figure, a road section can be divided into smaller rectangular areas $s_k=(s_1, \cdots, s_K)$. Measurement of cracks at any inspection time, in general, is carried out on each rectangular area $s_k$. The results of different cracking types and their damage level are then weighted (or aggregated) to become the means, which represent the overall cracking condition states of the road section. We denote the mean values of damage levels of longitudinal crack and horizontal crack as $\alpha$ and $\beta$, respectively. The value distributions of longitudinal crack and horizontal crack around their means can be interpreted also from the figure. The solid distribution curve represents the value distribution of longitudinal crack, and the two dotted lines represent value distribution of horizontal crack at a inspection time. Due to uncertainty, at any inspection time, the means of distribution of horizontal crack $\beta$, can be either greater or smaller than the mean of longitudinal crack $\alpha$.
+
+The selection of damage level and typical cracking type is assumed as follows:
+\begin{itemize}
+	\item at any inspection time, if damage level of horizontal crack follows the pattern of solid distribution curve, which has mean value of $\alpha$, then $\alpha$ is selected as the representative damage level.
+	\item On the other hand, if damage level of horizontal crack progresses as like in the dotted distribution curve, which has mean value of $\beta$, then $\beta$ is selected as the representative damage level.
+\end{itemize}
+As a matter of fact, the development of horizontal crack and longitudinal crack varies differently. Hence, the mean value of horizontal crack (dotted distribution curves) is fluctuated, either with value of $\beta$ or $\beta'$. This type of selecting the representation of damage level is considered as a competing process among damage levels and types of cracking.
+
+In order to address the competitive crack selection process, it is important to develop a new methodology that takes into account the selection bias. The new methodology should be able to estimate damage levels of hidden cracking types, especially under the situations of having only partial or incomplete monitoring data, which is quite popular in many PMSs.
+%
+\section{The MUSTEM model} \label{mustem}
+In this section, we summary the research of \citet{kobayashitsuda, Kobayashi2012}, which proposes a modeling approach to estimate the Markov transition probability (m.t.p) based on historical monitoring data. Careful readers are recommended to refer to the original paper for greater details of the methodology.
+%
+\begin{figure}[t]
+\begin{center}
+\includegraphics[scale=0.3]{fig2} 
+\end{center}
+\caption{Deterioration process}
+\label{fig2}
+\end{figure}
+
+It is assumed that the deterioration of a road section follows the path shown in Fig. \ref{fig2}. In the figure, time $\tau$ represents the actual time on a calendar (hereafter referred as ``time''). Deterioration of a road section can be represented by discrete condition state $i(i=1,..,J)$, with $i=1$ as initial condition state (when structure is new) and $i=J$ as absorbing condition state. Time $\tau_A$ and $\tau_B$ are inspection times, while time $\tau_i$ is any arbitrary time in between. Duration between two inspection times is $Z$. Given monitoring data of two inspection times $\tau_A$ and $\tau_B$, the m.t.p is described as follows:
+\begin{eqnarray}
+      && \hspace{-5mm}
+      \mbox{Prob}[h(\tau_B)=j \hspace{2mm}| \hspace{2mm} h(\tau_A)=i]=p_{ij}
+      \label{eq:1}
+\end{eqnarray}
+ %
+Suppose that condition state changes from $i$ to $i+1$ at time $\tau_{i}$ (timing $y_C$). At that time, the duration of condition state $i$ can be expressed by the following equation: $\zeta_i=\tau_{i}-\tau_{i-1}=y_C$. Assume that the duration $\zeta_i$ of condition state $i$ is a random variable, and is subjected to the probability density function $f_i(\zeta_i)$ and the distribution function $F_i(\zeta_i)$. Here, the domain of the duration $\zeta_i$ is $[0,\infty)$. The following expression is defined from the definition of distribution function:
+%
+ \begin{eqnarray}
+      && F_i(y_i)=\int_0^{y_i}f_i(\zeta_i)d\zeta_i
+      \label{eq010}
+   \end{eqnarray}
+ %
+The distribution function $F_i(y_i)$ represents the cumulative probability of the change of the condition state from $i$ to $i+1$ in the period from the initial timing $y_i=0$ (time $\tau_{i-1}$), at which the condition state has become $i$, to the timing $y_i$ (time $\tau_{i-1}+y_i$). Accordingly, the probability $\tilde{F}_i(y_i)$ of remaining at condition state $i$ from the initial timing $y_i=0$ to the sample timing $y_i\in [0,\infty)$ can be expressed by the following equation, using the cumulative probability of the change of the condition state from $i$ to $i+1$ until timing $y_i$:
+ %
+   \begin{eqnarray}
+      && \mbox{Prob}\{\zeta_i \geq y_i\}= \tilde{F}_i(y_i) = 1 -  F_i(y_i)
+      \label{funcbF}
+   \end{eqnarray}
+ %
+The conditional probability of the event that the road section remains in condition state $i$ until timing $y_i$ and change to condition state $i+1$ in the period $[y_i,y_i+\Delta y_i)$ is defined as:
+ %
+   \begin{eqnarray}
+      && \lambda_i(y_i) \Delta y_i =\frac{f_i(y_i)\Delta y_i}{\tilde{F}_i(y_i)}
+      \label{riskbF}
+   \end{eqnarray}
+ %
+The instantaneous rate $\lambda_i(y_i)$ of the change in the condition state from $i$ to $i+1$ at timing $y_i$ is called a hazard function. By using a hazard function suited for the assumed deterioration process, it is possible to describe the evolution of deterioration over time.
+
+Under the assumption that the Markov characteristics concerning the deterioration processes of the road section do not depend on the history of deterioration and the hazard function is constant $\theta_i>0$, in another words, the hazard function is independent of the timing $y_i$, following equation is defined:
+ %
+   \begin{eqnarray}
+      && \lambda_i(y_i)=\theta_i
+      \label{hazard}
+   \end{eqnarray}
+ %
+Using the hazard function $\lambda_i(y_i)=\theta_i$, the probability of the even that condition state $i$ remains over a duration $y_i$ is further described as:
+ %
+   \begin{eqnarray}
+      && \tilde{F}_i(y_i) = \exp \left[ - \int_{0}^{y_i}\lambda_i(u)du  \right]
+       = \exp (-\theta_i y_i) \label{prop-bFla}
+   \end{eqnarray}
+%
+The survival probability function is identical to the transition probability $p_{ii}$ when the duration $y_i$ equals to interval $z$. By defining the subsequent conditional probability of condition state $j$ to $i$, with respect to $z$, a general mathematical formula for estimating the m.t.p $p_{ij}$ is formulated:
+   \begin{eqnarray}
+      && p_{ij}(z)=\mbox{Prob}[h(\tau_B)=j|h(\tau_A)=i] 
+   =\sum_{k=i}^{j}\prod_{m=i}^{k-1}\frac{\theta_m}{\theta_{m}-\theta_{k}}
+      \prod_{m=k}^{j-1}\frac{\theta_m}{\theta_{m+1}-\theta_{k}}
+      \exp(-\theta_{k} z) \label{pj}
+   \end{eqnarray}
+ %
+where there are the following conditions:
+ %
+   \begin{eqnarray}
+      && \left\{
+      \begin{array}{ll}
+      \prod_{m=i}^{k-1}\frac{\theta_m}{\theta_m-\theta_k}=1 & at \hspace{2mm}(k\leq i+1)\\
+      \prod_{m=k}^{j-1}\frac{\theta_m}{\theta_{m+1}-\theta_k}=1 & at \hspace{2mm}(k\geq j)
+      \end{array}\right. 
+   \end{eqnarray}
+In addition, with regard to the m.t.p from any condition state to absorbing condition state $p_{iJ}$, following equation is used:
+ %
+   \begin{eqnarray}
+      && p_{iJ}(z)=1-\sum_{j=i}^{J-1}p_{ij}(z)~(i=1,\cdots,J-1) \label{1pj}
+   \end{eqnarray}
+%
+\section{Formulation of the competing Markov hazard (COHA) model} \label{coha}
+\subsection{Competing Markov transition probabilities} \label{coha1}
+Cracks could appear on the surface of a road section after the road section is newly paved or intervened. In order to uphold a certain service level and maintain riding quality, ISs need to be evaluated for future management. It is assumed that immediately after an intervention, surface condition of the road section is renewed, with condition state $(i,l)=(0,0)$. To visualize the deterioration of cracks, we define $\tau_0$, with $y=0$, as starting point immediately after an intervention. Initial condition state is updated as $(0,0)$ at time $\tau_0$. In next inspection time, also the time of next intervention (if required), passing duration is assumed as $z$, with $y+z$ as time indication of when measurement being counted. The uncertainty of deterioration progress with respect to cracking is described by means of transition probability among condition states in that period.
+
+Condition states of a road surface in duration $y$ is defined as state variable  $h(y)=(i,l)~(i=0,\cdots,I;l=0,\cdots,L)$. After any arbitrary time duration $y+z$, state variable becomes $h(y+z)=(j,m)~(j=0,\cdots,I;m=0,\cdots,L)$. Thus, following transition probability is defined:
+\begin{eqnarray}
+&& \mbox{Prob}[h(y+z)=(j,m)|h(y)=(i,l)] 
+=\frac{\mbox{Prob}[h(y+z)=(j,m),h(y)=(i,l)]}{\mbox{Prob}[h(y)=(i,l)]}=\pi_{il,jm}(y,z). \label{pro1}
+\end{eqnarray}
+The m.t.p $\pi_{il,jm} (y,z) $ is estimated based on the condition states of road sections, which are recorded as a result of the competitive selection among damage levels and cracking types. Therefore, we refer the m.t.p $\pi_{il,jm} (y,z) $ as competing m.t.p. It is noted that the m.t.p of the MUSTEM model depends on transition duration $z$ and time $y$. However, the competing m.t.p of the COHA is defined based only on the information of typical cracking type and damage level. It should be also noted that the competing m.t.p might not satisfy the condition of homogeneous m.t.p with respect to hidden cracking type as earlier mentioned in section \ref{hima}. Only if information of all condition states is available, had the following competing m.t.p assured. 
+%%%%%%%%%%%%%
+\begin{eqnarray}
+&& \mbox{\boldmath$\Pi$}(y,z)=\left(
+\begin{array}{ccc}
+\mbox{\boldmath$\pi$}_{00}(y,z) & \cdots & \mbox{\boldmath$\pi$}_{0I}(y,z) \\
+\vdots & \ddots & \vdots \\
+\mbox{\boldmath$0$} & \cdots  & \mbox{\boldmath$\pi$}_{II}(y,z)
+\end{array}
+\right). \label{pro}
+\end{eqnarray}
+Where $\mbox{\boldmath$0$}$ is a block procession, and $\mbox{\boldmath$\pi$} _ {ij} (y,z) ~ (i,j=0,\cdots,I) $ satisfies following conditions:
+%%%%%%
+\begin{eqnarray}
+&& \mbox{\boldmath$\pi$}_{00}(y,z)=\pi_{00,00}(y,z), \nonumber \\
+&& \mbox{\boldmath$\pi$}_{0j}(y,z)=(
+\begin{array}{ccc}
+\pi_{00,j1}(y,z) & \cdots & \pi_{00,jL}(y,z)
+\end{array}
+), \nonumber \\
+&& \mbox{\boldmath$\pi$}_{ij}(y,z)=\left(
+\begin{array}{ccc}
+\pi_{i1,j1}(y,z) & \cdots & \pi_{i1,jL}(y,z) \\
+\vdots & \ddots & \vdots \\
+\pi_{iL,j1}(y,z) & \cdots  & \pi_{iL,jL}(y,z)
+\end{array}
+\right) .
+\end{eqnarray}
+Eq. (\ref{pro}) shows the competing m.t.p between two consecutive inspection times $t=y$ and $t+1=y+z$. Probabilistically, properties of the competing m.t.p vary upon different inspection period. If an intervention has not been applied, cracking happens in natural process. Hence, condition $\pi_{il,jm}(y,z)=0~(i>j)$ must be satisfied. Moreover, summation of all properties in a row of transition probability matrix must be equal to $1$ as $\sum^{I}_{j=i}\sum_{m=0}^L \pi_{il,jm}(y,z)=1$. Following conditions are obligated as rules of the competing m.t.p, with $\pi_{Im,Im}(y,z)=1$ for absorbing state of damage level $I$.
+%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+\left.
+\begin{array}{l}
+\pi_{il,jm}(y,z)\geq 0 \\
+\pi_{il,jm}(y,z)=0 ~(i>j) \\
+\sum_{j=i}^I \sum_{m=0}^L \pi_{il,jm}(y,z)=1 \\
+\end{array}
+\right\}.\label{suii}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%
+%
+The competing m.t.p describes the transition among condition states of cracks based on the selection of typical cracking type and damage level. The selection and estimation of competing m.t.p for each road section is mutually independent from other sections. %This section describes the formulation of the MUST model, with consideration of condition states, comprising of cracking type and damage level, in competing m.t.p. 
+%
+%With regard to the formulation and estimation of the MUST model, \citet{kobayashitsuda} proposed an outstanding methodology. The mathematical formulation in this paper is in favor of his paper, with an extension to cover the concept of the COHA model.
+
+In order to obtain the explicit mathematical formula for the competing m.t.p, we extend the formula in Eq. (\ref{pj}) for the case of cracking. We assume $l^\ast$ from the range $l~(l=1,\cdots,L) $ as an example of cracking type. Transition  concerning damage level $i$ is described as $(0,0)\rightarrow (1,l^\ast) \rightarrow \cdots \rightarrow (I,l^\ast)$. Hazard rate $\theta_{il^\ast} $ is defined as transition from condition state $(i,l^\ast) $ to $(i+1,l^\ast)$. For transition from initial condition state $(0,0)$ to $(1,l^\ast)$, hazard rate is expressed as $\theta_{0l^\ast}$. Remaining duration in condition state $(i,l^\ast) ~ (i=0,\cdots,I-1) $, hereafter referred as ``life expectancy'' of condition state $(i,l^\ast)$, is defined by means of a stochastic variable $\zeta_{il^\ast} $, with its probability density function $f_{il^\ast} (\zeta_{il^\ast}) $ and distribution function $F_{il^\ast} (\zeta_{il^\ast})$. In the period $(t$,$t+1)$, the probability density that condition state $(i,l^\ast) $ disappears at the end of the period is expressed by hazard function $\lambda_{il^\ast} (z_{il^\ast})$, with elapsed time $z_{il^\ast}$. As a result, the competing m.t.p is defined as:
+%Using survival probability as denominator, hazard function can be further defined as conditional probability in following equation:
+%%%%
+%\begin{eqnarray}
+%&& \lambda_{il^\ast}(z_{il^\ast})\Delta z_{il^\ast} = \frac{f_{il^\ast}(z_{il^\ast}) \Delta z_{il^\ast}}{\tilde{F}_{il^\ast}(z_{il^\ast})}\label{funcbF}
+%\end{eqnarray}
+%%%%%
+%In the case that the value of hazard function does not depend on elapsed time $z_{il^\ast}$, we come up with hazard rate $\theta_{il^\ast} > 0$ as follows:
+%%%
+%\begin{eqnarray}
+%&& \lambda_{il^\ast}(z_{il^\ast}) = \theta_{il^\ast} \label{hazard}
+%\end{eqnarray}
+%%%
+%In consideration of equation (\ref{hazard}), equation (\ref{funcbF}) can be further decomposed as: 
+%%%
+%\begin{eqnarray}
+%&& \lambda_{il^\ast}(z_{il^\ast}) = \frac{f_{il^\ast}(z_{il^\ast})}{\tilde{F}_{il^\ast}(z_{il^\ast})}
+%=-\frac{\frac{d\tilde{F}_{il^\ast}(z_{il^\ast})}{dz_{il^\ast}}}{\tilde{F}(z_{il^\ast})} 
+%= \frac{d}{dz_{il^\ast}}\left\{ - \log \tilde{F}_{il^\ast}(z_{il^\ast})
+%\right\} \label{opi}
+%\end{eqnarray}
+%%%
+%Integrating both sides of equation (\ref{opi}), knowing that $\tilde{F}_{il^\ast}(0)=1-F_{il^\ast}(0)=1$, we obtain following equation:
+%%%%
+%\begin{eqnarray}
+%&& \int_{0}^{z_{il^\ast}} \lambda_{il^\ast}(u)du = \big[-\log
+%\tilde{F}_{il^\ast}(u)\big]_{0}^{z_{il^\ast}} 
+%= -\log \tilde{F}_{il^\ast}(z_{il^\ast})
+%\end{eqnarray}
+%%%%
+%Survival function $\tilde{F}_{il^\ast}(z_{il^\ast})$ and probability density function $f_{il^\ast}(z_{il^\ast})$ can be further expressed as:
+%%%
+%\begin{eqnarray}
+%&& \tilde{F}_{il^\ast}(z_{il^\ast}) = \exp \left\{ - \int_{0}^{z_{il^\ast}}\lambda_{il^\ast}(u)du  \right\}
+%= \exp (-\theta_{il^\ast} z_{il^\ast}) \label{prop-bFla}\\
+%&& f_{il^\ast}(z_{il^\ast})=\theta_{il^\ast} \exp(-\theta_{il^\ast} z_{il^\ast})\label{kikan}
+%\end{eqnarray}
+%To express survival probability $\tilde{F}_{il^\ast}(z_{il^\ast})$ in another fashion, we assume condition state being measured in duration $\tau_A$ is $(i,l^\ast)$. Condition state $(i,l^\ast)$ will be remained until a passing time duration $\tau_{1}(\leq \tau_A)$. Thus, the probabiliy density for condition state $(i,l^\ast)$ continue remaining in the small amount of time $z_{il^\ast} ~ (\geq 0)$ is, in fact, the conditional probability $\tilde{F}_{il^\ast}(\tau_A+z_{il^\ast}|\zeta_{il^\ast}\geq \tau_A)$, which depends on the observed condition state $(i,l^\ast)$ with respect to duration $\tau_A$. As a result, following equation is obtained:
+%%%
+%\begin{eqnarray}
+%&& \tilde{F}_{il^\ast}(\tau_A+z_{il^\ast}|\zeta_{il^\ast} \geq \tau_A) 
+% = \mbox{Prob} \{\zeta_{il^\ast} \geq \tau_A+z_{il^\ast} | \zeta_{il} \geq \tau_A\}
+%\end{eqnarray}
+%Furthermore, following equation is defined:
+%\begin{eqnarray}
+%&& \frac{\mbox{Prob} \{\zeta_{il^\ast} \geq \tau_A+z_{il^\ast}\}}{ \mbox{Prob}\{\zeta_{il^\ast} \geq
+%\tau_A\}} = \frac{\tilde{F}_{il^\ast}(\tau_A+z_{il^\ast})}{\tilde{F}_{il^\ast}(\tau_A)}
+%\end{eqnarray}
+%The right-side component of the above equation can be transformed in following equation if equation  (\ref{prop-bFla}) is considered.
+%\begin{eqnarray}
+%&& \frac{\tilde{F}_{il^\ast}(\tau_A+z_{il^\ast})}{\tilde{F}_{il^\ast}(\tau_A)}= \frac{\exp \{-\theta_{il^\ast}
+%(\tau_A+z_{il^\ast})\}}{\exp( - \theta_{il^\ast} \tau_A)} 
+%=\exp (-\theta_{il^\ast} z_{il^\ast})
+%\end{eqnarray}
+%The transition probability $p_{ii}^{l^\ast}(z)$ can be derived equally to the survival probability within the period from $\tau_A$ to $\tau_B=\tau_A+z$ as follows:
+%%%
+\begin{manyeqns}
+&& p_{ii}^{l^\ast}(z)=\mbox{Prob}[h(\tau_B)=(i,l^\ast)|h(\tau_A)=(i,l^\ast)] 
+ =\exp(-\theta_{il^\ast} z).
+\label{ppro1} \\
+%\end{eqnarray}
+%\begin{eqnarray}
+      && p_{ij}^{l^\ast}(z)=\mbox{Prob}[h(\tau_B)=(j,l^\ast)|h(\tau_A)=(i,l^\ast)] =\sum_{k=i}^{j}\prod_{m=i}^{k-1}\frac{\theta_{ml^\ast}}{\theta_{ml^\ast}-\theta_{kl^\ast}} 
+ \prod_{m=k}^{j-1}\frac{\theta_{ml^\ast}}{\theta_{(m+1)l^\ast}-\theta_{kl^\ast}}
+      \exp(-\theta_{kl^\ast} z)\label{pjj}
+ \end{manyeqns}
+ %&& (i=0,\cdots,I-1;j=i+1,\cdots,I) .\nonumber
+Eq. (\ref{pjj}) satisfies following conditions:
+%%%
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+\prod_{m=i}^{k-1}\frac{\theta_{ml^\ast}}{\theta_{ml^\ast}-\theta_{kl^\ast}}=1 & (k\leq i+1‚) \\
+\prod_{m=k}^{j-1}\frac{\theta_{ml^\ast}}{\theta_{(m+1)l^\ast}-\theta_{kl^\ast}}=1 & (k\geq j‚) 
+\end{array}.
+\right. \nonumber
+\end{eqnarray}
+%For transition probability with absorbing condition states, following equation is defined: 
+%%%%%
+%  \begin{eqnarray}
+%      && p_{iI}^{l^\ast}(z)=1-\sum_{j=i}^{I-1}p_{ij}^{l^\ast}(z)~(i=0,\cdots,I-1). %\label{1pj}
+%   \end{eqnarray}
+%%%%
+%The Markov transition probability $p_{ij}^{l^\ast}(z)~(i=0,\cdots,I-1;j=0,\cdots,I;l^\ast=0,\cdots,L)$ describes the cracking progress for respective cracking type and its properties depend only on time interval $z$. 
+
+Using hazard rate $\theta_{il^\ast} $, we define $RMD$ as an important management indicator ($RMD_{i,l^\ast}$ stands for Expected Remaining Duration of damage $i$ of cracking type $l^\ast$). The indicator reflects the duration, in which damage level $i$  survives, given a condition that it has been observed in previous inspection time. Formula of $RMD_{i,l^\ast}$ is actually analogous to the formula of survival function $\tilde{F}_{il^\ast}$ in infinite domain \citep{lancaster90}:
+%%%
+ \begin{eqnarray}
+&& RMD_{il^\ast}= \int^{\infty}_{0}\tilde{F}_{il}(z|\theta_{il^\ast})dz = \theta_{il^\ast}^{-1}. \label{kenzen}
+\end{eqnarray}
+ %%%
+Expected life expectancy (denoted as $ET_{jl^\ast}$) of damage level $j~(> 1) $, if considering all damage levels $i(i<j)$ of cracking type $l^\ast$, is thus a summation of all transition duration from every damage level $i$.
+\begin{eqnarray}
+&& ET_{jl^\ast}=\sum_{i=1}^j \theta_{il^\ast}^{-1}. \label{hy}
+\end{eqnarray}
+%Based on the expected life expectancy $ET_j(\mbox{\boldmath$x$})$, we can draw the deterioration curve for the crack type $l^\ast$. 
+%%%%
+\subsection{The COHA model.} \label{sec42}
+%In this section, The details of mathematical derivation of the COHA model is presented. To begin with, we explain rules to select deterioration condition states based on damage level and cracking type. 
+In previous section, $l^\ast$ is an example of cracking type. In this section, we consider all cracking types in the range $n~(n=1,\cdots,L)$. The cracking process of an individual cracking type is independent from other cracking types. Selection method for representative condition state follows two rules. The first rule applies to select the worst damage level among cracking types. The second rule applies when road section exposes with identical damage level for all cracking types and cracking type with higher index value is selected. Rules to decide condition state $(i,l)$ can be expressible as:
+%It is assumed that cracking type with its higher variable value is in the worst condition than other cracking types. With this assumption, condition state $(i,l)$ is defined by means of following rules:
+%%%
+\begin{eqnarray}
+&& \left\{
+\begin{array}{l}
+i=\max \{i_n~(n=1, \cdots, L)\} \\
+l=\max \{n| i_n=i~(n=1, \cdots, L)\}
+\end{array}.
+\right. \label{compete}
+\end{eqnarray}
+Eq. (\ref{compete}) expresses recorded data, which is considered as a result of bias selection process. In addition, we denote $i_n~(n\neq l)$ as damage level of hidden cracking type $n$.
+%%
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+i_n \leq i & (n=1,\cdots,l-1) \\
+i_n < i & (n=l+1,\cdots,L)
+\end{array}.
+\right.
+\end{eqnarray}
+%%%%
+Hazard rate $\theta_{00}$, which infers the change of damage level $i$ from $0$ to $1$, is defined in the whole range of cracking type $(1,n) ~ (n=1,\cdots,L) $:
+%%%
+\begin{eqnarray}
+&& \theta_{00}= \sum^L_{n=1} \theta_{0n} \label{p1}.
+\end{eqnarray}
+%%%
+Condition state variables at time $t=\tau_A$ and $t=\tau_B$ are $h(\tau_A)=(i,l)$ and $h(\tau_B)=(j,m)$ respectively. The transition of condition states from $(i,l) $ to $(j,m) $ in duration $z=\tau_B - \tau_A$ is expressed as the m.t.p in following subsections:
+%%%
+\subsubsection{when $i=j=0$} \label{sec421}
+In the case that condition state change from $(0,0) $ to $(1,n) ~ (n=1,\cdots,L) $, hazard rate is defined in Eq. (\ref{p1}). The m.t.p $\pi_{00,00} (y,z) $ over duration $z$ is then defined:% as follows:
+%%%
+\begin{eqnarray}
+&& \pi_{00,00}(y,z)=\exp\left(-\sum_{n=1}^L \theta_{0,n}z\right). \label{hhh}
+\end{eqnarray}
+%%%%
+The competing m.t.p $\pi_{00,00} (y,z) $ does not  depend on time $t$, but   on duration $z$. 
+%%%%%%%%
+\subsubsection{when $j\ne 0$ and $~ l\neq m$} \label{sec422}
+%%%%%%%%%%%%
+The competing m.t.p is defined similarly as in Eq. (\ref{pro1}). 
+\begin{eqnarray}
+&& \pi_{il,jm}(y,z) 
+ =\frac{\mbox{Prob}[h(y+z)=(j,m),h(y)=(i,l)]}{\mbox{Prob}[h(y)=(i,l)]}. \label{bunshi}
+\end{eqnarray}
+Formulation of the nominator in Eq. (\ref{bunshi}) can be described in three different scenarios as: 1)  cracking type $l$, observed at time $\tau_A$, is not selected as representative one at time $\tau_B$; 2) cracking type $m$, observed at time $\tau_B$, is not appeared at time $\tau_A$; 3) both scenarios 1 and 2 occurs simultaneously. 
+
+In scenario 1, at time $\tau_A$, the probability of damage level $i$ with cracking type $l$ is $p_{0i}^l(y)$. To satisfy the assumption that at time $\tau_B$, damage level $j_l$ is not chosen, following condition must be satisfied:
+%%%
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+i \leq j_l \leq j & when \hspace{2mm} l<m \\
+i \leq j_l < j & when \hspace{2mm}l>m 
+\end{array}.
+\right.\label{h1}
+\end{eqnarray}
+%%
+Under this assumption, probability for scenario 1 to happen is defined as:
+%%%
+\begin{eqnarray}
+&& P_1(y,z)=p_{0i}^l(y) \sum_{t=i}^{\tilde{j}_{l}} p_{it}^l (z).
+\end{eqnarray}
+%%%%
+Probability $p_{it} ^l (z) $ is considered in the entire range of damage levels from $i$ to $t$ in duration $z$, with its detailed properties presented in Eqs. (\ref{ppro1}) and (\ref{pjj}). The affixing character $\tilde{j} _ {l} $ has following meaning: 
+\begin{eqnarray}
+&& \tilde{j}_{l}=\left\{
+\begin{array}{ll}
+j & l<m\\
+j-1 & l>m
+\end{array}.
+\right.
+\end{eqnarray}
+In scenario 2, at time $\tau_A$, following condition must be satisfied to hold the assumption $m\neq l$, meaning that cracking type $m$ is not chosen at time $\tau_A$.
+%%%%
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+i_m \leq i & when \hspace{2mm}l>m \\
+i_m < i & when \hspace{2mm}l<m 
+\end{array}.
+\right.\label{h2}
+\end{eqnarray}
+Thus, the simultaneous occurrence probability for cracking type $m$ in damage level $j$ at time $\tau_B$ is formulated as:
+%%%
+\begin{eqnarray}
+&& P_2(y,z)= \sum _{s=0}^{\tilde{i}_{m}} p_{0s}^{m}(y) p_{sj}^m (z).
+\end{eqnarray}
+In scenario 3, the damage level of cracking type $n$ should satisfy
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+i_n \leq i & when \hspace{2mm}l\hspace{0.5mm}>n \\
+i_n < i & when \hspace{2mm}l\hspace{0.5mm}<n
+\end{array},
+\right. 
+\hspace{2mm} \mbox{and} \hspace{2mm} \left\{
+\begin{array}{ll}
+j_n \leq j & when \hspace{2mm} m>n \\
+j_n  < j & when \hspace{2mm}m<n 
+\end{array},
+\right. 
+\end{eqnarray}
+and following occurrence probability for scenario 3 is obtained:
+%%
+\begin{eqnarray}
+&& P_3(y,z)= \prod_{n=1,\neq l,\neq m}^{L} \sum _{s=0}^{\tilde{i}_n} \sum _{t=s}^{\tilde{j}_{n}} p_{0s}^{n}(y) p_{st}^n (z). \label{p3yz}
+\end{eqnarray}
+Product sign $\prod_{n=1,\neq l,\neq m} $ in Eq. (\ref{p3yz}) concerns cracking type $n$ other than cracking types $l$ and $m$. Therefore, the nominator of Eq. (\ref{bunshi}) is further expressed as
+%%
+\begin{eqnarray}
+&& \hspace{-4mm} \mbox{Prob}[h(y+z)=(j,m),h(y)=(i,l)] 
+=\left\{\prod_{n=1,\neq l,\neq m}^{L} \sum _{s=0}^{\tilde{i}_{n}} \sum _{t=s}^{\tilde{j}_{n}} p_{0s}^{n}(y) p_{st}^n (z)\right\} 
+ \left\{p_{0i}^l(y) \sum _{t=i}^{\tilde{j}_{l}} p_{it}^l (z)\right\} \left\{ \sum _{s=0}^{\tilde{i}_{m}} p_{0s}^{m}(y) p_{sj}^m (z)\right\} .
+\end{eqnarray}
+The denominator of Eq. (\ref{bunshi}) concerns only the probability of condition state $(i,l) $ at time $\tau_A$. If transition from initial time is considered, following probability is defined: 
+%%%
+\begin{eqnarray}
+&& \mbox{Prob}[h(y)=(i,l)]=p_{0i}^l(y)\prod_{n=1,\neq l}^{L} \sum _{s=0}^{\tilde{i}_{n}} p_{0s}^n(y).
+\end{eqnarray}
+Finally, the explicit form of competing m.t.p $\pi_{il,jm} (y,z) $ is obtained:
+%%%
+\begin{eqnarray}
+ \pi_{il,jm}(y,z)= && \left\{\prod_{n=1,\neq l,\neq m}^{L} \sum _{s=0}^{\tilde{i}_{n}} \sum _{t=s}^{\tilde{j}_{n}} p_{0s}^{n}(y) p_{st}^n (z)\right\} 
+ \left\{\sum _{t=i}^{\tilde{j}_{l}} p_{it}^l (z)\right\} \left\{ \sum _{s=0}^{\tilde{i}_{m}} p_{0s}^{m}(y) p_{sj}^m (z)\right\} 
+ \left\{\prod_{n=1,\neq l}^{L} \sum _{s=0}^{\tilde{i}_{n}} p_{0s}^n(y)\right\}^{-1}.
+\label{gksu}
+\end{eqnarray}
+It is noted that the competing m.t.p depends not only on $z$ but also $y$. As earlier mentioned in section \ref{mustem}, the m.t.p of the MUSTEM model depends only on $z$ (Eq. (\ref{pj})).
+%%%%%
+\subsubsection{when $j\ne 0,~l=m$} \label{sec423}
+This assumption occurs under two scenarios: 1) cracking type $l$ is in damage levels $i$ and $j$ respectively at time $\tau_A$ and $\tau_B$; 2) at time $\tau_A$, damage level of cracking type $l$ is $i$. However, in time $\tau_B$, damage level $j$ is observed simultaneously for cracking types $l$ and $m$. To differentiate the description with the scenarios in previous section, the sign $[^\prime]$ is used in following paragraphs.
+
+In scenario $1^\prime$, we apply Eqs. (\ref{ppro1}) and (\ref{pjj}) for the probability of cracking type $l$, with its damage level $i$ and $j$ at time $\tau_A$ and $\tau_B$ respectively.
+%%%
+\begin{eqnarray}
+&& P_{1^\prime}(y,z)=p_{0j}^l(y)p_{ij}^l(z).
+\end{eqnarray}
+In scenario $2^\prime$, conditions in Eqs. (\ref{h1}) and (\ref{h2}) must be satisfied, and thus, the probability of scenario $2^\prime$ is defined:
+%%%
+\begin{eqnarray}
+&& P_{2^\prime}(y,z)= \prod_{n=1,\neq l}^{L} \sum _{s=0}^{\tilde{i}_n} \sum _{t=s}^{\tilde{j}_{n}} p_{0s}^{n}(y) p_{st}^n (z).
+\end{eqnarray}
+Probability $\mbox{Prob}[h(y) = (i,l)]$, which happens at time $\tau_A=y$ is also defined as
+%%%%
+\begin{eqnarray}
+&& \mbox{Prob}[h(y)=(i,l)]=p_{0j}^l(y)\prod_{n=1,\neq l}^{L} \sum _{s=0}^{\tilde{i}_{n}} p_{0s}(y) .
+\end{eqnarray}
+To this point, an explicit mathematical form for competing m.t.p is specified:
+%%%%
+\begin{eqnarray}
+\pi_{il,jl}(y,z)= &&\left\{\prod_{n=1,\neq l}^{L} \sum_{s=0}^{\tilde{i}_{n}} \sum_{t=s}^{\tilde{j}_{n}} p_{0s}^{n}(y) p_{st}^n (z) \right\} p_{ij}^l(z) 
+ \left\{\prod_{n=1,\neq l}^{L} \sum _{s=0}^{\tilde{i}_{n}} p_{0s}^n(y)\right\}^{-1}.\label{osu}
+\end{eqnarray}
+%%%
+the competing m.t.p $\pi_{il,jm}(y,z) $ is expressible through the m.t.p $p_{ij}^l(z)$. 
+
+To this point, it is our target to estimate the model's parameters, which are embedded in the likelihood function of the m.t.p in Eq. (\ref{osu}), based on inspection data. One way to estimate the model's parameters is using the maximum likelihood estimation (MLE) method. However, It is likely impossible to use the MLE method as the likelihood function involves a high-order of integration, which limits the derivation for the Jacobian matrix (first order derivative) and Hessian matrix (second order derivative). To overcome this problem, in section \ref{sec5}, we propose a methodology using frontier stochastic approach with Bayesian estimation and MCMC simulation. 
+%%%%%%%%
+\subsection{Prediction of non-homogeneous Markov distribution.}\label{sec43}
+The competing m.t.p has Markov property in its form. However, the competing m.t.p is not purely homogeneous Markov process. In fact, it is regarded as non-homogeneous Markov process. To describe this fact, we express the competing m.t.p in three respective initial times $y_A$, $y_B$, and $y_C$, with durations $\tau_A$, $\tau_B$, and $\tau_C$ respectively. Time interval is denoted as $z$. If competing m.t.p satisfies homogenous Markov process, following equation can be derived:
+%%
+\begin{eqnarray}
+&& \mbox{Prob}[h(y_C)=(j,m)|h(y_A)=(i,l)] \nonumber\\
+&& = \prod_{n=1,\neq l}^{L} \sum _{s=0}^{i}\mbox{Prob}[h(y_C)=(j,m)|h(y_B)=(k,n)] \cdot \mbox{Prob}[h(y_B)=(k,n)|h(y_A)=(i,l)] .
+\end{eqnarray}
+On the other hand, if considering two time intervals $2z$ in Markov process, following equation cannot be derived for the case of two time intervals $2z$. In Eqs. (\ref{gksu}) and (\ref{osu}), there is an evidence that competing m.t.p depends not only $z$ but also on  $y$.
+%%%%
+\begin{eqnarray}
+&& \pi_{il,jm}(y_A,2z) = \sum_{k=1}^I\sum_{n=1}^L \pi_{il,kn}(y_A,z)\pi_{kn,jm}(y_B,z).
+\label{pou}
+\end{eqnarray}
+For any arbitrary time interval $z$, another explicit mathematical form should be developed in line with Eqs. (\ref{gksu}) and (\ref{osu}).
+
+We define probability ${\cal P} _ {il} (y) $ for the event ``condition state $(i,l) ~ (i=0,\cdots,I;l=0,\cdots,L) $ occurs at a certain time with elapsed time $y$".
+%%%
+\begin{eqnarray}
+&& {\cal P}_{il}(y)=\left\{\prod_{n\neq l} \sum_{i_n=0}^{\tilde{i}_l} p_{0i_n}^n(y)\right\}p_{0i}^l(y). \label{pil}
+\end{eqnarray}
+%%%
+In addition, the probability that damage level $i$ of any cracking type occurs in elapsed time $y$ after any intervention is defined as maximum damage level probability ${\cal P} _ i(y) $.
+%%%%
+\begin{eqnarray}
+&& {\cal P}^*_i(y)=\sum_{l=1}^L {\cal P}_{il}(y).
+\end{eqnarray}
+Life expectancy $ET(j)$ of damage level $j$ after any intervention is formulated as:
+\begin{eqnarray}
+&& ET(j)=\int_0^\infty y \sum_{i=0}^{j-1}{\cal P}^*_i(y)dy.\label{aaa}
+\end{eqnarray}
+%The value of life expectancy $ET(j) $ can be used to drawn the deterioration curve as a result of estimation.
+\section{Estimation Method} \label{sec5}
+\subsection{MCMC Method.} \label{sec51}
+In statistic with Bayesian inference, prior and posterior probability are employed with aim to estimate the values of model's parameters. However, in actual analysis, it is hard to define a prior probability distribution, even with a simple condition state hazard model \citep{ibrahim01bo}. Methods to overcome the problems in the assumption of prior probability distribution often require numerical analysis with multi-dimensional integration, and thus remaining as a limitation in Bayesian estimation.
+
+In recent years, an appealing solution to the problems in Bayesian estimation has been proposed, with the application of MCMC simulation. The MCMC simulation technique does not require a high level of derivative and multi-dimensional integration of model's objective functions \citep{robert}. As a result, estimation results, in a great number of applied statistic research, have been improved through the combination of Bayesian estimation and MCMC simulation.
+
+In MCMC simulation, Gibbs sampling and Metropolis Hastings (Metropolis-Hastings or MH) techniques have been extensively discussed \citep{robert}. Reference to research on image restoration is a good example of MCMC simulation \citep{gibbs1}. Of that study, the algorithm of Gibbs sampling was used to estimate the posterior distribution in Bayesian estimation. In MH law, the iterative parameter $\mbox{\boldmath$\beta$}$ is defined by repeatedly generating random numbers through the conditional probability density function. %In this research, we propose an extended estimation methodology to estimate the parameters of the hidden Markov model based on the literature of the Bayesian estimation for the Weibull hazard model of \citeN{bayse}.
+
+Regarding application of Bayesian estimation and MCMC method in infrastructure management, the authors of this paper has developed a hidden Markov model for elimination of selection bias \cite{Kobayashi2012a}. The use of Bayesian estimation and MCMC method has showed a great advantage over the conventional MLE approach in the case of having complete likelihood function with multiple integrations. Following sections detail our numerical solution to overcome the challanges in estimation of the COHA model's parameters.
+%detail the development of an explicit algorithm to estimating the Markov transition probability in multiple condition states.
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Formulation} \label{sec52}
+Two visual inspections are conducted for each section $k$ of the entire road system (with $K$ is the total number of road sections). Condition states being observed at two inspection time $\tau_A^k=y^k$ and $\tau_B^k=y^k+z^k$ are $h(y^k)$ and $h(y^k+z^k)$ respectively. Duration $z^k$ is time interval between two inspections times. Based on actual observed condition states, a dummy variable $\delta_{il,jm} ^k$ is assumed, with following characteristics:
+\begin{eqnarray}
+&& \delta_{il,jm}^k=\left\{
+\begin{array}{ll}
+1 & \hspace{2mm} h(y^k)=(i,l)
+ \hspace{2mm} \mbox{and}\hspace{2mm}h(y^k+z^k)=(j,m) \\
+0 & otherwise
+\end{array}.
+\right.
+\end{eqnarray}
+To further describe the information of sample $k$, a characteristic vector $\mbox{\boldmath$x$}^k=(x_1^k,\cdots,x_M^k)$, representing characteristic variables influencing on cracking progress is also defined. For instance, characteristic variable $x_m^k~(m=1,\cdots,M)$ is referred as a characteristic variable with its numbering index $m$. Overall information on sample $k$ can be summarized in vector $\mbox{\boldmath$\xi$}^k=(\mbox{\boldmath$\delta$}^k,y^k,z^k,\mbox{\boldmath$x$}^k)$, with $\mbox{\boldmath$\delta$}^k=\delta_{il,jm}^k$ is a vector of dummy variable. We pay attention to damage level $i$ and cracking type $l$. The formulation of hazard rate $\theta_{il}^k$ of sample $k$, with its characteristic variable $\mbox{\boldmath$x$}^k=(x_1^k,\cdots,x_M^k)$, is then defined as: 
+\begin{eqnarray}
+&& \theta_{il}^k=\exp(\mbox{\boldmath$x$}^k\mbox{\boldmath$\beta$}_{il}^\prime), \label{hazard11}
+\end{eqnarray}
+with $\mbox{\boldmath$\beta$}_{il}=(\beta_{il}^{1},\cdots,\beta_{il}^{M})$ is the line vector of unknown parameters $\beta_{il}^{m}~(m=1,\cdots,M)$. The sign $\prime$ indicates the vector transposition. The m.t.p $p_{ij}^l$ of cracking type $l$ is expressible as a function of $z^k$, $\mbox{\boldmath$x$}^k$, and $\beta_{il}$ as $p_{ij}^l(z^k,\mbox{\boldmath$x$}^k:\mbox{\boldmath$\beta$}_{il})$. As mentioned in previous section, competing m.t.p $\pi_{il,jm}$ comprises of two components $p_{ij}^l(y^k,\mbox{\boldmath$x$}^k:\mbox{\boldmath$\beta$}_{il}) \hspace{2mm}\mbox{and } p_{ij}^n(z^{k},\mbox{\boldmath$x$}^k:\mbox{\boldmath$\beta$}_{il})~(n\neq l)$. Thus, it can also be described as $\pi_{il,jm}(y^k,z^{k},\mbox{\boldmath$x$}^k:\mbox{\boldmath$\beta$})$, with $\mbox{\boldmath$\beta$}=(\mbox{\boldmath$\beta$}_{01},\cdots,\mbox{\boldmath$\beta$}_{il},\cdots,\mbox{\boldmath$\beta$}_{I-1L})$. 
+%%%%%%%%%%%%%%%%
+\subsection{Complete Likelihood Function} \label{sec53}
+In the COHA model, competing m.t.p $\pi_{il,jm} $ is defined by means of condition states of both observed typical cracking type and hidden cracking type. Hence, the simultaneous occurrence probability (likelihood) ${\cal L}(\mbox{\boldmath$\beta$}:\bar{\mbox{\boldmath$\xi$}})$ at the time of observing the sampling information $\bar{\mbox{\boldmath$\xi$}}=(\bar{\mbox{\boldmath$\xi$}}^1,\cdots,\bar{\mbox{\boldmath$\xi$}}^K)$ in entire $K$ road sections can be defined as
+%%%%
+\begin{eqnarray}
+&&{\cal L}(\mbox{\boldmath$\beta$}:\bar{\mbox{\boldmath$\xi$}}) 
+= \prod_{i=0}^{I-1} \prod_{l=0}^{L} \prod_{j=i}^{I}\prod_{m=0}^{L} \prod_{k=1}^{K} \left\{\pi_{il,jm}(\bar{y}^k,\bar{z}^{k},\bar{\mbox{\boldmath$x$}}^k:\mbox{\boldmath$\beta$})\right\}^{\bar{\delta}_{il,jm}^k} 
+\nonumber \\
+&& =\prod_{i=0}^{I-1} \prod_{l=0}^{L} \prod_{j=i}^{I} \prod_{k=1}^{K} \left[\prod_{m=0}^{L} \left\{\prod_{n=1,\neq l}^{L} \sum _{s=0}^{\tilde{i}_{n}} p_{0s}^n(\bar{y}^k)\right\}^{\bar{\delta}_{il,jm}^k}\right]^{-1}
+\left[\prod_{m=0,\neq l}^{L} \left\{\prod_{n=1,\neq l,\neq m}^{L} \sum _{s=0}^{\tilde{i}_{n}} \sum _{t=s}^{\tilde{j}_{n}} p_{0s}^{n}(\bar{y}^{k}) p_{st}^n (\bar{z}^k)\right\}^{\bar{\delta}_{il,jm}^k} \right. \nonumber \\
+&& \left. \left\{\sum _{t=i}^{\tilde{j}_{l}} p_{it}^l (\bar{z}^k)\right\}^{\bar{\delta}_{il,jm}^k} \left\{ \sum _{s=0}^{\tilde{i}_{m}} p_{0s}^{m}(\bar{y}^{k}) p_{sj}^m (\bar{z}^k)\right\}^{\bar{\delta}_{il,jm}^k} \right] 
+ \left\{\prod_{n=1,\neq l}^{L} \sum_{s=0}^{\tilde{i}_{n}} \sum_{t=s}^{\tilde{j}_{n}} p_{0s}^{n}(\bar{y}^{k}) p_{st}^n (\bar{z}^k) \right\}^{\bar{\delta}_{il,jl}^k} \{p_{ij}^l(\bar{z}^k)\}^{\bar{\delta}_{il,jl}^k},  \label{hgy}
+\end{eqnarray}
+where $p_{ij}^l(\bar{z}^k)=p_{ij}^l(\bar{z}^k,\bar{\mbox{\boldmath$x$}}^k:\mbox{\boldmath$\beta$}_{il})$. Estimating a set of unknown parameters $\mbox{\boldmath$\beta$}$ to maximize the likelihood of function (\ref{hgy}) is our objective. 
+
+In freqenties statistics, the model's parameters are often estimated by employing regression methods. The method of Maximum Likelhihood Estimation (MLE) is among the most popular used in frequentist statistics. However, the MLE method has its limitation when the objective function (or likelihood function) of a statistical model is in the form of high-order dimension and multiple integrations \citep{Andrew2006, Dani2006, jeffgill}. This limitation appears to be true with the COHA model since the likelihood function of the model is of high dimensions. In order to overcome the limitation of the MLE method, Bayesian statistic is recommended \citep{gibbs1, Capper2005, Gamerman2006, Kobayashi2012, Kobayashi2012a}.
+%However, if applying the MLE method, there is a need to simultaneously solve the problem of nonlinear equation deriving from likelihood function (\ref{hgy}). As a result, we obtain a list of zero solution since the MLE method gives a solution with many optimal local points. Thus, an unique optimal result seems impossible. In addition, a selection of initial value between $0$ and $1$ for $p_{ij}^l(z^k)$ could be a frustration. 
+
+In Bayesian estimation, \citet{robert} recommended to use complete likelihood function instead of conventional likelihood function. To come up with the complete likelihood function in our model, we assume a latent variable $s_n^k$ to represent the damage level of cracking type $n$, which occurs at time $\tau_A^k$. In another words, the damage level of road section $k$, with respect to cracking type $l$, is $\mbox{\boldmath$s$}^k=(s_1^k,\cdots,s_i^k,\cdots,s_L^k)$ at time $\tau_A^k$. Damage level $i$ has its potential range of values as follows:
+%
+\begin{eqnarray}
+&& \left\{
+\begin{array}{ll}
+0\leq s_n^k \leq i & when \hspace{2mm}n<l\\
+0 \leq s_n^k < i & when \hspace{2mm}n>l
+\end{array}.
+\right. \label{tiiki}
+\end{eqnarray}
+Supposing that latent variable vector  $\mbox{\boldmath$s$}=(\mbox{\boldmath$s$}^1,\cdots,\mbox{\boldmath$s$}^K)$ is measurable, the likelihood function in Eq. (\ref{hgy}) can be further defined:
+%%%
+\begin{eqnarray}
+&&\tilde{\cal L}(\mbox{\boldmath$s$},\mbox{\boldmath$\beta$}:\bar{\mbox{\boldmath$\xi$}})
+=\prod_{i=0}^{I-1} \prod_{l=0}^{L} \prod_{j=i}^{I} \prod_{k=1}^{K}  \hspace{2mm} \left[\prod_{m=0}^{L} \left\{\prod_{n=1,\neq l}^{L} p_{0s_n^k}^n(\bar{y}^k) \right\}^{\bar{\delta}_{il,jm}^k}\right]^{-1} \nonumber \\
+&& \hspace{2mm} \prod_{m=0,\neq l}^{L} \left[\prod_{n=1,\neq l,\neq m}^{L} \left\{\sum_{t=s_n^k}^{\tilde{j}_{n}} p_{s_n^kt}^n (\bar{z}^k)\right\}^{\bar{\delta}_{il,jm}^k} \right. 
+ \left. \left\{\sum _{t=i}^{\tilde{j}_{l}} p_{it}^l (\bar{z}^k)\right\}^{\bar{\delta}_{il,jm}^k} \left\{p_{s_n^k j}^n (\bar{z}^k)\right\}^{\bar{\delta}_{il,jm}^k} \right] 
+ \hspace{2mm} \left\{\prod_{n=1,\neq l}^{L} \sum_{s_n^k=0}^{\tilde{j}_{n}} \sum_{t=s_n^k}^{\tilde{j}_{n}} p_{s_n^kt}^n (\bar{z}^k) \right\}^{\bar{\delta}_{il,jl}^k} \Big\{p_{ij}^l(\bar{z}^k)\Big\}^{\bar{\delta}_{il,jl}^k}.
+\label{hyy}
+\end{eqnarray}
+Eq. (\ref{hyy}) is referred as the complete likelihood function in Bayesian statistic. The complete likelihood function contains a latent variable $\mbox{\boldmath$s$}$. However, by assuming the posterior distribution of $\mbox{\boldmath$s$}$ through its prior distribution, it is possible to generate the value of $\mbox{\boldmath$s$}$. Following equation describes the posterior distribution of $\mbox{\boldmath$s$}$.
+\begin{eqnarray}
+&& \mbox{Prob}\{s_n^k=s|\mbox{\boldmath$s$}_{-n}^k,\bar{\mbox{\boldmath$\xi$}}:\mbox{\boldmath$\beta$}\}
+ =\frac{\tilde{\cal L}(s_n^k=s,\mbox{\boldmath$s$}_{-n}^k,\mbox{\boldmath$\beta$}:\bar{\mbox{\boldmath$\xi$}})}{\sum_{s=0}^{\tilde{i}_n} \tilde{\cal L}(s_n^k=s,\mbox{\boldmath$s$}_{-n}^k,\mbox{\boldmath$\beta$}:\bar{\mbox{\boldmath$\xi$}})} 
+ =\frac{p_{0s}^n (\bar{y}^{k},\bar{\mbox{\boldmath$x$}}^k:\mbox{\boldmath$\beta$}_{0s})}{\sum_{s=0}^{\tilde{i}_n} p_{0s}^n (\bar{y}^{k},\bar{\mbox{\boldmath$x$}}^k:\mbox{\boldmath$\beta$}_{0s})} . \label{hoytt}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+\subsection{Metropolis Hastings Algorithm.} \label{sec54}
+In this study, we apply Metropolis Hastings (MH) algorithm \citep{Metropolis1953,  Hastings1970} to generate the sample of unknown parameter $\mbox{\boldmath$\beta$}$. In the algorithm, a conjugate distribution to be used as the prior distribution of target parameter needs to be defined. Sampled values of $\mbox{\boldmath$\beta$}$ are then generated using random walk process. In our study, multi-dimensional normal distribution with mean $0$ is used as the conjugate distribution. 
+%%%%
+\begin{eqnarray}
+\beta_{il}^{m(t)}-\beta_{il}^{m(t-1)} \sim {\cal N}(0,(\sigma_{il}^m)^2) .\label{norm}
+\end{eqnarray}
+In Eq. (\ref{norm}), $t$ is frequency of sample and standard deviation $(\sigma_{il}^m) ^2$ can be of any arbitrary set. The steps on generating values of $\mbox{\boldmath$\beta$} $ using MH method with random walk process are briefly described in following steps:
+%are presented on Fig. \ref{fig3}. 
+%%%%
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[scale=0.5]{fig3} 
+%\end{center}
+%\footnotesize Note) Numbers of equations in the figure corresponds to that written in text.
+%\caption{MH steps with random walk process.}
+%\label{fig3}
+%\end{figure}
+%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%The steps presented in Fig. \ref{fig3} can be summarized as follows:
+%%%
+\subsubsection*{Step 1 - Setting up initial value.} \label{sec541}
+Value of standard deviation $\sigma_{il}^m$ in the conjugate distribution (Eq. (\ref{norm})) is an arbitrary set. The initial value of  $\mbox{\boldmath$s$}^{(0)}=(\mbox{\boldmath$s$}^{(1,0)},\cdots,\mbox{\boldmath$s$}^{(K,0)})$ is selected under the condition in Eq. (\ref{tiiki}). The initial value of  $\mbox{\boldmath$\beta$}^{(0)}$ is also an arbitrary set. Through the generation of the MH algorithm, the influence of initial values on estimation results will gradually weaken. In our study, sampling frequency $t$ is equal to $1$.
+%%%%
+\subsubsection*{Step 2 - Sampling latent variable $\mbox{\boldmath$s$} ^{(k,t)} $.} \label{sec542}
+By applying Eq. (\ref{hoytt}), we can calculate new value of $\mbox{\boldmath$s$}^{(k,t)}$ through using the obtained value $\mbox{\boldmath$s$}^{(k,t-1)}$ and $\mbox{\boldmath$\beta$}^{(t-1)}$ in step \ref{sec542}. The m.t.p $p_{ij}^{l}(\bar{y}^k)$ is also estimated in this step.
+%%%%
+\subsubsection*{Step 3 - Sampling unknown parameter $\mbox{\boldmath$\beta$} ^{(t)} $.} \label{sec543}
+The sample for unknown parameter is generated through the random walk process in the MH algorithm. To begin with, an affixing character of each element of parameter vector $\mbox{\boldmath$\beta$}^{(t-1)}=(\mbox{\boldmath$\beta$}_{00}^{1,(t-1)},\cdots,\mbox{\boldmath$\beta$}_{I-1L}^{M,(t-1)})$ is redefined and rewritten as $\mbox{\boldmath$\beta$}^{(t-1)}=(\beta_1^{(t-1)},\cdots,\beta_{J}^{(t-1)})$. Following procedures explain the sampling process:\\
+Step 3.1: $\mbox{\boldmath$s$}^{(k,t)}$ and $\mbox{\boldmath$\beta$}^{(t-1)}$ are assumed to be available from previous steps.\\
+Step 3.2: To increase the loop iteration (frequency) $t$ and to define sub-domain of damage level $q$:
+\begin{eqnarray}
+&& \mbox{\boldmath$\beta$}^{(t,q)}=(\beta_1^{t,q},\cdots,\beta_{q}^{t,q},\beta_{q+1}^{t,q-1},\cdots,\beta_{J}^{t,q-1})^\prime.
+\end{eqnarray}
+In addition, step-width vector $\mbox{\boldmath$\xi$} _ q^t=(0,\cdots,0,\xi_q^t,0,\cdots,0) ^\prime$, with element $i$ in its value of $\xi_q^k$, is defined. The approval of expected (on average) step-width in random walk process follows normal distribution with mean $0$. 
+\begin{eqnarray}
+&& \xi_q^t \sim {\cal N}(0,(\sigma_q)^2).
+\end{eqnarray}
+As a result, the standard deviation can be estimated:
+\begin{eqnarray}
+\alpha^{(t,q)}=\min\left[\frac{\tilde{\cal L}(\mbox{\boldmath$s$}^{(t)},\mbox{\boldmath$\beta$}^{(t,q)},\bar{\mbox{\boldmath$\xi$}})}{\tilde{\cal L}(\mbox{\boldmath$s$}^{(t)},\mbox{\boldmath$\beta$}^{(t,q-1)},\bar{\mbox{\boldmath$\xi$}})},1\right],
+\end{eqnarray}
+with $(\tilde {\cal L}) $ as the completed likelihood function. \\
+Step 3.3: Random number $u ~\sim {\cal U} (0,1) $ is generated throught uniform distribution ${\cal U} (0,1) $ in $[0,1]$. Unknown parameter $\mbox{\boldmath$\beta$} ^{(t,q)} $ is decided according to the following rules: 
+
+\begin{eqnarray}
+&& \mbox{\boldmath$\beta$}^{(t,q)}=\left\{
+\begin{array}{ll}
+\mbox{\boldmath$\beta$}^{(t,q)} + \mbox{\boldmath$\xi$}_q^t & if \hspace{2mm} u \leq \alpha^{(t,q)}\\
+\mbox{\boldmath$\beta$}^{(t,q)} & otherwise
+\end{array}.
+\right.
+\end{eqnarray}
+The above-mentioned procedure is applied with $q$ from $q=1$ to $q=L$. 
+\subsubsection*{Step 4-Updating Parameter} \label{sec544}
+Updated value $\mbox{\boldmath$\beta$}^{(t)}$ is recorded at any iteration and compared for acceptance or rejection. If $t\leq \overline{t}$ as $t=t+1$, the program returns to Step 2. Otherwise, the algorithm stops. 
+
+It is likely that initial values of parameters remains only in the early stages of iteration process. When $t$ increases in a high number, reaching a certain numbers  $\underline{t}$, we can define our preferable value of  $\mbox{\boldmath$\beta$}^{(t)}~(t=\underline{t}+1,\underline{t}+2,\cdots,\overline{t})$ as the outcome. 
+%
+%In following section, we explain the methodology to determine statistical inference and test for unknown parameter $\mbox{\boldmath$\beta$}$.
+%%%%%
+\subsection{Statistical Inference on Posterior Distribution.} \label{sec55}
+Statistical test for parameter $\mbox{\boldmath$\beta$}$ can be carried out based on the generated samples through the MCMC simulation. However, in the simulation, probability density function $\pi(\mbox{\boldmath$\beta$}|\bar{\mbox{\boldmath$\xi$}})$ cannot be considered as an analytical function. Therefore, instead of using full parametric approach for statistical test, non-parametric approach is recommended \cite{robert}. According to MH method, among generated samples $\mbox{\boldmath$\beta$}^{(t)}~(t=1,\cdots,\overline{t})$, the first $\underline{t}$ samples are removed. A new set of samples is then defined as a replacement, with its subscriptions ${\cal M}=\{\underline{t}+1,\cdots,\overline{t})$. By applying this approach, the joint probability distribution function $G(\mbox{\boldmath$\beta$})$ is defined:
+\begin{eqnarray}
+      && G(\mbox{\boldmath$\beta$})
+      =\frac{\mbox{\#}\{\mbox{\boldmath$\beta$}^{(t)}
+      \leq \mbox{\boldmath$\beta$}, t\in {\cal M}\}}
+      {\overline{t}-\underline{t}},
+\end{eqnarray}
+where $\mbox{\#}\{\mbox{\boldmath$\beta$}^{(t)} \leq \mbox{\boldmath$\beta$}, t\in {\cal M}\}$ is regarded as the total number of samples, from which logical expression $\mbox{\boldmath$\beta$}^{(t)} \leq \mbox{\boldmath$\beta$}, t\in {\cal M}$ is satisfied. Moreover, expected values of $\tilde{\mbox{\boldmath$\zeta$}}(\mbox{\boldmath$\beta$})$ and standard covariance $\tilde{\mbox{\boldmath$\Sigma$}}(\mbox{\boldmath$\beta$})$ of the posterior distribution of $\mbox{\boldmath$\beta$}$ are defined respectively as:
+%
+\begin{manyeqns}
+      && \hspace{-7mm}
+      \tilde{\mbox{\boldmath$\zeta$}}(\mbox{\boldmath$\beta$})=
+      (\tilde{\zeta}(\beta_{1}),\cdots,\tilde{\zeta}
+      (\beta_{J}))^\prime 
+       =\Big(\sum_{t=\underline{t}+1}^{\overline{t}}
+      \frac{\beta_{1}^{(t)}}{\overline{t}-\underline{t}},
+      \cdots, \sum_{t=\underline{t}+1}^{\overline{t}}
+      \frac{\beta_{J}^{(t)}}{\overline{t}-\underline{t}}\Big)^\prime,
+      \label{mu3} \\
+ %
+      && \hspace{-7mm}
+      \tilde{\mbox{\boldmath$\Sigma$}}(\mbox{\boldmath$\beta$})=
+      \left(
+      \begin{array}{lll}
+         \tilde{\sigma}^2(\beta_{1}) & \cdots
+            & \tilde{\sigma}(\beta_{1}\beta_{J}) \\
+         \vdots & \ddots & \vdots \\
+         \tilde{\sigma}(\beta_{J}\beta_{1}) & \cdots
+            & \tilde{\sigma}^2(\beta_{J}) \\
+      \end{array}
+      \right),
+      \label{mu4}
+\end{manyeqns}
+%%%%
+where
+ \begin{manyeqns}
+      && \hspace{-3mm} \tilde{\sigma}^2(\beta_{i})=
+      \sum_{t=\underline{t}+1}^{\overline{t}}
+      \frac{\{\beta_{i}^{(t)}-\tilde{\zeta}(\beta_{i})\}^2}
+      {\overline{t}-\underline{t}}, \\
+      && \hspace{-3mm} \tilde{\sigma}(\beta_{i}\beta_{j}) 
+       =\sum_{t=\underline{t}+1}^{\overline{t}}
+      \frac{\{\beta_{i}^{(t)}-\tilde{\zeta}(\beta_{i})\}
+      \{\beta_{j}^{(t)}-\tilde{\zeta}(\beta_{j})\}}{\overline{t}-\underline{t}}.
+ \end{manyeqns}
+ %
+The credible interval of parameter $\mbox{\boldmath$\beta$}$ is examined and determined by using generated samples. For example, the $100(1-2\varepsilon)\%$ credible interval of parameter $\mbox{\boldmath$\beta$}$ is defined by using statistical sampling order  $\underline{\beta}^{\varepsilon}_{j},\overline{\beta}^{\varepsilon}_{j}~(j=1,\cdots,J)$ with $\underline{\beta}^{\varepsilon}_{j}< \beta_{j} <\overline{\beta}^{\varepsilon}_{j}$:
+%%%%% 
+\begin{manyeqns}
+      && \hspace{-8mm} \underline{\beta}^{\varepsilon}_{j}
+      =\arg \max_{\beta_{j}^{\ast}} 
+       \left\{ \frac{\#\{\beta_{j}^{(t)} \leq \beta_{j}^{\ast},t
+      \in {\cal M}\}}
+      {\overline{t}-\underline{t}}\leq \varepsilon \right\}, \label{b1} \\
+ %
+      && \hspace{-8mm} \overline{\beta}^{\varepsilon}_{j}
+      =\arg \min_{\beta_{j}^{\ast\ast}} 
+       \left\{ \frac{\#\{\beta_{j}^{(t)} \geq
+      \beta_{j}^{\ast\ast},t\in {\cal M}\}}
+      {\overline{t}-\underline{t}}\leq \varepsilon \right\}. \label{b2}
+   \end{manyeqns}
+ %
+\section{Empirical Study} \label{sec6}
+\subsection{Data and definition of condition states} \label{sec61}
+We conducted an empirical application of the HIMA model using a representative set of cracking data of road sections in Japan. Data was recorded during the period from 1992 to 2004 and consisted of three consecutive inspection data on same road sections. Total numbers of investigated samples are $2,751$, with each sample representing for an average sectional length of $100$ meters. Beside the percentage values of cracks measured in three inspection times, values of variables such as traffic volume, ambient temperature, thickness of road sections were also recorded. 
+
+In the study, cracks are classified into three types ($l$): longitudinal crack ($l=1$), horizontal crack ($l=2$), and alligator crack ($l=3$). Damage levels $i$ for each cracking type are also defined as discrete value in a range of $[0,3]$ ($i(i=0,...,3)$) according to its size (small, medium, and large). The condition states of road sections are described as the combination of cracking types and their damage levels. As a result of combination, there are $10$ condition states. The description of each condition state is shown in Table \ref{table2}.
+
+\begin{table}[t]
+\begin{center}
+\caption{Cracking Condition States.}
+\label{table2}
+{\footnotesize
+\begin{tabular}{ll|ll}
+\hline
+\multicolumn{2}{c|}{Condition states} & \multicolumn{2}{c}{Description} \\ 
+\hline
+\multicolumn{1}{r}{0,0} & (0) & \multicolumn{2}{c}{New condition states} \\ 
+\hline
+\multicolumn{1}{r}{1,1} & (1) & longitudinal crack & Small crack \\ 
+\multicolumn{1}{r}{2,1} & (2) &  & Medium crack \\ 
+\multicolumn{1}{r}{3,1} & (3) &  & Large crack \\ 
+\hline
+\multicolumn{1}{r}{1,2} & (4) & Horizontal crack & Small crack \\ 
+\multicolumn{1}{r}{2,2} & (5) &  & Medium crack \\ 
+\multicolumn{1}{r}{3,2} & (6) &  & Large crack \\ 
+\hline
+\multicolumn{1}{r}{1,3} & (7) & Alligator crack & Small crack \\ 
+\multicolumn{1}{r}{2,3} & (8) &  & Medium crack \\ 
+\multicolumn{1}{r}{3,3} & (9) &  & Large crack \\ 
+\hline
+\end{tabular}
+}
+\end{center}
+\footnotesize Note) Figures in the parentheses shows measured condition states of cracks.
+\end{table}
+%
+%%%%%%%
+\subsection{Transition of condition states}\label{sec62}
+This section explains the transition among condition states defined in Table \ref{table2}. It is assumed that at times $\tau_A$ and $\tau_B$ (refer to Fig. \ref{fig1}), condition states are $(i,l)$ and $(j,m)$, respectively, with $z$ as time interval. The absorbing condition state is defined as a combination of $(i=3,l=3) $, with its transition probability $\pi_{33,33} =1$.
+
+If at time $\tau_A$, damage level is $i=2$, the transition of condition state can be: 1) no further deterioration till time $\tau_B$. Condition state $(2,l) ~ (l=1,2,3) $ remains in period $z$, with transition probability ($\pi_{2l,2l}$); 2) Damage level $i=2$ remains in duration $z$. However, there is a change in cracking type $l$. Transition probability of this event is $\pi_{2l,2m}~(m=l+1,\cdots,3)$; 3) Both damage level $i$ and cracking type $l$ change at time $\tau_B$ with transition probability $\pi_{2l,3m}~(m=1,2,3)$. 
+
+In case damage level at time $\tau_A$ is $i=1$, transitions can be described as  one of the events: 1) no change of either damage level and cracking type from time $\tau_A$ to $\tau_B$. The probability of the event is ($\pi_{1l,1l}$); 2) Cracking type changes at time $\tau_B$, with transition probability ($\pi_{1l,1m}~(m=l+1,\cdots,3)$); 3) Damage level $i$ changes one step at time $\tau_B$, with transition probability ($\pi_{1l,2m}~(m=1,2,3)$); 4) Damage level $i$ changes to $i=3$ at time $\tau_B$, with transition probability ($\pi_{1l,3m}~(m=1,2,3)$).
+
+Finally, in case condition state at time $\tau_A$ is $(0,0)$, the transitions among condition states can be: 1) no deterioration from time $\tau_A$ to  $\tau_B$. The transition probability of the event is ($\pi_{00,00}$); 2) Damage level changes one step, crack appears, with transition probability ($\pi_{00,1m}~(m=1,2,3)$); 3) Damage level changes two steps, crack appears, with transition probability ($\pi_{00,2m}~(m=1,2,3)$); 4) Damage level changes three steps, crack appears, with transition probability ($\pi_{00,3m}~(m=1,2,3)$). %
+%
+\subsection{Results} \label{sec63}
+\begin{table}[t]
+\begin{center}
+\caption{Model's parameters $\beta_{i,l}$, hazard rate $\theta_{i,l}$, and duration $RMD_{i,l}$ of transition.}
+\label{table3}
+{\footnotesize
+\begin{tabular}{l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Condition states} & \multicolumn{1}{c|}{Constant term} & \multicolumn{1}{c|}{Traffic volume} & \multicolumn{1}{c|}{Hazard rate} & \multicolumn{1}{c}{Duration} \\ 
+\multicolumn{1}{c|}{$(i,l)$} & \multicolumn{1}{c|}{$\beta^1_{i,l}$} & \multicolumn{1}{c|}{$\beta^2_{i,l}$} & \multicolumn{1}{c|}{$\theta_{i,l}$} & \multicolumn{1}{c}{$RMD_{i,l}$} \\ 
+\hline
+\multicolumn{1}{c|}{(0,1)} & \multicolumn{1}{c|}{-2.705} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0.067} & \multicolumn{1}{c}{14.955} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(-2.795,-2.623)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{(1,1)} & \multicolumn{1}{c|}{-1.878} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0.153} & \multicolumn{1}{c}{6.538} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(-2.082,-1.697)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{(2,1)} & \multicolumn{1}{c|}{-0.572} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0.564} & \multicolumn{1}{c}{1.772} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(-0.895,-0.278)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{(0,2)} & \multicolumn{1}{c|}{-2.299} & \multicolumn{1}{c|}{0.284} & \multicolumn{1}{c|}{0.126} & \multicolumn{1}{c}{7.944} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(-2.417,-2.186)} & \multicolumn{1}{c|}{(0.196,0.433)} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{(1,2)} & \multicolumn{1}{c|}{-1.560} & \multicolumn{1}{c|}{0.720} & \multicolumn{1}{c|}{0.373} & \multicolumn{1}{c}{2.685} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(-1.831,-1.360)} & \multicolumn{1}{c|}{(0.509,1.037)} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{(2,2)} & \multicolumn{1}{c|}{0.227} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{1.255} & \multicolumn{1}{c}{0.797 } \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(0.0886,0.364)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{(0,3)} & \multicolumn{1}{c|}{-5.830} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0.003} & \multicolumn{1}{c}{-} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(-6.233,-5.508)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{(1,3)} & \multicolumn{1}{c|}{-1.367} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0.255} & \multicolumn{1}{c}{3.925 } \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{(-2.242,-0.565)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{(2,3)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c}{-} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\end{tabular}
+}
+\end{center}
+\footnotesize Note) Values in parentheses are lower bound and upper bound values of credible interval corresponding to 95\% of its significant level.
+\end{table}
+
+In the study, hazard rate $\theta_{i,l}$ of each condition state was assumed to be dependent only on traffic volume (Eq. (\ref{gutai2})). This assumption was acceptable as traffic volume is considered as one of the main factors causing deterioration of road \citep{kobayashitsuda}. As a matter of fact, crack initiation could be also related to other factors such as: ambient temperature, materials, and axes load. However, in our study, those factors can be considered as already incorporated in the constant term of regression function. The denotation of constant term and traffic volume used in the study are $x_1^k=1$ and $x_2^k$, respectively. 
+
+The objective of estimation is to estimate the model's parameters $\beta_{i,l}$, which is often referred as unknown parameters in statistical models. Following equation describes the function form assumed for the hazard rate $\theta_{i,l}$. 
+%
+%%
+\begin{eqnarray}
+&& \theta_{00}^k=\sum_{n=1}^{3} \sum_{m=1}^2 \beta_{0n}^mx_{m}^k \hspace{2mm} and \hspace{2mm}\theta_{in}^k= \sum_{m=1}^2 \beta_{in}^mx_{m}^k, \label{gutai2}\\
+&& (i=1,2;n=1,2,3;k=1,\cdots,2751). \nonumber
+\end{eqnarray}
+%%
+%
+In the program (coded in FORTRAN 90), at each iteration, new values $\beta_{i,l}$ are recorded. To verify its values, likelihood ratio $R(\hat{\mbox{\boldmath$\beta$}}_{-m})~(m=1,\cdots,I)$ is examined. Values of $\mbox{\boldmath$\beta$}$ will be accepted as convergent values with a certain degree of significance 
+%%%
+%\begin{eqnarray}
+$ R(\hat{\mbox{\boldmath$\beta$}}_{-m})=2\{\ln {\cal L}(\hat{\mbox{\boldmath$\beta$}})-\ln {\cal L}(\hat{\mbox{\boldmath$\beta$}}_{-m})\}$,
+%\end{eqnarray}
+where $\hat{\mbox{\boldmath$\beta$}}_{-m}$ is a vector, in which, $m$ element of $\hat{\beta}_m$ is substituted for $\hat{\mbox{\boldmath$\beta$}}$ with its mean equals to $0$. When $|R(\hat{\mbox{\boldmath$\beta$}}_{-m})|\geq 3.48$ is observed, null hypothesis $\beta_m=0$ can be dismissed by a significant level 5\%. 
+
+Results of estimation using the COHA model with MCMC simulation are shown in Table \ref{table3}. In the table, values in parentheses are lower bound and upper bound values of credible interval with 95\% significant level, calculated by using Eqs. (\ref{b1}) and (\ref{b2}). %Characteristic variable $x_2^k$ is a dummy variable,% with following conditions:
+%%
+%\begin{eqnarray}
+%&& x_2^k=\left\{
+%\begin{array}{ll}
+%0 & \hspace{2mm} \mbox{For road path sections} \\
+%1 & \hspace{2mm} \mbox{For bridge path sections}
+%\end{array}.
+%\right.
+%\end{eqnarray}
+%%%
+Values of $\beta_{il}^1$ in Table \ref{table3} infers that other influencing factors to deterioration other than traffic volume have considerably impacts on the hazard rate of condition state $(i,l)=(1,1)$,$(2,1)$,$(2,2)$, and $(1,3)$.  Hazard rate of condition state $(2,3) $ is not obtained due to a reason that data on damage level $3$ is not available. Estimation results also highlight a fact that annual traffic volume has a significant impact on the deterioration of horizontal crack, with their parameter values $\beta_{02}^2$ and  $\beta_{12}^2$ equal to $0.284$ and $0.720$, respectively. %In addition, horizontal crack appears earlier in road path sections than in bridge path sections. %This findings are observed with initial cracking condition states to middle-range condition states.
+%
+%, and the progress of horizontal crack appears earlier on road sections rather than on bridge sections. However, this process demonstrates only from the initial cracking states to middle-range condition states.
+
+The two last right column of Table \ref{table3} show the values of hazard rate $\theta_{i,l}$ calculated based on Eq. (\ref{gutai2}) and the life expectancy of condition state (or the duration of being in a condition state) calculated based on Eq. (\ref{kenzen}). It can be interpreted from the values of hazard rates $\theta$ that longitudinal crack progresses significantly slower than horizontal crack and alligator crack. Furthermore, the life expectancy of horizontal cracks becomes relatively short after longitudinal cracks occurs. The life expectancy of damage level $1$ of alligator crack is not counted as a result of insufficient recorded data. This problem might be due to the past interventions, with objectives to heal only for horizontal and longitudinal cracks. Overall, it takes about more than $21$ years for a road section in perfect condition state to encounter heavily damage level of longitudinal crack and about 10 years to be in the last damage level ($i=3$) of horizontal crack. 
+ %The life expectancy of damage level $1$ of sectional cracking type, it is almost impossible to obtain its value since there is few monitoring samples. This problem is due to the maintenance and repair activities, which were carried out in the past to heal the longitudinal and horizontal cracks. Therefore, the information concerning sectional crack and its damage levels is invisible in many cases. 
+%
+%\subsection{Analysis result} \label{sec54}
+%This section presents the results on the same source of data by using competing hazard model. In the beginning, we estimated the transition probability of damage levels with respect to particular cracking types. Results of estimation are shown in Table \ref{table5}. The properties of transition probabilities are estimated by means of expected hazard rate, which were calculated on average basis using Multi-stage Markov hazard model. 
+
+The transition probabilities among damage levels of respective cracking types are presented in Table \ref{table5}. The properties of transition probabilities are estimated by means of expected hazard rates, which are calculated on average basis using the MUSTEM model.
+
+\begin{table}[t]
+\begin{center}
+\caption{Markov transition probability according to cracking type}
+\label{table5}
+{\footnotesize
+\begin{tabular}{c|cccc}\hline
+Damage levels& \multicolumn{4}{|c}{Cracking types} \\%\hline
+ & 0 & 1 & 2 & 3 \\\hline
+& \multicolumn{4}{|c}{Longitudinal crack} \\%\hline
+0 & 0.935  & 0.060 & 0.004 & 0.001 \\
+1 & 0.0  & 0.858 & 0.108 & 0.034 \\
+2 & 0.0  & 0.0 & 0.569 & 0.431 \\
+3 & 0.0  & 0.0 & 0.0 & 1.0 \\\hline
+& \multicolumn{4}{|c}{Horizontal crack} \\%\hline
+0 & 0.882  & 0.098 & 0.013 & 0.007 \\
+1 & 0.0  & 0.689 & 0.170 & 0.141 \\
+2 & 0.0  & 0.0 & 0.285 & 0.715 \\
+3 & 0.0  & 0.0 & 0.0 & 1.0 \\\hline
+& \multicolumn{4}{|c}{Alligator crack} \\%\hline
+0 & 0.997  & 0.003 & 0.000 & 0.000\\
+1 & 0.0  & 0.775 & 0.225 & 0.000 \\
+2 & 0.0  & 0.0 & 0.997 & 0.003\\
+3 & 0.0  & 0.0 & 0.0 & 1.0 \\\hline
+\end{tabular}
+}
+\end{center}
+\footnotesize Note) Transition probabilities are in one year term.
+\end{table}
+Using the Eqs. (\ref{hhh}), (\ref{gksu}), and (\ref{osu}), the properties of the competing m.t.p for each pair of condition state $(i,l)$ are estimated and shown in Table \ref{table6}. The properties of the competing m.t.p in Table \ref{table6} are not purely homogenous Markov properties. The properties reflect transitions among pairs of condition states in one year term after last interventions. An interesting finding is that transition probabilities of initial damage levels of either longitudinal crack and horizontal crack are considerable high, reflecting the true cracking deterioration in the area of targeted road sections. 
+%In the next step, we estimated the values of competing transition probabilities for each pair of condition states, with reference to equations (\ref{hhh}), (\ref{gksu}), and (\ref{osu}). Estimation results are presented in Table \ref{table6}. 
+
+\begin{table}[t]
+\begin{center}
+\caption{Competing m.t.p for pairs of condition states.}
+\label{table6}
+{\footnotesize
+\begin{tabular}{c|cccccccccc}\hline
+Condition states & (0,0) & (1,1) & (1,2) & (1,3) & (2,1) & (2,2) & (2,3)&(3,1)&(3,2)&(3,3) \\\hline
+(0,0) & 0.822  & 0.053 & 0.098 & 0.003 &0.004 & 0.013 & 0.000 & 0.001 &0.006 &0.000 \\
+
+(1,1) & 0.0 & 0.755& 0.084 & 0.002 & 0.105 & 0.014 & 0.000 & 0.034 & 0.006 & 0.000 \\   
+(1,2) &  0.0  & 0.0 & 0.678 & 0.003 & 0.007 & 0.170 & 0.000& 0.002 & 0.140 & 0.000\\
+
+(1,3) & 0.0 & 0.0 & 0.0  & 0.728 & 0.007 & 0.023 & 0.219 & 0.003 & 0.020 & 0.000 \\
+(2,1) &  0.0 & 0.0 & 0.0 & 0.0  & 0.541 & 0.016 & 0.001 & 0.422 & 0.020 & 0.000 \\
+(2,2) &  0.0 & 0.0 & 0.0  & 0.0 & 0.0  & 0.284 & 0.000 & 0.001 & 0.715 & 0.000 \\
+(2,3) &  0.0 & 0.0 & 0.0 & 0.0  & 0.0 & 0.0 & 0.963 & 0.004 & 0.029 & 0.004 \\
+(3,1) &  0.0 &0.0 &0.0 &0.0 &0.0 &0.0 &0.0 &0.971 &0.029 &0.000\\
+(3,2) &  0.0 &0.0 &0.0 &0.0 &0.0 &0.0 &0.0 &0.0 &1.000 &0.000 \\
+(3,3) &  0.0 &0.0 &0.0 &0.0 &0.0 &0.0 & 0.0 & 0.0 &0.0 &1.0\\\hline
+\end{tabular}
+}
+\end{center}
+\footnotesize Note) Transition probabilities are in one year term.
+\end{table}
+
+%It is therefore obvious to see that the values of transition probability are considerable high for either damage levels of longitudinal cracks, which are deemed in negligible observed pairs of conditions states. 
+
+We present in Fig. \ref{fig4} deterioration curves of respective cracking types. The horizontal axis indicates elapsed time (in years). The blue lines demonstrate the change in value of transition probability, in which, damage levels of cracking types remain in the same states. The two lines in the lower part of the figure are referred to same cracking types. It is observable that there is a sharp decrease in the values of transition probability concerning damage levels of horizontal crack, while it is relatively slow with longitudinal crack. This is corresponding to the results in Table \ref{table3}. Thus, generally, suffice to say that the overall cracking of road sections is dominated by deterioration of horizontal crack. In addition, correlation in term of deterioration curves between horizontal crack and longitudinal crack reveals a potential of horizontal cracking influence over the longitudinal crack. Finally, the pink lines illustrate the change of transition probability among different cracking types.% Along with elapsed time, we can observe the increase of transition probabilities for all three cracking types. As previously mentioned in section \ref{sec23}, selection of representative cracking type is depended largely on the bias assumption, with which, cracking type with higher order will be chosen. 
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[scale=0.4]{fig4} 
+\end{center}
+\caption{Expected deterioration curves of cracks.}
+\label{fig4}
+\end{figure}
+%
+%
+%In addition, fig4 is the transition probability shows a competitive aging. Figure, at the time of the horizontal axis indicates the elapsed period of one year from the first year of the interval transition probability and the transition probability difference in one year, which indicates whether any changes to the elapsed time. First of all, a blue line shows the amount of the change of the transition probability in which it stays in the same state of deterioration. Thus, it is understood to decrease gradually along with the number of years elapsed, and to settle the probability of staying in the same state of deterioration to the stationary state. Next, a green line shows the amount of the change of the transition probability between the same crack types. 
+%
+%Thus, it is understood that the transition probability between the damage levels of the length crack decreases though the transition probability between the damage levels of a horizontal crack hardly changes. It is thought that this originates the fact that the overall deterioration process is ruled because a horizontal crack is faster than the length cracks progress. 
+%
+%In a word, the influence of the progress of other cracks is not received in the observation because a horizontal crack is a crack phenomenon with the fastest progress, and the transition probability in the horizontal crack progress process and the transition probability between horizontal cracks in the rival transition probability are almost equal. On the other hand, the transition probability (rival transition probability) between the damage levels of the length crack decreases with the time passage so that the progress of a horizontal crack may influence the length crack in the observation. Finally, a pink line shows the amount of the change of the transition probability between different crack types. Thus, it is understood that the probability that the transition between different crack types is observed increases with the passing age. This tendency is a horizontal crack, a length crack, and a respect crack. the strong orderThe probability that the crack of the type with fast deterioration speed is selected as a central value as referred from the above-mentioned with section2.4 in the state of deterioration observed by the measurement at time increases. However, such a dynamic sample selection bias is settled to a certain definite value at the elapsed time. 
+
+Fig. \ref{statedistribution}-a additionally gives information on the distribution of condition state $(i,l)$ over the time span of 25 years. Calculation for drawing this figure is based on obtained competing m.t.p ${\cal P}_{il}(y) $ through Eq. (\ref{pil}). Colored patterns in the figure have their respective implications to cracking types and damage levels. %The red, green, and blue colors respectively reflect damage levels 1, 2, and 3. While, longitudinal crack, horizontal crack, and alligator crack are respectively with vertical, horizontal, and lattice line patterns. 
+
+It can be seen from the figure that, within 3.5 years of usage, numbers of road sections in good condition account for about 50\% out of the total numbers. Within the same period, deterioration concerning horizontal crack is more intense than longitudinal crack, with a percentage of 20 \% in term of distribution. Approximately 8 years after the initial time, numbers of road sections with longitudinal crack are forecasted to reach 50\%. The distribution of alligator crack in this figure is not significant observed. With this observation, we realize that horizontal crack is the dominant cracking type. In practice, most of interventions have been carried out to recover the horizontal crack and longitudinal crack before the occurrence of alligator crack. 
+
+%Next, it is assumed that the transition by the passing age of the deterioration state distribution is requested by using the rival transition probability procession. To request the deterioration state distribution because Markov property is not satisfied, the rival transition probability procession should request probability ${\cal P} _ {il} (y) $that changes to deterioration state $(i,l) $in $y$ directly from deterioration state $(0,0) $at the time of initial on the axis of the time of the sample to make at the time of initial a starting point. The result of requesting probability ${\cal P} _ {il} (y) $that each deterioration occurs is shown to number of years elapsed $y$ in Fig \ref{fig5} by using expression (\ref{pil}). Damage level 2 and green show the state of damage level 3 in damage level 1 and blue in this figure red. Moreover, the length crack is a length handle, a horizontal crack is arrogant, and the respect crack is a lattice handle as for the crack type. The following, experienced matters can be read from this figure. First of all, the period at the time of which 20 O50 is about eight years of about 3.5 years it when paying attention to the progression rate of the crack for the taken period. 50 0 the ratio of the section not generated crack Next, the proportion of a horizontal crack is growing more than ratios the length cracks that occupy it at each damage level if paying attention to the ratio of each crack type. Moreover, it reaches in the length crack of damage level 3 or the state of a horizontal crack in the section of about 50\% when eight years pass. However, it doesn't change in a state of deterioration (respect crack of damage level 3) any more. This shows that a horizontal crack of damage level 3 plays the role that the deterioration process absorbs because the repair of the pavement is executed at the stage before the respect crack of damage level 3 occurs. Moreover, the respect crack is hardly observed as a crack type to represent the section through the total loss wound degree. This originates in three points that the pavement is a little frequency to which the respect crack occurs, and is fast the progress of deterioration in other crack types, and repair eta and is given at the stage before the respect crack occurs. Here, fig5 is showing the most deteriorated deteriorated secular distortion, and even when the ratio chosen to be a central value in this figure is small, it is necessary to note the point with the possibility that a lot of the deterioration has occurred actually. 
+%
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[scale=0.4]{fig5} 
+%\end{center}
+%\footnotesize Note) Numbers in parentheses are condition states $ (i, l)$. Condition state $ (3,3) $ is absorbing condition state.
+%\caption{Distribution of condition states over 15 years using the COHA model.}
+%\label{fig5}
+%\end{figure}
+%
+
+\begin{figure}[h]
+\begin{center}
+$\begin{array}{c@{\hspace{0.2in}}c}
+\multicolumn{1}{l}{\mbox{\bf }} &
+	\multicolumn{1}{l}{\mbox{\bf }} \\ [-0.53cm]
+\epsfxsize=3.2in
+\epsffile{fig5.eps} &
+	\epsfxsize=3.2in
+	\epsffile{fig9.eps} \\ [0.4cm]
+\mbox{(a) - COHA model} & \mbox{ (b) - HIMA model}
+\end{array}$
+\end{center}
+\caption{Condition states distribution}
+\label{statedistribution}
+\end{figure}
+
+%Fig. \ref{fig7} are drawn as a result of calculation using Eq. (\ref{hy}). The figure present comparative pictures of deterioration speed between longitudinal crack, horizontal crack, and alligator crack. The baselines are average deterioration curves, which account for both longitudinal and horizontal cracks. Meanings of the figures are in a summary as follows: 1) As long as horizontal and longitudinal cracks appear on road sections, deterioration tends to accelerate with higher speed; 2) Deterioration speed of horizontal crack is faster than longitudinal crack, with about 12 years differences for damage level 3; 3) Deterioration of road path sections is faster than that of bridge path sections, with about 3 years differences;  The baseline deterioration curve is much closer to deterioration curve of road path sections since 80\% of sampling data are of road path sections. A similar observation and conclusion can also be mentioned  with deterioration curves of overall cracking process. 
+
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[scale=0.5]{fig6} 
+%\end{center}
+%\footnotesize Note) Baseline deterioration curve. 
+%\caption{Deterioration curve of longitudinal crack.}
+%\label{fig6}
+%\end{figure}
+%
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[scale=0.5]{fig7} 
+%\end{center}
+%\footnotesize Note) O, L, and H stand for overall cracking, longitudinal crack, and  horizontal crack.
+%\caption{Deterioration curves benchmarking.}
+%\label{fig7}
+%\end{figure}
+
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[scale=0.5]{fig8} 
+%\end{center}
+%\caption{Overall deterioration curves comparision.}
+%\label{fig8}
+%\end{figure}
+%Next, a curve of a length crack and a horizontal crack use was obtained by using expression (\ref{hy}). The result is shown in \ref{fig6} and \ref{fig7}. A curve (It is called basic happen) that uses the rate of the average hazard in the entire object section for this figure use In addition, the curve obtained by using the rate of the average hazard of the navvy part and the bridge use is also shown about a horizontal crack (The structure characteristic displays only a basic case like having shown the length crack in table2 because it was not adopted as an explanatory variable). The following points can be read from these figures. First, the crack progresses with accelerating speed when the crack occurs once though time will be required by the time an initial crack occurs both length and a horizontal crack. Secondarily, a horizontal crack is faster than the length crack the deterioration speed. For instance, there will be a difference for about 12 years by deterioration for about seven years to damage level 3 by deterioration to damage level 1 because of the healthy condition when both basic cases are compared. Thirdly, the deterioration speed of the navvy part is faster than that of the bridge for the horizontal crack type. Concretely, the difference has been generated in the average period to damage level 3 length for about five years. Fourthly, this originates the fact that the navvy part was about 80 percent in object section of the present study though a curve of a basic case use comparatively shows shape near a curve of the navvy part use. Next, a curve use intended for the entire crack process is shown in \ref{fig8} by using expression (\ref{aaa}). In this figure, the crack type that progresses most is pursued, and the times of damage are read as a damage level at which the sample in the point that is is represented. Therefore, a curve with fast progression rate of deterioration use is obtained from the curve shown in fig67 use. The same characteristic as the matter confirmed in \ref{fig6} and \ref{fig7} can be read in the shape of a curve of each road characteristic use. The progression rate of the result of each crack progress process's competing and the entire crack progresses at a speed that is earlier than the crack progression rate according to each type. However, the ratio observed as a typical crack because of the progression rate of a horizontal crack faster than the progression rate of the length crack is abundant. Therefore, the curve estimated by using a typical crack type use is a curve of a horizontal crack use and a similar curve use though some deterioration speeds have quickened more than a curve of a horizontal crack use. 
+\subsection{Comparison}\label{sec65}
+Empirical applications on the same sort of cracking data were further carried out with the MUSTEM model and the HIMA model for the comparison of estimation results. The MUSTEM model was used separately with each cracking type. Whilst, the HIMA model was used with three cracking types at the same time like in the COHA model. Due to the differences of the three models, the MUSTEM model and the HIMA model consider only the observed sampling values of typical cracking type, hidden cracking types are not considered in these two models. Moreover, with the HIMA model, it is not possible to construct deterioration overall curves since the HIMA model considers only each cracking type and its damage level. 
+
+Distribution of condition states over time using the HIMA model is shown in Fig. \ref{statedistribution}-b. This figure can be compared directly with the distribution of condition states distribution using the COHA model (Fig.  \ref{statedistribution}-a). As can be seen from comparison between the two figures (Fig. \ref{statedistribution}-a and Fig. \ref{statedistribution}-b), the differences in the shapes and patterns corresponding to the damage levels under two models are not noteworthy observed. However, there is a minor noticeable difference with regard to the probability distribution of horizontal crack (i.e. becomes smaller along with time axis). Reason for the difference of condition state distribution of horizontal crack is believed due to the overestimation of horizontal cracking type when using the HIMA model. %As previously discussed, selection bias exists in the cracking data and in this empirical case it is proved that selection bias is caused by bias selecting horizontal crack. 
+
+%It thinks the damage level according to the crack type to be a state variable in the hierarchical index deterioration hazard model, and the transition probability between state variables is expressed by using the Markoff transition probability. The advantage of the model concerned is a point that the crack process with high operativeness can be modeled so that the Markov chain model may express the entire crack process. However, there is danger that the dynamic sample selection bias is generated in the estimated Markoff transition probability to estimate the Markoff transition probability by using the sample observed as a central value. In addition, there is a problem with an impossible estimate of a curve according to the crack type use by using the hierarchical index deterioration hazard model, too. 
+%Therefore, when the deterioration speed according to the crack type is examined, I cannot help using the rival deterioration hazard model. The secular distortion of the deterioration state distribution requested by using the hierarchical index deterioration hazard model for fig9 is shown. A curve according to the crack type shown in fig67 use cannot be estimated by the hierarchical index hazard model as mentioned above. It is understood to be able to find some differences to the state distribution by comparing this figure with fig5 for an individual crack though there is no great disparity in the state distribution according to the damage level. Especially, when the hierarchical index deterioration hazard model is used, the appearance probability of a horizontal crack has become small. That is, there is danger to which the rival transition probability of a horizontal crack is undervalued by the dynamic sample selection bias when the hierarchical index deterioration hazard model is used as shown in fig4. The rival transition probability that the rival deterioration hazard model estimates that it referred with sec34 doesn't satisfy Markov property. Degradation when using competing hazard model, it becomes necessary to model the pavement deterioration process of using the asymmetric non-time Markov chain model, on the practical problems that arise that reduce the operability of the model. Using a homogeneous Markov chain model, in order to determine whether it is desirable to approximate the degradation process of considering the type of pavement cracks, consider the optimal maintenance policy and life cycle cost estimates using the approximate model required to consider whether there is a problem for practical also. Discussion of approximation accuracy that is beyond the paper and want to challenge for the future.
+
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[scale=0.4]{fig9}
+%\end{center}
+%\footnotesize Note) Numbers in parentheses are condition states $(i,l)$. Condition states  $(1,3),(2,3),(3,3),(3,1),(3,2)$ are absorbing condition states. 
+%\caption{Distribution of condition states over 15 years using the HIMA model.}
+%\label{fig9}
+%\end{figure}
+
+The comparison of estimation results between the MUSTEM model and the COHA model are shown in Fig. \ref{fig10}. In either cases, there appear a substantial discrepancy. Deterioration speed obtained from the MUSTEM model is sharply faster than that of the COHA model. These differences are due to the fact that the MUSTEM model uses only representing sampling data, which are always in worse condition states. This problem is regarded as overestimation of true condition states. Meanwhile, the COHA model has ability to reveal the hidden condition states of damage levels and cracking types. Thus, its estimation results are greatly improved.
+%Next, a curve of a length crack requested by using the multistep floor index deterioration hazard model and a horizontal crack use is shown in fig10 and fig11. These figures show a curve of each crack type requested by using the rival deterioration hazard model use. The curve made by using the multistep floor index hazard model as shown in these two figures use is a result of deteriorate progressing earlier when the rival deterioration hazard model is used. The data base used by the multistep floor index deterioration hazard model's estimate is a content that collects only samples with a fast deterioration for each crack type. Therefore, there is danger of overvaluing the deterioration speed. The sample selection bias by having estimated the deterioration hazard model by using only the sample with an early progress of deterioration when a curve according to each crack type use is estimated by using only the sample to which the damage level concerning each crack type has been described like this will be generated. On the other hand, there is an advantage that it is possible to use to estimate information on the damage level distribution of the crack type not observed as a typical crack type, and a curve according to the crack type use can be estimated after the sample selection bias is removed in the rival deterioration hazard model. 
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[scale=0.4]{fig10} 
+\end{center}
+\caption{Comparison of deterioration curves between the MUSTEM model and the COHA model.}
+\label{fig10}
+\end{figure}
+
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[scale=0.5]{fig11} 
+%\end{center}
+%\footnotesize Note)A basic case shows a curve of an average section in the object section use. 
+%\caption{Comparision of deterioration curves with horizontal crack.}
+%\label{fig11}
+%\end{figure}
+%
+\section{Conclusions} \label{sec7}
+Deterioration of an infrastructure object can be represented by means of several performance indicators. In monitoring activities, it is often the case that worse value of performance indicator is selected as representative condition state. Values of other performance indicators could be neglected, and thus remaining as hidden information in the data bank. A typical example of such a problem is with monitoring data of cracks. Cracks occur on the surface of a road section can be in multiple directions (e.g. longitudinal crack, horizontal crack, and alligator crack). In many cases, only crack with worse value (i.e. percentage of crack on road surface), is chosen to be representative crack. This selection bias could possibly result in non-optimal decisions on chosing intervention strategy to be executed on road sections in order to provide adequate level of service.
+
+In order to tackle the problems, we developed a novel Markov hazard model that can be used for deterioration prediction of infrastructure system with more than a single performance indicator and with multiple condition states. The model was formulated to mitigate the selection bias embedded in monitoring data. Precisely, in the model, it is assumed that deterioration process can be of multiple types. Each type of deterioration is measured by use of damage levels. The overall condition state of an infrastructure object is the combination of deterioration type and damage level. In addition, it is also assumed that condition state is defined based on a competitive selection among damage levels and cracking types, and therefore, the model's name is a competitive Markov model. 
+
+In the paper, we also presented a novel numerical solution to obtain model's parameters by using Bayesian estimation method and Markov Chain Monte Carlo simulation. The model was then tested with a cracking dataset of road sections in Japan. It was found that horizontal crack is the dominant cracking type. Longitudinal crack progresses slower than horizontal crack and alligator crack. 
+
+Finally, it is concluded that the model is robust and the estimation results are significant. The model can be applied not only for modelling crack initiation but also for other types of deterioration as well, e.g. the corrosion of rebars due to both carbonition and chloride attack. 
+
+%
+\section{Acknowledgment} \label{sec8}
+We would like to express our thanks to Ministry of Education, Culture, Sports, Science and Technology in Japan for financial supports. A part of the work belongs to the research program at ``Frontier Research Centers for Global Young Researchers'', Osaka University, Japan.
+%% main text
+%\bibitem{}
+\bibliographystyle{elsarticle-harv} 
+\bibliography{reference}
+%\end{thebibliography}
+
+\
+
+\end{document}
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.
